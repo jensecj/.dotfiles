@@ -5,6 +5,9 @@ portability, so i tried it!
 # Awesome
 currently configuration is for awesome 3.5
 
+* `Modkey + Enter` is terminal
+* `Modkey + Backspace` is browser
+
 # Git
 TODO: add some aliases
 
