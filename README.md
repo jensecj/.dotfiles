@@ -8,3 +8,4 @@
 
 * ln -s .dotfiles/awesomewm/zenburn ~/.config/awesome/themes/zenburn
 * ln -s .dotfiles/awesomewm/rc.lua ~/.config/awesome/rc.lua
+* ln -s .dotfiles/awesomewm/widgets.lua ~/.config/awesome/widgets.lua

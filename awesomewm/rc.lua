@@ -1,19 +1,12 @@
--- Standard awesome library
 local gears = require("gears")
 local awful = require("awful")
 awful.rules = require("awful.rules")
 require("awful.autofocus")
--- Widget and layout library
 local wibox = require("wibox")
--- Theme handling library
 local beautiful = require("beautiful")
--- Notification library
 local naughty = require("naughty")
 local menubar = require("menubar")
 
--- {{{ Error handling
--- Check if awesome encountered an error during startup and fell back to
--- another config (This code will only ever execute for the fallback config)
 if awesome.startup_errors then
     naughty.notify({ preset = naughty.config.presets.critical,
                      title = "Oops, there were errors during startup!",
@@ -36,195 +29,39 @@ do
 end
 -- }}}
 
--- {{{ Variable definitions
--- Themes define colours, icons, and wallpapers
 beautiful.init(awful.util.getdir("config") .. "/themes/zenburn/theme.lua")
 
--- This is used later as the default terminal and editor to run.
 terminal = "urxvt"
 browser = "chromium"
 editor = os.getenv("EDITOR") or "emacs"
 editor_cmd = terminal .. " -e " .. editor
 
--- Default modkey.
--- Usually, Mod4 is the key with a logo between Control and Alt.
--- If you do not like this or do not have such a key,
--- I suggest you to remap Mod4 to another key using xmodmap or other tools.
--- However, you can use another modifier like Mod1, but it may interact with others.
 modkey = "Mod4"
 
--- Table of layouts to cover with awful.layout.inc, order matters.
 local layouts =
 {
     awful.layout.suit.fair,
     awful.layout.suit.tile,
     awful.layout.suit.tile.left,
-    awful.layout.suit.max,
-
-    ----awful.layout.suit.max.fullscreen,
-    ----awful.layout.suit.fair.horizontal,
-    ----awful.layout.suit.tile.top,
-    ----awful.layout.suit.tile.bottom,
-    ----awful.layout.suit.floating,
-    ----awful.layout.suit.spiral.dwindle,
-    ----awful.layout.suit.spiral,
-    --awful.layout.suit.magnifier,
+    awful.layout.suit.max
 }
--- }}}
 
--- {{{ Wallpaper
 if beautiful.wallpaper then
     for s = 1, screen.count() do
         gears.wallpaper.maximized(beautiful.wallpaper, s, true)
     end
 end
--- }}}
 
--- {{{ Tags
--- Define a tag table which hold all screen tags.
 tags = {}
 for s = 1, screen.count() do
     -- Each screen has its own tag table.
     tags[s] = awful.tag({ 1, 2, 3, 4, 5 }, s, layouts[1])
 end
--- }}}
 
--- {{{ Menu
--- Menubar configuration
-menubar.utils.terminal = terminal -- Set the terminal for applications that require it
--- }}}
+menubar.utils.terminal = terminal
 
--- {{{ Wibox
--- Create a text clock widget
-mytextclock = awful.widget.textclock("%d/%m/%y - %H:%M", 59)
-
--- Create a text battery widget
-mybattery = wibox.widget.textbox()
-updatebattery = function()
-                        fh = assert(io.popen("acpi | tr -s ' ' '\n' | sed -n 'n;n;p;n;p;n' | tr -d ,%", "r"))
-			-- fh = assert(io.popen("acpi | cut -d, -f 2 | tr -d ' '", "r"))
-			batstat = fh:read("*l")
-                        batval = fh:read("*l")
-			fh:close()
-                        
-                        if batstat == "Charging" then
-                           mybattery:set_text(batval .. "C")
-                        else
-                           mybattery:set_text(batval .. "%")
-                        end
-		end
-
-mybattery:set_text("battery | ")
-mybatterytimer = timer({ timeout = 59 })
-mybatterytimer:connect_signal("timeout", updatebattery)
-updatebattery()
-mybatterytimer:start()
-
--- Create a text volume widget
-myvolume = wibox.widget.textbox()
-
-updatevolume = function()
-		       fh = assert(io.popen("amixer -c 1 sget Master | sed -n 'n;n;n;n;p' | tr -d []% | tr -s ' '| cut -d ' ' -f 5,7 | tr ' ' '\n'", "r"))
-		       value = fh:read("*l")
-                       status = fh:read("*l")
-		       fh:close()
-		       
-                       if status == "on" then
-                         myvolume:set_text(value .. "%")
-                       else
-                         myvolume:set_text(value .. "M")
-                       end   
-	       end
-
-myvolumetimer = timer({ timeout = 1 })
-myvolumetimer:connect_signal("timeout", updatevolume)
-updatevolume()
-myvolumetimer:start()
-
--- Create a text RAM widget
-myram = wibox.widget.textbox()
-updateram = function ()
-	    	     fh = assert(io.popen("cat /proc/meminfo | grep -m 1 Active | cut -d: -f 2 | tr -s ' ' | tr -d 'kB'", "r"))
-		     active = fh:read("*all")
-		     fh:close()
-
-		     active = tonumber(active)
-
-		     myram:set_text(string.format("%dMB", (active/1024)))
-            end
-
-myramtimer = timer({ timeout = 3 })
-myramtimer:connect_signal("timeout", updateram)
-updateram()
-myramtimer:start()
-
--- Create a text CPU widget
-mycpu = wibox.widget.textbox()
-jiffies = {}
-function activecpu ()
-       local s = 0
-       for line in io.lines("/proc/stat") do
-           local cpu, newjiffies = string.match(line, "(cpu%d*) +(%d+)")
-           if cpu and newjiffies then
-               if not jiffies[cpu] then
-                   jiffies[cpu] = newjiffies
-               end
-               --The string.format prevents your task list from jumping around 
-               --when CPU usage goes above/below 10%
-               s = s + tonumber(newjiffies-jiffies[cpu])
-               jiffies[cpu] = newjiffies
-           end
-       end
-       return s
-end
-
-updatecpu = function ()
-	    	     mycpu:set_text(string.format("%d", (activecpu()/8)) .. "%")
-	    end
-
-mycputimer = timer({ timeout = 3 })
-mycputimer:connect_signal("timeout", updatecpu)
-updatecpu()
-mycputimer:start()
-
--- Create a text HDD widget
-myhdd = wibox.widget.textbox()
-
-updatehdd = function ()
-	    	     fh = assert(io.popen("df | grep -m 1 '/dev/sda1' | tr -s ' ' | cut -d' ' -f 5", "r"))  
-		     usage = fh:read("*all")
-		     fh:close()
-		     myhdd:set_text(usage)
-	    end
-
-myhddtimer = timer({ timeout = 300 })
-myhddtimer:connect_signal("timeout", updatehdd)
-updatehdd()
-myhddtimer:start()
-
--- Create a text wifi widget
-mywifi = wibox.widget.textbox()
-
-updatewifi = function ()
-	    	     fh = assert(io.popen("cat /proc/net/wireless | grep -m 1 wlp3s0 | tr -s ' ' | cut -d' ' -f 3 | tr -d .", "r"))  
-		     status = fh:read("*all")
-		     fh:close()
-		     
-		     if status == "" then
-		     	mywifi:set_text("offline")
-		     else
-			mywifi:set_text(status)
-		     end
-	    end
-
-mywifitimer = timer({ timeout = 3 })
-mywifitimer:connect_signal("timeout", updatewifi)
-updatewifi()
-mywifitimer:start()
-
--- Create text seperator widget
-myseperator = wibox.widget.textbox()
-myseperator:set_text(" | ")
+-- setup widgets
+dofile(awful.util.getdir("config") .. "/widgets.lua")
 
 -- Create a wibox for each screen and add it
 mywibox = {}
@@ -294,7 +131,8 @@ for s = 1, screen.count() do
     -- Widgets that are aligned to the right
     local right_layout = wibox.layout.fixed.horizontal()
     if s == 1 then right_layout:add(wibox.widget.systray()) end
-    
+
+    -- add widgets    
     right_layout:add(myseperator)
     right_layout:add(wibox.widget.imagebox(beautiful.icon_cpu))
     right_layout:add(mycpu)
