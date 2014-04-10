@@ -1,5 +1,14 @@
-# Symlinks
+# The nitty gritty
+seemed like a practical way to store configurations and facilitate
+portability, so i tried it!
 
+# Awesome
+currently configuration is for awesome 3.5
+
+# Git
+TODO: add some aliases
+
+# Symlinks
 * ln -s .dotfiles/bashrc ~/.bashrc
 * ln -s .dotfiles/bash_profile ~/.bash_profile
 * ln -s .dotfiles/gitconfig ~/.gitconfig
