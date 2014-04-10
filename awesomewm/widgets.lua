@@ -6,7 +6,7 @@ local wibox = require("wibox")
 
 
 -- clock widget
-mytextclock = awful.widget.textclock("%d/%m/%y - %H:%M", 59)
+mytextclock = awful.widget.textclock("%d/%m/%y - %H:%M", 30)
 
 
 -- battery widget
