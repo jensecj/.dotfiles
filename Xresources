@@ -20,7 +20,7 @@ URxvt.secondaryScroll: true
 URxvt.scrollBar: false
 URxvt.scrollTtyKeypress: true
 URxvt.scrollWithBuffer: true
-URxvt*urlLauncher: /usr/bin/firefox
+URxvt*urlLauncher: /usr/bin/chromium
 URxvt*background: #3f3f3f
 URxvt*foreground: #dcdccc
 URxvt*cursorColor: #dcdccc
