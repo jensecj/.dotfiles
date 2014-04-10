@@ -3,11 +3,11 @@ seemed like a practical way to store configurations and facilitate
 portability, so i tried it!
 
 # Awesome
-currently configuration is for awesome 3.5
+configuration is for awesome 3.5
 
-* `Modkey + Enter` is terminal
-* `Modkey + Backspace` is browser
-* `Modkey + Delete` is editor
+* `Modkey + Enter` spawns terminal
+* `Modkey + Backspace` spawns browser
+* `Modkey + Delete` spawns editor
 
 # Git
 TODO: add some aliases
