@@ -7,11 +7,13 @@ currently configuration is for awesome 3.5
 
 * `Modkey + Enter` is terminal
 * `Modkey + Backspace` is browser
+* `Modkey + Delete` is editor
 
 # Git
 TODO: add some aliases
 
 # Symlinks
+(should probably create a bootstrapper)
 * ln -s .dotfiles/bashrc ~/.bashrc
 * ln -s .dotfiles/bash_profile ~/.bash_profile
 * ln -s .dotfiles/gitconfig ~/.gitconfig
