@@ -42,8 +42,6 @@ local layouts =
    {
       awful.layout.suit.fair,
       awful.layout.suit.tile,
-      awful.layout.suit.tile.left,
-      awful.layout.suit.max
    }
 
 if beautiful.wallpaper then
