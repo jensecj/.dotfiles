@@ -25,19 +25,16 @@ theme.mouse_finder_color = "#CC9393"
 theme.menu_height = 15
 theme.menu_width  = 100
 
-theme.icon_cpu = theme.root .. "icons/cpu.png"
-theme.icon_ram = theme.root .. "icons/ram.png"
-theme.icon_wifi = theme.root .. "icons/wifi.png"
-theme.icon_hdd = theme.root .. "icons/hdd.png"
-theme.icon_volume = theme.root .. "icons/volume.png"
-theme.icon_battery = theme.root .. "icons/battery.png"
+theme.icon_cpu      = theme.root .. "icons/cpu.png"
+theme.icon_ram      = theme.root .. "icons/ram.png"
+theme.icon_wifi     = theme.root .. "icons/wifi.png"
+theme.icon_hdd      = theme.root .. "icons/hdd.png"
+theme.icon_volume   = theme.root .. "icons/volume.png"
+theme.icon_battery  = theme.root .. "icons/battery.png"
 theme.icon_timedate = theme.root .. "icons/clock.png"
 
 theme.taglist_squares_sel   = theme.root .. "taglist/squarefz.png"
 theme.taglist_squares_unsel = theme.root .. "taglist/squarez.png"
-
-theme.awesome_icon           = theme.root .. "awesome-icon.png"
-theme.menu_submenu_icon      = "/usr/share/awesome/themes/default/submenu.png"
 
 theme.layout_tile       = theme.root .. "layouts/tile.png"
 theme.layout_tileleft   = theme.root .. "layouts/tileleft.png"
