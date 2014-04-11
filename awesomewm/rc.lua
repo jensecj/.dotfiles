@@ -141,8 +141,8 @@ for s = 1, screen.count() do
 end
 
 globalkeys = awful.util.table.join(
-   awful.key({ modkey,           }, "Left",   awful.tag.viewprev       ),
-   awful.key({ modkey,           }, "Right",  awful.tag.viewnext       ),
+   awful.key({ modkey,           }, "Left",   awful.tag.viewprev),
+   awful.key({ modkey,           }, "Right",  awful.tag.viewnext),
 
    awful.key({ modkey,           }, "j",
       function ()
@@ -156,13 +156,13 @@ globalkeys = awful.util.table.join(
    end),
 
    -- Brightness
-   awful.key({                   }, "XF86MonBrightnessUp", function () awful.util.spawn("xbacklight +10") end),
-   awful.key({                   }, "XF86MonBrightnessDown", function () awful.util.spawn("xbacklight -10") end),
+   awful.key({ }, "XF86MonBrightnessUp",   function () awful.util.spawn("xbacklight +10") end),
+   awful.key({ }, "XF86MonBrightnessDown", function () awful.util.spawn("xbacklight -10") end),
 
    -- Sound
-   awful.key({                   }, "XF86AudioRaiseVolume", function () awful.util.spawn("amixer -q -c 1 sset Master 5%+") end),    
-   awful.key({                   }, "XF86AudioLowerVolume", function () awful.util.spawn("amixer -q -c 1 sset Master 5%-") end),    
-   awful.key({                   }, "XF86AudioMute", function () awful.util.spawn("amixer -q -c 1 sset Master toggle") end),    
+   awful.key({ }, "XF86AudioRaiseVolume", function () awful.util.spawn("amixer -q -c 1 sset Master 5%+") end),    
+   awful.key({ }, "XF86AudioLowerVolume", function () awful.util.spawn("amixer -q -c 1 sset Master 5%-") end),    
+   awful.key({ }, "XF86AudioMute",        function () awful.util.spawn("amixer -q -c 1 sset Master toggle") end),    
 
    -- Layout manipulation
    awful.key({ modkey, "Shift"   }, "j", function () awful.client.swap.byidx(  1)    end),
@@ -171,10 +171,9 @@ globalkeys = awful.util.table.join(
    awful.key({ modkey, "Control" }, "k", function () awful.screen.focus_relative(-1) end),
 
    -- Standard program
-   awful.key({ modkey,           }, "Return", function () awful.util.spawn(terminal) end),
+   awful.key({ modkey,           }, "Return",    function () awful.util.spawn(terminal) end),
    awful.key({ modkey,           }, "BackSpace", function () awful.util.spawn(browser) end),
-   awful.key({ modkey,           }, "Delete", function () awful.util.spawn(editor) end),
-
+   awful.key({ modkey,           }, "Delete",    function () awful.util.spawn(editor) end),
 
    awful.key({ modkey, "Control" }, "r", awesome.restart),
    awful.key({ modkey, "Shift"   }, "q", awesome.quit),
@@ -189,7 +188,7 @@ globalkeys = awful.util.table.join(
    awful.key({ modkey, "Shift"   }, "space", function () awful.layout.inc(layouts, -1) end),
 
    -- Prompt
-   awful.key({ modkey },            "r",     function () mypromptbox[mouse.screen]:run() end),
+   awful.key({ modkey }, "r",     function () mypromptbox[mouse.screen]:run() end),
 
    awful.key({ modkey }, "x",
       function ()
