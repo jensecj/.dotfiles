@@ -1,7 +1,6 @@
 local awful = require("awful")
 awful.rules = require("awful.rules")
 require("awful.autofocus")
-
 local wibox = require("wibox")
 
 
@@ -16,7 +15,7 @@ updatebattery = function()
    batstat = fh:read("*l")
    batval = fh:read("*l")
    fh:close()
-   
+
    if batstat == "Charging" then
       mybattery:set_text(batval .. "C")
    else
@@ -38,12 +37,12 @@ updatevolume = function()
    value = fh:read("*l")
    status = fh:read("*l")
    fh:close()
-   
+
    if status == "on" then
       myvolume:set_text(value .. "%")
    else
       myvolume:set_text(value .. "M")
-   end   
+   end
 end
 
 myvolumetimer = timer({ timeout = 1 })
@@ -81,7 +80,7 @@ function activecpu ()
          if not jiffies[cpu] then
             jiffies[cpu] = newjiffies
          end
-         --The string.format prevents your task list from jumping around 
+         --The string.format prevents your task list from jumping around
          --when CPU usage goes above/below 10%
          s = s + tonumber(newjiffies-jiffies[cpu])
          jiffies[cpu] = newjiffies
@@ -103,7 +102,7 @@ mycputimer:start()
 -- hdd usage widget
 myhdd = wibox.widget.textbox()
 updatehdd = function ()
-   fh = assert(io.popen("df | grep -m 1 '/dev/sda1' | tr -s ' ' | cut -d' ' -f 5", "r"))  
+   fh = assert(io.popen("df | grep -m 1 '/dev/sda1' | tr -s ' ' | cut -d' ' -f 5", "r"))
    usage = fh:read("*all")
    fh:close()
    myhdd:set_text(usage)
@@ -118,10 +117,10 @@ myhddtimer:start()
 -- wifi strength widget
 mywifi = wibox.widget.textbox()
 updatewifi = function ()
-   fh = assert(io.popen("cat /proc/net/wireless | grep -m 1 wlp3s0 | tr -s ' ' | cut -d' ' -f 3 | tr -d .", "r"))  
+   fh = assert(io.popen("cat /proc/net/wireless | grep -m 1 wlp3s0 | tr -s ' ' | cut -d' ' -f 3 | tr -d .", "r"))
    status = fh:read("*all")
    fh:close()
-   
+
    if status == "" then
       mywifi:set_text("offline")
    else
