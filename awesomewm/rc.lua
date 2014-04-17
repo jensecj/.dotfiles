@@ -20,7 +20,7 @@ do
                              -- Make sure we don't go into an endless error loop
                              if in_error then return end
                              in_error = true
-                             
+
                              naughty.notify({ preset = naughty.config.presets.critical,
                                               title = "Oops, an error happened!",
                                               text = err })
@@ -32,7 +32,7 @@ beautiful.init(awful.util.getdir("config") .. "/themes/zenburn/theme.lua")
 
 terminal = "urxvt"
 browser = "chromium"
-editor = os.getenv("EDITOR") or "emacs"
+editor = "emacs"
 editor_cmd = terminal .. " -e " .. editor
 
 modkey = "Mod4"
@@ -83,7 +83,7 @@ end))
 for s = 1, screen.count() do
    -- Create a promptbox for each screen
    mypromptbox[s] = awful.widget.prompt()
-   
+
    -- Create a taglist widget
    mytaglist[s] = awful.widget.taglist(s, awful.widget.taglist.filter.all, mytaglist.buttons)
 
@@ -104,7 +104,7 @@ for s = 1, screen.count() do
    right_layout:add(myseperator)
    if s == 1 then right_layout:add(wibox.widget.systray()) end
 
-   -- add widgets    
+   -- add widgets
    right_layout:add(myseperator)
    right_layout:add(wibox.widget.imagebox(beautiful.icon_cpu))
    right_layout:add(mycpu)
@@ -116,7 +116,7 @@ for s = 1, screen.count() do
    right_layout:add(myseperator)
    right_layout:add(wibox.widget.imagebox(beautiful.icon_wifi))
    right_layout:add(mywifi)
-   
+
    right_layout:add(myseperator)
    right_layout:add(wibox.widget.imagebox(beautiful.icon_hdd))
    right_layout:add(myhdd)
@@ -128,7 +128,7 @@ for s = 1, screen.count() do
    right_layout:add(myseperator)
    right_layout:add(wibox.widget.imagebox(beautiful.icon_battery))
    right_layout:add(mybattery)
-   
+
    right_layout:add(myseperator)
    right_layout:add(wibox.widget.imagebox(beautiful.icon_timedate))
    right_layout:add(mytextclock)
@@ -162,9 +162,9 @@ globalkeys = awful.util.table.join(
    awful.key({ }, "XF86MonBrightnessDown", function () awful.util.spawn("xbacklight -10") end),
 
    -- Sound
-   awful.key({ }, "XF86AudioRaiseVolume", function () awful.util.spawn("amixer -q -c 1 sset Master 5%+") end),    
-   awful.key({ }, "XF86AudioLowerVolume", function () awful.util.spawn("amixer -q -c 1 sset Master 5%-") end),    
-   awful.key({ }, "XF86AudioMute",        function () awful.util.spawn("amixer -q -c 1 sset Master toggle") end),    
+   awful.key({ }, "XF86AudioRaiseVolume", function () awful.util.spawn("amixer -q -c 1 sset Master 5%+") end),
+   awful.key({ }, "XF86AudioLowerVolume", function () awful.util.spawn("amixer -q -c 1 sset Master 5%-") end),
+   awful.key({ }, "XF86AudioMute",        function () awful.util.spawn("amixer -q -c 1 sset Master toggle") end),
 
    -- Layout manipulation
    awful.key({ modkey, "Shift"   }, "j", function () awful.client.swap.byidx(  1)    end),
@@ -275,6 +275,3 @@ client.connect_signal("manage", function (c, startup)
                             end
                          end
 end)
-
-client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
-client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
