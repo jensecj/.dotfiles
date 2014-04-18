@@ -8,6 +8,7 @@ configuration is for awesome 3.5
 * `Modkey + Enter` spawns terminal
 * `Modkey + Backspace` spawns browser
 * `Modkey + Delete` spawns editor
+* `Modkey + F12` spawns htop
 
 # Git
 TODO: add some aliases
