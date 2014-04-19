@@ -2,6 +2,6 @@
 [[ $- != *i* ]] && return
 
 alias ls='ls --color=auto'
-alias l='ls -gholX'
-alias ll='ls -agholX'
+alias l='ls -gohX --group-directories-first'
+alias ll='ls -AghoX --group-directories-first'
 PS1='[\u@\h \W]\$ '
