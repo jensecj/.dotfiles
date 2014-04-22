@@ -2,6 +2,8 @@ theme = {}
 theme.root = "~/.config/awesome/themes/zenburn/"
 theme.wallpaper = theme.root .. "zenburn-background.png"
 
+theme.tasklist_disable_icon = true
+
 theme.font      = "Source Code Pro 9"
 
 theme.fg_normal  = "#DCDCCC"
