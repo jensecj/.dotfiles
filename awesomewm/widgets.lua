@@ -95,8 +95,8 @@ myhddtimer:start()
 -- wifi strength widget
 mywifi = wibox.widget.textbox()
 updatewifi = function ()
-   fh = assert(io.popen("cat /proc/net/wireless | grep -m 1 wlp3s0 | tr -s ' ' | cut -d' ' -f 3 | tr -d .", "r"))
-   status = fh:read("*all")
+   fh = assert(io.popen("cat /proc/net/wireless | sed -n 3p | awk '{print $3}' | tr -d .", "r"))
+   status = fh:read("*l")
    fh:close()
 
    if status == "" then
