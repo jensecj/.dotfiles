@@ -126,3 +126,6 @@ updatevolume = function()
    else
       myvolume:set_text(value .. "M")
    end
+end
+
+updatevolume()
