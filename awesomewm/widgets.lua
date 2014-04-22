@@ -45,11 +45,7 @@ updatevolume = function()
    end
 end
 
-myvolumetimer = timer({ timeout = 1 })
-myvolumetimer:connect_signal("timeout", updatevolume)
 updatevolume()
-myvolumetimer:start()
-
 
 -- ram usage widget
 myram = wibox.widget.textbox()
