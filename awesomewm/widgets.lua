@@ -80,8 +80,9 @@ mycputimer:start()
 myhdd = wibox.widget.textbox()
 updatehdd = function ()
    fh = assert(io.popen("df | sed -n 2p | awk '{print $5}'", "r"))
-   usage = fh:read("*all")
+   usage = fh:read("*l")
    fh:close()
+
    myhdd:set_text(usage)
 end
 
