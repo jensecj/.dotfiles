@@ -11,7 +11,7 @@ mytextclock = awful.widget.textclock("%d/%m/%y - %H:%M", 30)
 -- battery widget
 mybattery = wibox.widget.textbox()
 updatebattery = function()
-   fh = assert(io.popen("acpi | tr -d %, | awk '{print $3; print $4}'", "r"))
+   fh = assert(io.popen("acpi | awk '{print $3; print $4}' | tr -d %,", "r"))
    batstat = fh:read("*l")
    batval = fh:read("*l")
    fh:close()
