@@ -58,6 +58,10 @@ menubar.utils.terminal = terminal
 
 dofile(awful.util.getdir("config") .. "/widgets.lua")
 
+-- simple widget seperator
+myseperator = wibox.widget.textbox()
+myseperator:set_text(" | ")
+
 -- Create a wibox for each screen and add it
 mywibox = {}
 mypromptbox = {}

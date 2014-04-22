@@ -128,8 +128,3 @@ mywifitimer = timer({ timeout = 3 })
 mywifitimer:connect_signal("timeout", updatewifi)
 updatewifi()
 mywifitimer:start()
-
-
--- simple widget seperator
-myseperator = wibox.widget.textbox()
-myseperator:set_text(" | ")
