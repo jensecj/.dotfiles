@@ -81,7 +81,7 @@ mycputimer:start()
 -- hdd usage widget
 myhdd = wibox.widget.textbox()
 updatehdd = function ()
-   fh = assert(io.popen("df | grep -m 1 '/dev/sda1' | tr -s ' ' | cut -d' ' -f 5", "r"))
+   fh = assert(io.popen("df | sed -n 2p | awk '{print $5}'", "r"))
    usage = fh:read("*all")
    fh:close()
    myhdd:set_text(usage)
