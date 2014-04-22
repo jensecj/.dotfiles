@@ -115,7 +115,7 @@ mywifitimer:start()
 -- volume widget
 myvolume = wibox.widget.textbox()
 updatevolume = function()
-   fh = assert(io.popen("amixer -c 1 sget Master | sed -n '5p' | tr -s ' ' '\n' | sed -n -e 5p -e 7p | tr -d []%", "r"))
+   fh = assert(io.popen("amixer -c 1 sget Master | sed -n 5p | awk '{print $4; print $6}' | tr -d []%", "r"))
    value = fh:read("*l")
    status = fh:read("*l")
    fh:close()
