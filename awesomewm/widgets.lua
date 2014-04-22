@@ -54,16 +54,16 @@ myvolumetimer:start()
 -- ram usage widget
 myram = wibox.widget.textbox()
 updateram = function ()
-   fh = assert(io.popen("cat /proc/meminfo | grep -m 1 Active | cut -d: -f 2 | tr -s ' ' | tr -d 'kB'", "r"))
-   active = fh:read("*all")
+   fh = assert(io.popen("free -m | sed -n 3p | tr -s ' ' | tr -s ' ' '\n' | sed -n 3p", "r"))
+   value = fh:read("*all")
    fh:close()
 
    active = tonumber(active)
 
-   myram:set_text(string.format("%dMB", (active/1024)))
+   myram:set_text(value .. "MB")
 end
 
-myramtimer = timer({ timeout = 3 })
+myramtimer = timer({ timeout = 5 })
 myramtimer:connect_signal("timeout", updateram)
 updateram()
 myramtimer:start()
