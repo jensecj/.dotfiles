@@ -64,13 +64,9 @@ mytextclock = awful.widget.textclock("%d/%m/%y - %H:%M", 31)
 mybattery = wibox.widget.textbox()
 vicious.register(mybattery, vicious.widgets.bat, "$2%", 61, "BAT0")
 
--- ram usage widget
-myram = wibox.widget.textbox()
-vicious.register(myram, vicious.widgets.mem, "$2 MB", 7)
-
--- cpu usage widget
-mycpu = wibox.widget.textbox()
-vicious.register(mycpu, vicious.widgets.cpu, "$1%", 3)
+-- volume widget
+myvolume = wibox.widget.textbox()
+vicious.register(myvolume, vicious.widgets.volume, "$1 $2", 2, "Master -c 1")
 
 -- hdd usage widget
 myhdd = wibox.widget.textbox()
@@ -78,11 +74,15 @@ vicious.register(myhdd, vicious.widgets.fs, "${/ used_p}%", 59)
 
 -- wifi strength widget
 mywifi = wibox.widget.textbox()
-vicious.register(mywifi, vicious.widgets.wifi, "${linp}%", 3, "wlp3s0")
+vicious.register(mywifi, vicious.widgets.wifi, "${linp}%", 5, "wlp3s0")
 
--- volume widget
-myvolume = wibox.widget.textbox()
-vicious.register(myvolume, vicious.widgets.volume, "$1 $2", 2, "Master -c 1")
+-- ram usage widget
+myram = wibox.widget.textbox()
+vicious.register(myram, vicious.widgets.mem, "$2 MB", 7)
+
+-- cpu usage widget
+mycpu = wibox.widget.textbox()
+vicious.register(mycpu, vicious.widgets.cpu, "$1%", 3)
 
 -- simple widget seperator
 myseperator = wibox.widget.textbox()
