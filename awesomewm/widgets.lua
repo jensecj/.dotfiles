@@ -30,23 +30,6 @@ updatebattery()
 mybatterytimer:start()
 
 
--- volume widget
-myvolume = wibox.widget.textbox()
-updatevolume = function()
-   fh = assert(io.popen("amixer -c 1 sget Master | sed -n '5p' | tr -s ' ' '\n' | sed -n -e 5p -e 7p | tr -d []%", "r"))
-   value = fh:read("*l")
-   status = fh:read("*l")
-   fh:close()
-
-   if status == "on" then
-      myvolume:set_text(value .. "%")
-   else
-      myvolume:set_text(value .. "M")
-   end
-end
-
-updatevolume()
-
 -- ram usage widget
 myram = wibox.widget.textbox()
 updateram = function ()
@@ -128,3 +111,18 @@ mywifitimer = timer({ timeout = 3 })
 mywifitimer:connect_signal("timeout", updatewifi)
 updatewifi()
 mywifitimer:start()
+
+
+-- volume widget
+myvolume = wibox.widget.textbox()
+updatevolume = function()
+   fh = assert(io.popen("amixer -c 1 sget Master | sed -n '5p' | tr -s ' ' '\n' | sed -n -e 5p -e 7p | tr -d []%", "r"))
+   value = fh:read("*l")
+   status = fh:read("*l")
+   fh:close()
+
+   if status == "on" then
+      myvolume:set_text(value .. "%")
+   else
+      myvolume:set_text(value .. "M")
+   end
