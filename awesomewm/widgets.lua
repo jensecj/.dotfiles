@@ -33,7 +33,7 @@ mybatterytimer:start()
 -- ram usage widget
 myram = wibox.widget.textbox()
 updateram = function ()
-   fh = assert(io.popen("free -m | sed -n 3p | tr -s ' ' | tr -s ' ' '\n' | sed -n 3p", "r"))
+   fh = assert(io.popen("free -m | sed -n 3p | awk '{print $3}'''", "r"))
    value = fh:read("*all")
    fh:close()
 
