@@ -57,36 +57,36 @@ end
 
 menubar.utils.terminal = terminal
 
--- clock widget
-mytextclock = awful.widget.textclock("%d/%m/%y - %H:%M", 31)
+-- datetime widget
+datetime_widget = awful.widget.textclock("%d/%m/%y - %H:%M", 31)
 
 -- battery widget
-mybattery = wibox.widget.textbox()
-vicious.register(mybattery, vicious.widgets.bat, "$2%", 61, "BAT0")
+battery_widget = wibox.widget.textbox()
+vicious.register(battery_widget, vicious.widgets.bat, "$2%", 61, "BAT0")
 
 -- volume widget
-myvolume = wibox.widget.textbox()
-vicious.register(myvolume, vicious.widgets.volume, "$1 $2", 2, "Master -c 1")
+volume_widget = wibox.widget.textbox()
+vicious.register(volume_widget, vicious.widgets.volume, "$1 $2", 2, "Master -c 1")
 
 -- hdd usage widget
-myhdd = wibox.widget.textbox()
-vicious.register(myhdd, vicious.widgets.fs, "${/ used_p}%", 59)
+harddisk_widget = wibox.widget.textbox()
+vicious.register(harddisk_widget, vicious.widgets.fs, "${/ used_p}%", 59)
 
 -- wifi strength widget
-mywifi = wibox.widget.textbox()
-vicious.register(mywifi, vicious.widgets.wifi, "${linp}%", 5, "wlp3s0")
+wifi_widget = wibox.widget.textbox()
+vicious.register(wifi_widget, vicious.widgets.wifi, "${linp}%", 5, "wlp3s0")
 
 -- ram usage widget
-myram = wibox.widget.textbox()
-vicious.register(myram, vicious.widgets.mem, "$2 MB", 7)
+ram_widget = wibox.widget.textbox()
+vicious.register(ram_widget, vicious.widgets.mem, "$2 MB", 7)
 
 -- cpu usage widget
-mycpu = wibox.widget.textbox()
-vicious.register(mycpu, vicious.widgets.cpu, "$1%", 3)
+cpu_widget = wibox.widget.textbox()
+vicious.register(cpu_widget, vicious.widgets.cpu, "$1%", 3)
 
 -- simple widget seperator
-myseperator = wibox.widget.textbox()
-myseperator:set_text(" | ")
+seperator_widget = wibox.widget.textbox()
+seperator_widget:set_text(" | ")
 
 -- Create a wibox for each screen and add it
 mywibox = {}
@@ -127,41 +127,41 @@ for s = 1, screen.count() do
    local left_layout = wibox.layout.fixed.horizontal()
    left_layout:add(mytaglist[s])
    left_layout:add(mypromptbox[s])
-   left_layout:add(myseperator)
+   left_layout:add(seperator_widget)
 
    -- Widgets that are aligned to the right
    local right_layout = wibox.layout.fixed.horizontal()
-   right_layout:add(myseperator)
+   right_layout:add(seperator_widget)
    if s == 1 then right_layout:add(wibox.widget.systray()) end
 
    -- add widgets
-   right_layout:add(myseperator)
+   right_layout:add(seperator_widget)
    right_layout:add(wibox.widget.imagebox(beautiful.icon_cpu))
-   right_layout:add(mycpu)
+   right_layout:add(cpu_widget)
 
-   right_layout:add(myseperator)
+   right_layout:add(seperator_widget)
    right_layout:add(wibox.widget.imagebox(beautiful.icon_ram))
-   right_layout:add(myram)
+   right_layout:add(ram_widget)
 
-   right_layout:add(myseperator)
+   right_layout:add(seperator_widget)
    right_layout:add(wibox.widget.imagebox(beautiful.icon_wifi))
-   right_layout:add(mywifi)
+   right_layout:add(wifi_widget)
 
-   right_layout:add(myseperator)
+   right_layout:add(seperator_widget)
    right_layout:add(wibox.widget.imagebox(beautiful.icon_hdd))
-   right_layout:add(myhdd)
+   right_layout:add(harddisk_widget)
 
-   right_layout:add(myseperator)
+   right_layout:add(seperator_widget)
    right_layout:add(wibox.widget.imagebox(beautiful.icon_volume))
-   right_layout:add(myvolume)
+   right_layout:add(volume_widget)
 
-   right_layout:add(myseperator)
+   right_layout:add(seperator_widget)
    right_layout:add(wibox.widget.imagebox(beautiful.icon_battery))
-   right_layout:add(mybattery)
+   right_layout:add(battery_widget)
 
-   right_layout:add(myseperator)
+   right_layout:add(seperator_widget)
    right_layout:add(wibox.widget.imagebox(beautiful.icon_timedate))
-   right_layout:add(mytextclock)
+   right_layout:add(datetime_widget)
 
    -- Now bring it all together (with the tasklist in the middle)
    local layout = wibox.layout.align.horizontal()
