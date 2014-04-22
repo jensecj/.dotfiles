@@ -37,7 +37,7 @@ updateram = function ()
    value = fh:read("*l")
    fh:close()
 
-   myram:set_text(value .. "MB")
+   myram:set_text(value .. " MB")
 end
 
 myramtimer = timer({ timeout = 5 })
