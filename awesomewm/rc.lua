@@ -6,6 +6,7 @@ local wibox = require("wibox")
 local beautiful = require("beautiful")
 local naughty = require("naughty")
 local menubar = require("menubar")
+local vicious = require("vicious")
 
 if awesome.startup_errors then
    naughty.notify({ preset = naughty.config.presets.critical,
@@ -56,7 +57,32 @@ end
 
 menubar.utils.terminal = terminal
 
-dofile(awful.util.getdir("config") .. "/widgets.lua")
+-- clock widget
+mytextclock = awful.widget.textclock("%d/%m/%y - %H:%M", 31)
+
+-- battery widget
+mybattery = wibox.widget.textbox()
+vicious.register(mybattery, vicious.widgets.bat, "$2%", 61, "BAT0")
+
+-- ram usage widget
+myram = wibox.widget.textbox()
+vicious.register(myram, vicious.widgets.mem, "$2 MB", 7)
+
+-- cpu usage widget
+mycpu = wibox.widget.textbox()
+vicious.register(mycpu, vicious.widgets.cpu, "$1%", 3)
+
+-- hdd usage widget
+myhdd = wibox.widget.textbox()
+vicious.register(myhdd, vicious.widgets.fs, "${/ used_p}%", 59)
+
+-- wifi strength widget
+mywifi = wibox.widget.textbox()
+vicious.register(mywifi, vicious.widgets.wifi, "${linp}%", 3, "wlp3s0")
+
+-- volume widget
+myvolume = wibox.widget.textbox()
+vicious.register(myvolume, vicious.widgets.volume, "$1 $2", 2, "Master -c 1")
 
 -- simple widget seperator
 myseperator = wibox.widget.textbox()
@@ -166,21 +192,9 @@ globalkeys = awful.util.table.join(
    awful.key({ }, "XF86MonBrightnessDown", function () awful.util.spawn("xbacklight -10") end),
 
    -- Sound
-   awful.key({ }, "XF86AudioRaiseVolume",
-      function ()
-         awful.util.spawn("amixer -q -c 1 sset Master 5%+")
-         updatevolume()
-   end),
-   awful.key({ }, "XF86AudioLowerVolume",
-      function ()
-         awful.util.spawn("amixer -q -c 1 sset Master 5%-")
-         updatevolume()
-   end),
-   awful.key({ }, "XF86AudioMute",
-      function ()
-         awful.util.spawn("amixer -q -c 1 sset Master toggle")
-         updatevolume()
-   end),
+   awful.key({ }, "XF86AudioRaiseVolume", function () awful.util.spawn("amixer -q -c 1 sset Master 5%+") end),
+   awful.key({ }, "XF86AudioLowerVolume", function () awful.util.spawn("amixer -q -c 1 sset Master 5%-") end),
+   awful.key({ }, "XF86AudioMute", function () awful.util.spawn("amixer -q -c 1 sset Master toggle") end),
 
    -- Layout manipulation
    awful.key({ modkey, "Shift"   }, "j", function () awful.client.swap.byidx(  1)    end),
