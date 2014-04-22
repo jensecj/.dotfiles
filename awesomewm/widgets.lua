@@ -46,28 +46,16 @@ updateram()
 myramtimer:start()
 
 
--- cpu usage widget (TODO: fix, sometimes this goes above 100%)
+-- cpu usage widget
 mycpu = wibox.widget.textbox()
-jiffies = {}
-function activecpu ()
-   local s = 0
-   for line in io.lines("/proc/stat") do
-      local cpu, newjiffies = string.match(line, "(cpu%d*) +(%d+)")
-      if cpu and newjiffies then
-         if not jiffies[cpu] then
-            jiffies[cpu] = newjiffies
-         end
-         --The string.format prevents your task list from jumping around
-         --when CPU usage goes above/below 10%
-         s = s + tonumber(newjiffies-jiffies[cpu])
-         jiffies[cpu] = newjiffies
-      end
-   end
-   return s
-end
-
 updatecpu = function ()
-   mycpu:set_text(string.format("%d", (activecpu()/8)) .. "%")
+   fh = assert(io.popen("vmstat 1 2 | sed -n 4p | awk '{print $15}'", "r"))
+   value = fh:read("*l")
+   fh:close()
+
+   actual = 100 - tonumber(value)
+
+   mycpu:set_text(actual .. "%")
 end
 
 mycputimer = timer({ timeout = 3 })
