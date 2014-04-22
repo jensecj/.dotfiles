@@ -33,7 +33,7 @@ mybatterytimer:start()
 -- volume widget
 myvolume = wibox.widget.textbox()
 updatevolume = function()
-   fh = assert(io.popen("amixer -c 1 sget Master | sed -n 'n;n;n;n;p' | tr -d []% | tr -s ' '| cut -d ' ' -f 5,7 | tr ' ' '\n'", "r"))
+   fh = assert(io.popen("amixer -c 1 sget Master | sed -n '5p' | tr -s ' ' '\n' | sed -n -e 5p -e 7p | tr -d []%", "r"))
    value = fh:read("*l")
    status = fh:read("*l")
    fh:close()
