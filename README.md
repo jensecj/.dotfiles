@@ -1,3 +1,6 @@
+# The pretty
+![Screenshot of my dotfiles in action](screen.png?raw=true "Screenshot of my dotfiles in action")
+
 # The nitty gritty
 seemed like a practical way to store configurations and facilitate
 portability, so i tried it!
