@@ -14,7 +14,16 @@ configuration is for awesome 3.5
 * `Modkey + F12` spawns htop
 
 # Git
-TODO: add some aliases
+* `git ad` add files to git repo
+* `git ai` add files to git repo interactively
+* `git br` branch (create or switch)
+* `git ch` checkout a repo
+* `git cl` clone a repo
+* `git co` prompt for a message, the commit verbosely
+* `git di` diff changes in repo
+* `git lo` pretty log
+* `git pu` push repo to remote
+* `git st` simple status
 
 # Symlinks
 (should probably create a bootstrapper)
