@@ -5,7 +5,6 @@ require("awful.autofocus")
 local wibox = require("wibox")
 local beautiful = require("beautiful")
 local naughty = require("naughty")
-local menubar = require("menubar")
 local vicious = require("vicious")
 
 if awesome.startup_errors then
@@ -54,8 +53,6 @@ tags = {}
 for s = 1, screen.count() do
    tags[s] = awful.tag({ 1, 2, 3, 4, 5 }, s, layouts[1])
 end
-
-menubar.utils.terminal = terminal
 
 -- datetime widget
 datetime_widget = awful.widget.textclock("%d/%m/%y - %H:%M", 31)
