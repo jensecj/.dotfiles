@@ -55,7 +55,9 @@ for s = 1, screen.count() do
 end
 
 -- datetime widget
-datetime_widget = awful.widget.textclock("%d/%m/%y - %H:%M", 31)
+timedate_widget = awful.widget.textclock("%d/%m/%y - %H:%M", 31)
+local timedate_widget_background = wibox.widget.background(timedate_widget, "#313131")
+local timedate_widget_icon_background = wibox.widget.background(wibox.widget.imagebox(beautiful.icon_timedate), "#313131")
 
 -- battery widget
 battery_widget = wibox.widget.textbox()
@@ -81,9 +83,20 @@ vicious.register(ram_widget, vicious.widgets.mem, "$2 MB", 7)
 cpu_widget = wibox.widget.textbox()
 vicious.register(cpu_widget, vicious.widgets.cpu, "$1%", 3)
 
+
 -- simple widget seperator
 seperator_widget = wibox.widget.textbox()
-seperator_widget:set_text(" | ")
+seperator_widget:set_text(" ")
+
+-- arrow seperators
+arrl = wibox.widget.imagebox()
+arrl:set_image(beautiful.arrl)
+
+arrl_dl = wibox.widget.imagebox()
+arrl_dl:set_image(beautiful.arrl_dl)
+
+arrl_ld = wibox.widget.imagebox()
+arrl_ld:set_image(beautiful.arrl_ld)
 
 -- Create a wibox for each screen and add it
 mywibox = {}
@@ -123,42 +136,59 @@ for s = 1, screen.count() do
    -- Widgets that are aligned to the left
    local left_layout = wibox.layout.fixed.horizontal()
    left_layout:add(mytaglist[s])
-   left_layout:add(mypromptbox[s])
-   left_layout:add(seperator_widget)
+
+   local promptbox_background = wibox.widget.background(mypromptbox[s], "#313131")
+   left_layout:add(arrl_ld)
+   left_layout:add(promptbox_background)
+   left_layout:add(arrl_dl)
 
    -- Widgets that are aligned to the right
    local right_layout = wibox.layout.fixed.horizontal()
-   right_layout:add(seperator_widget)
-   if s == 1 then right_layout:add(wibox.widget.systray()) end
+   local systray_background = wibox.widget.background(wibox.widget.systray(), "#313131")
+   right_layout:add(arrl_ld)
+   if s == 1 then right_layout:add(systray_background) end
 
-   -- add widgets
-   right_layout:add(seperator_widget)
+   right_layout:add(arrl_dl)
+
    right_layout:add(wibox.widget.imagebox(beautiful.icon_cpu))
    right_layout:add(cpu_widget)
 
    right_layout:add(seperator_widget)
+   right_layout:add(arrl)
+
    right_layout:add(wibox.widget.imagebox(beautiful.icon_ram))
    right_layout:add(ram_widget)
 
    right_layout:add(seperator_widget)
+   right_layout:add(arrl)
+
    right_layout:add(wibox.widget.imagebox(beautiful.icon_wifi))
    right_layout:add(wifi_widget)
 
    right_layout:add(seperator_widget)
+   right_layout:add(arrl)
+
    right_layout:add(wibox.widget.imagebox(beautiful.icon_hdd))
    right_layout:add(harddisk_widget)
 
    right_layout:add(seperator_widget)
+   right_layout:add(arrl)
+
    right_layout:add(wibox.widget.imagebox(beautiful.icon_volume))
    right_layout:add(volume_widget)
 
    right_layout:add(seperator_widget)
+   right_layout:add(arrl)
+
    right_layout:add(wibox.widget.imagebox(beautiful.icon_battery))
    right_layout:add(battery_widget)
 
    right_layout:add(seperator_widget)
-   right_layout:add(wibox.widget.imagebox(beautiful.icon_timedate))
-   right_layout:add(datetime_widget)
+
+   right_layout:add(arrl_ld)
+
+   right_layout:add(timedate_widget_icon_background)
+   right_layout:add(timedate_widget_background)
 
    -- Now bring it all together (with the tasklist in the middle)
    local layout = wibox.layout.align.horizontal()

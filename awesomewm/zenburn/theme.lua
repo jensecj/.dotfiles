@@ -10,9 +10,9 @@ theme.fg_normal  = "#DCDCCC"
 theme.fg_focus   = "#F0DFAF"
 theme.fg_urgent  = "#CC9393"
 theme.bg_normal  = "#3F3F3F"
-theme.bg_focus   = "#1E2320"
+theme.bg_focus   = "#3F3F3F"
 theme.bg_urgent  = "#3F3F3F"
-theme.bg_systray = theme.bg_normal
+theme.bg_systray = "#313131"
 
 theme.border_width  = 1
 theme.border_normal = "#6F6F6F"
@@ -26,6 +26,9 @@ theme.mouse_finder_color = "#CC9393"
 
 theme.menu_height = 15
 theme.menu_width  = 100
+theme.arrl          = theme.root .. "icons/arrl.png"
+theme.arrl_dl       = theme.root .. "icons/arrl_dl.png"
+theme.arrl_ld       = theme.root .. "icons/arrl_ld.png"
 
 theme.icon_cpu      = theme.root .. "icons/cpu.png"
 theme.icon_ram      = theme.root .. "icons/ram.png"
