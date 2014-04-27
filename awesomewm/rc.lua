@@ -153,9 +153,10 @@ for s = 1, screen.count() do
 
    -- Widgets that are aligned to the right
    local right_layout = wibox.layout.fixed.horizontal()
-   local systray_background = wibox.widget.background(wibox.widget.systray(), "#313131")
+
    right_layout:add(arrl_ld)
-   if s == 1 then right_layout:add(systray_background) end
+
+   if s == 1 then right_layout:add(wibox.widget.systray()) end
 
    right_layout:add(arrl_dl)
 
