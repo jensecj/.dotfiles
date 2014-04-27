@@ -65,7 +65,11 @@ vicious.register(battery_widget, vicious.widgets.bat, "$2%", 61, "BAT0")
 
 -- volume widget
 local volume_widget = wibox.widget.textbox()
-vicious.register(volume_widget, vicious.widgets.volume, "$1 $2", 2, "Master -c 1")
+vicious.register(volume_widget, vicious.widgets.volume,
+                 function(widget, args)
+                    local label = { ["♫"] = "%", ["♩"] = "M" }
+                    return args[1] .. label[args[2]]
+                 end, 2, "Master -c 1")
 
 -- hdd usage widget
 local harddisk_widget = wibox.widget.textbox()
@@ -87,7 +91,7 @@ vicious.register(cpu_widget, vicious.widgets.cpu, "$1%", 3)
 local seperator_widget = wibox.widget.textbox()
 seperator_widget:set_text(" ")
 
--- arrow seperators, notation is from left to right, 
+-- arrow seperators, notation is from left to right,
 -- ld means going from light to dark, and vice versa
 local arrow_left = wibox.widget.imagebox()
 arrow_left:set_image(beautiful.arrow_left)
