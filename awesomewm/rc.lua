@@ -55,57 +55,57 @@ for s = 1, screen.count() do
 end
 
 -- datetime widget
-timedate_widget = awful.widget.textclock("%d/%m/%y - %H:%M", 31)
+local timedate_widget = awful.widget.textclock("%d/%m/%y - %H:%M", 31)
 local timedate_widget_background = wibox.widget.background(timedate_widget, "#313131")
 local timedate_widget_icon_background = wibox.widget.background(wibox.widget.imagebox(beautiful.icon_timedate), "#313131")
 
 -- battery widget
-battery_widget = wibox.widget.textbox()
+local battery_widget = wibox.widget.textbox()
 vicious.register(battery_widget, vicious.widgets.bat, "$2%", 61, "BAT0")
 
 -- volume widget
-volume_widget = wibox.widget.textbox()
+local volume_widget = wibox.widget.textbox()
 vicious.register(volume_widget, vicious.widgets.volume, "$1 $2", 2, "Master -c 1")
 
 -- hdd usage widget
-harddisk_widget = wibox.widget.textbox()
+local harddisk_widget = wibox.widget.textbox()
 vicious.register(harddisk_widget, vicious.widgets.fs, "${/ used_p}%", 59)
 
 -- wifi strength widget
-wifi_widget = wibox.widget.textbox()
+local wifi_widget = wibox.widget.textbox()
 vicious.register(wifi_widget, vicious.widgets.wifi, "${linp}%", 5, "wlp3s0")
 
 -- ram usage widget
-ram_widget = wibox.widget.textbox()
+local ram_widget = wibox.widget.textbox()
 vicious.register(ram_widget, vicious.widgets.mem, "$2 MB", 7)
 
 -- cpu usage widget
-cpu_widget = wibox.widget.textbox()
+local cpu_widget = wibox.widget.textbox()
 vicious.register(cpu_widget, vicious.widgets.cpu, "$1%", 3)
 
-
 -- simple widget seperator
-seperator_widget = wibox.widget.textbox()
+local seperator_widget = wibox.widget.textbox()
 seperator_widget:set_text(" ")
 
--- arrow seperators
-arrl = wibox.widget.imagebox()
-arrl:set_image(beautiful.arrl)
+-- arrow seperators, notation is from left to right, 
+-- ld means going from light to dark, and vice versa
+local arrow_left = wibox.widget.imagebox()
+arrow_left:set_image(beautiful.arrow_left)
 
-arrl_dl = wibox.widget.imagebox()
-arrl_dl:set_image(beautiful.arrl_dl)
+local arrow_left_dl = wibox.widget.imagebox()
+arrow_left_dl:set_image(beautiful.arrow_left_dl)
 
-arrl_ld = wibox.widget.imagebox()
-arrl_ld:set_image(beautiful.arrl_ld)
+local arrow_left_ld = wibox.widget.imagebox()
+arrow_left_ld:set_image(beautiful.arrow_left_ld)
 
-arrr = wibox.widget.imagebox()
-arrr:set_image(beautiful.arrr)
+local arrow_right = wibox.widget.imagebox()
+arrow_right:set_image(beautiful.arrow_right)
 
-arrr_dl = wibox.widget.imagebox()
-arrr_dl:set_image(beautiful.arrr_dl)
+local arrow_right_dl = wibox.widget.imagebox()
+arrow_right_dl:set_image(beautiful.arrow_right_dl)
 
-arrr_ld = wibox.widget.imagebox()
-arrr_ld:set_image(beautiful.arrr_ld)
+local arrow_right_ld = wibox.widget.imagebox()
+arrow_right_ld:set_image(beautiful.arrow_right_ld)
 
 -- Create a wibox for each screen and add it
 mywibox = {}
@@ -131,55 +131,55 @@ for s = 1, screen.count() do
    left_layout:add(mytaglist[s])
 
    local promptbox_background = wibox.widget.background(mypromptbox[s], "#313131")
-   left_layout:add(arrr_ld)
+   left_layout:add(arrow_right_ld)
    left_layout:add(promptbox_background)
-   left_layout:add(arrr_dl)
+   left_layout:add(arrow_right_dl)
 
    -- Widgets that are aligned to the right
    local right_layout = wibox.layout.fixed.horizontal()
 
-   right_layout:add(arrl_ld)
+   right_layout:add(arrow_left_ld)
 
    if s == 1 then right_layout:add(wibox.widget.systray()) end
 
-   right_layout:add(arrl_dl)
+   right_layout:add(arrow_left_dl)
 
    right_layout:add(wibox.widget.imagebox(beautiful.icon_cpu))
    right_layout:add(cpu_widget)
 
    right_layout:add(seperator_widget)
-   right_layout:add(arrl)
+   right_layout:add(arrow_left)
 
    right_layout:add(wibox.widget.imagebox(beautiful.icon_ram))
    right_layout:add(ram_widget)
 
    right_layout:add(seperator_widget)
-   right_layout:add(arrl)
+   right_layout:add(arrow_left)
 
    right_layout:add(wibox.widget.imagebox(beautiful.icon_wifi))
    right_layout:add(wifi_widget)
 
    right_layout:add(seperator_widget)
-   right_layout:add(arrl)
+   right_layout:add(arrow_left)
 
    right_layout:add(wibox.widget.imagebox(beautiful.icon_hdd))
    right_layout:add(harddisk_widget)
 
    right_layout:add(seperator_widget)
-   right_layout:add(arrl)
+   right_layout:add(arrow_left)
 
    right_layout:add(wibox.widget.imagebox(beautiful.icon_volume))
    right_layout:add(volume_widget)
 
    right_layout:add(seperator_widget)
-   right_layout:add(arrl)
+   right_layout:add(arrow_left)
 
    right_layout:add(wibox.widget.imagebox(beautiful.icon_battery))
    right_layout:add(battery_widget)
 
    right_layout:add(seperator_widget)
 
-   right_layout:add(arrl_ld)
+   right_layout:add(arrow_left_ld)
 
    right_layout:add(timedate_widget_icon_background)
    right_layout:add(timedate_widget_background)
