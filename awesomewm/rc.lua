@@ -98,6 +98,15 @@ arrl_dl:set_image(beautiful.arrl_dl)
 arrl_ld = wibox.widget.imagebox()
 arrl_ld:set_image(beautiful.arrl_ld)
 
+arrr = wibox.widget.imagebox()
+arrr:set_image(beautiful.arrr)
+
+arrr_dl = wibox.widget.imagebox()
+arrr_dl:set_image(beautiful.arrr_dl)
+
+arrr_ld = wibox.widget.imagebox()
+arrr_ld:set_image(beautiful.arrr_ld)
+
 -- Create a wibox for each screen and add it
 mywibox = {}
 mypromptbox = {}
@@ -138,9 +147,9 @@ for s = 1, screen.count() do
    left_layout:add(mytaglist[s])
 
    local promptbox_background = wibox.widget.background(mypromptbox[s], "#313131")
-   left_layout:add(arrl_ld)
+   left_layout:add(arrr_ld)
    left_layout:add(promptbox_background)
-   left_layout:add(arrl_dl)
+   left_layout:add(arrr_dl)
 
    -- Widgets that are aligned to the right
    local right_layout = wibox.layout.fixed.horizontal()
