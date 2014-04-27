@@ -22,10 +22,6 @@ theme.border_marked = "#CC9393"
 theme.titlebar_bg_focus  = "#3F3F3F"
 theme.titlebar_bg_normal = "#3F3F3F"
 
-theme.mouse_finder_color = "#CC9393"
-
-theme.menu_height = 15
-theme.menu_width  = 100
 theme.arrl          = theme.root .. "icons/arrl.png"
 theme.arrl_dl       = theme.root .. "icons/arrl_dl.png"
 theme.arrl_ld       = theme.root .. "icons/arrl_ld.png"
@@ -40,41 +36,5 @@ theme.icon_timedate = theme.root .. "icons/clock.png"
 
 theme.taglist_squares_sel   = theme.root .. "taglist/squarefz.png"
 theme.taglist_squares_unsel = theme.root .. "taglist/squarez.png"
-
-theme.layout_tile       = theme.root .. "layouts/tile.png"
-theme.layout_tileleft   = theme.root .. "layouts/tileleft.png"
-theme.layout_tilebottom = theme.root .. "layouts/tilebottom.png"
-theme.layout_tiletop    = theme.root .. "layouts/tiletop.png"
-theme.layout_fairv      = theme.root .. "layouts/fairv.png"
-theme.layout_fairh      = theme.root .. "layouts/fairh.png"
-theme.layout_spiral     = theme.root .. "layouts/spiral.png"
-theme.layout_dwindle    = theme.root .. "layouts/dwindle.png"
-theme.layout_max        = theme.root .. "layouts/max.png"
-theme.layout_fullscreen = theme.root .. "layouts/fullscreen.png"
-theme.layout_magnifier  = theme.root .. "layouts/magnifier.png"
-theme.layout_floating   = theme.root .. "layouts/floating.png"
-
-theme.titlebar_close_button_focus  = theme.root .. "titlebar/close_focus.png"
-theme.titlebar_close_button_normal = theme.root .. "titlebar/close_normal.png"
-
-theme.titlebar_ontop_button_focus_active  = theme.root .. "titlebar/ontop_focus_active.png"
-theme.titlebar_ontop_button_normal_active = theme.root .. "titlebar/ontop_normal_active.png"
-theme.titlebar_ontop_button_focus_inactive  = theme.root .. "titlebar/ontop_focus_inactive.png"
-theme.titlebar_ontop_button_normal_inactive = theme.root .. "titlebar/ontop_normal_inactive.png"
-
-theme.titlebar_sticky_button_focus_active  = theme.root .. "titlebar/sticky_focus_active.png"
-theme.titlebar_sticky_button_normal_active = theme.root .. "titlebar/sticky_normal_active.png"
-theme.titlebar_sticky_button_focus_inactive  = theme.root .. "titlebar/sticky_focus_inactive.png"
-theme.titlebar_sticky_button_normal_inactive = theme.root .. "titlebar/sticky_normal_inactive.png"
-
-theme.titlebar_floating_button_focus_active  = theme.root .. "titlebar/floating_focus_active.png"
-theme.titlebar_floating_button_normal_active = theme.root .. "titlebar/floating_normal_active.png"
-theme.titlebar_floating_button_focus_inactive  = theme.root .. "titlebar/floating_focus_inactive.png"
-theme.titlebar_floating_button_normal_inactive = theme.root .. "titlebar/floating_normal_inactive.png"
-
-theme.titlebar_maximized_button_focus_active  = theme.root .. "titlebar/maximized_focus_active.png"
-theme.titlebar_maximized_button_normal_active = theme.root .. "titlebar/maximized_normal_active.png"
-theme.titlebar_maximized_button_focus_inactive  = theme.root .. "titlebar/maximized_focus_inactive.png"
-theme.titlebar_maximized_button_normal_inactive = theme.root .. "titlebar/maximized_normal_inactive.png"
 
 return theme
