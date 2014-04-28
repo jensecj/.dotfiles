@@ -66,7 +66,19 @@ local timedate_widget_icon_background = wibox.widget.background(wibox.widget.ima
 
 -- battery widget
 local battery_widget = wibox.widget.textbox()
-vicious.register(battery_widget, vicious.widgets.bat, "$2%", 61, "BAT0")
+local battery_warned = false
+local battery_warn_level = 10
+vicious.register(battery_widget, vicious.widgets.bat,
+                 function(widget, args)
+                    if args[2] <= battery_warn_level and not battery_warned then 
+                       naughty.notify({ text = "Low battery!", preset = naughty.config.presets.critical })
+                       battery_warned = true
+                    elseif args[2] > battery_warn_level and battery_warned
+                    then battery_warned = false
+                    end
+                    return args[2] .. "%" .. args[1]
+                 end
+                 , 61, "BAT0")
 
 -- volume widget
 local volume_widget = wibox.widget.textbox()
