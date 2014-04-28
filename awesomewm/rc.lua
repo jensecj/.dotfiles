@@ -88,8 +88,11 @@ local cpu_widget = wibox.widget.textbox()
 vicious.register(cpu_widget, vicious.widgets.cpu, "$1%", 3)
 
 -- simple widget seperator
-local seperator_widget = wibox.widget.textbox()
-seperator_widget:set_text(" ")
+local _seperator_widget = wibox.widget.textbox()
+_seperator_widget:set_text(" ")
+
+local seperator_widget_light = _seperator_widget
+local seperator_widget_dark = wibox.widget.background(_seperator_widget, "#313131")
 
 -- arrow seperators, notation is from left to right,
 -- ld means going from light to dark, and vice versa
@@ -144,44 +147,46 @@ for s = 1, screen.count() do
 
    right_layout:add(arrow_left_ld)
 
+   right_layout:add(seperator_widget_dark)
    if s == 1 then right_layout:add(wibox.widget.systray()) end
+   right_layout:add(seperator_widget_dark)
 
    right_layout:add(arrow_left_dl)
 
    right_layout:add(wibox.widget.imagebox(beautiful.icon_cpu))
    right_layout:add(cpu_widget)
 
-   right_layout:add(seperator_widget)
+   right_layout:add(seperator_widget_light)
    right_layout:add(arrow_left)
 
    right_layout:add(wibox.widget.imagebox(beautiful.icon_ram))
    right_layout:add(ram_widget)
 
-   right_layout:add(seperator_widget)
+   right_layout:add(seperator_widget_light)
    right_layout:add(arrow_left)
 
    right_layout:add(wibox.widget.imagebox(beautiful.icon_wifi))
    right_layout:add(wifi_widget)
 
-   right_layout:add(seperator_widget)
+   right_layout:add(seperator_widget_light)
    right_layout:add(arrow_left)
 
    right_layout:add(wibox.widget.imagebox(beautiful.icon_hdd))
    right_layout:add(harddisk_widget)
 
-   right_layout:add(seperator_widget)
+   right_layout:add(seperator_widget_light)
    right_layout:add(arrow_left)
 
    right_layout:add(wibox.widget.imagebox(beautiful.icon_volume))
    right_layout:add(volume_widget)
 
-   right_layout:add(seperator_widget)
+   right_layout:add(seperator_widget_light)
    right_layout:add(arrow_left)
 
    right_layout:add(wibox.widget.imagebox(beautiful.icon_battery))
    right_layout:add(battery_widget)
 
-   right_layout:add(seperator_widget)
+   right_layout:add(seperator_widget_light)
 
    right_layout:add(arrow_left_ld)
 
