@@ -7,6 +7,11 @@ local beautiful = require("beautiful")
 local naughty = require("naughty")
 local vicious = require("vicious")
 
+-- use a sane icon size for notifications
+naughty.config.presets.normal.icon_size = 50
+naughty.config.presets.low.icon_size = 50
+naughty.config.presets.critical.icon_size = 50
+
 if awesome.startup_errors then
    naughty.notify({ preset = naughty.config.presets.critical,
                     title = "Oops, there were errors during startup!",
