@@ -156,7 +156,9 @@ for s = 1, screen.count() do
 
    local promptbox_background = wibox.widget.background(mypromptbox[s], "#313131")
    left_layout:add(arrow_right_ld)
+   left_layout:add(separator_widget_dark)
    left_layout:add(promptbox_background)
+   left_layout:add(separator_widget_dark)
    left_layout:add(arrow_right_dl)
 
    -- Widgets that are aligned to the right
