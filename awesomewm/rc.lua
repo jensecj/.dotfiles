@@ -66,8 +66,6 @@ end
 
 -- datetime widget
 local timedate_widget = awful.widget.textclock("%d/%m/%y - %H:%M", 31)
-local timedate_widget_background = wibox.widget.background(timedate_widget, "#313131")
-local timedate_widget_icon_background = wibox.widget.background(wibox.widget.imagebox(beautiful.icon_timedate), "#313131")
 
 -- battery widget
 local battery_widget = wibox.widget.textbox()
@@ -165,6 +163,40 @@ for s = 1, screen.count() do
    left_layout:add(separator_widget_dark)
    left_layout:add(arrow_right_dl)
 
+   -- Widgets that are aligned to the center
+   local middle_layout = wibox.layout.fixed.horizontal()
+
+   middle_layout:add(arrow_left_ld)
+
+   middle_layout:add(separator_widget_dark)
+   middle_layout:add(separator_widget_dark)
+   middle_layout:add(dark_background(wibox.widget.imagebox(beautiful.icon_cpu)))
+   middle_layout:add(dark_background(cpu_widget))
+   middle_layout:add(separator_widget_dark)
+   middle_layout:add(separator_widget_dark)
+   middle_layout:add(dark_background(wibox.widget.imagebox(beautiful.icon_ram)))
+   middle_layout:add(dark_background(ram_widget))
+   middle_layout:add(separator_widget_dark)
+   middle_layout:add(separator_widget_dark)
+   middle_layout:add(dark_background(wibox.widget.imagebox(beautiful.icon_hdd)))
+   middle_layout:add(dark_background(harddisk_widget))
+   middle_layout:add(separator_widget_dark)
+   middle_layout:add(separator_widget_dark)
+   middle_layout:add(dark_background(wibox.widget.imagebox(beautiful.icon_wifi)))
+   middle_layout:add(dark_background(wifi_widget))
+   middle_layout:add(separator_widget_dark)
+   middle_layout:add(separator_widget_dark)
+   middle_layout:add(dark_background(wibox.widget.imagebox(beautiful.icon_volume)))
+   middle_layout:add(dark_background(volume_widget))
+   middle_layout:add(separator_widget_dark)
+   middle_layout:add(separator_widget_dark)
+   middle_layout:add(dark_background(wibox.widget.imagebox(beautiful.icon_battery)))
+   middle_layout:add(dark_background(battery_widget))
+   middle_layout:add(separator_widget_dark)
+   middle_layout:add(separator_widget_dark)
+
+   middle_layout:add(arrow_right_dl)
+
    -- Widgets that are aligned to the right
    local right_layout = wibox.layout.fixed.horizontal()
 
@@ -175,51 +207,14 @@ for s = 1, screen.count() do
    right_layout:add(separator_widget_dark)
 
    right_layout:add(arrow_left_dl)
-
-   right_layout:add(wibox.widget.imagebox(beautiful.icon_cpu))
-   right_layout:add(cpu_widget)
-
-   right_layout:add(separator_widget_light)
-   right_layout:add(arrow_left)
-
-   right_layout:add(wibox.widget.imagebox(beautiful.icon_ram))
-   right_layout:add(ram_widget)
-
-   right_layout:add(separator_widget_light)
-   right_layout:add(arrow_left)
-
-   right_layout:add(wibox.widget.imagebox(beautiful.icon_wifi))
-   right_layout:add(wifi_widget)
-
-   right_layout:add(separator_widget_light)
-   right_layout:add(arrow_left)
-
-   right_layout:add(wibox.widget.imagebox(beautiful.icon_hdd))
-   right_layout:add(harddisk_widget)
-
-   right_layout:add(separator_widget_light)
-   right_layout:add(arrow_left)
-
-   right_layout:add(wibox.widget.imagebox(beautiful.icon_volume))
-   right_layout:add(volume_widget)
-
-   right_layout:add(separator_widget_light)
-   right_layout:add(arrow_left)
-
-   right_layout:add(wibox.widget.imagebox(beautiful.icon_battery))
-   right_layout:add(battery_widget)
-
-   right_layout:add(separator_widget_light)
-
-   right_layout:add(arrow_left_ld)
-
-   right_layout:add(timedate_widget_icon_background)
-   right_layout:add(timedate_widget_background)
+   right_layout:add(wibox.widget.imagebox(beautiful.icon_timedate))
+   right_layout:add(timedate_widget)
 
    -- Now bring it all together (with the tasklist in the middle)
    local layout = wibox.layout.align.horizontal()
+
    layout:set_left(left_layout)
-   layout:set_middle(mytasklist[s])
+   layout:set_middle(middle_layout)
    layout:set_right(right_layout)
 
    mywibox[s]:set_widget(layout)
