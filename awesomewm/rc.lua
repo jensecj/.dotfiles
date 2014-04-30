@@ -59,6 +59,11 @@ for s = 1, screen.count() do
    tags[s] = awful.tag({ 1, 2, 3, 4, 5 }, s, layouts[1])
 end
 
+-- Wraps a widget into a dark colored background
+dark_background = function (widget)
+   return wibox.widget.background(widget, "#313131")
+end
+
 -- datetime widget
 local timedate_widget = awful.widget.textclock("%d/%m/%y - %H:%M", 31)
 local timedate_widget_background = wibox.widget.background(timedate_widget, "#313131")
@@ -70,7 +75,7 @@ local battery_warned = false
 local battery_warn_level = 10
 vicious.register(battery_widget, vicious.widgets.bat,
                  function(widget, args)
-                    if args[2] <= battery_warn_level and not battery_warned then 
+                    if args[2] <= battery_warn_level and not battery_warned then
                        naughty.notify({ text = "Low battery!", preset = naughty.config.presets.critical })
                        battery_warned = true
                     elseif args[2] > battery_warn_level and battery_warned
@@ -109,7 +114,7 @@ local _separator_widget = wibox.widget.textbox()
 _separator_widget:set_text(" ")
 
 local separator_widget_light = _separator_widget
-local separator_widget_dark = wibox.widget.background(_separator_widget, "#313131")
+local separator_widget_dark = dark_background(_separator_widget)
 
 -- arrow separators, notation is from left to right,
 -- ld means going from light to dark, and vice versa
@@ -154,10 +159,9 @@ for s = 1, screen.count() do
    local left_layout = wibox.layout.fixed.horizontal()
    left_layout:add(mytaglist[s])
 
-   local promptbox_background = wibox.widget.background(mypromptbox[s], "#313131")
    left_layout:add(arrow_right_ld)
    left_layout:add(separator_widget_dark)
-   left_layout:add(promptbox_background)
+   left_layout:add(dark_background(mypromptbox[s]))
    left_layout:add(separator_widget_dark)
    left_layout:add(arrow_right_dl)
 
