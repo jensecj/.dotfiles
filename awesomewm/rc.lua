@@ -211,10 +211,10 @@ for s = 1, screen.count() do
    right_layout:add(wibox.widget.imagebox(beautiful.icon_timedate))
    right_layout:add(timedate_widget)
 
-   -- Now bring it all together (with the tasklist in the middle)
-   -- Create a layout that gives the center widget priority
+   -- Now bring it all together
    local layout =  setmetatable({}, {__index = wibox.layout.align.horizontal()})
 
+   -- Create a layout that gives the center widget priority
    function layout:draw(wibox, cr, width, height)
       local size_first = 0
       local size_third = 0
