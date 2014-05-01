@@ -1,3 +1,5 @@
+local base = require("wibox.layout.base")
+
 local layout =  setmetatable({}, {__index = wibox.layout.align.horizontal()})
 
 -- Create a layout that gives the center widget priority
