@@ -18,7 +18,7 @@ Change `local gap_size = ...` to fit your needs
 
 local layouts =
 {
-    gaps, -- add gaps as a layoutthis
+    gaps, -- add gaps as a layout
     awful.layout.suit.fair,
     awful.layout.suit.tile,
     ...
