@@ -109,7 +109,14 @@ vicious.register(ram_widget, vicious.widgets.mem, "$2 MB", 7)
 
 -- cpu usage widget
 local cpu_widget = wibox.widget.textbox()
-vicious.register(cpu_widget, vicious.widgets.cpu, "$1%", 3)
+vicious.register(cpu_widget, vicious.widgets.cpu,
+                 function (widget, args)
+                    if args[1] < 10 then
+                       return "0" .. args[1] .. "%"
+                    else
+                       return args[1] .. "%"
+                    end
+                 end, 3)
 
 -- simple widget separator
 local _separator_widget = wibox.widget.textbox()
