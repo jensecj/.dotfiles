@@ -77,7 +77,7 @@ vicious.register(battery_widget, vicious.widgets.bat,
                     if args[2] <= battery_warn_level and not battery_warned then
                        naughty.notify({ text = "Low battery!", preset = naughty.config.presets.critical })
                        battery_warned = true
-                    elseif args[2] >= 100 and not battery_warned then
+                    elseif args[2] >= 97 and not battery_warned then
                        naughty.notify({ text = "Full battery!", preset = naughty.config.presets.critical })
                        battery_warned = true
                     elseif args[2] > battery_warn_level and battery_warned
