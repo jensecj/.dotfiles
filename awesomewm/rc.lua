@@ -83,7 +83,7 @@ vicious.register(battery_widget, vicious.widgets.bat,
                     elseif args[2] > battery_warn_level and battery_warned
                     then battery_warned = false
                     end
-                    return args[2] .. "%" .. args[1]
+                    return args[2] .. args[1]
                  end
                  , 61, "BAT0")
 
@@ -91,30 +91,30 @@ vicious.register(battery_widget, vicious.widgets.bat,
 local volume_widget = wibox.widget.textbox()
 vicious.register(volume_widget, vicious.widgets.volume,
                  function(widget, args)
-                    local label = { ["♫"] = "%", ["♩"] = "M" }
+                    local label = { ["♫"] = "", ["♩"] = "M" }
                     return args[1] .. label[args[2]]
                  end, 2, "Master -c 1")
 
 -- hdd usage widget
 local harddisk_widget = wibox.widget.textbox()
-vicious.register(harddisk_widget, vicious.widgets.fs, "${/ used_p}%", 59)
+vicious.register(harddisk_widget, vicious.widgets.fs, "${/ used_p}", 59)
 
 -- wifi strength widget
 local wifi_widget = wibox.widget.textbox()
-vicious.register(wifi_widget, vicious.widgets.wifi, "${linp}%", 5, "wlp3s0")
+vicious.register(wifi_widget, vicious.widgets.wifi, "${linp}", 5, "wlp3s0")
 
 -- ram usage widget
 local ram_widget = wibox.widget.textbox()
-vicious.register(ram_widget, vicious.widgets.mem, "$2 MB", 7)
+vicious.register(ram_widget, vicious.widgets.mem, "$1", 7)
 
 -- cpu usage widget
 local cpu_widget = wibox.widget.textbox()
 vicious.register(cpu_widget, vicious.widgets.cpu,
                  function (widget, args)
                     if args[1] < 10 then
-                       return "0" .. args[1] .. "%"
+                       return "0" .. args[1]
                     else
-                       return args[1] .. "%"
+                       return args[1]
                     end
                  end, 3)
 
@@ -178,34 +178,40 @@ for s = 1, screen.count() do
    local middle_layout = wibox.layout.fixed.horizontal()
 
    middle_layout:add(arrow_left_ld)
+   middle_layout:add(separator_widget_dark)
+   middle_layout:add(separator_widget_dark)
 
-   middle_layout:add(separator_widget_dark)
-   middle_layout:add(separator_widget_dark)
    middle_layout:add(dark_background(wibox.widget.imagebox(beautiful.icon_cpu)))
    middle_layout:add(dark_background(cpu_widget))
-   middle_layout:add(separator_widget_dark)
-   middle_layout:add(separator_widget_dark)
-   middle_layout:add(dark_background(wibox.widget.imagebox(beautiful.icon_ram)))
-   middle_layout:add(dark_background(ram_widget))
-   middle_layout:add(separator_widget_dark)
-   middle_layout:add(separator_widget_dark)
-   middle_layout:add(dark_background(wibox.widget.imagebox(beautiful.icon_hdd)))
-   middle_layout:add(dark_background(harddisk_widget))
-   middle_layout:add(separator_widget_dark)
-   middle_layout:add(separator_widget_dark)
-   middle_layout:add(dark_background(wibox.widget.imagebox(beautiful.icon_wifi)))
-   middle_layout:add(dark_background(wifi_widget))
-   middle_layout:add(separator_widget_dark)
-   middle_layout:add(separator_widget_dark)
-   middle_layout:add(dark_background(wibox.widget.imagebox(beautiful.icon_volume)))
-   middle_layout:add(dark_background(volume_widget))
-   middle_layout:add(separator_widget_dark)
-   middle_layout:add(separator_widget_dark)
-   middle_layout:add(dark_background(wibox.widget.imagebox(beautiful.icon_battery)))
-   middle_layout:add(dark_background(battery_widget))
-   middle_layout:add(separator_widget_dark)
+
    middle_layout:add(separator_widget_dark)
 
+   middle_layout:add(dark_background(wibox.widget.imagebox(beautiful.icon_ram)))
+   middle_layout:add(dark_background(ram_widget))
+
+   middle_layout:add(separator_widget_dark)
+
+   middle_layout:add(dark_background(wibox.widget.imagebox(beautiful.icon_hdd)))
+   middle_layout:add(dark_background(harddisk_widget))
+
+   middle_layout:add(separator_widget_dark)
+
+   middle_layout:add(dark_background(wibox.widget.imagebox(beautiful.icon_wifi)))
+   middle_layout:add(dark_background(wifi_widget))
+
+
+   middle_layout:add(separator_widget_dark)
+
+   middle_layout:add(dark_background(wibox.widget.imagebox(beautiful.icon_volume)))
+   middle_layout:add(dark_background(volume_widget))
+
+   middle_layout:add(separator_widget_dark)
+
+   middle_layout:add(dark_background(wibox.widget.imagebox(beautiful.icon_battery)))
+   middle_layout:add(dark_background(battery_widget))
+
+   middle_layout:add(separator_widget_dark)
+   middle_layout:add(separator_widget_dark)
    middle_layout:add(arrow_right_dl)
 
    -- Widgets that are aligned to the right
