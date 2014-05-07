@@ -65,6 +65,15 @@ dark_background = function (widget)
    return wibox.widget.background(widget, "#313131")
 end
 
+wrap_widget = function (left, widget, right)
+   local layout wrapper = wibox.layout.fixed.horizontal()
+   wrapper:add(left)
+   wrapper:add(widget)
+   wrapper:add(right)
+
+   return wrapper
+end
+
 -- datetime widget
 local timedate_widget = awful.widget.textclock("%d/%m/%y - %H:%M", 31)
 
@@ -119,11 +128,8 @@ vicious.register(cpu_widget, vicious.widgets.cpu,
                  end, 3)
 
 -- simple widget separator
-local _separator_widget = wibox.widget.textbox()
-_separator_widget:set_text(" ")
-
-local separator_widget_light = _separator_widget
-local separator_widget_dark = dark_background(_separator_widget)
+local separator_widget = wibox.widget.textbox()
+separator_widget:set_text(" ")
 
 -- arrow separators, notation is from left to right,
 -- ld means going from light to dark, and vice versa
@@ -168,62 +174,62 @@ for s = 1, screen.count() do
    local left_layout = wibox.layout.fixed.horizontal()
    left_layout:add(mytaglist[s])
 
-   left_layout:add(arrow_right_ld)
-   left_layout:add(separator_widget_dark)
-   left_layout:add(dark_background(mypromptbox[s]))
-   left_layout:add(separator_widget_dark)
-   left_layout:add(arrow_right_dl)
+   left_layout:add(wrap_widget(
+                      arrow_right_ld,
+                      dark_background(wrap_widget(
+                                         separator_widget,
+                                         mypromptbox[s],
+                                         separator_widget)),
+                      arrow_right_dl))
 
    -- Widgets that are aligned to the center
    local middle_layout = wibox.layout.fixed.horizontal()
 
-   middle_layout:add(arrow_left_ld)
-   middle_layout:add(separator_widget_dark)
-   middle_layout:add(separator_widget_dark)
+   middle_layout:add(separator_widget)
+   middle_layout:add(separator_widget)
 
-   middle_layout:add(dark_background(wibox.widget.imagebox(beautiful.icon_cpu)))
-   middle_layout:add(dark_background(cpu_widget))
+   middle_layout:add(wibox.widget.imagebox(beautiful.icon_cpu))
+   middle_layout:add(cpu_widget)
 
-   middle_layout:add(separator_widget_dark)
+   middle_layout:add(separator_widget)
 
-   middle_layout:add(dark_background(wibox.widget.imagebox(beautiful.icon_ram)))
-   middle_layout:add(dark_background(ram_widget))
+   middle_layout:add(wibox.widget.imagebox(beautiful.icon_ram))
+   middle_layout:add(ram_widget)
 
-   middle_layout:add(separator_widget_dark)
+   middle_layout:add(separator_widget)
 
-   middle_layout:add(dark_background(wibox.widget.imagebox(beautiful.icon_hdd)))
-   middle_layout:add(dark_background(harddisk_widget))
+   middle_layout:add(wibox.widget.imagebox(beautiful.icon_hdd))
+   middle_layout:add(harddisk_widget)
 
-   middle_layout:add(separator_widget_dark)
+   middle_layout:add(separator_widget)
 
-   middle_layout:add(dark_background(wibox.widget.imagebox(beautiful.icon_wifi)))
-   middle_layout:add(dark_background(wifi_widget))
+   middle_layout:add(wibox.widget.imagebox(beautiful.icon_wifi))
+   middle_layout:add(wifi_widget)
 
+   middle_layout:add(separator_widget)
 
-   middle_layout:add(separator_widget_dark)
+   middle_layout:add(wibox.widget.imagebox(beautiful.icon_volume))
+   middle_layout:add(volume_widget)
 
-   middle_layout:add(dark_background(wibox.widget.imagebox(beautiful.icon_volume)))
-   middle_layout:add(dark_background(volume_widget))
+   middle_layout:add(separator_widget)
 
-   middle_layout:add(separator_widget_dark)
+   middle_layout:add(wibox.widget.imagebox(beautiful.icon_battery))
+   middle_layout:add(battery_widget)
 
-   middle_layout:add(dark_background(wibox.widget.imagebox(beautiful.icon_battery)))
-   middle_layout:add(dark_background(battery_widget))
-
-   middle_layout:add(separator_widget_dark)
-   middle_layout:add(separator_widget_dark)
-   middle_layout:add(arrow_right_dl)
+   middle_layout:add(separator_widget)
+   middle_layout:add(separator_widget)
 
    -- Widgets that are aligned to the right
    local right_layout = wibox.layout.fixed.horizontal()
 
-   right_layout:add(arrow_left_ld)
+   right_layout:add(wrap_widget(
+                      arrow_left_ld,
+                      dark_background(wrap_widget(
+                                         separator_widget,
+                                         wibox.widget.systray(),
+                                         separator_widget)),
+                      arrow_left_dl))
 
-   right_layout:add(separator_widget_dark)
-   if s == 1 then right_layout:add(wibox.widget.systray()) end
-   right_layout:add(separator_widget_dark)
-
-   right_layout:add(arrow_left_dl)
    right_layout:add(wibox.widget.imagebox(beautiful.icon_timedate))
    right_layout:add(timedate_widget)
 
@@ -269,7 +275,7 @@ for s = 1, screen.count() do
    end
 
    layout:set_left(left_layout)
-   layout:set_middle(middle_layout)
+   layout:set_middle(wrap_widget(arrow_left_ld, dark_background(middle_layout), arrow_right_dl))
    layout:set_right(right_layout)
 
    mywibox[s]:set_widget(layout)
