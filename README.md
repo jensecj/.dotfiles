@@ -13,6 +13,10 @@ configuration is for awesome 3.5
 * `Modkey + Delete` spawns editor
 * `Modkey + F12` spawns htop
 
+# Theme
+I use the [Zen-nokto](http://gnome-look.org/content/show.php/Zen+suite?content=149883) GTK2+3 theme
+together with the [Source Code Pro](https://github.com/adobe/source-code-pro) font.
+
 # Git
 * `git ad` add files to git repo
 * `git ai` add files to git repo interactively
