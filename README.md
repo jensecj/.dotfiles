@@ -5,6 +5,15 @@
 seemed like a practical way to store configurations and facilitate
 portability, so i tried it!
 
+# Theme
+My preferred font is currently [Source Code Pro](https://github.com/adobe/source-code-pro).
+
+For the few times a pop-up or menu appears I use the
+[Zen-nokto](http://gnome-look.org/content/show.php/Zen+suite?content=149883) GTK2+3 theme.
+
+I try to stick to the original [Zenburn colors](http://deletionpedia.dbatley.com/w/index.php?title=Zenburn),
+which is also how both my awesomewm and emacs are styled.
+
 # Awesome
 configuration is for awesome 3.5
 
@@ -12,10 +21,6 @@ configuration is for awesome 3.5
 * `Modkey + Backspace` spawns browser
 * `Modkey + Delete` spawns editor
 * `Modkey + F12` spawns htop
-
-# Theme
-I use the [Zen-nokto](http://gnome-look.org/content/show.php/Zen+suite?content=149883) GTK2+3 theme
-together with the [Source Code Pro](https://github.com/adobe/source-code-pro) font.
 
 # Git
 * `git ad` add files to git repo
