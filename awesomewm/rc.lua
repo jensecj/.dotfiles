@@ -38,7 +38,7 @@ beautiful.init(awful.util.getdir("config") .. "/themes/zenburn/theme.lua")
 
 terminal = "urxvt"
 browser = "chromium"
-editor = "emacs"
+editor = "em"
 editor_cmd = terminal .. " -e " .. editor
 
 modkey = "Mod4"
