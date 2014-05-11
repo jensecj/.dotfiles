@@ -1,4 +1,4 @@
-# The pretty
+# The look
 ![Screenshot of my dotfiles in action](screen.png?raw=true "Screenshot of my dotfiles in action")
 
 # The nitty gritty
