@@ -344,10 +344,6 @@ globalkeys = awful.util.table.join(
 clientkeys = awful.util.table.join(
    awful.key({ modkey,           }, "f",      function (c) c.fullscreen = not c.fullscreen  end),
    awful.key({ modkey, "Shift"   }, "c",      function (c) c:kill()                         end),
-   awful.key({ modkey,           }, "n",
-      function (c)
-         c.minimized = true
-   end),
    awful.key({ modkey,           }, "m",
       function (c)
          c.maximized_horizontal = not c.maximized_horizontal
