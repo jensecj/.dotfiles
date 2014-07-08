@@ -342,9 +342,17 @@ globalkeys = awful.util.table.join(
 )
 
 clientkeys = awful.util.table.join(
-   awful.key({ modkey, "Shift"   }, "c",      function (c) c:kill()                         end),
+   awful.key({ modkey, "Shift"   }, "c", function (c) c:kill() end),
    awful.key({ modkey,           }, "m",
       function (c)
+         local tag = awful.tag.selected()
+         for i = 1, #tag:clients() do
+            if (c ~= tag:clients()[i]) then
+               tag:clients()[i].maximized_horizontal = false
+               tag:clients()[i].maximized_vertical = false
+            end
+         end
+
          c.maximized_horizontal = not c.maximized_horizontal
          c.maximized_vertical   = not c.maximized_vertical
    end)
