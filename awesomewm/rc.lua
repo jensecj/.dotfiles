@@ -74,8 +74,17 @@ wrap_widget = function (left, widget, right)
    return wrapper
 end
 
+-- frequencies for widget updates
+local timedate_widget_freq = 31
+local battery_widget_freq  = 37
+local volume_widget_freq   = 2
+local harddisk_widget_freq = 59
+local wifi_widget_freq     = 5
+local ram_widget_freq      = 7
+local cpu_widget_freq      = 3
+
 -- datetime widget
-local timedate_widget = awful.widget.textclock("%d/%m/%y - %H:%M", 31)
+local timedate_widget = awful.widget.textclock("%d/%m/%y - %H:%M", timedate_widget_freq)
 
 -- battery widget
 local battery_widget = wibox.widget.textbox()
@@ -94,7 +103,7 @@ vicious.register(battery_widget, vicious.widgets.bat,
                     end
                     return args[2] .. args[1]
                  end
-                 , 61, "BAT0")
+                 , battery_widget_freq, "BAT0")
 
 -- volume widget
 local volume_widget = wibox.widget.textbox()
@@ -102,19 +111,19 @@ vicious.register(volume_widget, vicious.widgets.volume,
                  function(widget, args)
                     local label = { ["♫"] = "", ["♩"] = "M" }
                     return args[1] .. label[args[2]]
-                 end, 2, "Master -c 1")
+                 end, volume_widget_freq, "Master -c 1")
 
 -- hdd usage widget
 local harddisk_widget = wibox.widget.textbox()
-vicious.register(harddisk_widget, vicious.widgets.fs, "${/ used_p}", 59)
+vicious.register(harddisk_widget, vicious.widgets.fs, "${/ used_p}", harddisk_widget_freq)
 
 -- wifi strength widget
 local wifi_widget = wibox.widget.textbox()
-vicious.register(wifi_widget, vicious.widgets.wifi, "${linp}", 5, "wlp3s0")
+vicious.register(wifi_widget, vicious.widgets.wifi, "${linp}", wifi_widget_freq, "wlp3s0")
 
 -- ram usage widget
 local ram_widget = wibox.widget.textbox()
-vicious.register(ram_widget, vicious.widgets.mem, "$1", 7)
+vicious.register(ram_widget, vicious.widgets.mem, "$1", ram_widget_freq)
 
 -- cpu usage widget
 local cpu_widget = wibox.widget.textbox()
@@ -125,7 +134,7 @@ vicious.register(cpu_widget, vicious.widgets.cpu,
                     else
                        return args[1]
                     end
-                 end, 3)
+                 end, cpu_widget_freq)
 
 -- simple widget separator
 local separator_widget = wibox.widget.textbox()
@@ -223,12 +232,12 @@ for s = 1, screen.count() do
    local right_layout = wibox.layout.fixed.horizontal()
 
    right_layout:add(wrap_widget(
-                      arrow_left_ld,
-                      dark_background(wrap_widget(
-                                         separator_widget,
-                                         wibox.widget.systray(),
-                                         separator_widget)),
-                      arrow_left_dl))
+                       arrow_left_ld,
+                       dark_background(wrap_widget(
+                                          separator_widget,
+                                          wibox.widget.systray(),
+                                          separator_widget)),
+                       arrow_left_dl))
 
    right_layout:add(wibox.widget.imagebox(beautiful.icon_timedate))
    right_layout:add(timedate_widget)
