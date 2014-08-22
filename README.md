@@ -44,3 +44,6 @@ configuration is for awesome 3.5
 * ln -s ~/.dotfiles/awesomewm/zenburn ~/.config/awesome/themes/zenburn
 * ln -s ~/.dotfiles/awesomewm/rc.lua ~/.config/awesome/rc.lua
 * ln -s ~/.dotfiles/bin/em /usr/local/bin
+* ln -s ~/.dotfiles/zsh/.zshrc ~/.zshrc
+* ln -s ~/.dotfiles/zsh/.zprofile ~/.zprofile
+* ln -s ~/.dotfiles/zsh/jens.zsh-theme ~/.oh-my-zsh/themes/jens.zsh-theme
