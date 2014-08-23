@@ -2,11 +2,7 @@ PROMPT='
 $(_user_host)${_current_dir} $(git_prompt_info)
 $ '
 
-PROMPT2='%{$fg[grey]%}◀%{$reset_color%} '
-
 local _current_dir="%{$fg_bold[blue]%}%3~%{$reset_color%} "
-local _return_status="%{$fg[red]%}%(?..⍉)%{$reset_color%}"
-local _hist_no="%{$fg[grey]%}%h%{$reset_color%}"
 
 function _user_host() {
   if [[ -n $SSH_CONNECTION ]]; then
@@ -18,12 +14,6 @@ function _user_host() {
     echo "%{$fg[cyan]%}$me%{$reset_color%}:"
   fi
 }
-
-if [[ $USER == "root" ]]; then
-  CARETCOLOR="red"
-else
-  CARETCOLOR="white"
-fi
 
 MODE_INDICATOR="%{$fg_bold[yellow]%}❮%{$reset_color%}%{$fg[yellow]%}❮❮%{$reset_color%}"
 
