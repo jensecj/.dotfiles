@@ -13,32 +13,17 @@ source $ZSH/oh-my-zsh.sh
 
 export PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/vendor_perl:/usr/bin/core_perl"
 
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
-# ssh
-# export SSH_KEY_PATH="~/.ssh/dsa_id"
+# Keybindings
+source $ZSHHOME/keybindings.zsh
 
 # Aliases
-alias ls='ls --color=always --time-style="+%d-%m-%Y" --group-directories-first'
-alias l='ls -gohX | awk "{if (NR!=1) {printf (\"%s\t%s %s\n\", \$3, \$4, \$5)}}"'
-alias ll='ls -AgohX | awk "{if (NR!=1) {printf (\"%s\t%s %s\n\", \$3, \$4, \$5)}}"'
-
-alias _='sudo'
-alias ..='cd ..'
+source $ZSHHOME/aliases.zsh
 
 # Changing/making/removing directory
 setopt auto_name_dirs
 setopt auto_pushd
 setopt pushd_ignore_dups
 setopt pushdminus
-
-alias netsw='sudo netctl switch-to'
-alias ytmp3='youtube-dl -x --audio-format mp3'
-alias dl='aria2c'
-
-alias vncshow='echo listening on && wget -qO- http://ipecho.net/plain && echo :0 && x0vncserver -display :0 -passwordfile ~/.vnc/passwd -acceptkeyevents=0 -acceptpointerevents=0 -alwaysshared'
-alias vncview='vncviewer'
 
 # load theme
 source $ZSHHOME/jens.zsh-theme
