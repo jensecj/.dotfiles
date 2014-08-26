@@ -22,8 +22,8 @@ fi
 
 bindkey ' ' magic-space                               # <Space> - do history expansion
 
-bindkey '^[[1;5C' forward-word                        # <C-RightArrow> - move forward one word
-bindkey '^[[1;5D' backward-word                       # <C-LeftArrow> - move backward one word
+bindkey '^[Oc' forward-word                           # <C-RightArrow> - move forward one word
+bindkey '^[Od' backward-word                          # <C-LeftArrow> - move backward one word
 
 insert-tilde()                                        # <Menu> inserts a ~
 {
@@ -32,7 +32,7 @@ insert-tilde()                                        # <Menu> inserts a ~
 zle -N insert-tilde
 bindkey "9~" insert-tilde
 
-kill-region-or-line()
+kill-region-or-line()                                 # <C-w> kills region or whole line
 {
   if [[ "$MARK" -eq 0 || "$MARK" -eq "$CURSOR" ]]; then
     zle .kill-whole-line
@@ -41,10 +41,11 @@ kill-region-or-line()
   fi
 }
 zle -N kill-region-or-line
-bindkey '^w' kill-region-or-line                      # [C-w] - Kill from the cursor to the mark, or the whole line
+bindkey '^w' kill-region-or-line
 
 if [[ "${terminfo[kcbt]}" != "" ]]; then
   bindkey "${terminfo[kcbt]}" reverse-menu-complete   # <Shift-Tab> - move through the completion menu backwards
 fi
 
 bindkey '^?' backward-delete-char                     # <Backspace> - delete backward
+bindkey '^H' backward-kill-word                       # <C-Backspace> - kill word backwards
