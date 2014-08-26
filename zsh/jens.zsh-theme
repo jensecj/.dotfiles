@@ -1,5 +1,4 @@
-PROMPT='
-$(_user_host)${_current_dir} $(git_prompt_info)
+PROMPT='$(_user_host)${_current_dir} $(git_prompt_info)
 $ '
 
 local _current_dir="%{$fg_bold[blue]%}%3~%{$reset_color%} "
