@@ -26,4 +26,4 @@ setopt pushd_ignore_dups
 setopt pushdminus
 
 # load theme
-source $ZSHHOME/jens.zsh-theme
+source $ZSHHOME/jens-theme.zsh
