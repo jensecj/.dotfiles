@@ -20,9 +20,9 @@ export PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/vendor_perl:/usr/b
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
 
 # Aliases
-alias ls='ls --color=auto'
-alias l='ls -gohX --group-directories-first'
-alias ll='ls -AghoX --group-directories-first'
+alias ls='ls --color=always --time-style="+%d-%m-%Y" --group-directories-first'
+alias l='ls -gohX | awk "{if (NR!=1) {printf (\"%s\t%s %s\n\", \$3, \$4, \$5)}}"'
+alias ll='ls -AgohX | awk "{if (NR!=1) {printf (\"%s\t%s %s\n\", \$3, \$4, \$5)}}"'
 
 alias _='sudo'
 alias ..='cd ..'
