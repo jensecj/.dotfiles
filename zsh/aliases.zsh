@@ -1,7 +1,7 @@
 alias ls='ls --color=always --time-style="+%d-%m-%Y" --group-directories-first'
 
-l() { ls -gohX $* | awk "{if (NR!=1) {printf (\"%s\t%s %s\n\", \$3, \$4, \$5)}}" }
-ll() { ls -AgohX $* | awk "{if (NR!=1) {printf (\"%s\t%s %s\n\", \$3, \$4, \$5)}}" }
+l() { ls -gohX $* | tr -s " " | cut -d" " -f3- | sed "/ /s//\t/" }
+ll() { ls -AgohX $* | tr -s " " | cut -d" " -f3- | sed "/ /s//\t/" }
 
 alias _='sudo'
 alias ..='cd ..'
