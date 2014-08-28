@@ -1,3 +1,5 @@
+autoload colors; colors;
+
 PROMPT='$(_user_host)${_current_dir} $(git_prompt_info)
 $ '
 
