@@ -16,9 +16,5 @@ function _user_host() {
     fi
 }
 
-# clean the default prefix and suffix
-ZSH_THEME_GIT_PROMPT_PREFIX=""
-ZSH_THEME_GIT_PROMPT_SUFFIX=""
-
 # mark dirty repos
 ZSH_THEME_GIT_PROMPT_DIRTY="*"
