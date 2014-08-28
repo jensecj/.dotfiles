@@ -2,7 +2,7 @@
 export ZSH=$HOME/.oh-my-zsh
 export ZSHHOME=$HOME/.dotfiles/zsh
 
-# Disable marking untracked files under VCS as dirty. 
+# Disable marking untracked files under VCS as dirty.
 # This makes repository status check for large repositories
 # much, much faster.
 DISABLE_UNTRACKED_FILES_DIRTY="true"
