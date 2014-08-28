@@ -19,4 +19,4 @@ ZSH_THEME_GIT_PROMPT_PREFIX=""
 ZSH_THEME_GIT_PROMPT_SUFFIX=""
 
 # mark dirty repos
-ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[white]%}*%{$reset_color%}"
+ZSH_THEME_GIT_PROMPT_DIRTY="*"
