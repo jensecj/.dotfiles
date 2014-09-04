@@ -89,14 +89,15 @@ local timedate_widget = awful.widget.textclock("%d/%m/%y - %H:%M", timedate_widg
 -- battery widget
 local battery_widget = wibox.widget.textbox()
 local battery_warned = false
-local battery_warn_level = 10
+local battery_warn_level_low = 10
+local battery_warn_level_high = 99
 vicious.register(battery_widget, vicious.widgets.bat,
                  function(widget, args)
-                    if args[2] <= battery_warn_level and not battery_warned then
-                       naughty.notify({ text = "Low battery!", bg = "#D95D5D", timeout = 15 })
+                    if args[2] <= battery_warn_level_low and not battery_warned then
+                       naughty.notify({ text = "Low battery!", bg = "#D95D5D", timeout = 30, height = 50 })
                        battery_warned = true
-                    elseif args[2] >= 97 and not battery_warned then
-                       naughty.notify({ text = "Full battery!", bg = "#D95D5D", timeout = 15 })
+                    elseif args[2] >= battery_warn_level_high and not battery_warned then
+                       naughty.notify({ text = "Full battery!", bg = "#D95D5D", timeout = 30, height = 50 })
                        battery_warned = true
                     elseif args[2] > battery_warn_level and battery_warned
                     then battery_warned = false
