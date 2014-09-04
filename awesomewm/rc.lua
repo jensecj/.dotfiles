@@ -322,6 +322,7 @@ globalkeys = awful.util.table.join(
    awful.key({ modkey, "Control" }, "k", function () awful.screen.focus_relative(-1) end),
 
    -- Standard program
+   awful.key({                   }, "Print",    function () awful.util.spawn("scrot '%Y-%m-%d_%H-%M-%S_$wx$h.png' -e 'mv $f ~/Dropbox/Screenshots'") end),
    awful.key({ modkey,           }, "Return",    function () awful.util.spawn(terminal) end),
    awful.key({ modkey,           }, "BackSpace", function () awful.util.spawn(browser) end),
    awful.key({ modkey,           }, "Delete",    function () awful.util.spawn(editor) end),
