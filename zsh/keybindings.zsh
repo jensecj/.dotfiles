@@ -31,6 +31,7 @@ insert-tilde()                                        # <Menu> inserts a ~
 }
 zle -N insert-tilde
 bindkey "9~" insert-tilde
+bindkey "9~" insert-tilde
 
 kill-region-or-line()                                 # <C-w> kills region or whole line
 {
@@ -48,4 +49,5 @@ if [[ "${terminfo[kcbt]}" != "" ]]; then
 fi
 
 bindkey '^?' backward-delete-char                     # <Backspace> - delete backward
+bindkey '^[[3~' delete-char                  # <Backspace> - delete backward
 bindkey '^H' backward-kill-word                       # <C-Backspace> - kill word backwards
