@@ -6,5 +6,5 @@ xrdb ~/.Xresources
 start-pulseaudio-x11
 unclutter &
 dropboxd &
-skype &
+redshift -O 4500 &
 exec awesome
