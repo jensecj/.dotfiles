@@ -8,14 +8,25 @@ function _user_host() {
     fi
 
     if [[ -n $me ]]; then
-        echo "%{$fg[cyan]%}$me%{$reset_color%}:"
+        echo "%{$fg[cyan]%}$me%{$reset_color%}: "
     fi
 }
 
-local _current_dir="%{$fg_bold[blue]%}%3~%{$reset_color%} "
+function _current_dir() {
+    if [[ "$PWD" != "$HOME" ]] then
+        echo "%{$fg_bold[blue]%}%~%{$reset_color%} "
+    fi
+}
 
-PROMPT='$(_user_host) ${_current_dir} $(git_prompt_info)
-> '
+function _prmpt() {
+    if [[ "$PWD" = "$HOME" ]] then
+        echo ">"
+    else
+        echo "\n>"
+    fi
+}
+
+PROMPT='$(_user_host)$(_current_dir)$(git_prompt_info)$(_prmpt) '
 
 # mark dirty repos
 ZSH_THEME_GIT_PROMPT_DIRTY="*"
