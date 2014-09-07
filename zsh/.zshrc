@@ -11,7 +11,11 @@ plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
 
-export PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/vendor_perl:/usr/bin/core_perl"
+paths=("/home/jens/.gem/ruby/2.1.0/bin")
+
+for p in $paths; do
+    export PATH=${PATH}:${p}
+done
 
 source $ZSHHOME/keybindings.zsh
 source $ZSHHOME/aliases.zsh
