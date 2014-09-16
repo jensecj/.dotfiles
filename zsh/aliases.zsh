@@ -14,7 +14,7 @@ alias vncshow='echo listening on && wget -qO- http://ipecho.net/plain && echo :0
 alias vncview='vncviewer'
 
 alias ya='yaourt'
-alias yaupg='ya -Syua'
+alias yau='ya -Syua'
 alias yarm='ya -Rns'
 alias yass='ya -Ss'
 alias yas='ya -S'
