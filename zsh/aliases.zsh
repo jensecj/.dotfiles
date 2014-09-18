@@ -13,6 +13,8 @@ alias dl='aria2c'
 alias vncshow='echo listening on && wget -qO- http://ipecho.net/plain && echo :0 && x0vncserver -display :0 -passwordfile ~/.vnc/passwd -acceptkeyevents=0 -acceptpointerevents=0 -alwaysshared'
 alias vncview='vncviewer'
 
+alias git='hub'
+
 alias ya='yaourt'
 alias yau='ya -Syua'
 alias yarm='ya -Rns'
