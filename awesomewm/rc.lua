@@ -38,6 +38,7 @@ beautiful.init(awful.util.getdir("config") .. "/themes/zenburn/theme.lua")
 
 terminal = "urxvt"
 browser = "chromium"
+screenlock = "slock"
 editor = "em"
 notes = editor .. " --eval (notes-go)"
 
@@ -324,6 +325,7 @@ globalkeys = awful.util.table.join(
    -- Standard program
    awful.key({                   }, "Print",    function () awful.util.spawn("scrot '%Y-%m-%d_%H-%M-%S.png' -e 'mv $f ~/Dropbox/Screenshots'") end),
    awful.key({ modkey,           }, "Return",    function () awful.util.spawn(terminal) end),
+   awful.key({ modkey,           }, "l",         function () awful.util.spawn(screenlock) end),
    awful.key({ modkey,           }, "BackSpace", function () awful.util.spawn(browser) end),
    awful.key({ modkey,           }, "Delete",    function () awful.util.spawn(editor) end),
    awful.key({ modkey,           }, "Home",    function () awful.util.spawn(notes) end),
