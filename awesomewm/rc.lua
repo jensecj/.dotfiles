@@ -57,7 +57,7 @@ end
 
 tags = {}
 for s = 1, screen.count() do
-   tags[s] = awful.tag({ 1, 2, 3, 4, 5 }, s, layouts[1])
+   tags[s] = awful.tag({ " ", " ", " ", " ", " " }, s, layouts[1])
 end
 
 -- Wraps a widget into a dark colored background
