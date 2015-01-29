@@ -40,7 +40,6 @@ terminal = "urxvt"
 browser = "chromium"
 screenlock = "slock"
 editor = "em"
-notes = editor .. " --eval (notes-go)"
 
 modkey = "Mod4"
 
@@ -328,7 +327,6 @@ globalkeys = awful.util.table.join(
    awful.key({ modkey,           }, "l",         function () awful.util.spawn(screenlock) end),
    awful.key({ modkey,           }, "BackSpace", function () awful.util.spawn(browser) end),
    awful.key({ modkey,           }, "Delete",    function () awful.util.spawn(editor) end),
-   awful.key({ modkey,           }, "Home",    function () awful.util.spawn(notes) end),
    awful.key({ modkey,           }, "F12",    function () awful.util.spawn(terminal .. " -e htop") end),
 
    awful.key({ modkey, "Control" }, "r", awesome.restart),
