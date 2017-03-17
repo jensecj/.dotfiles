@@ -1,7 +1,8 @@
-export ZSHHOME=$HOME/.dotfiles/zsh
+export DOTFILESHOME=$HOME/.dotfiles
+export ZSHHOME=$DOTFILESHOME/zsh
 
 # add things to PATH
-paths=()
+paths=("$DOTFILESHOME/bin")
 
 for p in $paths; do
     export PATH=${PATH}:${p}
