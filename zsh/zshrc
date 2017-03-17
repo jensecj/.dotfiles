@@ -1,13 +1,7 @@
 export ZSHHOME=$HOME/.dotfiles/zsh
 
-# Disable marking untracked files under VCS as dirty.
-# This makes repository status check for large repositories
-# much, much faster.
-DISABLE_UNTRACKED_FILES_DIRTY="true"
-
-# plugins=(git)
-
-# paths=("/home/jens/.gem/ruby/2.1.0/bin")
+# add things to PATH
+paths=()
 
 for p in $paths; do
     export PATH=${PATH}:${p}

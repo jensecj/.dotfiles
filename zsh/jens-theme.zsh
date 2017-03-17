@@ -26,7 +26,4 @@ function _prmpt() {
     fi
 }
 
-PROMPT='$(_user_host)$(_current_dir)$(git_prompt_info)$(_prmpt) '
-
-# mark dirty repos
-ZSH_THEME_GIT_PROMPT_DIRTY="*"
+PROMPT='$(_user_host)$(_current_dir)$(_prmpt) '
