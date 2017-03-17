@@ -1,7 +1,7 @@
 alias ls='ls --color=always --time-style="+%d-%m-%Y" --group-directories-first'
 
-l() { ls -gohX $* | sed -n "1!p" | tr -s " " | cut -d" " -f3- | sed "/ /s//\t/" }
-ll() { ls -AgohX $* | sed -n "1!p" | tr -s " " | cut -d" " -f3- | sed "/ /s//\t/" }
+alias l="ls -gholX"
+alias ll="ls -agholX"
 
 alias _='sudo'
 alias ..='cd ..'
