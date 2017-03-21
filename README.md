@@ -1,49 +1,19 @@
-# The look
-![Screenshot of my dotfiles in action](screen.png?raw=true "Screenshot of my dotfiles in action")
+# How it looks
+![Screenshot of my dotfiles in action](screen.png?raw=true)
 
-# The nitty gritty
-seemed like a practical way to store configurations and facilitate
-portability, so i tried it!
+# Install
+You should probably just look through the files and yank something if
+you think it looks nifty, if you absolutely want to get going quickly,
+you can clone it into `~/`, cd into it, and run make-links.sh.
 
 # Theme
-My preferred font is currently [Source Code Pro](https://github.com/adobe/source-code-pro).
+The font i use right now is [Source Code Pro](https://github.com/adobe-fonts/source-code-pro).
 
-For the few times a pop-up or menu appears I use the
-[Zen-nokto](http://gnome-look.org/content/show.php/Zen+suite?content=149883) GTK2+3 theme.
+I try to stick to the
+original [Zenburn colors](http://kippura.org/zenburnpage/), which is
+also how my window manager, terminal, and emacs are styled.
 
-I try to stick to the original [Zenburn colors](http://deletionpedia.dbatley.com/w/index.php?title=Zenburn),
-which is also how both my awesomewm and emacs are styled.
+*NOTE*, the configuration is for awesome 3.5, probably does not work with 4+.
 
-# Awesome
-configuration is for awesome 3.5
-
-* `Modkey + Enter` spawns terminal
-* `Modkey + Backspace` spawns browser
-* `Modkey + Delete` spawns editor
-* `Modkey + F12` spawns htop
-
-# Git
-* `git ad` add files to git repo
-* `git ai` add files to git repo interactively
-* `git br` branch (create or switch)
-* `git ch` checkout a repo
-* `git cl` clone a repo
-* `git co` prompt for a message, the commit verbosely
-* `git di` diff changes in repo
-* `git lo` pretty log
-* `git pu` push repo to remote
-* `git st` simple status
-
-# Symlinks
-(should probably create a bootstrapper)
-* ln -s ~/.dotfiles/bashrc ~/.bashrc
-* ln -s ~/.dotfiles/bash_profile ~/.bash_profile
-* ln -s ~/.dotfiles/gitconfig ~/.gitconfig
-* ln -s ~/.dotfiles/xinitrc ~/.xinitrc
-* ln -s ~/.dotfiles/Xresources ~/.Xresources
-* ln -s ~/.dotfiles/awesomewm/zenburn ~/.config/awesome/themes/zenburn
-* ln -s ~/.dotfiles/awesomewm/rc.lua ~/.config/awesome/rc.lua
-* ln -s ~/.dotfiles/bin/em /usr/local/bin
-* ln -s ~/.dotfiles/zsh/.zshrc ~/.zshrc
-* ln -s ~/.dotfiles/zsh/.zprofile ~/.zprofile
-* ln -s ~/.dotfiles/zsh/jens.zsh-theme ~/.oh-my-zsh/themes/jens.zsh-theme
+For keybindings, etc. look at the files (e.g. rc.lua for awesomewm,
+aliases.zsh/keybindings.zsh for terminal, ...)
