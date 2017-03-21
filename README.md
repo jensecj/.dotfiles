@@ -13,7 +13,7 @@ I try to stick to the
 original [Zenburn colors](http://kippura.org/zenburnpage/), which is
 also how my window manager, terminal, and emacs are styled.
 
-*NOTE*, the configuration is for awesome 3.5, probably does not work with 4+.
+*NOTE: the configuration is for awesome 3.5, probably does not work with 4+.*
 
 For keybindings, etc. look at the files (e.g. rc.lua for awesomewm,
 aliases.zsh/keybindings.zsh for terminal, ...)
