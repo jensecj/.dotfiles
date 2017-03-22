@@ -14,7 +14,7 @@ function _user_host() {
 
 function _current_dir() {
     if [[ "$PWD" != "$HOME" ]] then
-        echo "%{$fg_bold[blue]%}%~%{$reset_color%} "
+       echo "$FG[181]% %~ $FX[reset]"
     fi
 }
 
