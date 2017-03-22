@@ -1,0 +1,51 @@
+TERM xterm-256color
+
+# Attribute codes:
+# 00=none 01=bold 04=underscore 05=blink 07=reverse 08=concealed
+
+# Text color codes:
+# 30=black 31=red 32=green 33=yellow 34=blue 35=magenta 36=cyan 37=white
+
+# Background color codes:
+# 40=black 41=red 42=green 43=yellow 44=blue 45=magenta 46=cyan 47=white
+
+# Text 256 color coding:
+# 38;5;COLOR_NUMBER
+
+# Background 256 color coding:
+# 48;5;COLOR_NUMBER
+
+# block device driver:
+BLK 48;5;108;38;5;223
+# file with capability:
+CAPABILITY 38;5;95
+# character device driver:
+CHR 48;5;108;38;5;223
+# .directories:
+DIR 38;5;223
+# door:
+DOOR 48;5;234;38;5;180
+# This is for files with execute permission:
+EXEC 38;5;108
+# pipe:
+FIFO 48;5;234;38;5;180;01
+# regular file:
+FILE 00
+# symbolic link:
+LINK 38;5;180
+# normal (nonfilename) text:
+NORMAL 00
+# orphaned symbolic link:
+ORPHAN 38;5;181
+# directory that is other-writable (o+w) and not sticky:
+OTHER_WRITABLE 38;5;223 #;48;5;234
+# file that is setuid (u+s):
+SETUID 38;5;66 #;48;5;234
+# file that is setgid (g+s):
+SETGID 38;5;66 #;48;5;234
+# socket:
+SOCK 38;5;180 #;48;5;234
+# directory with the sticky bit set (+t) and not other-writable:
+STICKY 38;5;209 #;48;5;180
+# dir that is sticky and other-writable (+t,o+w):
+STICKY_OTHER_WRITABLE 38;5;234

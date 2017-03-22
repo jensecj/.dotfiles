@@ -7,12 +7,13 @@ for p in $paths; do
     export PATH=${PATH}:${p}
 done
 
-export EDITOR="em"
-
 # load plugins
 for p in $ZSHHOME/plugins/*.sh; do
     source $p
 done
+
+export EDITOR="em"
+eval $(dircolors -b $DOTFILESHOME/dircolors)
 
 source $ZSHHOME/keybindings.zsh
 source $ZSHHOME/aliases.zsh
