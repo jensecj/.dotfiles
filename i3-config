@@ -218,10 +218,15 @@ exec_always --no-startup-id fix_xcursor
 exec --no-startup-id compton -bCGf # deamonize / disable shadows / enable fading
 
 exec feh --bg-scale /home/jens/Pictures/wallpaper.jpg
-exec redshift -O 4000
-exec xset -b
+exec redshift -O 3800
 exec unclutter
 exec dropbox
+
+exec xset -b
+exec setxkbmap -layout dk -option ctrl:nocaps
+
+exec autocutsel -fork
+exec autocutsel -selection PRIMARY -fork
 
 # Start i3bar to display a workspace bar (plus the system information i3status if available)
 bar {
@@ -233,6 +238,8 @@ bar {
     font xft:Source Code Pro Semibold 10
 
     strip_workspace_numbers yes
+
+    modifier none # dont peek at the bar when holding the mod key
 
     colors {
         # background $transparent
