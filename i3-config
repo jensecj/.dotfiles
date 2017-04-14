@@ -1,6 +1,3 @@
-# i3 config file (v4)
-# Please see http://i3wm.org/docs/userguide.html for a complete reference!
-
 # Set mod key (Mod1=<Alt>, Mod4=<Super>)
 set $mod Mod4
 
@@ -66,27 +63,13 @@ bindsym $mod+Shift+Print --release exec --no-startup-id i3-scrot -s
 bindsym $mod+Shift+h exec xdg-open /usr/share/doc/manjaro/i3_help.pdf
 bindsym $mod+Ctrl+x --release exec --no-startup-id xkill
 
-# focus_follows_mouse no
-
 # change focus
-bindsym $mod+j focus left
-bindsym $mod+k focus down
-bindsym $mod+l focus up
-bindsym $mod+odiaeresis focus right
-
-# alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
 bindsym $mod+Down focus down
 bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
 # move focused window
-bindsym $mod+Shift+j move left
-bindsym $mod+Shift+k move down
-bindsym $mod+Shift+l move up
-bindsym $mod+Shift+odiaeresis move right
-
-# alternatively, you can use the cursor keys:
 bindsym $mod+Shift+Left move left
 bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
