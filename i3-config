@@ -206,7 +206,7 @@ mode "resize" {
 }
 
 # Lock screen
-bindsym $mod+9 exec sleep .1 && slock
+bindsym $mod+9 exec --no-startup-id sleep .1 && slock
 
 # Autostart applications
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
@@ -217,16 +217,16 @@ exec --no-startup-id xautolock -time 10 -locker slock
 exec_always --no-startup-id fix_xcursor
 exec --no-startup-id compton -bCGf # deamonize / disable shadows / enable fading
 
-exec feh --bg-scale /home/jens/Pictures/wallpaper.jpg
-exec redshift -O 3800
-exec unclutter
+exec --no-startup-id feh --bg-scale /home/jens/Pictures/wallpaper.jpg
+exec --no-startup-id redshift -O 3800
+exec --no-startup-id unclutter
 exec dropbox
 
-exec xset -b
-exec setxkbmap -layout dk -option ctrl:nocaps
+exec_always --no-startup-id xset -b
+exec_always --no-startup-id setxkbmap -layout dk -option ctrl:nocaps
 
-exec autocutsel -fork
-exec autocutsel -selection PRIMARY -fork
+exec --no-startup-id autocutsel -fork
+exec --no-startup-id autocutsel -selection PRIMARY -fork
 
 # Start i3bar to display a workspace bar (plus the system information i3status if available)
 bar {
