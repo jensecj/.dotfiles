@@ -1,13 +1,14 @@
-!XFT and Font settings
+! XFT and Font settings
 Xft*dpi:       96
 Xft*antialias: true
 Xft*hinting:   true
 Xft*hintstyle: hintfull
 Xft*rgba:      rgb
-xft*font: xft:Source Code Pro:pixelsize=14
+xft*font: xft:Source Code Pro Semibold:pixelsize=14
 
 !URxvt.geometry: 80x25
-URxvt.font: xft:Source Code Pro:pixelsize=14
+URxvt.font: xft:Source Code Pro Semibold:pixelsize=14
+URxvt.letterSpace: -2
 !URxvt*inheritPixmap: true
 URxvt*tintColor: gray30
 URxvt.internalBorder: 0
