@@ -11,6 +11,7 @@ ln -s $(pwd)/i3status.conf $HOME/.i3status.conf
 ln -s $(pwd)/mpv/input.conf $HOME/.config/mpv/input.conf
 ln -s $(pwd)/mpv/mpv.conf $HOME/.config/mpv/mpv.conf
 
+ln -s $(pwd)/compton.conf $HOME/.config/compton.conf
 
 # this fails if git has already been configured, which is better than
 # overwriting configurations i guess.
