@@ -1,4 +1,3 @@
-setopt MENU_COMPLETE # insert first completion instantly
 setopt APPEND_HISTORY # append new sessions to the current hist file
 setopt AUTO_CD # if you just type the name of a directory, cd into it
 setopt AUTO_PUSHD # make cd push the old dir onto the dir stack
