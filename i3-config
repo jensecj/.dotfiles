@@ -21,9 +21,6 @@ bindsym $mod+Shift+q kill
 # start program launcher
 bindsym $mod+d exec --no-startup-id dmenu_recency
 
-# launch categorized menu
-bindsym $mod+z exec --no-startup-id morc_menu
-
 ################################################################################################
 ## sound-section - DO NOT EDIT if you wish to automatically upgrade Alsa -> Pulseaudio later! ##
 ################################################################################################
@@ -43,14 +40,7 @@ bindsym $mod+Ctrl+m exec terminal -e 'alsamixer'
 # Start Applications
 bindsym $mod+Return exec terminal
 bindsym $mod+Delete exec em
-bindsym $mod+BackSpace exec icecat
-# bindsym $mod+Ctrl+b exec terminal -e 'bmenu'
-bindsym $mod+F3 exec terminal -e 'ranger'
-bindsym $mod+Shift+F3 exec gksu pcmanfm
-bindsym $mod+F5 exec terminal -e 'mocp'
-
-bindsym $mod+t exec --no-startup-id pkill compton
-bindsym $mod+Ctrl+t exec --no-startup-id compton -b
+bindsym $mod+BackSpace exec chromium
 
 bindsym $mod+Shift+d --release exec "killall dunst; exec notify-send 'restart dunst'"
 bindsym Print exec --no-startup-id i3-scrot
@@ -239,11 +229,7 @@ exec --no-startup-id pamac-tray
 exec --no-startup-id xautolock -time 10 -locker slock
 exec_always --no-startup-id fix_xcursor
 exec_always feh --bg-scale /home/jens/Pictures/wallpaper.jpg
-# exec --no-startup-id nitrogen --restore; sleep 1; compton -b
-# exec --no-startup-id blueman
-# exec_always --no-startup-id sbxkb
-# exec --no-startup-id start_conky_maia
-# exec --no-startup-id start_conky_green
+exec --no-startup-id compton -bCGf # deamonize / disable shadows / enable fading
 
 # Start i3bar to display a workspace bar (plus the system information i3status if available)
 bar {
