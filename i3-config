@@ -42,19 +42,20 @@ bindsym $mod+Ctrl+m exec terminal -e 'alsamixer'
 
 # Start Applications
 bindsym $mod+Return exec terminal
-bindsym $mod+BackSpace exec em
-bindsym $mod+Delete exec icecat
-bindsym $mod+Ctrl+b exec terminal -e 'bmenu'
+bindsym $mod+Delete exec em
+bindsym $mod+BackSpace exec icecat
+# bindsym $mod+Ctrl+b exec terminal -e 'bmenu'
 bindsym $mod+F3 exec terminal -e 'ranger'
 bindsym $mod+Shift+F3 exec gksu pcmanfm
 bindsym $mod+F5 exec terminal -e 'mocp'
+
 bindsym $mod+t exec --no-startup-id pkill compton
 bindsym $mod+Ctrl+t exec --no-startup-id compton -b
+
 bindsym $mod+Shift+d --release exec "killall dunst; exec notify-send 'restart dunst'"
 bindsym Print exec --no-startup-id i3-scrot
 bindsym $mod+Print --release exec --no-startup-id i3-scrot -w
 bindsym $mod+Shift+Print --release exec --no-startup-id i3-scrot -s
-bindsym $mod+Shift+h exec xdg-open /usr/share/doc/manjaro/i3_help.pdf
 bindsym $mod+Ctrl+x --release exec --no-startup-id xkill
 
 # change focus
@@ -68,11 +69,6 @@ bindsym $mod+Shift+Left move left
 bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
-
-# workspace back and forth (with/without active container)
-workspace_auto_back_and_forth yes
-bindsym $mod+b workspace back_and_forth
-bindsym $mod+Shift+b move container to workspace back_and_forth; workspace back_and_forth
 
 # split orientation
 bindsym $mod+h split h;exec notify-send 'tile horizontally'
@@ -102,10 +98,6 @@ bindsym $mod+Shift+minus move scratchpad
 # Show the next scratchpad window or hide the focused scratchpad window.
 # If there are multiple scratchpad windows, this command cycles through them.
 bindsym $mod+minus scratchpad show
-
-#navigate workspaces next / previous
-bindsym $mod+Ctrl+Right workspace next
-bindsym $mod+Ctrl+Left workspace prev
 
 # Workspace names
 # to display names or symbols instead of plain workspace numbers you can use
@@ -237,20 +229,21 @@ mode "resize" {
 }
 
 # Lock screen
-bindsym $mod+9 exec --no-startup-id blurlock
+bindsym $mod+9 exec sleep .1 && slock
 
 # Autostart applications
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-exec --no-startup-id nitrogen --restore; sleep 1; compton -b
 exec --no-startup-id nm-applet
 exec --no-startup-id xfce4-power-manager
 exec --no-startup-id pamac-tray
+exec --no-startup-id xautolock -time 10 -locker slock
+exec_always --no-startup-id fix_xcursor
+exec_always feh --bg-scale /home/jens/Pictures/wallpaper.jpg
+# exec --no-startup-id nitrogen --restore; sleep 1; compton -b
 # exec --no-startup-id blueman
 # exec_always --no-startup-id sbxkb
-exec --no-startup-id start_conky_maia
+# exec --no-startup-id start_conky_maia
 # exec --no-startup-id start_conky_green
-exec --no-startup-id xautolock -time 10 -locker blurlock
-exec_always --no-startup-id fix_xcursor
 
 # Start i3bar to display a workspace bar (plus the system information i3status if available)
 bar {
