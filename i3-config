@@ -22,20 +22,15 @@ bindsym $mod+Shift+q kill
 bindsym $mod+d exec --no-startup-id dmenu_recency
 
 ################################################################################################
-## sound-section - DO NOT EDIT if you wish to automatically upgrade Alsa -> Pulseaudio later! ##
-################################################################################################
-
-exec --no-startup-id volumeicon
-bindsym $mod+Ctrl+m exec terminal -e 'alsamixer'
-#exec --no-startup-id pulseaudio
-#exec --no-startup-id pa-applet
-#bindsym $mod+Ctrl+m exec pavucontrol
-
-################################################################################################
 
 # Screen brightness controls
 # bindsym XF86MonBrightnessUp exec "xbacklight -inc 10; notify-send 'brightness up'"
 # bindsym XF86MonBrightnessDown exec "xbacklight -dec 10; notify-send 'brightness down'"
+
+bindsym XF86AudioRaiseVolume exec "amixer set Master 2%+; notify-send 'volume up'"
+bindsym XF86AudioLowerVolume exec "amixer set Master 2%-; notify-send 'volume down'"
+bindsym XF86AudioMute exec "amixer set Master toggle; notify-send 'volume muted'"
+
 
 # Start Applications
 bindsym $mod+Return exec terminal
