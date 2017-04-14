@@ -2,7 +2,7 @@
 setxkbmap -layout dk -option ctrl:nocaps
 
 # disable the dang beep
-xset -b
+# xset -b
 
 # user and computer specific touchpad settings
 synclient CoastingSpeed=0
@@ -13,10 +13,10 @@ synclient FingerLow=45
 xrdb ~/.Xresources
 
 # start the audio server
-start-pulseaudio-x11
+# start-pulseaudio-x11
 
 # run programs i usually use
-unclutter &
+# unclutter &
 dropbox &
-redshift -O 4000 &
-exec awesome
+# redshift -O 4000 &
+# exec awesome
