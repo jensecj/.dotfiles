@@ -242,7 +242,6 @@ bar {
     modifier none # dont peek at the bar when holding the mod key
 
     colors {
-        # background $transparent
         background #3f3f3f
         statusline #F9FAF9
         separator  #454947
