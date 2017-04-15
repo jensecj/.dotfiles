@@ -12,6 +12,7 @@ ln -s $(pwd)/mpv/input.conf $HOME/.config/mpv/input.conf
 ln -s $(pwd)/mpv/mpv.conf $HOME/.config/mpv/mpv.conf
 
 ln -s $(pwd)/compton.conf $HOME/.config/compton.conf
+ln -s $(pwd)/rofi-config $HOME/.config/rofi/config
 
 # this fails if git has already been configured, which is better than
 # overwriting configurations i guess.
