@@ -1,5 +1,7 @@
 autoload colors; colors;
 
+eval $(dircolors -b $DOTFILESHOME/dircolors)
+
 function _user_host() {
     if [[ -n $SSH_CONNECTION ]]; then
         me="%n@%m"

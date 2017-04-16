@@ -1,4 +1,7 @@
+# add your terminal here
+TERM screen-256color
 TERM xterm-256color
+TERM rxvt-unicode-256color
 
 # Attribute codes:
 # 00=none 01=bold 04=underscore 05=blink 07=reverse 08=concealed
