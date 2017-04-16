@@ -54,24 +54,24 @@ label-urgent-padding = 1
 type = internal/fs
 interval = 25
 mount-0 = /
-label-mounted =   %free%
+label-mounted =  %free%
 
 [module/cpu]
 type = internal/cpu
 interval = 2
-label =  %percentage%
+label = λ %percentage%
 
 [module/memory]
 type = internal/memory
 interval = 2
-label =  %percentage_used%
+label = Σ %percentage_used%
 
 [module/date]
 type = internal/date
 interval = 5
 date = %Y-%m-%d
 time = %H:%M
-label =  %date% %time%
+label =  %date% %time%
 
 [module/volume]
 type = internal/volume
@@ -82,8 +82,8 @@ label-muted =  %percentage%
 type = internal/battery
 battery = BAT0
 adapter = AC
-label-charging =  %percentage%+
-label-discharging =  %percentage%-
+label-charging =  %percentage%+
+label-discharging =  %percentage%-
 
 [settings]
 screenchange-reload = true
