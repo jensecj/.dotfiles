@@ -5,14 +5,14 @@ ln -s $(pwd)/zsh/zshrc $HOME/.zshrc
 ln -s $(pwd)/zsh/zprofile $HOME/.zprofile
 ln -s $(pwd)/tmux.conf $HOME/.tmux.conf
 
-ln -s $(pwd)/i3-config $HOME/.i3/config
+ln -s $(pwd)/i3.conf $HOME/.i3/config
 
 ln -s $(pwd)/mpv/input.conf $HOME/.config/mpv/input.conf
 ln -s $(pwd)/mpv/mpv.conf $HOME/.config/mpv/mpv.conf
 
 ln -s $(pwd)/compton.conf $HOME/.config/compton.conf
-ln -s $(pwd)/rofi-config $HOME/.config/rofi/config
-ln -s $(pwd)/polybar $HOME/.config/polybar/config
+ln -s $(pwd)/rofi.conf $HOME/.config/rofi/config
+ln -s $(pwd)/polybar.conf $HOME/.config/polybar/config
 
 # this fails if git has already been configured, which is better than
 # overwriting configurations i guess.
