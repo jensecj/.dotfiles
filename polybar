@@ -26,7 +26,8 @@ modules-center = volume filesystem cpu memory battery date
 modules-right =
 
 tray-position = right
-tray-padding = 2
+tray-detached = true
+tray-padding = 10
 tray-background = ${colors.background}
 
 [module/i3]
@@ -54,36 +55,36 @@ label-urgent-padding = 1
 type = internal/fs
 interval = 25
 mount-0 = /
-label-mounted =  %free%
+label-mounted = %{F#8f}%{F-} %free%
 
 [module/cpu]
 type = internal/cpu
 interval = 2
-label = λ %percentage%
+label = %{F#8f}λ%{F-} %percentage%
 
 [module/memory]
 type = internal/memory
 interval = 2
-label = Σ %percentage_used%
+label = %{F#8f}Σ%{F-} %percentage_used%
 
 [module/date]
 type = internal/date
 interval = 5
 date = %Y-%m-%d
 time = %H:%M
-label =  %date% %time%
+label = %{F#8f}%{F-} %date% %time%
 
 [module/volume]
 type = internal/volume
-label-volume =  %percentage%
-label-muted =  %percentage%
+label-volume = %{F#8f}%{F-} %percentage%
+label-muted = %{F#8f} %{F-}%percentage%
 
 [module/battery]
 type = internal/battery
 battery = BAT0
 adapter = AC
-label-charging =  %percentage%+
-label-discharging =  %percentage%-
+label-charging = %{F#8f}%{F-} %percentage%+
+label-discharging = %{F#8f}%{F-} %percentage%-
 
 [settings]
 screenchange-reload = true
