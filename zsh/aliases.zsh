@@ -1,7 +1,7 @@
 # better ls
 alias ls='ls --color=always --time-style="+%d-%m-%Y" --group-directories-first'
-alias l="ls -gholX"
-alias ll="ls -agholX"
+alias l="ls -gholXN"
+alias ll="ls -agholXN"
 
 # some very common shortcuts
 alias _='sudo'
