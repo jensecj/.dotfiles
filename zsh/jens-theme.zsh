@@ -20,12 +20,19 @@ function _current_dir() {
     fi
 }
 
-function _prmpt() {
-    if [[ "$PWD" = "$HOME" ]] then
-        echo ">"
-    else
-        echo "\n>"
+function _virtuel_env() {
+    if [ -n "$VIRTUAL_ENV" ]; then
+        local name=$(basename $VIRTUAL_ENV)
+        echo "($name) "
     fi
 }
 
-PROMPT='$(_user_host)$(_current_dir)$(_prmpt) '
+function _prmpt() {
+    if [[ "$PWD" = "$HOME" ]] then
+       echo ">"
+    else
+       echo "\n>"
+    fi
+}
+
+PROMPT='$(_virtuel_env)$(_user_host)$(_current_dir)$(_prmpt) '
