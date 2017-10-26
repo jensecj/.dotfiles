@@ -29,12 +29,14 @@ alias fm="ranger"
 alias sl="streamlink --player=mpv"
 alias myt="mpv --ytdl"
 alias py="python"
+alias qr="qrcode-terminal"
 
 alias start_dnscrypt="_ dnscrypt-proxy /etc/dnscrypt-proxy.conf"
 
 alias cl++="clang++ -std=c++14"
+alias dis="objdump -M intel -C -g -w -d"
 
 # functions
 function ccc {
-    clear && clang++ -std=c++14 $1 && time cat test.in | ./a.out
+    clear && clang++ -std=c++14 $1 -o $1.out && time cat test.in | ./$1.out
 }

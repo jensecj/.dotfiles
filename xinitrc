@@ -2,7 +2,7 @@
 setxkbmap -layout dk -option ctrl:nocaps
 
 # disable the dang beep
-# xset -b
+xset -b
 
 # user and computer specific touchpad settings
 synclient CoastingSpeed=0

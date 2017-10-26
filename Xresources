@@ -8,7 +8,7 @@ xft*font: xft:Source Code Pro Semibold:pixelsize=14
 
 !URxvt.geometry: 80x25
 URxvt.font: xft:Source Code Pro Semibold:pixelsize=14
-URxvt.letterSpace: -2
+URxvt.letterSpace: 0
 !URxvt*inheritPixmap: true
 URxvt*tintColor: gray30
 URxvt.internalBorder: 0
@@ -16,12 +16,12 @@ URxvt.jumpScroll: true
 !URxvt.loginShell: true
 URxvt.perl-ext-common: default,matcher,searchable-scrollback
 URxvt.pointerBlank: true
-URxvt.saveLines: 4000
+URxvt.saveLines: 10000
 URxvt.secondaryScroll: true
 URxvt.scrollBar: false
 URxvt.scrollTtyKeypress: true
 URxvt.scrollWithBuffer: true
-URxvt*urlLauncher: /usr/bin/chromium
+URxvt*urlLauncher: /usr/bin/firefox
 URxvt*background: #3f3f3f
 URxvt*foreground: #dcdccc
 URxvt*cursorColor: #dcdccc
