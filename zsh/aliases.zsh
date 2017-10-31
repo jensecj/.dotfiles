@@ -37,6 +37,17 @@ alias cl++="clang++ -std=c++14"
 alias dis="objdump -M intel -C -g -w -d"
 
 # functions
+# quick compile/run with test data for hackathons
 function ccc {
     clear && clang++ -std=c++14 $1 -o $1.out && time cat test.in | ./$1.out
+}
+
+# figure out which terminal emulator we're inside of
+# echo $TERM does not always work, because sometimes term lies
+function whichterm() {
+    ps -p $PPID | awk '{print $4}' | sed -n '2p'
+}
+# same goes for a shell
+function whichshell() {
+    ps -p "$$" | awk '{print $4}' | sed -n '2p'
 }
