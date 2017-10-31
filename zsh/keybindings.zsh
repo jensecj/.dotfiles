@@ -11,21 +11,28 @@ if (( ${+terminfo[smkx]} )) && (( ${+terminfo[rmkx]} )); then
     zle -N zle-line-finish
 fi
 
-bindkey -e # Use emacs key bindings
+# Use emacs key bindings
+bindkey -e
 
 if [[ "${terminfo[kcuu1]}" != "" ]]; then
-    bindkey "${terminfo[kcuu1]}" up-line-or-search      # start typing + <Up-Arrow> - fuzzy find history forward
+    # start typing + <Up-Arrow> - fuzzy find history forward
+    bindkey "${terminfo[kcuu1]}" up-line-or-search
 fi
 if [[ "${terminfo[kcud1]}" != "" ]]; then
-    bindkey "${terminfo[kcud1]}" down-line-or-search    # start typing + <Down-Arrow> - fuzzy find history backward
+    # start typing + <Down-Arrow> - fuzzy find history backward
+    bindkey "${terminfo[kcud1]}" down-line-or-search
 fi
 
-bindkey ' ' magic-space                               # <Space> - do history expansion
+# <Space> - do history expansion
+bindkey ' ' magic-space
 
-bindkey '^[Oc' forward-word                           # <C-RightArrow> - move forward one word
-bindkey '^[Od' backward-word                          # <C-LeftArrow> - move backward one word
+# <C-RightArrow> - move forward one word
+bindkey ';5C' forward-word
+# <C-LeftArrow> - move backward one word
+bindkey ';5D' backward-word
 
-insert-tilde()                                        # <Menu> inserts a ~
+# <Menu> inserts a ~
+insert-tilde()
 {
     zle -U "~"
 }
@@ -33,7 +40,8 @@ zle -N insert-tilde
 bindkey "9~" insert-tilde
 bindkey "9~" insert-tilde
 
-kill-region-or-line()                                 # <C-w> kills region or whole line
+# <C-w> kills region or whole line
+kill-region-or-line()
 {
     if [[ "$MARK" -eq 0 || "$MARK" -eq "$CURSOR" ]]; then
         zle .kill-whole-line
@@ -45,9 +53,13 @@ zle -N kill-region-or-line
 bindkey '^w' kill-region-or-line
 
 if [[ "${terminfo[kcbt]}" != "" ]]; then
-    bindkey "${terminfo[kcbt]}" reverse-menu-complete   # <Shift-Tab> - move through the completion menu backwards
+    # <Shift-Tab> - move through the completion menu backwards
+    bindkey "${terminfo[kcbt]}" reverse-menu-complete
 fi
 
-bindkey '^?' backward-delete-char                     # <Backspace> - delete backward
-bindkey '^[[3~' delete-char                  # <Backspace> - delete backward
-bindkey '^H' backward-kill-word                       # <C-Backspace> - kill word backwards
+# <Backspace> - delete backward
+bindkey '^?' backward-delete-char
+# <Backspace> - delete backward
+bindkey '^[[3~' delete-char
+# <C-Backspace> - kill word backwards
+bindkey '^H' backward-kill-word
