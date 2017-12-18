@@ -26,19 +26,24 @@ fi
 # <Space> - do history expansion
 bindkey ' ' magic-space
 
+# # <C-UpArrow> - scroll up
+# bindkey ';5A'
+# # <C-DownArrow> - scroll down
+# bindkey ';5B'
+
 # <C-RightArrow> - move forward one word
 bindkey ';5C' forward-word
 # <C-LeftArrow> - move backward one word
 bindkey ';5D' backward-word
 
 # <Menu> inserts a ~
-insert-tilde()
-{
-    zle -U "~"
-}
-zle -N insert-tilde
-bindkey "9~" insert-tilde
-bindkey "9~" insert-tilde
+# insert-tilde()
+# {
+#     zle -U "~"
+# }
+# zle -N insert-tilde
+# bindkey "9~" insert-tilde
+# bindkey "9~" insert-tilde
 
 # <C-w> kills region or whole line
 kill-region-or-line()
@@ -57,9 +62,11 @@ if [[ "${terminfo[kcbt]}" != "" ]]; then
     bindkey "${terminfo[kcbt]}" reverse-menu-complete
 fi
 
-# <Backspace> - delete backward
+# <backspace> - delete backward
 bindkey '^?' backward-delete-char
-# <Backspace> - delete backward
+# <del> - delete forwards
 bindkey '^[[3~' delete-char
 # <C-Backspace> - kill word backwards
 bindkey '^H' backward-kill-word
+# <C-del> - kill word forwards
+bindkey '5~' kill-word
