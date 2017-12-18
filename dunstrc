@@ -1,0 +1,65 @@
+[global]
+monitor = 0
+# width x number of notifications - padding + padding
+geometry = "300x20-10+10"
+shrink = no # do not shrink to fit messages
+transparency = 0 # completely opaque, range [0;100]
+
+notification_height = 0 # fit to message
+padding = 8 # between text and seperator
+separator_height = 1 # width of seperator between notifications
+horizontal_padding = 8
+frame_width = 1 # width of border around the notification
+
+frame_color = "#313131"
+separator_color = "#F0DFAF"
+
+indicate_hidden = yes # show how many message we have hidden because of space requirements
+sort = yes # sort messages by urgency.
+idle_threshold = 120 # don't hide messages if user is idle for longer than this threshold
+
+font = Source Code Pro 10
+line_height = 0
+markup = full # allow fancy markup (some html, etc.)
+format = "<b>%s</b>\n%b"
+alignment = center # align notification text to the center of the frame
+show_age_threshold = 60 # show how old a message is if older than this threshold
+word_wrap = yes # wrap lines if they're longer than the window
+ignore_newline = no # do not ignore '\n' in notification texts
+stack_duplicates = true # merge duplicate notifications
+hide_duplicate_count = false # show how many times a duplicate notification occurs
+
+# Display indicators for URLs (U) and actions (A).
+show_indicators = yes
+
+### Icons ###
+icon_position = left
+max_icon_size = 32
+icon_folders = /usr/share/icons/gnome/16x16/status/:/usr/share/icons/gnome/16x16/devices/
+
+sticky_history = yes
+history_length = 50
+
+always_run_script = true # run rule-defined scripts even if we suppress the notification
+startup_notification = false
+force_xinerama = false # if we need legacy xinerama support
+
+[shortcuts]
+close = ctrl+F11 # close notifications
+history = ctrl+F12 # show notifications, starting with the latest
+
+[urgency_low]
+background = "#3f3f3f"
+foreground = "#DCDCCC"
+timeout = 10
+
+[urgency_normal]
+background = "#3f3f3f"
+foreground = "#DCDCCC"
+timeout = 10
+
+[urgency_critical]
+background = "#900000"
+foreground = "#ffffff"
+frame_color = "#ff0000"
+timeout = 0
