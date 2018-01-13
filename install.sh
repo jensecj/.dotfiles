@@ -1,7 +1,7 @@
 #!/bin/sh
 
-# first install yaourt so we can grab packages from aur
-sudo pacman -S yaourt
+# first install an AUR helper so we can grab packages from aur
+AURHELPER=yay # or trizen, bauerbill, etc.
 
 declare -a packages=(
     # java
@@ -95,7 +95,7 @@ declare -a packages=(
     ttf-material-icons
 )
 
-yaourt -S ${packages[@]}
+$AURHELPER -S ${packages[@]}
 
 declare -a npm_packages=(
     qrcode-terminal # generate qrcodes in the terminal
