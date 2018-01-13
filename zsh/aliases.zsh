@@ -3,20 +3,24 @@ alias ls='ls --color=always --time-style="+%d-%m-%Y" --group-directories-first'
 alias l="ls -gholXN"
 alias ll="ls -agholXN"
 
-# some very common shortcuts
+# preferred defaults
+alias cp="cp -i" # ask when overwriting files
+alias free="free -m" # show sizes in megabytes
+alias grep='grep --color=always' # use colors in grep
+alias mkdir='mkdir -p -v' # make parent directories and tell us
+
+# some common shortcuts
 alias _='sudo'
 alias ..='cd ..'
-alias mkdir='mkdir -p -v' # make parent directories and tell us
-alias grep='grep --color=always'
 alias ff="find -type f -iname"
 alias fd="find -type d -iname"
 
 # easy pacman
-alias ya='yaourt'
-alias yau='ya -Syua'
-alias yarm='ya -Rns'
-alias yass='ya -Ss'
-alias yas='ya -S'
+alias pac='yay'
+alias pacu='pac -Syu'
+alias pacrm='pac -Rns'
+alias pacss='pac -Ss'
+alias pacs='pac -S'
 
 # misc
 alias octave='octave-cli' # who uses the gui anyway?
@@ -41,6 +45,7 @@ alias start_dnscrypt="_ dnscrypt-proxy /etc/dnscrypt-proxy.conf"
 
 alias rtags='rc -J'
 alias rtagsd='rdm'
+
 alias cl++="clang++ -std=c++17 -stdlib=libstdc++"
 alias cl++mj="cl++ -MJ compile_commands.json"
 function fixmj () {
@@ -55,7 +60,6 @@ function fixmj () {
 
 alias dis="objdump -M intel -C -g -w -d"
 
-# functions
 # quick compile/run with test data for hackathons
 function ccc {
     clear && clang++ -std=c++17 $1 -o $1.out && time cat test.in | ./$1.out
