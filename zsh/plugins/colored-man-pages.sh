@@ -17,6 +17,9 @@ EOF
 fi
 
 function man() {
+    local width="${COLUMNS:-100}"
+    (( width > 100 )) && width=100
+
     env \
         LESS_TERMCAP_mb=$(printf "\e[1;31m") \
         LESS_TERMCAP_md=$(printf "\e[1;31m") \
@@ -28,5 +31,6 @@ function man() {
         PAGER="${commands[less]:-$PAGER}" \
         _NROFF_U=1 \
         PATH="$HOME/bin:$PATH" \
+        MANWIDTH="$width" \
         man "$@"
 }
