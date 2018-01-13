@@ -1,0 +1,40 @@
+#!/bin/bash
+test -z "$1" && exit
+
+# there are still a few issues here, the image seens to favour the upper
+# left-hand corner in termite, and the number of rows skipped does not always
+# align with the size of the image.
+
+# file we want to display
+FILENAME=$1
+
+# program used to embed image in term
+W3MIMGDISPLAY="/usr/lib/w3m/w3mimgdisplay"
+
+FONTH=12 # size of a terminal row
+FONTW=6  # size of a terminal column
+# these two change when resizing the terminal:
+COLUMNS=`tput cols` # current number of columns in terminal
+LINES=`tput lines` # current number of rows in terminal
+
+# get the dimensions of the image
+read width height <<< `echo -e "5;$FILENAME" | $W3MIMGDISPLAY`
+
+# figure out the maximum size we can display in the terminal given its current size
+max_width=$(($FONTW * $COLUMNS))
+max_height=$(($FONTH * $(($LINES - 2)))) # substract one line for prompt
+
+if test $width -gt $max_width; then
+    height=$(($height * $max_width / $width))
+    width=$max_width
+fi
+if test $height -gt $max_height; then
+    width=$(($width * $max_height / $height))
+    height=$max_height
+fi
+
+# skip the prompt x rows down, so it is under the image after it has been embedded
+tput cup $(($height/$FONTH)) 0
+# embed image
+w3m_command="0;1;0;0;$width;$height;;;;;$FILENAME\n4;\n3;"
+echo -e $w3m_command|$W3MIMGDISPLAY
