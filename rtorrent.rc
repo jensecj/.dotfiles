@@ -1,0 +1,3 @@
+check_hash = yes
+directory = ~/Downloads
+session = ~/.rtorrent.session

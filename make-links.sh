@@ -9,6 +9,9 @@ ln -s $(pwd)/termite/config $HOME/.config/termite/config
 
 ln -s $(pwd)/i3.conf $HOME/.i3/config
 
+mkdir $HOME/.rtorrent.session
+ln -s $(pwd)/rtorrent.rc $HOME/.rtorrent.rc
+
 ln -s $(pwd)/mpv/input.conf $HOME/.config/mpv/input.conf
 ln -s $(pwd)/mpv/mpv.conf $HOME/.config/mpv/mpv.conf
 
