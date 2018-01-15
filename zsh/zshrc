@@ -4,7 +4,10 @@ export DOTFILESHOME=$HOME/.dotfiles
 export ZSHHOME=$DOTFILESHOME/zsh
 
 # add things to PATH
-paths=("$DOTFILESHOME/bin" "$HOME/.cargo/bin")
+paths=("$DOTFILESHOME/bin"
+       "$HOME/.cargo/bin"
+       "$HOME/.roswell/bin")
+
 for p in $paths; do
     export PATH=${PATH}:${p}
 done
