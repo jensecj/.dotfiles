@@ -1,3 +1,5 @@
+# this uses the spectrum.sh plugin to make working with colors easier.
+
 autoload colors; colors;
 
 eval $(dircolors -b $DOTFILESHOME/dircolors)
@@ -28,6 +30,8 @@ function _virtuel_env() {
 }
 
 function _prmpt() {
+    # if we're in home, have the prompt on the same line,
+    # otherwise put the working dir above the prompt.
     if [[ "$PWD" = "$HOME" ]] then
        echo ">"
     else
