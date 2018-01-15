@@ -5,15 +5,22 @@ alias ll="ls -agholXN"
 
 # preferred defaults
 alias cp="cp -i" # ask when overwriting files
-alias free="free -m" # show sizes in megabytes
+alias free="free -h" # show sizes in a human readable format
 alias grep='grep --color=always' # use colors in grep
+alias diff="diff --color=auto" # and diff
 alias mkdir='mkdir -p -v' # make parent directories and tell us
+alias df="df -h" # human-readable by default
 
 # some common shortcuts
 alias _='sudo'
 alias ..='cd ..'
 alias ff="find -type f -iname"
 alias fd="find -type d -iname"
+
+# easily create tar.gz archives, with progress bar
+function tarczf () {
+    tar cf - ${@:2} -P | pv -s $(du -sb ${@:2} | awk '{print $1}' | paste -sd+ - | bc) | gzip > $1
+}
 
 # easy pacman
 alias pac='yay'
@@ -27,7 +34,7 @@ alias octave='octave-cli' # who uses the gui anyway?
 
 alias git="hub"
 
-alias rcp="rsync --verbose --progress"
+alias rcp="rsync --verbose --partial --progress"
 alias rmv="rsync --verbose --progress --remove-source-files"
 
 alias pf="peerflix --start --mpv"
@@ -91,9 +98,14 @@ function note() {
     then
         echo "usage: note <file>"
     else
-        $EDITOR $1.note.txt
+        $EDITOR $1.note
     fi
 }
+
+alias mount_ramdisk="_ mount -t tmpfs -o size=1024m tmpfs /mnt/ramdisk"
+alias umount_ramdisk="_ umount /mnt/ramdisk"
+
+alias ssh-stuetop="ssh -i /home/jens/.ssh/stuetop stuetop@192.168.0.40"
 
 # show the weather from dmi.dk (aarhus / copenhagen / national)
 alias dmiaa="feh <<< curl 'http://servlet.dmi.dk/byvejr/servlet/byvejr_dag1?by=8000&mode=long'"
