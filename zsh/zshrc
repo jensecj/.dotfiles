@@ -30,7 +30,7 @@ source $ZSHHOME/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.z
 export EDITOR="em"
 
 eval $(dircolors -b $DOTFILESHOME/dircolors)
-eval $(keychain --eval --quiet --agents ssh ~/.ssh/github)
+eval $(keychain --eval --quiet --agents ssh ~/.ssh/github ~/.ssh/stuetop)
 
 source $ZSHHOME/keybindings.zsh
 source $ZSHHOME/aliases.zsh
