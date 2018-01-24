@@ -33,7 +33,7 @@ source $ZSHHOME/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.z
 export EDITOR="em"
 
 eval $(dircolors -b $DOTFILESHOME/dircolors)
-eval $(keychain --eval --quiet --agents ssh ~/.ssh/github ~/.ssh/stuetop)
+eval $(keychain --eval --quiet --agents ssh ~/.ssh/github ~/.ssh/stuetop ~/.ssh/termux)
 
 source $ZSHHOME/keybindings.zsh
 source $ZSHHOME/aliases.zsh
@@ -55,3 +55,6 @@ zstyle ':completion:*' menu select
 zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 
 # zprof
+
+# use direnv to allow directory specific exports
+eval "$(direnv hook zsh)"
