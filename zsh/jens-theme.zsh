@@ -40,3 +40,6 @@ function _prmpt() {
 }
 
 PROMPT='$(_virtuel_env)$(_user_host)$(_current_dir)$(_prmpt) '
+
+# disable pythons virtualenv prompt mutation
+export VIRTUAL_ENV_DISABLE_PROMPT=1
