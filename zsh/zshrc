@@ -54,7 +54,11 @@ zstyle ':completion:*' menu select
 # setup an autocompletion style (case-insensitive)
 zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 
+# profiling zsh
 # zprof
+
+# make gpg happy
+export GPG_TTY=$(tty)
 
 # use direnv to allow directory specific exports
 eval "$(direnv hook zsh)"

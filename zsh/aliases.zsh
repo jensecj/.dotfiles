@@ -34,8 +34,8 @@ alias octave='octave-cli' # who uses the gui anyway?
 
 alias git="hub"
 
-alias rcp="rsync --verbose --partial --progress"
-alias rmv="rsync --verbose --progress --remove-source-files"
+alias rcp="rsync --verbose --human-readable --new-compress --archive --partial --progress"
+alias rmv="rsync --verbose --human-readable --new-compress --archive --partial --progress --remove-source-files"
 
 alias pf="peerflix --start --mpv"
 alias dl='snatch --threads 4'
