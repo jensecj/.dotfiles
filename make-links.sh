@@ -18,6 +18,7 @@ ln -s $(pwd)/mpv/mpv.conf $HOME/.config/mpv/mpv.conf
 ln -s $(pwd)/compton.conf $HOME/.config/compton.conf
 ln -s $(pwd)/rofi.conf $HOME/.config/rofi/config
 ln -s $(pwd)/polybar.conf $HOME/.config/polybar/config
+ln -s $(pwd)/zathurarc $HOME/.config/zathura/zathurarc
 
 # this fails if git has already been configured, which is better than
 # overwriting configurations i guess.

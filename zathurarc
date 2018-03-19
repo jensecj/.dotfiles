@@ -1,0 +1,16 @@
+set scroll-page-aware "true"
+set smooth-scroll "true"
+set scroll-full-overlap 0
+set scroll-step 50
+
+unmap f
+map f toggle_fullscreen
+map [fullscreen] f toggle_fullscreen
+
+map + zoom in
+map - zoom out
+map = zoom 0.0
+
+unmap i
+map [normal] i toggle_index
+map [index] i toggle_index

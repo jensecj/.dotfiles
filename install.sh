@@ -86,6 +86,9 @@ declare -a packages=(
     calibre # ebook manager
     mpv # video player
     mupdf # pdf viewer
+    zathura # pdf viewer
+    zathura-pdf-mupdf # mupdf backend for zathura
+    zathura-djvu zathura-ps # djvu and postscript backends for zathura
     feh # image viewer
 
     # browsers
