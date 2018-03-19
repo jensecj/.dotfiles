@@ -74,6 +74,7 @@ declare -a packages=(
     texlive-core # latex
     jq # explore json in the terminal
     gnuplot # plotting
+    downgrade # for downgrading packages to a version in cache
 
     # misc
     youtube-dl # for downloading video/sound from the internet
@@ -90,6 +91,9 @@ declare -a packages=(
     zathura-pdf-mupdf # mupdf backend for zathura
     zathura-djvu zathura-ps # djvu and postscript backends for zathura
     feh # image viewer
+    translate-shell # google-translate cli
+    dictd # offline dictionary and daemon
+    dict-gcide # gnu english dictionary
 
     # browsers
     chromium
