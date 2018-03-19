@@ -17,6 +17,10 @@ alias ..='cd ..'
 alias ff="find -type f -iname"
 alias fd="find -type d -iname"
 
+function del() {
+    mv $@ ~/.local/share/Trash/files/
+}
+
 # easily create tar.gz archives, with progress bar
 function tarczf () {
     tar cf - ${@:2} -P | pv -s $(du -sb ${@:2} | awk '{print $1}' | paste -sd+ - | bc) | gzip > $1
