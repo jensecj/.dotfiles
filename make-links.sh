@@ -20,6 +20,9 @@ ln -s $(pwd)/rofi.conf $HOME/.config/rofi/config
 ln -s $(pwd)/polybar.conf $HOME/.config/polybar/config
 ln -s $(pwd)/zathurarc $HOME/.config/zathura/zathurarc
 
+ln -s $(pwd)/ranger/rc.conf $HOME/.config/ranger/rc.conf
+ln -s $(pwd)/ranger/zenburn.py $HOME/.config/colorschemes/zenburn.py
+
 # this fails if git has already been configured, which is better than
 # overwriting configurations i guess.
 ln -s $(pwd)/gitconfig $HOME/.gitconfig
