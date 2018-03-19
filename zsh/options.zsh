@@ -6,3 +6,5 @@ setopt PUSHD_IGNORE_DUPS # don't push duplicates onto the dir stack
 setopt AUTO_NAME_DIRS # allows naming dirs as variables
 setopt MULTIOS # perform implicit tees or cats when multiple redirections are attempted
 setopt PROMPT_SUBST # pretty prompts
+# dont remember commands starting with space, this allows us to keep some commands private
+setopt HIST_IGNORE_SPACE

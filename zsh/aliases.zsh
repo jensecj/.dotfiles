@@ -36,6 +36,12 @@ alias pacs='pac -S'
 # misc
 alias octave='octave-cli' # who uses the gui anyway?
 
+alias pdf='zathura'
+
+# place space first so we ignore history (make sure HIST_IGNORE_SPACE is set)
+alias rtorrent=" rtorrent"
+alias rtor=" rtorrent"
+
 alias git="hub"
 
 alias rcp="rsync --verbose --human-readable --new-compress --archive --partial --progress"
@@ -44,6 +50,8 @@ alias rmv="rsync --verbose --human-readable --new-compress --archive --partial -
 alias pf="peerflix --start --mpv"
 alias dl='snatch --threads 4'
 alias ytdl='youtube-dl -o"%(uploader)s -- %(title)s.%(ext)s"'
+alias ytdlnr='youtube-dl -o"%(autonumber)s -- %(uploader)s -- %(title)s.%(ext)s"'
+
 alias ytmp3='youtube-dl -x --audio-format mp3 -o"%(uploader)s -- %(title)s.%(ext)s"'
 
 alias fm="ranger"
