@@ -102,6 +102,10 @@ function yt-view() {
     mpv ytdl://ytsearch:"$@"
 }
 
+function define() {
+    dict $@ | less
+}
+
 alias latest="cat /home/jens/Dropbox/comm.txt | tail"
 
 # create a note file for another file
