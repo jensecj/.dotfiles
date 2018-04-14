@@ -27,6 +27,11 @@ ln -s $(pwd)/ranger/zenburn.py $HOME/.config/colorschemes/zenburn.py
 # overwriting configurations i guess.
 ln -s $(pwd)/gitconfig $HOME/.gitconfig
 
-# add our binaries to the system, this requires sudo
-ln -s $(pwd)/bin/em /usr/bin/em
-ln -s $(pwd)/bin/colortest /usr/bin/colortest
+# add our binaries to the system, this requires privileges
+ln -s $(pwd)/bin/em /usr/local/bin/em
+ln -s $(pwd)/bin/colortest /usr/local/bin/colortest
+
+ln -s $(pwd)/bin/dmi/dmi.sh /usr/local/bin/dmi
+ln -s $(pwd)/bin/dmi/dmi15.sh /usr/local/bin/dmi15
+ln -s $(pwd)/bin/dmi/dmicph.sh /usr/local/bin/dmicph
+ln -s $(pwd)/bin/dmi/dmiaa.sh /usr/local/bin/dmiaa

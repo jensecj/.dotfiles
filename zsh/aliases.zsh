@@ -120,9 +120,3 @@ function note() {
 
 alias mount_ramdisk="_ mount -t tmpfs -o size=1024m tmpfs /mnt/ramdisk"
 alias umount_ramdisk="_ umount /mnt/ramdisk"
-
-# show the weather from dmi.dk (aarhus / copenhagen / national)
-alias dmiaa="feh <<< curl 'http://servlet.dmi.dk/byvejr/servlet/byvejr_dag1?by=8000&mode=long'"
-alias dmicph="feh <<< curl 'http://servlet.dmi.dk/byvejr/servlet/byvejr_dag1?by=1000&mode=long'"
-alias dmi="feh <<< curl 'http://www.dmi.dk/uploads/tx_dmidatastore/webservice/k/d/_/n/g/femdgn_dk.png'"
-alias dmi15="feh <<< curl 'http://servlet.dmi.dk/byvejr/servlet/byvejr?region=9&tabel=dag7_15'"
