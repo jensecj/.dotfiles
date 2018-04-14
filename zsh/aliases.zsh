@@ -79,6 +79,9 @@ function fixmj () {
 
 alias dis="objdump -M intel -C -g -w -d"
 
+alias cloc="tokei"
+alias cook="cookiecutter"
+
 # quick compile/run with test data for hackathons
 function ccc {
     clear && clang++ -std=c++17 $1 -o $1.out && time cat test.in | ./$1.out

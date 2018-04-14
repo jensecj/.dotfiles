@@ -38,13 +38,14 @@ declare -a packages=(
     emacs # now that the bootloader is installed, install the OS
     termite termite-terminfo # terminal emulator
     zsh # preferred shell
-    tmux # term multiplexer
+    tmux # terminal multiplexer
     git hub # git and the github wrapper
     jupyter # interactive science notebooks
     virtualbox # virtual machine manager
     vagrant # create virtual environments for provisioning using virtualbox
     docker # containerization
     direnv # directory specific, automatically loading exports
+    python-cookiecutter # create new project skeletons from templates
 
     # system / utilities
     keychain # manage ssh agents
@@ -52,7 +53,7 @@ declare -a packages=(
     tldr # quick shell examples for most commands
     polybar # info bar / fringe for things
     compton # screen compositor for X11
-    i3-wm # tiling window manager
+    i3-gaps # tiling window manager
     dunst # notification manager
     ufw # firewall
     slock # screen lock
@@ -64,7 +65,9 @@ declare -a packages=(
     openvpn
     gnupg
     progress # progress monitor (bar/throughput/etc.) for processes (e.g. gzip, cp, mv, ...)
+    pv # also a progress monitor (uses pipes instead processes)
     borg # incremental, encrypted backups
+    gocryptfs # encrypted mount points
     rsync # synching things
     the_silver_searcher # file searching
     ripgrep # more file searching
@@ -75,6 +78,10 @@ declare -a packages=(
     jq # explore json in the terminal
     gnuplot # plotting
     downgrade # for downgrading packages to a version in cache
+    tokei # count lines of code
+    fdupes # find duplicate files in directories
+    lsyncd # "real-time" directory synchronization
+    ncdu # free-space visualizer for filesystem
 
     # misc
     youtube-dl # for downloading video/sound from the internet
@@ -94,6 +101,7 @@ declare -a packages=(
     translate-shell # google-translate cli
     dictd # offline dictionary and daemon
     dict-gcide # gnu english dictionary
+    irssi # irc client
 
     # browsers
     chromium
@@ -117,7 +125,6 @@ declare -a npm_packages=(
 )
 
 npm -g install ${npm_packages[@]}
-
 
 
 cargo install snatch # threaded downloader
