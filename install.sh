@@ -116,7 +116,6 @@ declare -a packages=(
     nerd-fonts-complete
     ttf-material-icons
 )
-
 $AURHELPER -S ${packages[@]}
 
 declare -a npm_packages=(
@@ -124,8 +123,10 @@ declare -a npm_packages=(
     http-server
     insect # convert between units (kg -> grams, etc.)
 )
-
 npm -g install ${npm_packages[@]}
 
-
+# rust packages
 cargo install snatch # threaded downloader
+
+# disable beeps by not loading the pcspkr module
+echo "blacklist pcspkr" >> /etc/modprobe.d/pcspkr-blacklist.conf
