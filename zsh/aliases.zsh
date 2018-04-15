@@ -61,6 +61,13 @@ alias py="python"
 alias qr="qrcode-terminal"
 
 alias start_dnscrypt="_ dnscrypt-proxy /etc/dnscrypt-proxy.conf"
+alias start_xidlehook="xidlehook \
+                       --time 10 \
+                       --timer 'redshift -O 3500; slock' \
+                       --notify 10 \
+                       --notifier 'redshift -O 2800' \
+                       --canceller 'redshift -O 3500' \
+                       --not-when-fullscreen"
 
 alias rtags='rc -J'
 alias rtagsd='rdm'
