@@ -37,7 +37,10 @@ source $ZSHHOME/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.z
 export EDITOR="em"
 
 eval $(dircolors -b $DOTFILESHOME/dircolors)
-eval $(keychain --eval --quiet --agents ssh ~/.ssh/github ~/.ssh/stuetop ~/.ssh/termux)
+eval $(keychain --eval --quiet --agents ssh \
+                ~/.ssh/github \
+                ~/.ssh/stuetop \
+                ~/.ssh/termux)
 
 source $ZSHHOME/keybindings.zsh
 source $ZSHHOME/aliases.zsh
@@ -58,11 +61,11 @@ zstyle ':completion:*' menu select
 # setup an autocompletion style (case-insensitive)
 zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 
-# uncomment to profile zsh
-# zprof
-
 # make gpg happy
 export GPG_TTY=$(tty)
 
 # use direnv to allow directory specific exports
 eval "$(direnv hook zsh)"
+
+# uncomment to profile zsh
+# zprof
