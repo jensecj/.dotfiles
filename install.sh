@@ -46,6 +46,7 @@ declare -a packages=(
     docker # containerization
     direnv # directory specific, automatically loading exports
     python-cookiecutter # create new project skeletons from templates
+    diff-so-fancy # fancy git diff
 
     # system / utilities
     keychain # manage ssh agents
