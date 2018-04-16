@@ -136,3 +136,4 @@ sed -i 's/#DefaultTimeoutStartSec=90s/DefaultTimeoutStartSec=30s/' /etc/systemd/
 sed -i 's/#DefaultTimeoutStopSec=90s/DefaultTimeoutStopSec=30s/' /etc/systemd/system.conf
 
 systemctl enable lock-on-sleep
+crontab -u jens /home/jens/.crontab
