@@ -60,7 +60,7 @@ alias myt="mpv --ytdl"
 alias py="python"
 alias qr="qrcode-terminal"
 
-alias start_dnscrypt="_ dnscrypt-proxy /etc/dnscrypt-proxy.conf"
+alias start_dnscrypt="_ dnscrypt-proxy -config /etc/dnscrypt-proxy.toml"
 alias start_xidlehook="xidlehook \
                        --time 10 \
                        --timer 'redshift -O 3500; slock' \
