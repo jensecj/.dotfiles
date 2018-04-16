@@ -37,3 +37,5 @@ ln -s $(pwd)/bin/dmi/dmi.sh /usr/local/bin/dmi
 ln -s $(pwd)/bin/dmi/dmi15.sh /usr/local/bin/dmi15
 ln -s $(pwd)/bin/dmi/dmicph.sh /usr/local/bin/dmicph
 ln -s $(pwd)/bin/dmi/dmiaa.sh /usr/local/bin/dmiaa
+
+ln -s $(pwd)/systemd-units/lock-on-sleep.service /etc/systemd/system/

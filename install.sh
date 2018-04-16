@@ -130,3 +130,5 @@ cargo install snatch # threaded downloader
 
 # disable beeps by not loading the pcspkr module
 echo "blacklist pcspkr" >> /etc/modprobe.d/pcspkr-blacklist.conf
+
+systemctl enable lock-on-sleep
