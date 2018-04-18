@@ -14,6 +14,8 @@ alias df="df -h" # human-readable by default
 # some common shortcuts
 alias _='sudo'
 alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
 alias ff="find -type f -iname"
 alias fd="find -type d -iname"
 
