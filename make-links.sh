@@ -42,3 +42,5 @@ ln -s $(pwd)/bin/dmi/dmicph.sh /usr/local/bin/dmicph
 ln -s $(pwd)/bin/dmi/dmiaa.sh /usr/local/bin/dmiaa
 
 ln -s $(pwd)/systemd-units/lock-on-sleep.service /etc/systemd/system/
+ln -s $(pwd)/systemd-units/random-wallpaper.service /etc/systemd/system/
+ln -s $(pwd)/systemd-units/random-wallpaper.timer /etc/systemd/system/

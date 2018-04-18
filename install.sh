@@ -135,5 +135,6 @@ echo "blacklist pcspkr" >> /etc/modprobe.d/pcspkr-blacklist.conf
 sed -i 's/#DefaultTimeoutStartSec=90s/DefaultTimeoutStartSec=30s/' /etc/systemd/system.conf
 sed -i 's/#DefaultTimeoutStopSec=90s/DefaultTimeoutStopSec=30s/' /etc/systemd/system.conf
 
-systemctl enable lock-on-sleep
-crontab -u jens /home/jens/.crontab
+systemctl enable lock-on-sleep.service
+systemctl enable random-wallpaper.timer
+systemctl start random-wallpaper.timer
