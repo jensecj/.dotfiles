@@ -1,5 +1,6 @@
 # remap capslock to ctrl
 setxkbmap -layout dk -option ctrl:nocaps
+export LANG = en_DK.UTF-8
 
 # disable the dang beep
 xset -b
