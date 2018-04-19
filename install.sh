@@ -136,5 +136,5 @@ sed -i 's/#DefaultTimeoutStartSec=90s/DefaultTimeoutStartSec=30s/' /etc/systemd/
 sed -i 's/#DefaultTimeoutStopSec=90s/DefaultTimeoutStopSec=30s/' /etc/systemd/system.conf
 
 systemctl enable lock-on-sleep.service
-systemctl enable random-wallpaper.timer
-systemctl start random-wallpaper.timer
+systemctl --user enable random-wallpaper.timer
+systemctl --user start random-wallpaper.timer

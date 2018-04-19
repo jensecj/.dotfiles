@@ -4,7 +4,7 @@ Requires=random-wallpaper.service
 
 [Timer]
 Unit=random-wallpaper.service
-OnUnitInactiveSec=15m
+OnUnitInactiveSec=30m
 
 [Install]
 WantedBy=timers.target
