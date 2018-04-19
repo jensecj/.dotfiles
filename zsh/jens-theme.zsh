@@ -23,9 +23,9 @@ function _current_dir() {
 }
 
 function _virtuel_env() {
-    if [ -n "$VIRTUAL_ENV" ]; then
+    if [[ -n "$VIRTUAL_ENV" ]]; then
         local name=$(basename $VIRTUAL_ENV)
-        echo "($name) "
+        echo "%{$fg[blue]%}($name) %{$reset_color%}"
     fi
 }
 
