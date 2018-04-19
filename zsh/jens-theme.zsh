@@ -45,10 +45,10 @@ function _git_branch() {
 function _prmpt() {
     # if we're in home, have the prompt on the same line,
     # otherwise put the working dir above the prompt.
-    if [[ "$PWD" = "$HOME" ]] then
-       echo ">"
+    if [[ "$PWD" = "$HOME" ]]; then
+        echo ">"
     else
-       echo "\n>"
+        echo "\n>"
     fi
 }
 
