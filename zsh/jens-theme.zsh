@@ -29,6 +29,19 @@ function _virtuel_env() {
     fi
 }
 
+function _git_branch() {
+    in_git_repo="$(git rev-parse --is-inside-work-tree 2>/dev/null)"
+    if [[ "$in_git_repo" ]]; then
+        local branch=$(git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/')
+        local is_dirty=$(git status --porcelain 2> /dev/null | tail -n1)
+        if [[ "$is_dirty" ]]; then
+            echo "%{$fg[yellow]%}($branch*)%{$reset_color%}"
+        else
+            echo "%{$fg[yellow]%}($branch)%{$reset_color%}"
+        fi
+    fi
+}
+
 function _prmpt() {
     # if we're in home, have the prompt on the same line,
     # otherwise put the working dir above the prompt.
@@ -39,7 +52,7 @@ function _prmpt() {
     fi
 }
 
-PROMPT='$(_virtuel_env)$(_user_host)$(_current_dir)$(_prmpt) '
+PROMPT='$(_virtuel_env)$(_user_host)$(_current_dir)$(_git_branch)$(_prmpt) '
 
 # disable pythons virtualenv prompt mutation
 export VIRTUAL_ENV_DISABLE_PROMPT=1
