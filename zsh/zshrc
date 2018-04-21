@@ -24,6 +24,8 @@ done
 HISTSIZE=10000
 SAVEHIST=10000
 HISTFILE=~/.zsh_history
+# print usage statistics for commands that take longer than 5 seconds to complete
+REPORTTIME=5
 
 # use bash selection, so killing stops at delimiters
 autoload -U select-word-style && {
