@@ -1,8 +1,15 @@
 # uncomment to profile zsh
 # zmodload zsh/zprof
 
+# exports, common paths, etc.
 export DOTFILESHOME=$HOME/.dotfiles
 export ZSHHOME=$DOTFILESHOME/zsh
+export EDITOR="em" # emacsclient, this scripts starts the daemon if needed
+# make gpg happy
+export GPG_TTY=$(tty)
+# ggtags config
+export GTAGSLABEL="ctags"
+export GTAGSCONF="~/.globalrc"
 
 # add things to PATH
 paths=("$DOTFILESHOME/bin"
@@ -13,14 +20,19 @@ for p in $paths; do
     export PATH=${PATH}:${p}
 done
 
-# load plugins
-for p in $ZSHHOME/plugins/*.sh; do
-    source $p
-done
+# save our command history
+HISTSIZE=10000
+SAVEHIST=10000
+HISTFILE=~/.zsh_history
 
 # use bash selection, so killing stops at delimiters
 autoload -U select-word-style
 select-word-style bash
+
+# load plugins
+for p in $ZSHHOME/plugins/*.sh; do
+    source $p
+done
 
 # this needs to be loaded after all other plugins
 source $ZSHHOME/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh
@@ -36,40 +48,20 @@ source $ZSHHOME/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.z
 : ${ZSH_HIGHLIGHT_STYLES[double-quoted-argument]:=fg=174}
 : ${ZSH_HIGHLIGHT_STYLES[dollar-quoted-argument]:=fg=174}
 
-# my default editor is emacsclient, the `em` scripts starts the daemon if it's
-# not running
-export EDITOR="em"
-
+# color directories/files
 eval $(dircolors -b $DOTFILESHOME/dircolors)
+
+# start the ssh daemon, and load keys into it
 eval $(keychain --eval --quiet --agents ssh \
                 ~/.ssh/github \
                 ~/.ssh/stuetop \
                 ~/.ssh/termux)
 
+source $ZSHHOME/autocomplete-setup.sh
 source $ZSHHOME/keybindings.zsh
 source $ZSHHOME/aliases.zsh
 source $ZSHHOME/options.zsh
 source $ZSHHOME/jens-theme.zsh
-
-# save our command history
-HISTSIZE=10000
-SAVEHIST=10000
-HISTFILE=~/.zsh_history
-
-# load the auto completion system
-autoload -Uz compinit
-compinit
-
-# show the selected item in the menu
-zstyle ':completion:*' menu select
-# setup an autocompletion style (case-insensitive)
-zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
-
-# make gpg happy
-export GPG_TTY=$(tty)
-
-export GTAGSLABEL="ctags"
-export GTAGSCONF="~/.globalrc"
 
 # use direnv to allow directory specific exports
 eval "$(direnv hook zsh)"
