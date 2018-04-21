@@ -18,6 +18,10 @@ for p in $ZSHHOME/plugins/*.sh; do
     source $p
 done
 
+# use bash selection, so killing stops at delimiters
+autoload -U select-word-style
+select-word-style bash
+
 # this needs to be loaded after all other plugins
 source $ZSHHOME/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh
 
