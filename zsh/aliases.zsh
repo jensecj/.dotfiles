@@ -63,7 +63,34 @@ alias myt="mpv --ytdl"
 alias py="python"
 alias qr="qrcode-terminal"
 
-alias start_dnscrypt="_ dnscrypt-proxy -config /etc/dnscrypt-proxy.toml"
+function myip() {
+    local arg=$1
+
+    local show_local=0
+    local show_external=0
+
+    if [[ $arg == "local" ]]; then
+        show_local=1
+    elif [[ $arg == "external" ]]; then
+        show_external=1
+    else
+        show_local=1
+        show_external=1
+    fi
+
+    if [[ $show_local -gt 0 ]]; then
+        local local_ip=$(ifconfig wlp3s0 | grep inet | sed -n 1p | awk '{print $2}');
+        echo "local: $local_ip";
+    fi
+
+    if [[ $show_external -gt 0 ]]; then
+        # local external_ip=$(curl ipinfo.io &> /dev/null | sed -n 2p | sed 's/\"//g' | sed 's/\,//g' | awk '{print $2}');
+        local external_ip=$(dig +short myip.opendns.com @resolver1.opendns.com)
+        echo "external: $external_ip";
+    fi
+}
+
+alias start_dnscrypt="_ dnscrypt-proxy -config /etc/dnscrypt-proxy/dnscrypt-proxy.toml"
 alias start_xidlehook="xidlehook \
                        --time 10 \
                        --timer 'redshift -O 3500; slock' \
