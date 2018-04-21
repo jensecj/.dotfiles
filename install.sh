@@ -64,6 +64,7 @@ declare -a packages=(
     htop # process manager
     openssh
     openvpn
+    mosh # ssh-replacement, with intermittent connections
     gnupg
     progress # progress monitor (bar/throughput/etc.) for processes (e.g. gzip, cp, mv, ...)
     pv # also a progress monitor (uses pipes instead processes)

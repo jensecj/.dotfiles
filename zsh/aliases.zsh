@@ -10,6 +10,7 @@ alias grep='grep --color=always' # use colors in grep
 alias diff="diff --color=auto" # and diff
 alias mkdir='mkdir -p -v' # make parent directories and tell us
 alias df="df -h" # human-readable by default
+alias ssh="mosh"
 
 # some common shortcuts
 alias _='sudo'
