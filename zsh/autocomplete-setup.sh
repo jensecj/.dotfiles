@@ -1,14 +1,17 @@
 # load the auto completion system and setup
+autoload -Uz complist
 autoload -Uz compinit
 
-if [[ $(find /home/jens/.zcompdump -mtime +1) ]]; then
+# if the cache does not exist, or if it is older
+# than 24 hours, rebuild it.
+cache_exists=$(test -e ~/.zcompdump)
+if [[ ! -e '/home/jens/.zcompdump' || $(find /home/jens/.zcompdump -mtime +1) ]]; then
     compinit
+else
+    compinit -C
 fi
 
-compinit -C
-
 zstyle ':completion:*' use-cache on
-# zstyle ':completion:*' cache-path ~/.zsh/cache
 # show the selected item in the menu
 zstyle ':completion:*' menu select
 # setup an autocompletion style (case-insensitive)
