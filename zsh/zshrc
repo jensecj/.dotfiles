@@ -26,8 +26,9 @@ SAVEHIST=10000
 HISTFILE=~/.zsh_history
 
 # use bash selection, so killing stops at delimiters
-autoload -U select-word-style
-select-word-style bash
+autoload -U select-word-style && {
+    select-word-style bash
+}
 
 # load plugins
 for p in $ZSHHOME/plugins/*.sh; do
@@ -35,19 +36,18 @@ for p in $ZSHHOME/plugins/*.sh; do
 done
 
 # this needs to be loaded after all other plugins
-source $ZSHHOME/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh
-
-# change some default highlighter values to fit with zenburn, and my
-# preferences. may need to go to main-highlighter.zsh and uncomment the changes
-# styles after an update.
-: ${ZSH_HIGHLIGHT_STYLES[path]:=none}
-: ${ZSH_HIGHLIGHT_STYLES[globbing]:=fg=none,bold}
-: ${ZSH_HIGHLIGHT_STYLES[arg0]:=fg=151}
-: ${ZSH_HIGHLIGHT_STYLES[reserved-word]:=fg=228}
-: ${ZSH_HIGHLIGHT_STYLES[single-quoted-argument]:=fg=174}
-: ${ZSH_HIGHLIGHT_STYLES[double-quoted-argument]:=fg=174}
-: ${ZSH_HIGHLIGHT_STYLES[dollar-quoted-argument]:=fg=174}
-
+source $ZSHHOME/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh && {
+    # change some default highlighter values to fit with zenburn, and my
+    # preferences. may need to go to main-highlighter.zsh and uncomment the changes
+    # styles after an update.
+    : ${ZSH_HIGHLIGHT_STYLES[path]:=none}
+    : ${ZSH_HIGHLIGHT_STYLES[globbing]:=fg=none,bold}
+    : ${ZSH_HIGHLIGHT_STYLES[arg0]:=fg=151}
+    : ${ZSH_HIGHLIGHT_STYLES[reserved-word]:=fg=228}
+    : ${ZSH_HIGHLIGHT_STYLES[single-quoted-argument]:=fg=174}
+    : ${ZSH_HIGHLIGHT_STYLES[double-quoted-argument]:=fg=174}
+    : ${ZSH_HIGHLIGHT_STYLES[dollar-quoted-argument]:=fg=174}
+}
 # color directories/files
 eval $(dircolors -b $DOTFILESHOME/dircolors)
 
