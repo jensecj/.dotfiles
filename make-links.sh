@@ -29,8 +29,6 @@ ln -s $(pwd)/ranger/zenburn.py $HOME/.config/colorschemes/zenburn.py
 # overwriting configurations i guess.
 ln -s $(pwd)/gitconfig $HOME/.gitconfig
 
-ln -s $(pwd)/crontab $HOME/.crontab
-
 # add our binaries to the system, this requires privileges
 ln -s $(pwd)/bin/em /usr/local/bin/em
 ln -s $(pwd)/bin/colortest /usr/local/bin/colortest
