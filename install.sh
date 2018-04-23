@@ -84,6 +84,7 @@ declare -a packages=(
     fdupes # find duplicate files in directories
     lsyncd # "real-time" directory synchronization
     ncdu # free-space visualizer for filesystem
+    urlview # extract urls from input
 
     # misc
     youtube-dl # for downloading video/sound from the internet

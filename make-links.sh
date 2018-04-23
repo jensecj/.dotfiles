@@ -20,6 +20,7 @@ ln -s $(pwd)/rofi.conf $HOME/.config/rofi/config
 ln -s $(pwd)/polybar.conf $HOME/.config/polybar/config
 ln -s $(pwd)/zathurarc $HOME/.config/zathura/zathurarc
 ln -s $(pwd)/cookiecutter.rc $HOME/.cookiecutterrc
+ln -s $(pwd)/urlview $HOME/.urlview
 
 
 ln -s $(pwd)/ranger/rc.conf $HOME/.config/ranger/rc.conf
