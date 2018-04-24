@@ -4,7 +4,7 @@ ln -s $(pwd)/Xresources $HOME/.Xresources
 ln -s $(pwd)/zsh/zshrc $HOME/.zshrc
 ln -s $(pwd)/zsh/zprofile $HOME/.zprofile
 ln -s $(pwd)/tmux/tmux.conf $HOME/.tmux.conf
-ln -s $(pwd)/tmux/tmux/ $HOME/.tmux
+ln -s $(pwd)/tmux/ $HOME/.tmux
 ln -s $(pwd)/termite/config $HOME/.config/termite/config
 
 ln -s $(pwd)/i3.conf $HOME/.i3/config
