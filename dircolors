@@ -1,6 +1,7 @@
 # add your terminal here
 TERM screen-256color
 TERM xterm-256color
+TERM tmux-256color
 TERM rxvt-unicode-256color
 TERM xterm-termite
 
