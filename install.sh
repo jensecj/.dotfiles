@@ -113,10 +113,10 @@ declare -a packages=(
     links # textbased ncurses browser
 
     # fonts
-    adobe-source-code-pro-fonts
     adobe-source-sans-pro-fonts
-    nerd-fonts-complete
-    ttf-material-icons
+    adobe-source-code-pro-fonts # for programming
+    noto-sans-cjk # chinese-japanses-korean
+    nerd-fonts-complete # a collection of patched and icon fonts
 )
 $AURHELPER -S ${packages[@]}
 
