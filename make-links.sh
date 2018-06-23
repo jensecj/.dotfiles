@@ -35,6 +35,7 @@ ln -s $(pwd)/bin/em /usr/local/bin/em
 ln -s $(pwd)/bin/colortest /usr/local/bin/colortest
 ln -s $(pwd)/bin/define.sh /usr/local/bin/define
 ln -s $(pwd)/bin/lorem.sh /usr/local/bin/lorem
+ln -s $(pwd)/bin/cljsh /usr/local/bin/cljsh
 
 ln -s $(pwd)/bin/dmi/dmi.sh /usr/local/bin/dmi
 ln -s $(pwd)/bin/dmi/dmi15.sh /usr/local/bin/dmi15
