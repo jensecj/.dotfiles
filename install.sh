@@ -37,6 +37,7 @@ declare -a packages=(
     # programming tools
     emacs # now that the bootloader is installed, install the OS
     termite termite-terminfo # terminal emulator
+    alacritty # another terminal emulator
     zsh # preferred shell
     tmux # terminal multiplexer
     git hub # git and the github wrapper
@@ -64,7 +65,7 @@ declare -a packages=(
     htop # process manager
     openssh
     openvpn
-    mosh # ssh-replacement, with intermittent connections
+    mosh # ssh-replacement, with persistent connections
     gnupg
     progress # progress monitor (bar/throughput/etc.) for processes (e.g. gzip, cp, mv, ...)
     pv # also a progress monitor (uses pipes instead processes)
@@ -85,6 +86,7 @@ declare -a packages=(
     lsyncd # "real-time" directory synchronization
     ncdu # free-space visualizer for filesystem
     urlview # extract urls from input
+    firejail # app sandboxing
 
     # misc
     youtube-dl # for downloading video/sound from the internet
