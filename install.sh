@@ -12,6 +12,7 @@ declare -a packages=(
     python python-pip
     python-setuptools python-pew
     python-virtualenv
+    mypy # type checking
 
     # c++
     clang clang-tools-extra
@@ -32,10 +33,10 @@ declare -a packages=(
     dotnet-host dotnet-runtime dotnet-sdk-2.0
 
     # other languages
-    octave rustup nodejs
+    octave rustup nodejs gradle
 
     # programming tools
-    emacs # now that the bootloader is installed, install the OS
+    emacs-git # now that the bootloader is installed, install the OS
     termite termite-terminfo # terminal emulator
     alacritty # another terminal emulator
     zsh # preferred shell
@@ -87,6 +88,7 @@ declare -a packages=(
     ncdu # free-space visualizer for filesystem
     urlview # extract urls from input
     firejail # app sandboxing
+    ddrescue # disk recovery
 
     # misc
     youtube-dl # for downloading video/sound from the internet
@@ -131,6 +133,8 @@ npm -g install ${npm_packages[@]}
 
 # rust packages
 cargo install snatch # threaded downloader
+cargo install xsv # work with csv in the terminal
+
 
 # disable beeps by not loading the pcspkr module
 echo "blacklist pcspkr" >> /etc/modprobe.d/pcspkr-blacklist.conf
