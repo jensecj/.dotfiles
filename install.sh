@@ -2,25 +2,26 @@
 
 # first install an AUR helper so we can grab packages from aur
 AURHELPER=yay # or trizen, bauerbill, etc.
+pacman -S $AURHELPER
 
 declare -a packages=(
     # java
-    jdk9-openjdk jre9-openjdk
-    apache-ant apache-ivy # java build tools
+    jdk10-openjdk jre10-openjdk
+    gradle apache-ant apache-ivy # java build tools
 
     # python
-    python python-pip
-    python-setuptools python-pew
-    python-virtualenv
+    python python-pip python-setuptools
+    python-pew python-virtualenv # virtual environments
     mypy # type checking
 
     # c++
     clang clang-tools-extra
+    llvm llvm-libs lld
     gcc gcc-libs
     boost boost-libs
-    llvm llvm-libs lld
-    valgrind rtags
-    cmake # c++ build tool
+    valgrind # performance tuning/debugging
+    rtags # tags / language-server
+    cmake # build tool
 
     # lisps
     chicken
@@ -32,8 +33,11 @@ declare -a packages=(
     # dot net
     dotnet-host dotnet-runtime dotnet-sdk-2.0
 
+    # android
+    android-sdk
+
     # other languages
-    octave rustup nodejs gradle
+    octave rustup nodejs
 
     # programming tools
     emacs-git # now that the bootloader is installed, install the OS
@@ -60,6 +64,7 @@ declare -a packages=(
     dunst # notification manager
     ufw # firewall
     slock # screen lock
+    xidlehook # perform actions on idle (used with slock)
     dnscrypt-proxy # for running encrypted dnslookups
     autocutsel # for synching clipboards
     gperftools # performance analysis tools
@@ -73,9 +78,7 @@ declare -a packages=(
     borg # incremental, encrypted backups
     gocryptfs # encrypted mount points
     rsync # synching things
-    the_silver_searcher # file searching
     ripgrep # more file searching
-    syncthing # syncthing files between devices
     rtorrent # torrenting
     texlive-bin # latex
     texlive-core # latex
@@ -97,7 +100,6 @@ declare -a packages=(
     rofi # app menu / dmenu clone
     anki # flashcards
     peerflix # streaming torrents
-    dropbox # folder sync
     calibre # ebook manager
     mpv # video player
     mupdf # pdf viewer
@@ -113,8 +115,6 @@ declare -a packages=(
     # browsers
     chromium
     firefox
-    icecat
-    links # textbased ncurses browser
 
     # fonts
     adobe-source-sans-pro-fonts
@@ -131,10 +131,16 @@ declare -a npm_packages=(
 )
 npm -g install ${npm_packages[@]}
 
-# rust packages
-cargo install snatch # threaded downloader
-cargo install xsv # work with csv in the terminal
+declare -a rust_packages=(
+    snatch # threaded downloader
+    xsv # work with csv in the terminal
+)
+cargo install ${rust_packages[@]}
 
+
+##########
+# Tweaks #
+##########
 
 # disable beeps by not loading the pcspkr module
 echo "blacklist pcspkr" >> /etc/modprobe.d/pcspkr-blacklist.conf
