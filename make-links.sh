@@ -2,6 +2,7 @@
 
 ln -s $(pwd)/Xresources $HOME/.Xresources
 ln -s $(pwd)/zsh/zshrc $HOME/.zshrc
+ln -s $(pwd)/zsh/zshenv $HOME/.zshenv
 ln -s $(pwd)/zsh/zprofile $HOME/.zprofile
 ln -s $(pwd)/tmux/tmux.conf $HOME/.tmux.conf
 ln -s $(pwd)/tmux/ $HOME/.tmux
