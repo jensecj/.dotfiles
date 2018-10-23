@@ -11,7 +11,7 @@ declare -a packages=(
 
     # python
     python python-pip python-setuptools
-    python-pew python-virtualenv # virtual environments
+    pyenv python-pew python-virtualenv # virtual environments
     mypy # type checking
 
     # c++
@@ -50,7 +50,7 @@ declare -a packages=(
     virtualbox # virtual machine manager
     vagrant # create virtual environments for provisioning using virtualbox
     docker # containerization
-    direnv # directory specific, automatically loading exports
+    # direnv # directory specific, automatically loading exports
     python-cookiecutter # create new project skeletons from templates
     diff-so-fancy # fancy git diff
 
