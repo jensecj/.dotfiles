@@ -14,9 +14,5 @@ I try to stick to the
 original [Zenburn colors](http://kippura.org/zenburnpage/), which is
 also how my window manager, terminal, and emacs are styled.
 
-For keybindings, etc. look at the relevant files (e.g. rc.lua for
-awesomewm, i3.conf for i3, aliases.zsh/keybindings.zsh for terminal,
-...)
-
-*NOTE: the configuration is for awesome 3.5, likely does not work with
-4+. not updating it yet, because I'm curently using i3*
+For keybindings, etc. look at the relevant files (e.g. i3.conf for i3,
+aliases.zsh/keybindings.zsh for terminal, ...)
