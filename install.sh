@@ -93,6 +93,7 @@ declare -a packages=(
     firejail # app sandboxing
     ddrescue # disk recovery
     bat # cat clone with syntax highlighting, etc.
+    httpie # simple http client for the terminal
 
     # misc
     youtube-dl # for downloading video/sound from the internet
