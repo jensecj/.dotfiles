@@ -97,6 +97,8 @@ declare -a packages=(
     iotop # I/O monitor
     lshw # print hardware information (like other ls* tools)
     fd # alternative to find
+    insect # scientific calculator, with many features (kg -> grams, etc.)
+    xsv # work with csv in the terminal
 
     # misc
     youtube-dl # for downloading video/sound from the internet
@@ -116,7 +118,6 @@ declare -a packages=(
     dictd # offline dictionary and daemon
     dict-gcide # gnu english dictionary
     irssi # irc client
-    insect # scientific calculator, with many features (kg -> grams, etc.)
 
     # browsers
     chromium
@@ -138,7 +139,6 @@ npm -g install ${npm_packages[@]}
 
 declare -a rust_packages=(
     snatch # threaded downloader
-    xsv # work with csv in the terminal
 )
 cargo install ${rust_packages[@]}
 
