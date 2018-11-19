@@ -116,6 +116,7 @@ declare -a packages=(
     dictd # offline dictionary and daemon
     dict-gcide # gnu english dictionary
     irssi # irc client
+    insect # scientific calculator, with many features (kg -> grams, etc.)
 
     # browsers
     chromium
@@ -132,7 +133,6 @@ $AURHELPER -S ${packages[@]}
 declare -a npm_packages=(
     qrcode-terminal # generate qrcodes in the terminal
     http-server
-    insect # convert between units (kg -> grams, etc.)
 )
 npm -g install ${npm_packages[@]}
 
