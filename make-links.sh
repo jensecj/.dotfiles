@@ -26,6 +26,7 @@ ln -s $(pwd)/gpg-agent.conf $HOME/.gnupg/gpg-agent.conf
 
 ln -s $(pwd)/ranger/rc.conf $HOME/.config/ranger/rc.conf
 ln -s $(pwd)/ranger/zenburn.py $HOME/.config/colorschemes/zenburn.py
+ln -s $(pwd)/bat.conf $HOME/.config/bat/config
 
 # this fails if git has already been configured, which is better than
 # overwriting configurations i guess.

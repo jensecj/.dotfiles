@@ -92,6 +92,7 @@ declare -a packages=(
     urlview # extract urls from input
     firejail # app sandboxing
     ddrescue # disk recovery
+    bat # cat clone with syntax highlighting, etc.
 
     # misc
     youtube-dl # for downloading video/sound from the internet
