@@ -53,6 +53,7 @@ declare -a packages=(
     # direnv # directory specific, automatically loading exports
     python-cookiecutter # create new project skeletons from templates
     diff-so-fancy # fancy git diff
+    watchman # inode change monitor and trigger
 
     # system / utilities
     keychain # manage ssh agents
