@@ -94,6 +94,9 @@ declare -a packages=(
     ddrescue # disk recovery
     bat # cat clone with syntax highlighting, etc.
     httpie # simple http client for the terminal
+    iotop # I/O monitor
+    lshw # print hardware information (like other ls* tools)
+    fd # alternative to find
 
     # misc
     youtube-dl # for downloading video/sound from the internet
