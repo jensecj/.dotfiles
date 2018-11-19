@@ -17,8 +17,9 @@ alias _='sudo'
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
-alias ff="find -type f -iname"
-alias fd="find -type d -iname"
+
+alias ff="fd --type f"
+alias fd="fd --type d"
 
 function del() {
     mv $@ ~/.local/share/Trash/files/
