@@ -100,6 +100,8 @@ declare -a packages=(
     fd # alternative to find
     insect # scientific calculator, with many features (kg -> grams, etc.)
     xsv # work with csv in the terminal
+    fzf # fuzzy file finder
+    detox # clean up filenames
 
     # misc
     youtube-dl # for downloading video/sound from the internet
@@ -129,6 +131,7 @@ declare -a packages=(
     adobe-source-code-pro-fonts # for programming
     noto-sans-cjk # chinese-japanses-korean
     nerd-fonts-complete # a collection of patched and icon fonts
+    otf-fira-code # programming font with ligitures
 )
 $AURHELPER -S ${packages[@]}
 
