@@ -151,6 +151,9 @@ cargo install ${rust_packages[@]}
 # Tweaks #
 ##########
 
+mkdir $HOME/.rtorrent.session
+ln -s $(pwd)/systemd-units/lock-on-sleep.service /etc/systemd/system/
+
 # disable beeps by not loading the pcspkr module
 echo "blacklist pcspkr" >> /etc/modprobe.d/pcspkr-blacklist.conf
 
