@@ -3,7 +3,6 @@ Description=Lock when suspending (closing lid)
 
 [Service]
 User=jens
-Type=forking
 Environment=DISPLAY=:0
 ExecStart=/usr/local/bin/slock
 

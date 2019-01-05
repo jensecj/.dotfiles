@@ -1,7 +1,7 @@
 set scroll-page-aware "true"
 set smooth-scroll "true"
 set scroll-full-overlap 0
-set scroll-step 50
+set scroll-step 40
 
 unmap f
 map f toggle_fullscreen

@@ -32,7 +32,7 @@ function tarczf () {
 
 # easy pacman
 alias pac='yay'
-alias pacu='pac -Syu'
+alias pacu='pac -Syu --combinedupgrade'
 alias pacrm='pac -Rns'
 alias pacss='pac -Ss'
 alias pacs='pac -S'
