@@ -6,7 +6,7 @@ export EDITOR="em" # emacsclient, this scripts starts the daemon if needed
 export GPG_TTY=$(tty)
 # ggtags config
 export GTAGSLABEL="ctags"
-export GTAGSCONF="~/.globalrc"
+export GTAGSCONF="$HOME/.globalrc"
 
 export TIMEFMT=''$'\n%J'$'\n%U user | %S system | %P cpu | %*Es total'$'\n'\
 'avg. shared (code):         %X KB'$'\n'\
