@@ -1,6 +1,6 @@
 # exports, common paths, etc.
 export DOTFILESHOME=$HOME/.dotfiles
-export ZSHHOME=$DOTFILESHOME/zsh
+export ZSHHOME=$HOME/.zsh
 export EDITOR="em" # emacsclient, this scripts starts the daemon if needed
 # make gpg happy
 export GPG_TTY=$(tty)

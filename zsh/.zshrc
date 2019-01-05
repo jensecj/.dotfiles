@@ -32,7 +32,7 @@ source $ZSHHOME/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.z
     : ${ZSH_HIGHLIGHT_STYLES[dollar-quoted-argument]:=fg=174}
 }
 # color directories/files
-eval $(dircolors -b $DOTFILESHOME/dircolors)
+eval $(dircolors -b $HOME/.dircolors)
 
 # start the ssh daemon, and load keys into it
 eval $(keychain --eval --quiet --agents ssh \
