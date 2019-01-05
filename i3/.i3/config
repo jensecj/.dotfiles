@@ -278,7 +278,6 @@ exec --no-startup-id redshift -O 3500 # dim the blue screen light
 exec --no-startup-id unclutter # hiding the mouse cursor when idle
 exec --no-startup-id polybar jensbar
 # exec --no-startup-id rdm # the rtags daemon
-exec dropbox
 
 # try syncing the linux selections
 exec --no-startup-id autocutsel -fork
