@@ -10,8 +10,8 @@ set $term LANG=en_DK.UTF-8 alacritty
 set $browser firefox
 
 # configure border style <normal|1pixel|pixel xx|none|pixel>
-new_window pixel 1
-new_float pixel 1
+default_border pixel 1
+default_floating_border pixel 1
 
 # hide borders near edges of screen
 hide_edge_borders none
