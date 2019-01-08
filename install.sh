@@ -120,7 +120,6 @@ declare -a packages=(
     translate-shell # google-translate cli
     dictd # offline dictionary and daemon
     dict-gcide # gnu english dictionary
-    irssi # irc client
 
     # browsers
     chromium

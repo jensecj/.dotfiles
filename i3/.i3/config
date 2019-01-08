@@ -22,9 +22,6 @@ font xft:Source Code Pro Semibold 10
 # use mouse+$mod to drag floating windows
 floating_modifier $mod
 
-# gaps inner 7
-# gaps outer 1
-
 ###############
 # KEYBINDINGS #
 ###############
@@ -138,17 +135,6 @@ bindsym Escape mode "default"
 # resize window (you can also use the mouse for that)
 bindsym $mod+r mode "resize"
 mode "resize" {
-# these bindings trigger as soon as you enter the resize mode
-# pressing left will shrink the window’s width.
-# pressing right will grow the window’s width.
-# pressing up will shrink the window’s height.
-# pressing down will grow the window’s height.
-bindsym j resize shrink width 5 px or 5 ppt
-bindsym k resize grow height 5 px or 5 ppt
-bindsym l resize shrink height 5 px or 5 ppt
-bindsym odiaeresis resize grow width 5 px or 5 ppt
-
-# same bindings, but for the arrow keys
 bindsym Left resize shrink width 10 px or 10 ppt
 bindsym Down resize grow height 10 px or 10 ppt
 bindsym Up resize shrink height 10 px or 10 ppt
@@ -173,8 +159,8 @@ set $ws5 五 wǔ
 set $ws6 六 liù
 set $ws7 七 qī
 set $ws8 八 bā
-           # 九 # jiǔ (nine)
-           # 十 # shí (ten)
+       # 九 # jiǔ (nine)
+       # 十 # shí (ten)
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
@@ -213,31 +199,11 @@ bindsym $mod+Shift+8 move container to workspace $ws8; workspace $ws8
 # open specific applications in floating mode
 for_window [class="feh"] floating enable border pixel 1
 for_window [class="alsamixer"] floating enable border pixel 1
-for_window [class="Calamares"] floating enable border normal
-for_window [class="Clipgrab"] floating enable
-for_window [title="File Transfer*"] floating enable
-for_window [class="Galculator"] floating enable border pixel 1
-for_window [class="GParted"] floating enable border normal
-for_window [title="i3_help"] floating enable sticky enable border normal
 for_window [class="Lightdm-gtk-greeter-settings"] floating enable
 for_window [class="Lxappearance"] floating enable sticky enable border normal
 for_window [class="Manjaro-hello"] floating enable
 for_window [class="Manjaro Settings Manager"] floating enable border normal
-for_window [title="MuseScore: Play Panel"] floating enable
-for_window [class="Nitrogen"] floating enable sticky enable border normal
-for_window [class="Oblogout"] fullscreen enable
-for_window [class="octopi"] floating enable
-for_window [class="Pamac-manager"] floating enable
-for_window [title="pcmanfm"] floating enable
-for_window [class="Pavucontrol"] floating enable
-for_window [class="qt5ct"] floating enable sticky enable border normal
-for_window [class="Qtconfig-qt4"] floating enable sticky enable border normal
-for_window [class="Simple-scan"] floating enable border normal
-for_window [class="(?i)System-config-printer.py"] floating enable border normal
-for_window [class="Thus"] floating enable border normal
-for_window [class="Timeset-gui"] floating enable border normal
 for_window [class="(?i)virtualbox"] floating enable border normal
-for_window [class="Xfburn"] floating enable
 
 for_window [class="Termite" instance="em-bookmarks"] floating enable
 for_window [class="Termite" instance="em-bookmarks"] resize grow up 200px;
@@ -277,7 +243,6 @@ exec --no-startup-id compton -b # deamonize / disable shadows / enable fading
 exec --no-startup-id redshift -O 3500 # dim the blue screen light
 exec --no-startup-id unclutter # hiding the mouse cursor when idle
 exec --no-startup-id polybar jensbar
-# exec --no-startup-id rdm # the rtags daemon
 
 # try syncing the linux selections
 exec --no-startup-id autocutsel -fork
