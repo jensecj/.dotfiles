@@ -99,7 +99,7 @@ bindsym $mod+Shift+minus move scratchpad
 bindsym $mod+minus scratchpad show
 
 # lock screen
-bindsym $mod+9 exec --no-startup-id sleep .1 && slock
+bindsym $mod+l exec --no-startup-id sleep .1 && slock
 
 # hide/show polybar
 bindsym $mod+Shift+m exec --no-startup-id xdotool windowunmap <<< eval $(xdotool search --name "polybar-jensbar")
