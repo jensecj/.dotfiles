@@ -2,7 +2,7 @@
 Description=Lock when suspending (closing lid)
 
 [Service]
-User=%I
+User=jens
 Environment=DISPLAY=:0
 ExecStart=/usr/local/bin/slock
 
