@@ -2,8 +2,8 @@
 # zmodload zsh/zprof
 
 # save our command history
-HISTSIZE=10000
-SAVEHIST=10000
+HISTSIZE=100000
+SAVEHIST=100000
 HISTFILE=~/.zsh_history
 # print usage statistics for commands that take longer than 5 seconds to complete
 REPORTTIME=5
