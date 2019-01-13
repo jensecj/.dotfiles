@@ -1,2 +1,3 @@
-[[ -f ~/.bashrc ]] && . ~/.bashrc
-[[ -z $DISPLAY && $XDG_VTNR -eq 1 ]] && exec startx
+if [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
+    exec startx
+fi
