@@ -5,7 +5,7 @@
 # set mod key (Mod1=<Alt>, Mod4=<Super>)
 set $mod Mod4
 # set preferred terminal
-set $term LANG=en_DK.UTF-8 alacritty
+set $term LANG=en_DK.UTF-8 termite
 # preferred browser
 set $browser firefox
 

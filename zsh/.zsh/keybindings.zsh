@@ -64,9 +64,10 @@ fi
 
 # <backspace> - delete backward
 bindkey '^?' backward-delete-char
-# <del> - delete forwards
-bindkey '^[[3~' delete-char
 # <C-Backspace> - kill word backwards
 bindkey '^H' backward-kill-word
+
+# <del> - delete forwards
+bindkey '^[[3~' delete-char
 # <C-del> - kill word forwards
-bindkey '5~' kill-word
+bindkey '^[[3;5~' kill-word
