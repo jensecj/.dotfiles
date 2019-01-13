@@ -1,3 +1,6 @@
+# order:
+# .zshenv -> .zprofile -> .zshrc -> .zlogin -> ... -> .zlogout
+
 # uncomment to profile zsh
 # zmodload zsh/zprof
 

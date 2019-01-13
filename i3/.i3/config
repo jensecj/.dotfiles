@@ -213,7 +213,6 @@ for_window [class="Termite" instance="dict-lookup"] floating enable
 for_window [class="Termite" instance="dict-lookup"] resize grow up 200px
 for_window [class="Termite" instance="dict-lookup"] resize grow down 200px
 
-for_window [class="Termite" instance="floating"] floating enable
 for_window [title="cl-opengl"] floating enable
 for_window [class="anki"] floating enable
 
