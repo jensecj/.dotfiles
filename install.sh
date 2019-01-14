@@ -104,6 +104,7 @@ declare -a packages=(
     lshw # print hardware information (like other ls* tools)
     glances # monitor for lots of system info
     iotop # I/O monitor
+    iftop # network monitor
     htop # process manager
 
     # misc
