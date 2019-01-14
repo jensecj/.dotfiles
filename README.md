@@ -1,6 +1,6 @@
 # How it looks
-![Screenshot of my dotfiles in action](screen1.png?raw=true)
-![Screenshot of my dotfiles in action](screen2.png?raw=true)
+![Screenshot of my dotfiles in action](screen-clean.png?raw=true)
+![Screenshot of my dotfiles in action](screen-dirty.png?raw=true)
 
 # Install
 You should probably just look through the files and yank something if
