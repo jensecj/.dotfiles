@@ -4,6 +4,7 @@
 [submodule "zsh/plugins/zsh-syntax-highlighting"]
 	path = zsh/.zsh/plugins/zsh-syntax-highlighting
 	url = https://github.com/zsh-users/zsh-syntax-highlighting.git
+	ignore = dirty
 [submodule "zsh/plugins/zsh-completions"]
 	path = zsh/.zsh/plugins/zsh-completions
 	url = https://github.com/zsh-users/zsh-completions.git
