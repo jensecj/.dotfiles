@@ -7,7 +7,7 @@ alias ll="ls -agholXN"
 alias cp="cp -i" # ask when overwriting files
 alias free="free -h" # show sizes in a human readable format
 alias grep='grep --color=always' # use colors in grep
-alias diff="diff --color=auto" # and diff
+alias diff="diff --color=always" # and diff
 alias mkdir='mkdir -p -v' # make parent directories and tell us
 alias df="df -h" # human-readable by default
 function mcd() { mkdir $1; cd $1; }
@@ -17,9 +17,6 @@ alias _='sudo'
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
-
-alias ff="fd --type f"
-alias fd="fd --type d"
 
 function del() {
     mv $@ ~/.local/share/Trash/files/
@@ -39,8 +36,12 @@ alias pacs='pac -S'
 
 # misc
 alias octave='octave-cli' # who uses the gui anyway?
-
+alias flux='xgamma -gamma 1 && redshift -O '
 alias pdf='zathura'
+
+# easy file / directory search using `fd`
+alias ff="fd --type f"
+alias fd="fd --type d"
 
 # place space first so we ignore history (make sure HIST_IGNORE_SPACE is set)
 alias rtorrent=" rtorrent"
@@ -68,15 +69,15 @@ function myip() {
     local arg=$1
 
     local show_local=0
-    local show_external=0
+    local show_public=0
 
     if [[ $arg == "local" ]]; then
         show_local=1
-    elif [[ $arg == "external" ]]; then
-        show_external=1
+    elif [[ $arg == "public" ]]; then
+        show_public=1
     else
         show_local=1
-        show_external=1
+        show_public=1
     fi
 
     if [[ $show_local -gt 0 ]]; then
@@ -84,10 +85,10 @@ function myip() {
         echo "local: $local_ip";
     fi
 
-    if [[ $show_external -gt 0 ]]; then
-        # local external_ip=$(curl ipinfo.io &> /dev/null | sed -n 2p | sed 's/\"//g' | sed 's/\,//g' | awk '{print $2}');
-        local external_ip=$(dig +short myip.opendns.com @resolver1.opendns.com)
-        echo "external: $external_ip";
+    if [[ $show_public -gt 0 ]]; then
+        # local public_ip=$(curl ipinfo.io &> /dev/null | sed -n 2p | sed 's/\"//g' | sed 's/\,//g' | awk '{print $2}');
+        local public_ip=$(dig +short myip.opendns.com @resolver1.opendns.com)
+        echo "public: $public_ip";
     fi
 }
 
@@ -134,16 +135,6 @@ function whichterm() {
 function whichshell() {
     ps -p "$$" | awk '{print $4}' | sed -n '2p'
 }
-
-# find the first thing for some search term on youtube and play/listen to it
-function yt-listen() {
-    mpv --no-video --ytdl-format=bestaudio ytdl://ytsearch:"$@"
-}
-function yt-view() {
-    mpv ytdl://ytsearch:"$@"
-}
-
-alias latest="cat /home/jens/Dropbox/comm.txt | tail"
 
 # create a note file for another file
 function note() {
