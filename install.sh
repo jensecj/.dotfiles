@@ -45,6 +45,7 @@ declare -a packages=(
     alacritty # another terminal emulator
     zsh # preferred shell
     tmux # terminal multiplexer
+    hyperfine # command-line benchmarking
     git hub # git and the github wrapper
     jupyter # interactive science notebooks
     virtualbox # virtual machine manager
