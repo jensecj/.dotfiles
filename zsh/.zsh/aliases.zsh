@@ -33,6 +33,7 @@ alias pacu='pac -Syu --combinedupgrade'
 alias pacrm='pac -Rns'
 alias pacss='pac -Ss'
 alias pacs='pac -S'
+alias pacls='pac -Qet'
 
 # misc
 alias octave='octave-cli' # who uses the gui anyway?
