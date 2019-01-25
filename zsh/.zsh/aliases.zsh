@@ -4,7 +4,8 @@ alias l="ls -gholXN"
 alias ll="ls -agholXN"
 
 # preferred defaults
-alias cp="cp -i" # ask when overwriting files
+alias cp="cp -i" # ask before overwriting files
+alias mv="mv -i" # ask before overwriting files
 alias free="free -h" # show sizes in a human readable format
 alias grep='grep --color=always' # use colors in grep
 alias diff="diff --color=always" # and diff
