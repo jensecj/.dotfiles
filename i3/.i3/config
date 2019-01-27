@@ -38,12 +38,12 @@ bindsym XF86AudioRaiseVolume exec --no-startup-id "amixer set Master 2%+"
 bindsym XF86AudioLowerVolume exec --no-startup-id "amixer set Master 2%-"
 bindsym XF86AudioMute exec --no-startup-id "amixer -D pulse set Master 1+ toggle"
 
+# programs
+bindsym $mod+Shift+Return exec $term
+bindsym $mod+Return exec $term -e 'tmux'
 bindsym $mod+d exec --no-startup-id rofi -show run
 bindsym $mod+Shift+d exec define "$(xsel)"
-bindsym $mod+Return exec $term -e 'tmux'
-bindsym $mod+Shift+Return exec $term
 bindsym $mod+Shift+b exec termite --name="em-bookmarks" -e 'em -nw "/home/jens/vault/git/bookmarks.org"'
-bindsym $mod+Control+Return exec termite --name="floating"
 bindsym $mod+Delete exec em
 bindsym $mod+BackSpace exec $browser
 bindsym $mod+F5 exec $term -e 'ranger'
@@ -67,9 +67,8 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 # split orientation
-bindsym $mod+h split h;exec notify-send 'tile horizontally'
-bindsym $mod+v split v;exec notify-send 'tile vertically'
-bindsym $mod+q split toggle
+bindsym $mod+h split h
+bindsym $mod+v split v
 
 # toggle fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
@@ -102,14 +101,14 @@ bindsym $mod+l exec --no-startup-id sleep .1 && slock
 bindsym $mod+Shift+m exec --no-startup-id xdotool windowunmap <<< eval $(xdotool search --name "polybar-jensbar")
 bindsym $mod+m exec --no-startup-id xdotool windowmap <<< eval $(xdotool search --name "polybar-jensbar")
 
-# restart my polybar
+# restart polybar
 bindsym $mod+Shift+p exec --no-startup-id pkill polybar && sleep .1 && nohup polybar jensbar; exec notify-send 'Restarted polybar'
 
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart; exec notify-send 'Restarted i3'
 
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+# bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
 #########
 # MODES #
