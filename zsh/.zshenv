@@ -7,6 +7,13 @@ export GPG_TTY=$(tty)
 # ggtags config
 export GTAGSLABEL="ctags"
 export GTAGSCONF="$HOME/.globalrc"
+# tldr config
+export TLDR_COLOR_NAME="white bold"
+export TLDR_COLOR_DESCRIPTION="white bold"
+export TLDR_COLOR_COMMAND="yellow bold"
+export TLDR_COLOR_PARAMETER="white"
+export TLDR_CACHE_ENABLED=1
+export TLDR_CACHE_MAX_AGE=720
 
 export TIMEFMT=''$'\n%J'$'\n%U user | %S system | %P cpu | %*Es total'$'\n'\
 'avg. shared (code):         %X KB'$'\n'\
