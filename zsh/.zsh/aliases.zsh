@@ -61,6 +61,19 @@ alias ytdlnr='youtube-dl -o"%(autonumber)s -- %(uploader)s -- %(title)s.%(ext)s"
 
 alias ytmp3='youtube-dl -x --audio-format mp3 -o"%(uploader)s -- %(title)s.%(ext)s"'
 
+function sbclmk () {
+    if [[ -z $1 ]]; then
+        echo "usage: sbclmk <path/to/project>";
+        return 1;
+    fi
+
+    echo "creating project $1"
+    sbcl --noinform \
+         --eval "(ql:quickload \"cl-project\")" \
+         --eval "(cl-project:make-project #p\"$1\")" \
+         --eval "(exit)"
+}
+
 alias fm="ranger"
 alias sl="streamlink --player=mpv"
 alias myt="mpv --ytdl"
