@@ -13,11 +13,4 @@ synclient FingerLow=45
 # source our terminal resources
 xrdb ~/.Xresources
 
-# start the audio server
-# start-pulseaudio-x11
-
-# run programs i usually use
-# unclutter &
-dropbox &
-# redshift -O 4000 &
-# exec awesome
+echo "xinitrc ran" >> /home/jens/runlog
