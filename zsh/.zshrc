@@ -52,7 +52,12 @@ source $ZSHHOME/jens-theme.zsh
 # use direnv to allow directory specific exports
 # eval "$(direnv hook zsh)"
 
-autoload -U zrecompile && zrecompile -p $HOME/.{zcompdump,zshrc} &>/dev/null
+autoload -U zrecompile
+# Compile zcompdump, if modified, to increase startup speed.
+if [ "$HOME/.zcompdump" -nt "$HOME/.zcompdump.zwc" -o ! -e "$HOME/.zcompdump.zwc" ]; then
+    zcompile "$HOME/.zcompdump"
+fi
+# zrecompile -p $HOME/.zshrc &>/dev/null
 
 # uncomment to profile zsh
 # zprof
