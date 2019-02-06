@@ -1,7 +1,7 @@
-diff --git a/highlighters/main/main-highlighter.zsh b/highlighters/main/main-highlighter.zsh
+diff --git highlighters/main/main-highlighter.zsh highlighters/main/main-highlighter.zsh
 index f7abee8..17a761d 100644
---- a/highlighters/main/main-highlighter.zsh
-+++ b/highlighters/main/main-highlighter.zsh
+--- highlighters/main/main-highlighter.zsh
++++ highlighters/main/main-highlighter.zsh
 @@ -31,28 +31,28 @@
  # Define default styles.
  : ${ZSH_HIGHLIGHT_STYLES[default]:=none}
