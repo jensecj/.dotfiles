@@ -100,6 +100,7 @@ declare -a packages=(
     xsv # work with csv in the terminal
     fzf # fuzzy file finder
     detox # clean up filenames
+    rawdog # raw rss feeds in the terminal
 
     # system information
     lshw # print hardware information (like other ls* tools)
