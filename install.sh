@@ -125,7 +125,10 @@ declare -a packages=(
     feh # image viewer
     translate-shell # google-translate cli
     dictd # offline dictionary and daemon
+    dict-wm # wordnet
     dict-gcide # gnu english dictionary
+    dict-foldoc # gnu english dictionary
+    dict-wikt-en-all # english wikitionary
 
     # browsers
     chromium
