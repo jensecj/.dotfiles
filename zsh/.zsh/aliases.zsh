@@ -11,6 +11,7 @@ alias grep='grep --color=always' # use colors in grep
 alias diff="diff --color=always" # and diff
 alias mkdir='mkdir -p -v' # make parent directories and tell us
 alias df="df -h" # human-readable by default
+alias bu="cp $@ $@.bak"
 function mcd() { mkdir $1; cd $1; }
 
 # some common shortcuts
