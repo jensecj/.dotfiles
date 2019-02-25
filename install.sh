@@ -17,6 +17,7 @@ declare -a packages=(
     # c++
     clang clang-tools-extra
     llvm llvm-libs lld
+    libc++ openmp
     gcc gcc-libs
     boost boost-libs
     valgrind # performance tuning/debugging
@@ -38,6 +39,7 @@ declare -a packages=(
 
     # other languages
     octave rustup nodejs
+    ocaml opam
 
     # programming tools
     emacs-git # now that the bootloader is installed, install the OS
