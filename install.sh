@@ -12,6 +12,7 @@ declare -a packages=(
     # python
     python python-pip python-setuptools
     pyenv python-pew python-virtualenv # virtual environments
+    python-language-server #
     mypy # type checking
 
     # c++
@@ -31,6 +32,9 @@ declare -a packages=(
     #haskell
     ghc ghc-libs ghc-static
 
+    # rust
+    rustup rls-git
+
     # dot net
     dotnet-host dotnet-runtime dotnet-sdk-2.0
 
@@ -38,8 +42,8 @@ declare -a packages=(
     android-sdk
 
     # other languages
-    octave rustup nodejs
-    ocaml opam
+    octave nodejs
+    ocaml opam llvm-ocaml
 
     # programming tools
     emacs-git # now that the bootloader is installed, install the OS
