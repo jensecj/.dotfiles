@@ -1,6 +1,8 @@
 # order:
 # .zshenv -> .zprofile -> .zshrc -> .zlogin -> ... -> .zlogout
 
+[[ $TERM == "tramp" ]] && unsetopt zle && PS1='$ ' && return
+
 # uncomment to profile zsh
 # zmodload zsh/zprof
 
