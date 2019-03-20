@@ -43,7 +43,7 @@ declare -a packages=(
 
     # other languages
     octave nodejs
-    ocaml opam llvm-ocaml
+    ocaml dune opam llvm-ocaml
 
     # programming tools
     emacs-git # now that the bootloader is installed, install the OS
