@@ -1,3 +1,5 @@
+#!/bin/sh
+
 sudo stow -t / root # system config, /etc, /usr, etc.
 stow alacritty termite zsh tmux # shell things
 stow i3 dunst compton polybar # system look and feel

@@ -5,7 +5,7 @@ autoload colors; colors;
 function _user_host() {
     if [[ -n $SSH_CONNECTION ]]; then
         me="%n@%m"
-    elif [[ $LOGNAME != $USER ]]; then
+    elif [[ $LOGNAME != "$USER" ]]; then
         me="%n"
     fi
 
@@ -15,15 +15,15 @@ function _user_host() {
 }
 
 function _current_dir() {
-    if [[ "$PWD" != "$HOME" ]] then
-       echo "$FG[181]% %~ $FX[reset]"
+    if [[ "$PWD" != "$HOME" ]]; then
+        echo "$FG[181]% %~ $FX[reset]"
     fi
 }
 
 function _virtuel_env() {
     if [[ -n "$VIRTUAL_ENV" ]]; then
-        local name=$(basename $VIRTUAL_ENV)
-        echo "%{$fg[blue]%}($name) %{$reset_color%}"
+        local name=$(basename "$VIRTUAL_ENV")
+        echo "%{$fg[green]%}($name) %{$reset_color%}"
     fi
 }
 
@@ -44,9 +44,9 @@ function _prmpt() {
     # if we're in home, have the prompt on the same line,
     # otherwise put the working dir above the prompt.
     if [[ "$PWD" = "$HOME" ]]; then
-        echo ">"
+        printf ">"
     else
-        echo "\n>"
+        printf "\n>"
     fi
 }
 

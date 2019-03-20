@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # first install an AUR helper so we can grab packages from aur
 AURHELPER=yay # or trizen, bauerbill, etc.
@@ -147,15 +147,29 @@ declare -a packages=(
     nerd-fonts-complete # a collection of patched and icon fonts
     otf-fira-code # programming font with ligitures
 )
-$AURHELPER -S ${packages[@]}
+$AURHELPER -S "${packages[@]}"
 
 declare -a npm_packages=(
     qrcode-terminal # generate qrcodes in the terminal
     http-server
 )
-npm -g install ${npm_packages[@]}
+npm -g install "${npm_packages[@]}"
 
 declare -a rust_packages=(
     snatch # threaded downloader
 )
-cargo install ${rust_packages[@]}
+cargo install "${rust_packages[@]}"
+
+
+# TODO:
+# firefox:
+# cookie autodelete
+# decentral eyes
+# https everywhere
+# mute sites by default
+# privacy badger
+# umatrix
+# ublock origin
+# tamper monkey
+# privacy settings
+# link cleaner

@@ -11,8 +11,8 @@ alias grep='grep --color=always' # use colors in grep
 alias diff="diff --color=always" # and diff
 alias mkdir='mkdir -p -v' # make parent directories and tell us
 alias df="df -h" # human-readable by default
-alias bu="cp $@ $@.bak"
-function mcd() { mkdir $1; cd $1; }
+function bu() { cp "$1" "$1.bak"; }
+function mcd() { mkdir "$1"; cd "$1" || exit 1; }
 
 # some common shortcuts
 alias _='sudo'
@@ -21,12 +21,12 @@ alias ...='cd ../..'
 alias ....='cd ../../..'
 
 function del() {
-    mv $@ ~/.local/share/Trash/files/
+    mv '$@' ~/.local/share/Trash/files/
 }
 
 # easily create tar.gz archives, with progress bar
 function tarczf () {
-    tar cf - ${@:2} -P | pv -s $(du -sb ${@:2} | awk '{print $1}' | paste -sd+ - | bc) | gzip > $1
+    tar cf - "${@:2}" -P | pv -s $(du -sb "${@:2}" | awk '{print $1}' | paste -sd+ - | bc) | gzip > "$1"
 }
 
 # easy pacman
@@ -123,12 +123,12 @@ alias rtagsd='rdm'
 alias cl++="clang++ -std=c++17 -stdlib=libstdc++"
 alias cl++mj="cl++ -MJ compile_commands.json"
 function fixmj () {
-    if [ -z $1 ]
+    if [ -z "$1" ]
     then
         echo "usage: fixmj <compilation database file>";
         return;
     else
-        sed -i -e '1s/^/[\n/' -e '$s/,$/\n]/' $1
+        sed -i -e '1s/^/[\n/' -e '$s/,$/\n]/' "$1"
     fi
 }
 
@@ -139,7 +139,7 @@ alias cook="cookiecutter"
 
 # quick compile/run with test data for hackathons
 function ccc {
-    clear && clang++ -std=c++17 $1 -o $1.out && time cat test.in | ./$1.out
+    clear && clang++ -std=c++17 "$1" -o "$1.out" && time "./$1.out" <<< test.in
 }
 
 # figure out which terminal emulator we're inside of
@@ -154,11 +154,11 @@ function whichshell() {
 
 # create a note file for another file
 function note() {
-    if [ -z $1 ]
+    if [ -z "$1" ]
     then
         echo "usage: note <file>"
     else
-        $EDITOR $1.note
+        $EDITOR "$1.note"
     fi
 }
 
