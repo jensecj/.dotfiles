@@ -227,11 +227,11 @@ exec --no-startup-id nm-applet
 # settings
 exec --no-startup-id feh --randomize --bg-fill /home/jens/pictures/wallpapers/
 exec --no-startup-id xidlehook \
-  --time 10 \
-  --timer 'xgamma -gamma 1; redshift -O 3500; slock' \
-  --notify 10 \
-  --notifier  'redshift -O 2800' \
-  --canceller 'xgamma -gamma 1; redshift -O 3500' \
+  --timer normal 180 \
+    'redshift -O 2800' \
+    'xrandr --output eDP1 --brightness 0.7; redshift -O 3500' \
+  --timer primary 10 \
+    'xrandr --output eDP1 --brightness 0.7; redshift -O 3500; slock' ''\
   --not-when-fullscreen \
   --not-when-audio
 
