@@ -137,6 +137,27 @@ alias dis="objdump -M intel -C -g -w -d"
 alias cloc="tokei"
 alias cook="cookiecutter"
 
+function ffmpegnorm {
+    if [ -z "$1" ]; then
+        echo "usage: ffmpegnorm [FILE(s)]"
+        return 1
+    fi
+
+    for file in "$@"
+    do
+        echo "$file"
+
+        FILE="$file"
+        FILENAME=${FILE%.*}
+        EXT=${FILE##*.}
+
+        MONO_FILE="$FILENAME.mono.$EXT"
+        NORM_FILE="$FILENAME.norm.$EXT"
+        ffmpeg -i "$FILE" -ac 1 "$MONO_FILE"
+        ffmpeg-normalize "$MONO_FILE" -o "$NORM_FILE" -c:a aac
+    done
+}
+
 # quick compile/run with test data for hackathons
 function ccc {
     clear && clang++ -std=c++17 "$1" -o "$1.out" && time "./$1.out" < test.in
