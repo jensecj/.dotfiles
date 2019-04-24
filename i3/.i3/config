@@ -214,6 +214,9 @@ for_window [class="Termite" instance="dict-lookup"] resize grow down 200px
 
 for_window [title="cl-opengl"] floating enable
 for_window [class="anki"] floating enable
+for_window [class="matplotlib"] floating enable
+for_window [class="Matplotlib"] floating enable
+
 
 ############
 # STARTUPS #
