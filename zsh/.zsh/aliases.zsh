@@ -139,7 +139,7 @@ alias cook="cookiecutter"
 
 # quick compile/run with test data for hackathons
 function ccc {
-    clear && clang++ -std=c++17 "$1" -o "$1.out" && time "./$1.out" <<< test.in
+    clear && clang++ -std=c++17 "$1" -o "$1.out" && time "./$1.out" < test.in
 }
 
 # figure out which terminal emulator we're inside of
