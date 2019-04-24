@@ -107,6 +107,8 @@ declare -a packages=(
     fzf # fuzzy file finder
     detox # clean up filenames
     rawdog # raw rss feeds in the terminal
+    ditaa # create disgrams from ascii
+    plantuml # create UML diagrams from ascii
 
     # system information
     lshw # print hardware information (like other ls* tools)
