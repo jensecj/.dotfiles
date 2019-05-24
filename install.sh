@@ -109,6 +109,7 @@ declare -a packages=(
     rawdog # raw rss feeds in the terminal
     ditaa # create disgrams from ascii
     plantuml # create UML diagrams from ascii
+    rsstail # tail for rss-feeds
 
     # system information
     lshw # print hardware information (like other ls* tools)
