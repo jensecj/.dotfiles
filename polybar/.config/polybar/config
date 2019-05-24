@@ -15,21 +15,28 @@ height = 20
 background = ${colors.background}
 foreground = ${colors.foreground}
 
-module-margin-left = 2
-module-margin-right = 2
+module-margin-left = 3
+module-margin-right = 3
 
 font-0 = "Source Code Pro Semibold:size=8;2"
 font-1 = "Material Icons:size=10;4"
 font-2 = "Noto Sans CJK SC:size=10;4"
 
 modules-left = i3
-modules-center = volume filesystem cpu memory battery date
+modules-center = alsa filesystem temps cpu memory battery date
 modules-right =
 
 tray-position = right
 tray-detached = true
 tray-padding = 10
 tray-background = ${colors.background}
+
+[module/temps]
+type = custom/script
+exec = /usr/local/bin/temps
+format = <label>
+label = %{F#8f}%{F-} %output%
+interval = 5
 
 [module/i3]
 type = internal/i3
@@ -56,17 +63,18 @@ label-urgent-padding = 1
 type = internal/fs
 interval = 7
 mount-0 = /
-label-mounted = %{F#8f}%{F-} %free%
+label-mounted = %{F#8f}%{F-} %free:5%
 
 [module/cpu]
 type = internal/cpu
 interval = 2
-label = %{F#8f}λ%{F-} %percentage%
+format = %{F#8f}λ%{F-} <label>
+label = %percentage:2%
 
 [module/memory]
 type = internal/memory
 interval = 2
-label = %{F#8f}Σ%{F-} %percentage_used%
+label = %{F#8f}Σ%{F-} %percentage_used:2%
 
 [module/date]
 type = internal/date
@@ -75,18 +83,18 @@ date = %Y-%m-%d
 time = %H:%M
 label = %{F#8f}%{F-} %date% %time%
 
-[module/volume]
+[module/alsa]
 type = internal/volume
-label-volume = %{F#8f}%{F-} %percentage%
-label-muted = %{F#8f} %{F-}%percentage%
+label-volume = %{F#8f}%{F-} %percentage:2%
+label-muted = %{F#8f} %{F-}%percentage:2%
 handle-events = false
 
 [module/battery]
 type = internal/battery
 battery = BAT0
 adapter = AC
-label-charging = %{F#8f}%{F-} %percentage%+
-label-discharging = %{F#8f}%{F-} %percentage%-
+label-charging = %{F#8f}%{F-} %percentage:2%+
+label-discharging = %{F#8f}%{F-} %percentage:2%-
 
 [settings]
 screenchange-reload = true

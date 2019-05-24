@@ -1,0 +1,7 @@
+#!/bin/bash
+
+SENSOR_READOUT=$(sensors -j)
+CORE1=$(echo "$SENSOR_READOUT" | jq '.["coretemp-isa-0000"] | .["Core 0"] | .temp2_input')
+CORE2=$(echo "$SENSOR_READOUT" | jq '.["coretemp-isa-0000"] | .["Core 1"] | .temp3_input')
+
+echo "$CORE1° $CORE2°"
