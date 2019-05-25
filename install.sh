@@ -48,7 +48,6 @@ declare -a packages=(
     # programming tools
     emacs-git # now that the bootloader is installed, install the OS
     termite termite-terminfo # terminal emulator
-    alacritty # another terminal emulator
     zsh # preferred shell
     tmux # terminal multiplexer
     hyperfine # command-line benchmarking
