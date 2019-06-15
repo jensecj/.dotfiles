@@ -240,6 +240,7 @@ exec --no-startup-id xidlehook \
 
 # apps to run on startup
 exec --no-startup-id dunst -conf /home/jens/.dotfiles/dunstrc # the notification daemon
+exec --no-startup-id msmtp # smtp server
 exec --no-startup-id compton -b # deamonize / disable shadows / enable fading
 exec --no-startup-id redshift -O 3500 # dim the blue screen light
 exec --no-startup-id unclutter # hiding the mouse cursor when idle
