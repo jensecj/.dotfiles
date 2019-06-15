@@ -120,6 +120,8 @@ alias start_xidlehook="xidlehook \
 alias rtags='rc -J'
 alias rtagsd='rdm'
 
+alias archive='OUTPUT_DIR=/home/jens/private/archives/ /home/jens/vault/software/ArchiveBox/archive'
+
 alias cl++="clang++ -std=c++17 -stdlib=libstdc++"
 alias cl++mj="cl++ -MJ compile_commands.json"
 function fixmj () {
