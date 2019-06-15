@@ -137,6 +137,10 @@ declare -a packages=(
     dict-gcide # gnu english dictionary
     dict-foldoc # gnu english dictionary
     dict-wikt-en-all # english wikitionary
+    # mail
+    isync
+    msmtp
+    mu
 
     # browsers
     chromium
