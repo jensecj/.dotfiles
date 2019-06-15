@@ -137,6 +137,9 @@ declare -a packages=(
     dict-gcide # gnu english dictionary
     dict-foldoc # gnu english dictionary
     dict-wikt-en-all # english wikitionary
+    wordnet-common wordnet-cli # wordnet dict and extras
+    yad slop bashcaster-git # for simple screen recording
+
     # mail
     isync
     msmtp
