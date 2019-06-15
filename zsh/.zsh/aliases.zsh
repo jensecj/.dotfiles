@@ -55,7 +55,7 @@ alias git="hub"
 alias rcp="rsync --verbose --human-readable --new-compress --archive --partial --progress"
 alias rmv="rsync --verbose --human-readable --new-compress --archive --partial --progress --remove-source-files"
 
-alias pf="peerflix --start --mpv"
+alias pf=" peerflix --start --mpv"
 alias dl='snatch --threads 4'
 alias ytdl='youtube-dl -o"%(uploader)s -- %(title)s.%(ext)s"'
 alias ytdlnr='youtube-dl -o"%(autonumber)s -- %(uploader)s -- %(title)s.%(ext)s"'
