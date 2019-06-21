@@ -1,1 +1,11 @@
-feh <<< curl 'http://www.dmi.dk/uploads/tx_dmidatastore/webservice/k/d/_/n/g/femdgn_dk.png'
+#!/bin/bash
+
+if [ $# -eq 0 ]
+then
+    echo "usage: dmi <zipcode>"
+    exit 0;
+fi
+
+ZIP=$1
+
+feh <<< curl "http://servlet.dmi.dk/byvejr/servlet/byvejr_dag1?by=$ZIP&mode=long"
