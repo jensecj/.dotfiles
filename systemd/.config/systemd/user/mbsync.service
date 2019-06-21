@@ -1,0 +1,6 @@
+[Unit]
+Description=Mailbox synchronization service
+Wants=mbsync.timer
+
+[Service]
+ExecStart=/usr/bin/mbsync -Va
