@@ -1,0 +1,21 @@
+# -*- mode: conf -*-
+[database]
+path=/home/jens/private/mail
+
+[user]
+name=Jens Christian Jensen
+primary_email=jensecj@gmail.com
+# other_email = some;more;mails
+
+[new]
+tags=unread;inbox;
+ignore=
+
+[search]
+exclude_tags=deleted;spam;
+
+[maildir]
+synchronize_flags=true
+
+[crypto]
+gpg_path=gpg
