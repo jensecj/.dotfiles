@@ -8,8 +8,8 @@ primary_email=jensecj@gmail.com
 # other_email = some;more;mails
 
 [new]
-tags=unread;inbox;
-ignore=
+tags=new
+ignore=.noindex;.mbsyncstate;.isyncuidmap.db;.uidvalidity;.mbsyncstate.journal;.mbsyncstate.lock;.mbsyncstate.new
 
 [search]
 exclude_tags=deleted;spam;
