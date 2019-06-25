@@ -1,0 +1,9 @@
+#!/bin/bash
+
+# tag mails from mailing-lists
+notmuch tag -new +lists +lists/emacs-devel +unread -- tag:new and to:emacs-devel@gnu.org
+notmuch tag -new +lists +lists/emacs-help +unread -- tag:new and to:help-gnu-emacs@gnu.org
+notmuch tag -new +lists +lists/emacs-orgmode +unread -- tag:new and to:emacs-orgmode@gnu.org
+
+# remaining mail goes to the inbox
+notmuch tag +inbox +unread -new -- tag:new
