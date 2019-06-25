@@ -8,7 +8,6 @@ secondary = #313131
 alert = #bd2c40
 
 [bar/jensbar]
-monitor = eDP-1
 width = 100%
 height = 20
 
@@ -84,7 +83,7 @@ time = %H:%M
 label = %{F#8f}%{F-} %date% %time%
 
 [module/alsa]
-type = internal/volume
+type = internal/alsa
 label-volume = %{F#8f}%{F-} %percentage:2%
 label-muted = %{F#8f} %{F-}%percentage:2%
 handle-events = false
