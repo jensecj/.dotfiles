@@ -1,0 +1,7 @@
+#!/bin/bash
+
+if [ -d /home/jens/private/mail/ ]; then
+    mbsync -Va
+else
+    echo "sync-mail: mail directory does not exist."
+fi

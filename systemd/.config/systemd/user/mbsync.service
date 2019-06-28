@@ -3,4 +3,4 @@ Description=Mailbox synchronization service
 Wants=mbsync.timer
 
 [Service]
-ExecStart=/usr/bin/mbsync -Va
+ExecStart=/usr/local/bin/sync-mail
