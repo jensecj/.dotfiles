@@ -1,0 +1,11 @@
+#!/bin/bash
+
+USED_PCENT=$(df /tmp --output=pcent | column | cut -f2 | cut -d '%' -f1 | bc)
+
+if [ $USED_PCENT -gt 85 ]
+then
+    # show notification for 5 minutes
+    notify-send --urgency=critical --expire-time $((1000*60*5)) "/tmp is running out of space"
+else
+    #notify-send "/tmp is good"
+fi

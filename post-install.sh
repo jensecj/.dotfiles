@@ -12,7 +12,6 @@ sed -i 's/#DefaultTimeoutStopSec=90s/DefaultTimeoutStopSec=30s/' /etc/systemd/sy
 
 # enable custom systemd units
 systemctl enable lock-on-sleep.service
-systemctl --user enable random-wallpaper.timer
-systemctl --user start random-wallpaper.timer
-systemctl --user enable mbsync.timer
-systemctl --user start mbsync.timer
+systemctl --user enable random-wallpaper
+systemctl --user enable mbsync
+systemctl --user enable lowtmp
