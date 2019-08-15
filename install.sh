@@ -14,6 +14,7 @@ declare -a packages=(
     pyenv python-pew python-virtualenv # virtual environments
     python-language-server #
     mypy # type checking
+    hy # lispy-python
 
     # c++
     clang clang-tools-extra
@@ -109,6 +110,8 @@ declare -a packages=(
     ditaa # create disgrams from ascii
     plantuml # create UML diagrams from ascii
     rsstail # tail for rss-feeds
+    hexyl # cat, but spits out hex
+    exa # ls alternative
 
     # system information
     lshw # print hardware information (like other ls* tools)
@@ -139,11 +142,12 @@ declare -a packages=(
     dict-wikt-en-all # english wikitionary
     wordnet-common wordnet-cli # wordnet dict and extras
     yad slop bashcaster-git # for simple screen recording
+    clamav # anti-virus
 
     # mail
     isync
     msmtp
-    mu
+    notmuch
 
     # browsers
     chromium
@@ -163,6 +167,15 @@ declare -a npm_packages=(
     http-server
 )
 npm -g install "${npm_packages[@]}"
+
+declare -a rustup_components=(
+    clippy # linting
+    rls # rust language server
+)
+for com in $rustup_components
+do
+    rustup component add "$com"
+done
 
 declare -a rust_packages=(
     snatch # threaded downloader
