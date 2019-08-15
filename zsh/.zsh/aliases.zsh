@@ -20,6 +20,27 @@ alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
 
+function spawn() {
+    nohup sh -c $@ & disown
+}
+
+function fpeek() {
+    tail -n 1 "$1"
+}
+
+function fpush() {
+    FIL="$1"
+    shift
+    echo "$@" >> "$FIL"
+}
+
+function fpop() {
+    fil="$1"
+    val=$(fpeek "$fil")
+    sed -i '$ d' "$1"
+    echo "$val"
+}
+
 function del() {
     mv '$@' ~/.local/share/Trash/files/
 }
