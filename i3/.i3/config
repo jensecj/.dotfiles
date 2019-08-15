@@ -231,11 +231,9 @@ exec --no-startup-id nm-applet
 exec --no-startup-id feh --randomize --bg-fill /home/jens/pictures/wallpapers/
 exec --no-startup-id xidlehook \
   --timer normal 180 \
-    'redshift -P -O 3000' \
-    'redshift -P -O 4500' \
+    'dimmer 3000' 'dimmer pop' \
   --timer primary 10 \
-    'redshift -P -O 4500; slock' \
-    ''\
+    'dimmer pop; slock' ''\
   --not-when-fullscreen \
   --not-when-audio
 
