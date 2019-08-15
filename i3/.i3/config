@@ -27,15 +27,15 @@ floating_modifier $mod
 ###############
 
 # screen brightness controls
-bindsym XF86MonBrightnessUp exec --no-startup-id "xbacklight -inc 9; notify-send -t 500 'backlight' $(xbacklight | cut -f1 -d'.')%"
-bindsym XF86MonBrightnessDown exec --no-startup-id "xbacklight -dec 9; notify-send -t 500 'backlight' $(xbacklight | cut -f1 -d'.')%"
+bindsym XF86MonBrightnessUp exec --no-startup-id "xbacklight -inc 5; notify-send -t 500 'backlight' $(xbacklight | cut -f1 -d'.')%"
+bindsym XF86MonBrightnessDown exec --no-startup-id "xbacklight -dec 5; notify-send -t 500 'backlight' $(xbacklight | cut -f1 -d'.')%"
 
 # kill focused window
 bindsym $mod+Shift+q kill
 
 # audio
-bindsym XF86AudioRaiseVolume exec --no-startup-id "amixer set Master 2%+"
-bindsym XF86AudioLowerVolume exec --no-startup-id "amixer set Master 2%-"
+bindsym XF86AudioRaiseVolume exec --no-startup-id "pactl set-sink-volume 0 +1db"
+bindsym XF86AudioLowerVolume exec --no-startup-id "pactl set-sink-volume 0 -1db"
 bindsym XF86AudioMute exec --no-startup-id "amixer -D pulse set Master 1+ toggle"
 
 # programs
