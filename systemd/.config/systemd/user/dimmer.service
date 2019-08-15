@@ -1,0 +1,6 @@
+[Unit]
+Description=Dimming based on time of day
+Wants=dimmer.timer
+
+[Service]
+ExecStart=/usr/local/bin/dimmer

@@ -1,0 +1,52 @@
+#!/bin/bash
+
+function fpeek() {
+    tail -n 1 "$1"
+}
+
+function fpush() {
+    fil="$1"
+    shift
+    echo "$@" >> "$fil"
+}
+
+function fpop() {
+    fil="$1"
+    val=$(fpeek "$fil")
+    sed -i '$ d' "$1"
+    echo "$val"
+}
+
+DIMMER_FILE=~/.dimmer
+
+HOUR=$(date +%H)
+DIM=""
+
+case $HOUR in
+    06) DIM=3000;;
+    07) DIM=3500;;
+    08|09) DIM=4000;;
+    10|11|12|13|14|15|16|17) DIM=6500;;
+    18|19|20) DIM=3500;;
+    21) DIM=2500;;
+    22) DIM=2250;;
+    23) DIM=2000;;
+esac
+
+if [ "$1" = "clear" ]; then
+    rm $DIMMER_FILE
+elif [ "$1" = "pop" ]; then
+    fpop $DIMMER_FILE
+elif [ -n "$1" ]; then
+    fpush $DIMMER_FILE "$1"
+fi
+
+if [ -s $DIMMER_FILE ]; then
+    DIM=$(fpeek $DIMMER_FILE)
+fi
+
+if [ -n "$DIM" ]
+then
+    redshift -P -O "$DIM" >> /dev/null
+    echo "dimmer: setting screen temp to $DIM"
+fi
