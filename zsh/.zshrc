@@ -13,6 +13,11 @@ HISTFILE=~/.zsh_history
 # print usage statistics for commands that take longer than 5 seconds to complete
 REPORTTIME=5
 
+# enable edit-then-execute binding
+autoload edit-command-line
+zle -N edit-command-line
+bindkey '^Xe' edit-command-line
+
 # use bash selection, so killing stops at delimiters
 autoload -U select-word-style && {
     select-word-style bash
