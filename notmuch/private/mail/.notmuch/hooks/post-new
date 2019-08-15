@@ -8,5 +8,8 @@ notmuch tag -new +lists +lists/emacs-orgmode +unread -- tag:new and to:emacs-org
 # drafts are not new
 notmuch tag -new -- tag:new and tag:draft
 
+# ignores
+# notmuch tag -new -unread +deleted -- tag:new and from:spam@spam.com
+
 # remaining mail goes to the inbox
 notmuch tag +inbox +unread -new -- tag:new
