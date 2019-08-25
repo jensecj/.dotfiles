@@ -39,6 +39,9 @@ if [ "$1" = "clear" ]; then
     rm $DIMMER_FILE
 elif [ "$1" = "pop" ]; then
     fpop $DIMMER_FILE
+elif [ "$1" = "ls" ]; then
+    tac $DIMMER_FILE
+    exit 0
 elif [ -n "$1" ]; then
     fpush $DIMMER_FILE "$1"
 fi
