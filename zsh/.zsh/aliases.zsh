@@ -3,6 +3,12 @@ alias ls='ls --color=always --time-style="+%d-%m-%Y" --group-directories-first'
 alias l="ls -gholXN"
 alias ll="ls -agholXN"
 
+alias lsd="lsd --human-readable --long --oneline --group-dirs first --icon never"
+alias llsd="lsd --almost-all"
+
+alias exa="exa --long --group-directories-first --time-style=long-iso"
+alias eexa="exa --all"
+
 # preferred defaults
 alias cp="cp -i" # ask before overwriting files
 alias mv="mv -i" # ask before overwriting files
@@ -24,19 +30,22 @@ function spawn() {
     nohup sh -c $@ & disown
 }
 
+function sudo_spawn() {
+    sudo nohup sh -c $@ & disown
+}
+
+# some functions for working with a file as if it were a stack
 function fpeek() {
     tail -n 1 "$1"
 }
-
 function fpush() {
-    FIL="$1"
+    local fil="$1"
     shift
-    echo "$@" >> "$FIL"
+    echo "$@" >> "$fil"
 }
-
 function fpop() {
-    fil="$1"
-    val=$(fpeek "$fil")
+    local fil="$1"
+    local val=$(fpeek "$fil")
     sed -i '$ d' "$1"
     echo "$val"
 }
@@ -72,6 +81,8 @@ alias rtorrent=" rtorrent"
 alias rtor=" rtorrent"
 
 alias git="hub"
+
+alias zt="zerotier-cli"
 
 alias rcp="rsync --verbose --human-readable --new-compress --archive --partial --progress"
 alias rmv="rsync --verbose --human-readable --new-compress --archive --partial --progress --remove-source-files"
@@ -129,31 +140,20 @@ function myip() {
     fi
 }
 
-alias start_dnscrypt="_ dnscrypt-proxy -config /etc/dnscrypt-proxy/dnscrypt-proxy.toml"
-alias start_xidlehook="xidlehook \
-                       --time 10 \
-                       --timer 'redshift -O 3500; slock' \
-                       --notify 10 \
-                       --notifier 'redshift -O 2800' \
-                       --canceller 'redshift -O 3500' \
-                       --not-when-fullscreen"
+function start_dnscrypt() {
+    sudo_spawn 'dnscrypt-proxy -config /etc/dnscrypt-proxy/dnscrypt-proxy.toml'
+}
+
+function start_xidlehook() {
+    spawn 'xidlehook --timer normal 180 "dimmer 3000" "dimmer pop" --timer primary 10 "dimmer pop; slock" "" --not-when-fullscreen --not-when-audio'
+}
 
 alias rtags='rc -J'
 alias rtagsd='rdm'
 
-alias archive='OUTPUT_DIR=/home/jens/private/archives/ /home/jens/vault/software/ArchiveBox/archive'
 
 alias cl++="clang++ -std=c++17 -stdlib=libstdc++"
 alias cl++mj="cl++ -MJ compile_commands.json"
-function fixmj () {
-    if [ -z "$1" ]
-    then
-        echo "usage: fixmj <compilation database file>";
-        return;
-    else
-        sed -i -e '1s/^/[\n/' -e '$s/,$/\n]/' "$1"
-    fi
-}
 
 alias dis="objdump -M intel -C -g -w -d"
 
@@ -204,6 +204,32 @@ function note() {
     else
         $EDITOR "$1.note"
     fi
+}
+
+ping() {
+    local i=0
+    local options=""
+    local host=""
+
+    for arg
+    do
+        i=$(($i+1))
+        if [ "$i" -lt "$#" ]
+        then
+            options="${options} ${arg}"
+        else
+            host="${arg}"
+        fi
+    done
+
+    # lookup host in .ssh/config
+    local hostname=$(awk "\$1==\"Host\" {host=\$2} \$1==\"HostName\" && host==\"${host}\" {print \$2}" "$HOME/.ssh/config")
+    if [ -z "$hostname" ]
+    then
+        hostname="$host"
+    fi
+
+    /bin/ping $options "$hostname"
 }
 
 alias mount_ramdisk="_ mount -t tmpfs -o size=1024m tmpfs /mnt/ramdisk"
