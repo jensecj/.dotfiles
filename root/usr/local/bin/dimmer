@@ -1,19 +1,19 @@
 #!/bin/bash
 
 function fpeek() {
-    tail -n 1 "$1"
+    head -n 1 "$1"
 }
 
 function fpush() {
     fil="$1"
     shift
-    echo "$@" >> "$fil"
+    sed -i "1i$*" "$fil"
 }
 
 function fpop() {
     fil="$1"
     val=$(fpeek "$fil")
-    sed -i '$ d' "$1"
+    sed -i '1d' "$1"
     echo "$val"
 }
 
@@ -40,7 +40,7 @@ if [ "$1" = "clear" ]; then
 elif [ "$1" = "pop" ]; then
     fpop $DIMMER_FILE
 elif [ "$1" = "ls" ]; then
-    tac $DIMMER_FILE
+    cat $DIMMER_FILE
     exit 0
 elif [ -n "$1" ]; then
     fpush $DIMMER_FILE "$1"

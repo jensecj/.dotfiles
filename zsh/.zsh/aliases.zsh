@@ -41,12 +41,12 @@ function fpeek() {
 function fpush() {
     local fil="$1"
     shift
-    echo "$@" >> "$fil"
+    sed -i "1i$*" "$fil"
 }
 function fpop() {
     local fil="$1"
     local val=$(fpeek "$fil")
-    sed -i '$ d' "$1"
+    sed -i '2d' "$1"
     echo "$val"
 }
 
