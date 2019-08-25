@@ -57,6 +57,7 @@ declare -a packages=(
     virtualbox # virtual machine manager
     vagrant # create virtual environments for provisioning using virtualbox
     docker # containerization
+    rkt # more containers
     # direnv # directory specific, automatically loading exports
     python-cookiecutter # create new project skeletons from templates
     diff-so-fancy # fancy git diff
@@ -99,6 +100,7 @@ declare -a packages=(
     urlview # extract urls from input
     firejail # app sandboxing
     ddrescue # disk recovery
+    udiskie # automounting removable disks
     bat # cat clone with syntax highlighting, etc.
     httpie # simple http client for the terminal
     fd # alternative to find
@@ -183,7 +185,7 @@ declare -a rust_packages=(
 cargo install "${rust_packages[@]}"
 
 
-# TODO:
+# TODO: setup config for the following
 # firefox:
 # cookie autodelete
 # decentral eyes
@@ -195,3 +197,5 @@ cargo install "${rust_packages[@]}"
 # tamper monkey
 # privacy settings
 # link cleaner
+
+ln -s "$(pwd)/firefox/user.js" /home/jens/.mozilla/firefox/17pihl7a.Default\ User/user.js
