@@ -199,3 +199,4 @@ cargo install "${rust_packages[@]}"
 # link cleaner
 
 ln -s "$(pwd)/firefox/user.js" /home/jens/.mozilla/firefox/17pihl7a.Default\ User/user.js
+ln -s "$(pwd)/firefox/userChrome.css" /home/jens/.mozilla/firefox/17pihl7a.Default\ User/chrome/userChrome.css
