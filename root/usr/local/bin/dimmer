@@ -5,14 +5,19 @@ function fpeek() {
 }
 
 function fpush() {
-    fil="$1"
+    local fil="$1"
     shift
-    sed -i "1i$*" "$fil"
+
+    if [ -s "$fil" ]; then
+        sed -i "1i$*" "$fil"
+    else
+        echo "$*" > "$fil"
+    fi
 }
 
 function fpop() {
-    fil="$1"
-    val=$(fpeek "$fil")
+    local fil="$1"
+    local val=$(fpeek "$fil")
     sed -i '1d' "$1"
     echo "$val"
 }

@@ -36,17 +36,22 @@ function sudo_spawn() {
 
 # some functions for working with a file as if it were a stack
 function fpeek() {
-    tail -n 1 "$1"
+    head -n 1 "$1"
 }
 function fpush() {
     local fil="$1"
     shift
-    sed -i "1i$*" "$fil"
+
+    if [ -s "$fil" ]; then
+        sed -i "1i$*" "$fil"
+    else
+        echo "$*" > "$fil"
+    fi
 }
 function fpop() {
     local fil="$1"
     local val=$(fpeek "$fil")
-    sed -i '2d' "$1"
+    sed -i '1d' "$1"
     echo "$val"
 }
 
