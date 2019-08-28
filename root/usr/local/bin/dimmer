@@ -40,7 +40,7 @@ case $HOUR in
     23) DIM=2000;;
 esac
 
-if [ "$1" = "clear" ]; then
+if [ "$1" = "cls" ]; then
     rm $DIMMER_FILE
 elif [ "$1" = "pop" ]; then
     fpop $DIMMER_FILE
