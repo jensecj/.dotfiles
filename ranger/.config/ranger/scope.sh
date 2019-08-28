@@ -100,7 +100,7 @@ esac
 
 case "$mimetype" in
     # Syntax highlight for text files:
-    text/* | */xml)
+    text/* | */xml | */json)
         if [ "$(tput colors)" -ge 256 ]; then
             pygmentize_format=terminal256
             highlight_format=xterm256
