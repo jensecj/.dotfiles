@@ -4,3 +4,6 @@
 # Sometimes we get these bindings instead:
 "\e[1;5C": forward-word
 "\e[1;5D": backward-word
+
+"\e[A": history-search-backward
+"\e[B": history-search-forward
