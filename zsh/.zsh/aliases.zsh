@@ -165,6 +165,19 @@ alias dis="objdump -M intel -C -g -w -d"
 alias cloc="tokei"
 alias cook="cookiecutter"
 
+function video2webm () {
+    local bitrate=$1;
+    shift;
+    for file in "$@"; do
+        local out=${file%.*}.webm;
+
+        ffmpeg -y -i "$file" -c:v libvpx-vp9 -b:v "$bitrate" -pass 1 -speed 4 \
+               -c:a libopus -f webm /dev/null -async 1 -vsync passthrough
+        ffmpeg -i "$file" -c:v libvpx-vp9 -b:v "$bitrate" -pass 2 -speed 1 -c:a \
+               libopus "$out" -async 1 -vsync passthrough;
+    done;
+}
+
 function ffmpegnorm {
     if [ -z "$1" ]; then
         echo "usage: ffmpegnorm [FILE(s)]"
