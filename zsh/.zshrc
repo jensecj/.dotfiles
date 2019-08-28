@@ -1,7 +1,8 @@
-# order:
-# .zshenv -> .zprofile -> .zshrc -> .zlogin -> ... -> .zlogout
 
-[[ $TERM == "dumb" ]] && unsetopt zle && PS1='> ' && return
+# .zshenv -> .zprofile -> .zshrc -> .zlogin -> ... -> .zlogout
+# order:
+
+[[ $TERM == "dumb" ]] && unsetopt zle && PS1="\$ " && return
 
 # uncomment to profile zsh
 # zmodload zsh/zprof
