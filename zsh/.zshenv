@@ -15,6 +15,10 @@ export TLDR_COLOR_PARAMETER="white"
 export TLDR_CACHE_ENABLED=1
 export TLDR_CACHE_MAX_AGE=720
 
+export FZF_DEFAULT_COMMAND="fd --type f --hidden --follow --exclude .git"
+
+export RANGER_LOAD_DEFAULT_RC="FALSE"
+
 export TIMEFMT=''$'\n%J'$'\n%U user | %S system | %P cpu | %*Es total'$'\n'\
 'avg. shared (code):         %X KB'$'\n'\
 'avg. unshared (data/stack): %D KB'$'\n'\
