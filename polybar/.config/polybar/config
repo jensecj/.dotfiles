@@ -22,13 +22,28 @@ font-1 = "Material Icons:size=10;4"
 font-2 = "Noto Sans CJK SC:size=10;4"
 
 modules-left = i3
-modules-center = alsa filesystem temps cpu memory battery date
+modules-center = alsa filesystem temps cpu memory battery date notmuch-unread gpg-cache
 modules-right =
 
 tray-position = right
 tray-detached = true
 tray-padding = 10
 tray-background = ${colors.background}
+
+[module/gpg-cache]
+type = custom/script
+exec-if = /usr/local/bin/gpg-cached
+exec = echo key
+format = <label>
+label = 
+interval = 61
+
+[module/notmuch-unread]
+type = custom/script
+exec = /usr/local/bin/notmuch-unread
+format = <label>
+label =  %output%
+interval = 61
 
 [module/temps]
 type = custom/script

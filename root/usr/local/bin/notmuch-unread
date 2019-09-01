@@ -1,0 +1,4 @@
+#!/bin/bash
+
+unread=$(notmuch search tag:unread | wc -l)
+echo "$unread"

@@ -1,0 +1,10 @@
+#!/bin/bash
+
+keygrip=$(gpg-connect-agent -v 'keyinfo --list' /bye 2>&1 | grep "6629933 D - - 1")
+
+if [ -n "$keygrip" ]; then
+    echo "key is cached"
+    exit 0
+fi
+
+exit 1
