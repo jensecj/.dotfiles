@@ -35,10 +35,10 @@ function sudo_spawn() {
 }
 
 # some functions for working with a file as if it were a stack
-function fpeek() {
+function speek() {
     head -n 1 "$1"
 }
-function fpush() {
+function spush() {
     local fil="$1"
     shift
 
@@ -48,11 +48,28 @@ function fpush() {
         echo "$*" > "$fil"
     fi
 }
-function fpop() {
+function spop() {
     local fil="$1"
-    local val=$(fpeek "$fil")
+    local val=$(speek "$fil")
     sed -i '1d' "$1"
     echo "$val"
+}
+
+# functions for handling files like a queue
+function qpush () {
+    local fil="$1"
+    shift
+
+    echo "$*" >> "$fil"
+}
+function qpop() {
+    local fil="$1"
+    local val=$(speek "$fil")
+    sed -i '1d' "$1"
+    echo "$val"
+}
+function qpeek() {
+    head -n 1 "$1"
 }
 
 function del() {
