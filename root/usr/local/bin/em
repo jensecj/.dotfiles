@@ -5,4 +5,4 @@ if [ ! -e /run/user/1000/emacs/server ]; then
     exit 1
 fi
 
-exec /usr/bin/env emacsclient -c -a "" $*
+emacsclient -c $*
