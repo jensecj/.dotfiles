@@ -1,4 +1,8 @@
 #!/bin/sh
-# the first time you run this, it will start the emacs server,
-# consecutive times it will start clients that connect.
+
+if [ ! -e /run/user/1000/emacs/server ]; then
+    notify-send -t 30000 -u critical "Emacs daemon is not running"
+    exit 1
+fi
+
 exec /usr/bin/env emacsclient -c -a "" $*

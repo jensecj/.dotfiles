@@ -46,6 +46,9 @@ declare -a packages=(
     octave nodejs
     ocaml dune opam llvm-ocaml
 
+    # libraries
+    libotf
+
     # programming tools
     emacs-git # now that the bootloader is installed, install the OS
     termite termite-terminfo # terminal emulator

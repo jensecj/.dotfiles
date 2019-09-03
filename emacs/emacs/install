@@ -1,0 +1,3 @@
+#!/bin/bash
+
+sudo stow --verbose --target /usr/local --stow build/

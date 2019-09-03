@@ -1,0 +1,6 @@
+#!/bin/bash
+
+(
+cd src/
+./configure --enable-link-time-optimization --with-imagemagick --with-cairo --with-modules --without-sound --with-pdumper=yes --with-x-toolkit=lucid
+)

@@ -1,0 +1,10 @@
+#!/bin/bash
+
+(
+BUILD_DIR=$(pwd)/build
+cd src/ || exit 7
+make install prefix="$BUILD_DIR" exec_prefix="$BUILD_DIR"
+
+# fix for stow now wanting to link into another symlink
+mv "$BUILD_DIR/share/man" "$BUILD_DIR/man"
+)
