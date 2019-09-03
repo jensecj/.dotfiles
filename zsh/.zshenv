@@ -30,6 +30,7 @@ export TIMEFMT=''$'\n%J'$'\n%U user | %S system | %P cpu | %*Es total'$'\n'\
 
 # add things to PATH
 paths=("$DOTFILESHOME/bin"
+       "$HOME/.local/bin"
        "$HOME/.cargo/bin"
        "$HOME/.roswell/bin")
 
