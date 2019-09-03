@@ -1,4 +1,7 @@
 #!/bin/bash
 
-unread=$(notmuch search tag:unread | wc -l)
-echo "$unread"
+today=$(notmuch search date:today.. and tag:unread and not tag:lists and not tag:draft and not tag:archived | wc -l)
+week=$(notmuch search date:7d.. and tag:unread and not tag:lists and not tag:draft and not tag:archived | wc -l)
+unread=$(notmuch search tag:unread and not tag:lists and not tag:draft and not tag:archived | wc -l)
+
+echo "$today/$week/$unread"
