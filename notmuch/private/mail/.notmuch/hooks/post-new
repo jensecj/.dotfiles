@@ -8,6 +8,9 @@ notmuch tag -new +lists +lists/emacs-orgmode +unread -- tag:new and to:emacs-org
 # drafts are not new
 notmuch tag -new -- tag:new and tag:draft
 
+# mute new mails from muted threads
+notmuch tag -new -unread +muted -- $(notmuch search --output=threads tag:muted)
+
 # ignores
 # notmuch tag -new -unread +deleted -- tag:new and from:spam@spam.com
 
