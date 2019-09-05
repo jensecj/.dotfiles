@@ -42,7 +42,9 @@ bindsym XF86AudioMute exec --no-startup-id "amixer -D pulse set Master 1+ toggle
 bindsym $mod+Shift+Return exec $term
 bindsym $mod+Return exec $term -e 'tmux'
 bindsym $mod+d exec --no-startup-id rofi -show run
-bindsym $mod+Shift+d exec define "$(xsel)"
+bindsym $mod+Shift+d exec define "$(xsel -o)"
+bindsym $mod+Shift+e exec mpv --autofit "70%x60%" --loop --x11-name "mpv-float" "$(xsel -o)"
+
 bindsym $mod+Shift+b exec emacsclient -c -F '((title . "em-bookmarks"))' "/home/jens/vault/git/bookmarks.org"
 bindsym $mod+Delete exec em
 bindsym $mod+BackSpace exec $browser
@@ -208,6 +210,9 @@ for_window [title="em-bookmarks"] floating enable
 for_window [title="em-bookmarks"] resize grow up 200px;
 for_window [title="em-bookmarks"] resize grow down 200px;
 for_window [title="em-bookmarks"] move position center;
+
+for_window [instance="mpv-float"] floating enable
+for_window [instance="mpv-float"] move position center;
 
 for_window [class="Termite" instance="dict-lookup"] floating enable
 for_window [class="Termite" instance="dict-lookup"] resize grow up 200px
