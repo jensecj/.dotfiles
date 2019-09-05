@@ -91,7 +91,6 @@ alias pacls='pac -Qet'
 
 # misc
 alias octave='octave-cli' # who uses the gui anyway?
-alias flux='xgamma -gamma 1 && redshift -O '
 alias pdf='zathura'
 
 # easy file / directory search using `fd`
@@ -111,10 +110,10 @@ alias rmv="rsync --verbose --human-readable --new-compress --archive --partial -
 
 alias pf=" peerflix --start --mpv"
 alias dl='snatch --threads 4'
-alias ytdl='youtube-dl -o"%(uploader)s -- %(title)s.%(ext)s"'
-alias ytdlnr='youtube-dl -o"%(autonumber)s -- %(uploader)s -- %(title)s.%(ext)s"'
 
-alias ytmp3='youtube-dl -x --audio-format mp3 -o"%(uploader)s -- %(title)s.%(ext)s"'
+alias ytdl='youtube-dl -f "bestvideo[height<=?1080]" -o"%(uploader)s -- %(title)s.%(ext)s"'
+alias ytdlnr='youtube-dl -f "bestvideo[height<=?1080]" -o"%(autonumber)s -- %(uploader)s -- %(title)s.%(ext)s"'
+alias ytmp3='youtube-dl -f "bestvideo[height<=?480]+bestaudio" -x --audio-format mp3 -o"%(uploader)s -- %(title)s.%(ext)s"'
 
 function sbclmk () {
     if [[ -z $1 ]]; then
