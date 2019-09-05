@@ -16,7 +16,7 @@ export TLDR_CACHE_ENABLED=1
 export TLDR_CACHE_MAX_AGE=720
 
 export FZF_DEFAULT_COMMAND="fd --type f --hidden --follow --exclude .git"
-
+export EXA_COLORS="da=38;5;7:*.org=38;5;184:uu=0:gu=0"
 export RANGER_LOAD_DEFAULT_RC="FALSE"
 
 export TIMEFMT=''$'\n%J'$'\n%U user | %S system | %P cpu | %*Es total'$'\n'\

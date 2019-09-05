@@ -1,13 +1,10 @@
 # better ls
 alias ls='ls --color=always --time-style="+%d-%m-%Y" --group-directories-first'
-alias l="ls -gholXN"
-alias ll="ls -agholXN"
+#alias l="ls -gholXN"
+#alias ll="ls -agholXN"
 
-alias lsd="lsd --human-readable --long --oneline --group-dirs first --icon never"
-alias llsd="lsd --almost-all"
-
-alias exa="exa --long --group-directories-first --time-style=long-iso"
-alias eexa="exa --all"
+alias l="exa --long --group-directories-first --time-style=long-iso"
+alias ll="l --all"
 
 # preferred defaults
 alias cp="cp -i" # ask before overwriting files
@@ -17,6 +14,7 @@ alias grep='grep --color=always' # use colors in grep
 alias diff="diff --color=always" # and diff
 alias mkdir='mkdir -p -v' # make parent directories and tell us
 alias df="df -h" # human-readable by default
+
 function bu() { cp "$1" "$1.bak"; }
 function mcd() { mkdir "$1"; cd "$1" || exit 1; }
 
