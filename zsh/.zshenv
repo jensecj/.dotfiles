@@ -35,5 +35,5 @@ paths=("$DOTFILESHOME/bin"
        "$HOME/.roswell/bin")
 
 for p in $paths; do
-    export PATH=${PATH}:${p}
+    export PATH=${p}:${PATH}
 done
