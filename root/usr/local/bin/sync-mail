@@ -2,6 +2,7 @@
 
 if [ -d /home/jens/private/mail/ ]; then
     mbsync -Va
+    notmuch new
 else
     echo "sync-mail: mail directory does not exist."
 fi
