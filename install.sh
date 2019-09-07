@@ -168,6 +168,11 @@ declare -a packages=(
 )
 $AURHELPER -S "${packages[@]}"
 
+declare -a pip_packages=(
+    i3altlayout
+)
+pip install -g "${pip_packages[@]}"
+
 declare -a npm_packages=(
     qrcode-terminal # generate qrcodes in the terminal
     http-server
