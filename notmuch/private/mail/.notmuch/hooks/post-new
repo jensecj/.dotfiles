@@ -5,6 +5,9 @@ notmuch tag -new +lists +lists/emacs-devel +unread -- tag:new and to:emacs-devel
 notmuch tag -new +lists +lists/emacs-help +unread -- tag:new and to:help-gnu-emacs@gnu.org
 notmuch tag -new +lists +lists/emacs-orgmode +unread -- tag:new and to:emacs-orgmode@gnu.org
 
+# tag mails from build servers
+notmuch tag -new +builds +unread -- tag:new and from:builds@circleci.com
+
 # drafts are not new
 notmuch tag -new -- tag:new and tag:draft
 
