@@ -32,6 +32,25 @@ function sudo_spawn() {
     sudo nohup sh -c $@ & disown
 }
 
+fzf-cd() {
+    local dir
+    dir=$(fd | fzf --no-multi)
+    cd "$dir" || exit 1
+    zle clear-screen
+}
+zle -N fzf-cd
+
+function fzf-history() {
+    BUFFER=$(history -n -r 1 | fzf --no-sort --no-multi --query "$LBUFFER")
+    CURSOR=$#BUFFER
+    zle clear-screen
+}
+zle -N fzf-history
+
+fman() {
+    man -k . | fzf --prompt='Man> ' | awk '{print $1}' | xargs -r man
+}
+
 # some functions for working with a file as if it were a stack
 function speek() {
     head -n 1 "$1"
