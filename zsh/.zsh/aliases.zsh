@@ -60,7 +60,7 @@ function fzf-urls() {
 zle -N fzf-urls
 
 fman() {
-    man -k . | fzf --prompt='Man> ' | awk '{print $1}' | xargs -r man
+    man -k . | fzf | awk '{print $1}' | xargs -r man
 }
 
 # some functions for working with a file as if it were a stack
