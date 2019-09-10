@@ -8,6 +8,7 @@ set $mod Mod4
 set $term LANG=en_DK.UTF-8 termite
 # preferred browser
 set $browser firefox
+set editor em
 
 # configure border style <normal|1pixel|pixel xx|none|pixel>
 default_border pixel 1
@@ -39,14 +40,16 @@ bindsym XF86AudioLowerVolume exec --no-startup-id "pactl set-sink-volume 0 -1db"
 bindsym XF86AudioMute exec --no-startup-id "amixer -D pulse set Master 1+ toggle"
 
 # programs
-bindsym $mod+Shift+Return exec $term
 bindsym $mod+Return exec $term -e 'tmux'
+bindsym $mod+Shift+Return exec $term
+bindsym $mod+Ctrl+Return exec $term --name="float-me"
+
 bindsym $mod+d exec --no-startup-id rofi -show run
 bindsym $mod+Shift+d exec define "$(xsel -o)"
 bindsym $mod+Shift+e exec mpv --autofit "70%x60%" --loop --x11-name "mpv-float" "$(xsel -o)"
 
 bindsym $mod+Shift+b exec emacsclient -c -F '((title . "em-bookmarks"))' "/home/jens/vault/git/bookmarks.org"
-bindsym $mod+Delete exec em
+bindsym $mod+Delete exec $editor
 bindsym $mod+BackSpace exec $browser
 bindsym $mod+F5 exec $term -e 'ranger'
 
@@ -207,9 +210,9 @@ for_window [class="Manjaro Settings Manager"] floating enable border normal
 for_window [class="(?i)virtualbox"] floating enable border normal
 
 for_window [title="em-bookmarks"] floating enable
-for_window [title="em-bookmarks"] resize grow up 200px;
-for_window [title="em-bookmarks"] resize grow down 200px;
-for_window [title="em-bookmarks"] move position center;
+for_window [title="em-bookmarks"] resize grow up 200px
+for_window [title="em-bookmarks"] resize grow down 200px
+for_window [title="em-bookmarks"] move position center
 
 for_window [instance="mpv-float"] floating enable
 for_window [instance="mpv-float"] move position center;
@@ -217,6 +220,13 @@ for_window [instance="mpv-float"] move position center;
 for_window [class="Termite" instance="dict-lookup"] floating enable
 for_window [class="Termite" instance="dict-lookup"] resize grow up 200px
 for_window [class="Termite" instance="dict-lookup"] resize grow down 200px
+
+for_window [class="Termite" instance="float-me"] floating enable
+for_window [class="Termite" instance="float-me"] resize grow up 150px
+for_window [class="Termite" instance="float-me"] resize grow down 150px
+for_window [class="Termite" instance="float-me"] resize grow left 150px
+for_window [class="Termite" instance="float-me"] resize grow right 150px
+for_window [class="Termite" instance="float-me"] move position center
 
 for_window [title="cl-opengl"] floating enable
 for_window [class="anki"] floating enable
