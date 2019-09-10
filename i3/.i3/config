@@ -8,7 +8,7 @@ set $mod Mod4
 set $term LANG=en_DK.UTF-8 termite
 # preferred browser
 set $browser firefox
-set editor em
+set $editor em
 
 # configure border style <normal|1pixel|pixel xx|none|pixel>
 default_border pixel 1
@@ -42,7 +42,7 @@ bindsym XF86AudioMute exec --no-startup-id "amixer -D pulse set Master 1+ toggle
 # programs
 bindsym $mod+Return exec $term -e 'tmux'
 bindsym $mod+Shift+Return exec $term
-bindsym $mod+Ctrl+Return exec $term --name="float-me"
+bindsym $mod+Ctrl+Return fullscreen disable; exec $term --name="float-me"
 
 bindsym $mod+d exec --no-startup-id rofi -show run
 bindsym $mod+Shift+d exec define "$(xsel -o)"
@@ -110,7 +110,7 @@ bindsym $mod+m exec --no-startup-id xdotool windowmap <<< eval $(xdotool search 
 bindsym $mod+Shift+p exec --no-startup-id pkill polybar && sleep .1 && nohup polybar jensbar; exec notify-send 'Restarted polybar'
 
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym $mod+Shift+r restart; exec notify-send 'Restarted i3'
+bindsym $mod+Shift+r fullscreen disable; restart; exec notify-send 'Restarted i3'
 
 # exit i3 (logs you out of your X session)
 # bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
@@ -122,7 +122,8 @@ bindsym $mod+Shift+r restart; exec notify-send 'Restarted i3'
 # set shut down, restart and locking features
 bindsym $mod+0 mode "$mode_system"
 set $mode_system (l)ock, (e)xit, switch_(u)ser, (s)uspend, (h)ibernate, (r)eboot, (Shift+s)hutdown
-mode "$mode_system" {
+mode "$mode_system"
+{
 bindsym l exec --no-startup-id i3exit lock, mode "default"
 bindsym s exec --no-startup-id i3exit suspend, mode "default"
 bindsym u exec --no-startup-id i3exit switch_user, mode "default"
@@ -138,7 +139,8 @@ bindsym Escape mode "default"
 
 # resize window (you can also use the mouse for that)
 bindsym $mod+r mode "resize"
-mode "resize" {
+mode "resize"
+{
 bindsym Left resize shrink width 10 px or 10 ppt
 bindsym Down resize grow height 10 px or 10 ppt
 bindsym Up resize shrink height 10 px or 10 ppt
@@ -154,7 +156,7 @@ bindsym Escape mode "default"
 ##############
 
 # workspace names
-           # 零 # líng (zero)
+# 零 # líng (zero)
 set $ws1 一 yī
 set $ws2 二 èr
 set $ws3 三 sān
@@ -163,8 +165,8 @@ set $ws5 五 wǔ
 set $ws6 六 liù
 set $ws7 七 qī
 set $ws8 八 bā
-       # 九 # jiǔ (nine)
-       # 十 # shí (ten)
+# 九 # jiǔ (nine)
+# 十 # shí (ten)
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
