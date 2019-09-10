@@ -40,6 +40,12 @@ fzf-cd() {
 }
 zle -N fzf-cd
 
+function fzf-z() {
+    cd $(z | awk '{print $2}' | fzf --no-sort --no-multi)
+    zle clear-screen
+}
+zle -N fzf-z
+
 function fzf-history() {
     BUFFER=$(history -n -r 1 | fzf --no-sort --no-multi --query "$LBUFFER")
     CURSOR=$#BUFFER

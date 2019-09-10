@@ -69,6 +69,7 @@ fi
 bindkey -M emacs '^F' fzf-cd
 bindkey -M emacs '^R' fzf-history
 bindkey -M emacs '^U' fzf-urls
+bindkey -M emacs '^B' fzf-z
 
 # uncomment to profile zsh
 # zprof
