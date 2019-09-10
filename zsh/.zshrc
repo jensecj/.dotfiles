@@ -66,6 +66,8 @@ if [ "$HOME/.zcompdump" -nt "$HOME/.zcompdump.zwc" -o ! -e "$HOME/.zcompdump.zwc
     zcompile "$HOME/.zcompdump"
 fi
 # zrecompile -p $HOME/.zshrc &>/dev/null
+bindkey -M emacs '^F' fzf-cd
+bindkey -M emacs '^R' fzf-history
 
 # uncomment to profile zsh
 # zprof
