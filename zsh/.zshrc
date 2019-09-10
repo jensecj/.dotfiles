@@ -72,6 +72,7 @@ bindkey -M emacs '^U' fzf-urls
 bindkey -M emacs '^B' fzf-z
 bindkey -M emacs '\ei' fzf-locate
 
+source /usr/share/fzf/completion.zsh
 
 # uncomment to profile zsh
 # zprof
