@@ -46,6 +46,11 @@ function fzf-z() {
 }
 zle -N fzf-z
 
+function fzf-locate() {
+    locate | fzf | xargs | xsel -i
+}
+zle -N fzf-locate
+
 function fzf-history() {
     BUFFER=$(history -n -r 1 | fzf --no-sort --no-multi --query "$LBUFFER")
     CURSOR=$#BUFFER
