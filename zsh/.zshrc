@@ -68,6 +68,7 @@ fi
 # zrecompile -p $HOME/.zshrc &>/dev/null
 bindkey -M emacs '^F' fzf-cd
 bindkey -M emacs '^R' fzf-history
+bindkey -M emacs '^U' fzf-urls
 
 # uncomment to profile zsh
 # zprof

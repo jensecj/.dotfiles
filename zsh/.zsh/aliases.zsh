@@ -47,6 +47,18 @@ function fzf-history() {
 }
 zle -N fzf-history
 
+function fzf-urls() {
+    # look at all scrollback contents of tmux buffer, and copy
+    # selected url to clipboard
+    local url_regex="(((http|https|ftp|gopher|git)|mailto)[.:@][^ >\"\t]*|www\.[-a-z0-9.]+)[^ .,;\t>\">\):]"
+    tmux capture-pane -pS -100000 \
+        | rg --no-filename --no-line-number "$url_regex" \
+        | fzf --no-sort --no-multi \
+        | xargs \
+        | xsel -i
+}
+zle -N fzf-urls
+
 fman() {
     man -k . | fzf --prompt='Man> ' | awk '{print $1}' | xargs -r man
 }
