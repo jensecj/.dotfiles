@@ -11,6 +11,3 @@
 [submodule "tmux/plugins/tmux-copycat"]
 	path = tmux/.tmux/plugins/tmux-copycat
 	url = https://github.com/tmux-plugins/tmux-copycat.git
-[submodule "tmux/plugins/tmux-urlview"]
-	path = tmux/.tmux/plugins/tmux-urlview
-	url = https://github.com/tmux-plugins/tmux-urlview.git

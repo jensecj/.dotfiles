@@ -1,2 +1,0 @@
-REGEXP (((http|https|ftp|gopher|git)|mailto)[.:@][^ >"\t]*|www\.[-a-z0-9.]+)[^ .,;\t>">\):]
-COMMAND echo %s | xsel -ipsb
