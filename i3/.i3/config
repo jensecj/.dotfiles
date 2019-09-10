@@ -124,31 +124,31 @@ bindsym $mod+0 mode "$mode_system"
 set $mode_system (l)ock, (e)xit, switch_(u)ser, (s)uspend, (h)ibernate, (r)eboot, (Shift+s)hutdown
 mode "$mode_system"
 {
-bindsym l exec --no-startup-id i3exit lock, mode "default"
-bindsym s exec --no-startup-id i3exit suspend, mode "default"
-bindsym u exec --no-startup-id i3exit switch_user, mode "default"
-bindsym e exec --no-startup-id i3exit logout, mode "default"
-bindsym h exec --no-startup-id i3exit hibernate, mode "default"
-bindsym r exec --no-startup-id i3exit reboot, mode "default"
-bindsym Shift+s exec --no-startup-id i3exit shutdown, mode "default"
+  bindsym l exec --no-startup-id i3exit lock, mode "default"
+  bindsym s exec --no-startup-id i3exit suspend, mode "default"
+  bindsym u exec --no-startup-id i3exit switch_user, mode "default"
+  bindsym e exec --no-startup-id i3exit logout, mode "default"
+  bindsym h exec --no-startup-id i3exit hibernate, mode "default"
+  bindsym r exec --no-startup-id i3exit reboot, mode "default"
+  bindsym Shift+s exec --no-startup-id i3exit shutdown, mode "default"
 
-# exit system mode: "Enter" or "Escape"
-bindsym Return mode "default"
-bindsym Escape mode "default"
+  # exit system mode: "Enter" or "Escape"
+  bindsym Return mode "default"
+  bindsym Escape mode "default"
 }
 
 # resize window (you can also use the mouse for that)
 bindsym $mod+r mode "resize"
 mode "resize"
 {
-bindsym Left resize shrink width 10 px or 10 ppt
-bindsym Down resize grow height 10 px or 10 ppt
-bindsym Up resize shrink height 10 px or 10 ppt
-bindsym Right resize grow width 10 px or 10 ppt
+  bindsym Left resize shrink width 10 px or 10 ppt
+  bindsym Down resize grow height 10 px or 10 ppt
+  bindsym Up resize shrink height 10 px or 10 ppt
+  bindsym Right resize grow width 10 px or 10 ppt
 
-# exit resize mode: Enter or Escape
-bindsym Return mode "default"
-bindsym Escape mode "default"
+  # exit resize mode: Enter or Escape
+  bindsym Return mode "default"
+  bindsym Escape mode "default"
 }
 
 ##############
@@ -250,9 +250,9 @@ exec --no-startup-id udiskie --tray
 exec --no-startup-id feh --randomize --bg-fill /home/jens/pictures/wallpapers/
 exec --no-startup-id xidlehook \
   --timer normal 180 \
-    'dimmer 3000' 'dimmer pop' \
+  'dimmer 3000' 'dimmer pop' \
   --timer primary 10 \
-    'dimmer pop; slock' ''\
+  'dimmer pop; slock' ''\
   --not-when-fullscreen \
   --not-when-audio
 
