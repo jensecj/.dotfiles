@@ -1,4 +1,7 @@
-# better ls
+#!/bin/zsh
+# * changing defaults
+
+# ** better ls
 alias ls='ls --color=always --time-style="+%d-%m-%Y" --group-directories-first'
 #alias l="ls -gholXN"
 #alias ll="ls -agholXN"
@@ -6,7 +9,7 @@ alias ls='ls --color=always --time-style="+%d-%m-%Y" --group-directories-first'
 alias l="exa --long --group-directories-first --time-style=long-iso"
 alias ll="l --all"
 
-# preferred defaults
+# ** prefer interactive use, and human-readable outputs
 alias cp="cp -i" # ask before overwriting files
 alias mv="mv -i" # ask before overwriting files
 alias free="free -h" # show sizes in a human readable format
@@ -15,14 +18,26 @@ alias diff="diff --color=always" # and diff
 alias mkdir='mkdir -p -v' # make parent directories and tell us
 alias df="df -h" # human-readable by default
 
-function bu() { cp "$1" "$1.bak"; }
-function mcd() { mkdir "$1"; cd "$1" || exit 1; }
-
-# some common shortcuts
+# ** common shortcuts
 alias _='sudo'
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
+
+# * extra functions
+
+# figure out which terminal emulator we're inside of
+# echo $TERM does not always work, because sometimes term lies
+function whichterm() {
+    ps -p $PPID | awk '{print $4}' | sed -n '2p'
+}
+# same goes for a shell
+function whichshell() {
+    ps -p "$$" | awk '{print $4}' | sed -n '2p'
+}
+
+function bu() { cp "$1" "$1.bak"; }
+function mcd() { mkdir "$1"; cd "$1" || exit 1; }
 
 function spawn() {
     nohup sh -c $@ & disown
@@ -32,10 +47,19 @@ function sudo_spawn() {
     sudo nohup sh -c $@ & disown
 }
 
-fzf-cd() {
-    local dir
-    dir=$(fd | fzf --no-multi)
-    cd "$dir" || exit 1
+function del() {
+    mv '$@' ~/.local/share/Trash/files/
+}
+
+# easily create tar.gz archives, with progress bar
+function tarczf () {
+    tar cf - "${@:2}" -P | pv -s $(du -sb "${@:2}" | awk '{print $1}' | paste -sd+ - | bc) | gzip > "$1"
+}
+
+# * fzf functions
+
+function fzf-cd() {
+    cd $(fd | fzf --no-multi)
     zle clear-screen
 }
 zle -N fzf-cd
@@ -54,7 +78,6 @@ zle -N fzf-locate
 function fzf-history() {
     BUFFER=$(history -n -r 1 | fzf --no-sort --no-multi --query "$LBUFFER")
     CURSOR=$#BUFFER
-    zle clear-screen
 }
 zle -N fzf-history
 
@@ -70,11 +93,11 @@ function fzf-urls() {
 }
 zle -N fzf-urls
 
-fman() {
+function fman() {
     man -k . | fzf | awk '{print $1}' | xargs -r man
 }
 
-# some functions for working with a file as if it were a stack
+# * stack based functions
 function speek() {
     head -n 1 "$1"
 }
@@ -95,7 +118,7 @@ function spop() {
     echo "$val"
 }
 
-# functions for handling files like a queue
+# * queue based functions
 function qpush () {
     local fil="$1"
     shift
@@ -112,14 +135,7 @@ function qpeek() {
     head -n 1 "$1"
 }
 
-function del() {
-    mv '$@' ~/.local/share/Trash/files/
-}
-
-# easily create tar.gz archives, with progress bar
-function tarczf () {
-    tar cf - "${@:2}" -P | pv -s $(du -sb "${@:2}" | awk '{print $1}' | paste -sd+ - | bc) | gzip > "$1"
-}
+# * aliases
 
 # easy pacman
 alias pac='yay'
@@ -258,16 +274,6 @@ function ffmpegnorm {
 # quick compile/run with test data for hackathons
 function ccc {
     clear && clang++ -std=c++17 "$1" -o "$1.out" && time "./$1.out" < test.in
-}
-
-# figure out which terminal emulator we're inside of
-# echo $TERM does not always work, because sometimes term lies
-function whichterm() {
-    ps -p $PPID | awk '{print $4}' | sed -n '2p'
-}
-# same goes for a shell
-function whichshell() {
-    ps -p "$$" | awk '{print $4}' | sed -n '2p'
 }
 
 # create a note file for another file
