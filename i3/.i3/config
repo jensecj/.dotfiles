@@ -257,12 +257,12 @@ exec --no-startup-id xidlehook \
   --not-when-audio
 
 # apps to run on startup
-exec --no-startup-id i3altlayout
 exec --no-startup-id dunst -conf /home/jens/.dotfiles/dunstrc # the notification daemon
 exec --no-startup-id msmtp # smtp server
 exec --no-startup-id compton --no-fading-openclose -b # deamonize / disable shadows/fading
 exec --no-startup-id unclutter # hiding the mouse cursor when idle
 exec --no-startup-id polybar jensbar
+exec --no-startup-id i3autotile >> ~/.i3log
 
 # try syncing the linux selections
 exec --no-startup-id autocutsel -fork
