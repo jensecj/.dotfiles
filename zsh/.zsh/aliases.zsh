@@ -39,14 +39,6 @@ function whichshell() {
 function bu() { cp "$1" "$1.bak"; }
 function mcd() { mkdir "$1"; cd "$1" || exit 1; }
 
-function spawn() {
-    nohup sh -c $@ & disown
-}
-
-function sudo_spawn() {
-    sudo nohup sh -c $@ & disown
-}
-
 function del() {
     mv '$@' ~/.local/share/Trash/files/
 }
@@ -217,12 +209,12 @@ function myip() {
     fi
 }
 
-function start_dnscrypt() {
-    sudo_spawn 'dnscrypt-proxy -config /etc/dnscrypt-proxy/dnscrypt-proxy.toml'
-}
-
 function start_xidlehook() {
-    spawn 'xidlehook --timer normal 180 "dimmer 3000" "dimmer pop" --timer primary 10 "dimmer pop; slock" "" --not-when-fullscreen --not-when-audio'
+    nohup xidlehook \
+          --timer normal 180 "dimmer 3000" "dimmer pop" \
+          --timer primary 10 "dimmer pop; slock" "" \
+          --not-when-fullscreen --not-when-audio \
+          >>& ~/.xidlehook.log & disown
 }
 
 alias rtags='rc -J'
@@ -274,16 +266,6 @@ function ffmpegnorm {
 # quick compile/run with test data for hackathons
 function ccc {
     clear && clang++ -std=c++17 "$1" -o "$1.out" && time "./$1.out" < test.in
-}
-
-# create a note file for another file
-function note() {
-    if [ -z "$1" ]
-    then
-        echo "usage: note <file>"
-    else
-        $EDITOR "$1.note"
-    fi
 }
 
 ping() {
