@@ -40,17 +40,19 @@ function _git_branch() {
     fi
 }
 
-function _prmpt() {
-    # if we're in home, have the prompt on the same line,
-    # otherwise put the working dir above the prompt.
-    if [[ "$PWD" = "$HOME" ]]; then
-        printf ">"
+function _split() {
+    if [[ "$PWD" != "$HOME" ]]; then
+        # HACK: there is a zero-width space on both sides of the newline, otherwise printf does nothing
+        printf "​\n​"
     else
-        printf "\n>"
+        printf ""
     fi
 }
 
-PROMPT='$(_virtuel_env)$(_user_host)$(_current_dir)$(_git_branch)$(_prmpt) '
+# the zsh equivalent to bash PROMPT_COMMAND
+function precmd() {
+    PROMPT="$(_virtuel_env)$(_user_host)$(_current_dir)$(_git_branch)$(_split)%(?..%? )> "
+}
 
 # disable pythons virtualenv prompt mutation
 export VIRTUAL_ENV_DISABLE_PROMPT=1
