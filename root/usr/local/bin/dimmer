@@ -42,7 +42,9 @@ case $HOUR in
 esac
 
 if [ "$1" = "cls" ]; then
-    rm $DIMMER_FILE
+    if [ -e $DIMMER_FILE ]; then
+        rm $DIMMER_FILE
+    fi
 elif [ "$1" = "pop" ]; then
     fpop $DIMMER_FILE
 elif [ "$1" = "ls" ]; then
