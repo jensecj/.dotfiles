@@ -268,6 +268,19 @@ function ccc {
     clear && clang++ -std=c++17 "$1" -o "$1.out" && time "./$1.out" < test.in
 }
 
+function md5dir() {
+    if [ $# -lt 1 ]; then
+        echo "usage: md5dir path/to/dir"
+        return 1
+    fi
+
+    # calculate the md5sum for each file entry in $dir, sort that
+    # list, and calculate the md5sum of that list, to get a reasonably
+    # unique aggregate
+    dir=$(readlink -f "$1")
+    find "$dir" -type f -exec md5sum {} + | awk '{print $1}' | sort | md5sum | awk '{print $1}'
+}
+
 ping() {
     local i=0
     local options=""
