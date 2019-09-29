@@ -1,0 +1,1 @@
+feh <<< curl 'http://servlet.dmi.dk/byvejr/servlet/byvejr?by=1000&tabel=dag3_9'
