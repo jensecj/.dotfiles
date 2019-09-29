@@ -7,6 +7,7 @@ pacman -S $AURHELPER
 declare -a packages=(
     # java
     jdk10-openjdk jre10-openjdk
+    graal-bin graal-native-image-bin # alternative vm
     gradle apache-ant apache-ivy # java build tools
 
     # python
