@@ -29,7 +29,9 @@ floating_modifier $mod
 
 # screen brightness controls
 bindsym XF86MonBrightnessUp exec --no-startup-id "xbacklight -inc 5; notify-send -t 500 'backlight' $(xbacklight | cut -f1 -d'.')%"
+bindsym Ctrl+XF86MonBrightnessUp exec --no-startup-id "xbacklight -inc 1; notify-send -t 500 'backlight' $(xbacklight | cut -f1 -d'.')%"
 bindsym XF86MonBrightnessDown exec --no-startup-id "xbacklight -dec 5; notify-send -t 500 'backlight' $(xbacklight | cut -f1 -d'.')%"
+bindsym Ctrl+XF86MonBrightnessDown exec --no-startup-id "xbacklight -dec 1; notify-send -t 500 'backlight' $(xbacklight | cut -f1 -d'.')%"
 
 # kill focused window
 bindsym $mod+Shift+q kill
