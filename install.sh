@@ -68,6 +68,7 @@ declare -a packages=(
     watchman # inode change monitor and trigger
 
     # system / utilities
+    earlyoom # out-of-memory daemon
     moreutils # more shell utils
     keychain # manage ssh agents
     unclutter # hide the curser when idle
