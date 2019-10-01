@@ -41,18 +41,43 @@ case $HOUR in
     23) DIM=2000;;
 esac
 
+if [ ! -e $DIMMER_FILE ]; then
+    touch $DIMMER_FILE
+fi
+
 if [ "$1" = "cls" ]; then
-    if [ -e $DIMMER_FILE ]; then
-        rm $DIMMER_FILE
-    fi
+    rm $DIMMER_FILE
 elif [ "$1" = "pop" ]; then
     fpop $DIMMER_FILE
 elif [ "$1" = "ls" ]; then
-    if [ -e $DIMMER_FILE ]; then
-        cat $DIMMER_FILE
+    cat $DIMMER_FILE
+    exit 0
+elif [ "$1" = "inc" ]; then
+    if [ -z "$2" ]; then
+        echo "usage: dimmer inc <int>"
+        exit 4
+    fi
+    inc=$2
+    val=$(fpeek $DIMMER_FILE)
+    if [ -z $val ]; then
+        val=$DIM
     fi
 
-    exit 0
+    res=$(echo "$val + $inc" | bc)
+    fpush $DIMMER_FILE "$res"
+elif [ "$1" = "dec" ]; then
+    if [ -z "$2" ]; then
+        echo "usage: dimmer dec <int>"
+        exit 4
+    fi
+    dec=$2
+    val=$(fpeek $DIMMER_FILE)
+    if [ -z $val ]; then
+        val=$DIM
+    fi
+
+    res=$(echo "$val - $dec" | bc)
+    fpush $DIMMER_FILE "$res"
 elif [ -n "$1" ]; then
     fpush $DIMMER_FILE "$1"
 fi
