@@ -136,6 +136,10 @@ alias pacrm='pac -Rns'
 alias pacss='pac -Ss'
 alias pacs='pac -S'
 alias pacls='pac -Qet'
+function paci() {
+    pkg=$(yay -Sl | fzf --preview-window=top:70% --preview="yay -Si {2}" | awk '{print $2}')
+    print -z $pkg
+}
 
 # misc
 alias octave='octave-cli' # who uses the gui anyway?
