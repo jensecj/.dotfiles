@@ -24,6 +24,8 @@ autoload -U select-word-style && {
     select-word-style bash
 }
 
+source "$ZSHHOME/stdlib.sh"
+
 # load plugins
 for p in $ZSHHOME/plugins/*.sh; do
     source $p
