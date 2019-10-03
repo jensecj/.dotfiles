@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# use a fancier diff
+git config --global core.pager "diff-so-fancy | less --tabs=4 -RFX"
+
 mkdir "$HOME/.rtorrent.session"
 
 # disable beeps by not loading the pcspkr module
