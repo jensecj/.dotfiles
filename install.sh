@@ -61,14 +61,18 @@ declare -a packages=(
     virtualbox # virtual machine manager
     vagrant # create virtual environments for provisioning using virtualbox
     docker # containerization
-    rkt # more containers
+    podman buildah skopeo # more containers
     # direnv # directory specific, automatically loading exports
     python-cookiecutter # create new project skeletons from templates
     diff-so-fancy # fancy git diff
     watchman # inode change monitor and trigger
 
-    # system / utilities
+    # system
+    linux419 linux419-headers # kernel
+    dkms # dynamic kernel module support
     earlyoom # out-of-memory daemon
+
+    # utilities
     moreutils # more shell utils
     keychain # manage ssh agents
     unclutter # hide the curser when idle
@@ -83,9 +87,10 @@ declare -a packages=(
     dnscrypt-proxy # for running encrypted dnslookups
     autocutsel # for synching clipboards
     gperftools # performance analysis tools
-    openssh
-    openvpn
+    openssh openvpn
+    wireguard-tools wireguard-dkms
     mosh # ssh-replacement, with persistent connections
+    knockd # port-knocker
     gnupg
     progress # progress monitor (bar/throughput/etc.) for processes (e.g. gzip, cp, mv, ...)
     pv # also a progress monitor (uses pipes instead processes)
@@ -119,6 +124,7 @@ declare -a packages=(
     rsstail # tail for rss-feeds
     hexyl # cat, but spits out hex
     exa # ls alternative
+    lynis # hardening
 
     # system information
     lshw # print hardware information (like other ls* tools)
