@@ -9,6 +9,7 @@ export PROMPT_EOL_MARK=''
 # ggtags config
 export GTAGSLABEL="ctags"
 export GTAGSCONF="$HOME/.globalrc"
+
 # tldr config
 export TLDR_COLOR_NAME="white bold"
 export TLDR_COLOR_DESCRIPTION="white bold"

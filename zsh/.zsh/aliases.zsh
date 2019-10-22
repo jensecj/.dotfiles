@@ -181,7 +181,7 @@ function sbclmk () {
 }
 
 alias fm="ranger"
-alias sl="streamlink --player=mpv"
+alias sl="streamlink --player=mpv --player-no-close --player-continuous-http --title '{title} - {url}'"
 alias myt="mpv --ytdl"
 alias py="python"
 alias qr="qrcode-terminal"

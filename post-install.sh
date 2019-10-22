@@ -17,6 +17,11 @@ systemctl start dnscrypt-proxy.service
 
 # enable custom systemd units
 systemctl enable lock-on-sleep.service
+
 systemctl --user enable random-wallpaper
 systemctl --user enable mbsync
 systemctl --user enable lowtmp
+
+systemctl --user start random-wallpaper
+systemctl --user start mbsync
+systemctl --user start lowtmp

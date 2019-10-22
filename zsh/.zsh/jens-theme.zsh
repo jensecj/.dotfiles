@@ -51,7 +51,7 @@ function _split() {
 
 # the zsh equivalent to bash PROMPT_COMMAND
 function precmd() {
-    PROMPT="$(_virtuel_env)$(_user_host)$(_current_dir)$(_git_branch)$(_split)%(?..%? )> "
+    PROMPT="$(_virtuel_env)$(_user_host)$(_current_dir)$(_git_branch)$(_split)%(?..%? )\$ "
 }
 
 # disable pythons virtualenv prompt mutation

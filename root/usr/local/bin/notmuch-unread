@@ -1,7 +1,13 @@
 #!/bin/bash
 
-today=$(notmuch search date:today.. and tag:unread and not tag:lists and not tag:draft and not tag:archived | wc -l | xargs)
-week=$(notmuch search date:7d.. and tag:unread and not tag:lists and not tag:draft and not tag:archived | wc -l | xargs)
-unread=$(notmuch search tag:unread and not tag:lists and not tag:draft and not tag:archived | wc -l | xargs)
+today=$(notmuch search date:today.. and tag:unread and not tag:lists and not tag:draft and not tag:archived 2> /dev/null | wc -l | xargs)
+week=$(notmuch search date:7d.. and tag:unread and not tag:lists and not tag:draft and not tag:archived  2> /dev/null | wc -l | xargs)
+unread=$(notmuch search tag:unread and not tag:lists and not tag:draft and not tag:archived  2> /dev/null | wc -l | xargs)
 
-echo "$today/$week/$unread"
+out="$today/$week/$unread"
+
+if [ "$out" != "//" ]; then
+    echo "$out"
+else
+    echo "unable to fetch mail"
+fi
