@@ -29,6 +29,9 @@ DIM=""
 
 # todo interp between clocks, set dim every 5 min
 case $HOUR in
+    00) DIM=2000;;
+    01) DIM=2000;;
+    02) DIM=2000;;
     06) DIM=3000;;
     07) DIM=3500;;
     08) DIM=4000;;
@@ -39,6 +42,7 @@ case $HOUR in
     21) DIM=2500;;
     22) DIM=2250;;
     23) DIM=2000;;
+
 esac
 
 if [ ! -e $DIMMER_FILE ]; then
