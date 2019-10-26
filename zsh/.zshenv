@@ -2,8 +2,10 @@
 export DOTFILESHOME=$HOME/.dotfiles
 export ZSHHOME=$HOME/.zsh
 export EDITOR="em" # emacsclient, this scripts starts the daemon if needed
-# make gpg happy
+
+# make gpg happy, needed for git signing from terminal
 export GPG_TTY=$(tty)
+
 export PROMPT_EOL_MARK=''
 
 # ggtags config

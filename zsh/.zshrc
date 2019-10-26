@@ -50,6 +50,7 @@ eval $(dircolors -b $HOME/.dircolors)
 # start the ssh daemon, and load keys into it
 eval $(keychain --eval --quiet --agents ssh \
                 ~/.ssh/github \
+                ~/.ssh/sourcehut \
                 ~/.ssh/stuetop \
                 ~/.ssh/termux)
 
