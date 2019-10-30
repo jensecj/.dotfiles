@@ -7,7 +7,7 @@ set $mod Mod4
 # set preferred terminal
 set $term LANG=en_DK.UTF-8 termite
 # preferred browser
-set $browser firefox
+set $browser firefox-developer-edition
 set $editor em
 
 # configure border style <normal|1pixel|pixel xx|none|pixel>
