@@ -77,5 +77,7 @@ bindkey -M emacs '\ei' fzf-locate
 
 source /usr/share/fzf/completion.zsh
 
+eval "$(pyenv init -)"
+
 # uncomment to profile zsh
 # zprof
