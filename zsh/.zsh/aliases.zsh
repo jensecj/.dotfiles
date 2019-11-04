@@ -43,11 +43,6 @@ function del() {
     mv '$@' ~/.local/share/Trash/files/
 }
 
-# easily create tar.gz archives, with progress bar
-function tarczf () {
-    tar cf - "${@:2}" -P | pv -s $(du -sb "${@:2}" | awk '{print $1}' | paste -sd+ - | bc) | gzip > "$1"
-}
-
 # * fzf functions
 
 function fzf-cd() {
@@ -154,8 +149,6 @@ alias rtorrent=" rtorrent"
 alias rtor=" rtorrent"
 
 alias git="hub"
-
-alias zt="zerotier-cli"
 
 alias rcp="rsync --verbose --human-readable --new-compress --archive --partial --progress"
 alias rmv="rsync --verbose --human-readable --new-compress --archive --partial --progress --remove-source-files"
@@ -283,32 +276,6 @@ function md5dir() {
     # unique aggregate
     dir=$(readlink -f "$1")
     find "$dir" -type f -exec md5sum {} + | awk '{print $1}' | sort | md5sum | awk '{print $1}'
-}
-
-ping() {
-    local i=0
-    local options=""
-    local host=""
-
-    for arg
-    do
-        i=$(($i+1))
-        if [ "$i" -lt "$#" ]
-        then
-            options="${options} ${arg}"
-        else
-            host="${arg}"
-        fi
-    done
-
-    # lookup host in .ssh/config
-    local hostname=$(awk "\$1==\"Host\" {host=\$2} \$1==\"HostName\" && host==\"${host}\" {print \$2}" "$HOME/.ssh/config")
-    if [ -z "$hostname" ]
-    then
-        hostname="$host"
-    fi
-
-    /bin/ping $options "$hostname"
 }
 
 alias mount_ramdisk="_ mount -t tmpfs -o size=1024m tmpfs /mnt/ramdisk"
