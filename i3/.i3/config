@@ -109,7 +109,7 @@ bindsym $mod+Shift+m exec --no-startup-id xdotool windowunmap <<< eval $(xdotool
 bindsym $mod+m exec --no-startup-id xdotool windowmap <<< eval $(xdotool search --name "polybar-jensbar")
 
 # restart polybar
-bindsym $mod+Shift+p exec --no-startup-id pkill polybar && sleep .1 && nohup polybar jensbar; exec notify-send 'Restarted polybar'
+bindsym $mod+Shift+p exec --no-startup-id polybar-setup; exec notify-send 'Restarted polybar'
 
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r fullscreen disable; restart; exec notify-send 'Restarted i3'
@@ -263,7 +263,7 @@ exec --no-startup-id dunst -conf /home/jens/.dotfiles/dunstrc # the notification
 exec --no-startup-id msmtp # smtp server
 exec --no-startup-id compton --no-fading-openclose -b # deamonize / disable shadows/fading
 exec --no-startup-id unclutter # hiding the mouse cursor when idle
-exec --no-startup-id polybar jensbar
+exec --no-startup-id polybar-setup
 exec --no-startup-id i3autotile >> ~/.i3log 2>&1
 
 # try syncing the linux selections

@@ -1,0 +1,9 @@
+#!/bin/bash
+
+killall -e "polybar"
+MONITOR=eDP1 polybar jensbar & disown
+
+SETUP=$(autorandr | grep current | cut -d' ' -f1)
+if [ "$SETUP" = "docked" ]; then
+    MONITOR=DP1 polybar jensbar & disown
+fi
