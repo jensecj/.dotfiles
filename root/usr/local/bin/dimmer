@@ -27,7 +27,6 @@ DIMMER_FILE=~/.dimmer
 HOUR=$(date +%H)
 DIM=""
 
-# todo interp between clocks, set dim every 5 min
 case $HOUR in
     00) DIM=2000;;
     01) DIM=2000;;
@@ -36,15 +35,16 @@ case $HOUR in
     07) DIM=3500;;
     08) DIM=4000;;
     09) DIM=4500;;
-    10|11|12|13|14|15) DIM=6500;;
-    16) DIM=4500;;
-    17) DIM=4000;;
-    18|19) DIM=3500;;
-    20) DIM=3000;;
-    21) DIM=2500;;
+    10|11|12|13|14) DIM=6500;;
+    15) DIM=5000;;
+    16) DIM=4250;;
+    17) DIM=3400;;
+    18) DIM=3100;;
+    19) DIM=2900;;
+    20) DIM=2600;;
+    21) DIM=2350;;
     22) DIM=2250;;
     23) DIM=2000;;
-
 esac
 
 if [ ! -e $DIMMER_FILE ]; then
