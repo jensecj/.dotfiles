@@ -57,6 +57,7 @@ interval = 5
 type = internal/i3
 index-sort = true
 wrapping-scroll = false
+pin-workspaces = true
 
 format = <label-state> <label-mode>
 

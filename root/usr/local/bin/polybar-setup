@@ -1,6 +1,8 @@
 #!/bin/bash
 
-killall -e "polybar"
+killall -qe "polybar"
+while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done # wait for polybars to shutdown
+
 MONITOR=eDP1 polybar jensbar & disown
 
 SETUP=$(autorandr | grep current | cut -d' ' -f1)
