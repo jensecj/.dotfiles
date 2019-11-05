@@ -125,6 +125,7 @@ declare -a packages=(
     hexyl # cat, but spits out hex
     exa # ls alternative
     lynis # hardening
+    autorandr # automatic xrandr
 
     # system information
     lshw # print hardware information (like other ls* tools)
