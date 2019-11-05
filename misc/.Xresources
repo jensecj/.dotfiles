@@ -5,6 +5,8 @@ Xft*hintstyle:  hintfull
 Xft*rgba:       rgb
 xft*font:       xft:Source Code Pro Semibold:pixelsize=14
 
+Xcursor.size: 16
+
 *background: #3f3f3f
 *foreground: #dcdccc
 *cursorColor: #8faf9f
