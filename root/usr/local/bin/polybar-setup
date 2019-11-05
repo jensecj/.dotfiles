@@ -5,7 +5,7 @@ while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done # wait for polybars 
 
 MONITOR=eDP1 polybar jensbar & disown
 
-SETUP=$(autorandr | grep current | cut -d' ' -f1)
+SETUP=$(autorandr | grep detected | cut -d' ' -f1)
 if [ "$SETUP" = "docked" ]; then
     MONITOR=DP1 polybar jensbar & disown
 fi
