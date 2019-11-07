@@ -1,0 +1,30 @@
+@namespace url(http://www.w3.org/1999/xhtml);
+
+@-moz-document domain("news.ycombinator.com") {
+    body {
+        max-width: 1000px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+@-moz-document domain("invidio.us") {
+    .navbar {
+        margin: 0 !important;
+    }
+    .pure-u-md-20-24 {
+        width: 100% !important;
+        display: block !important;
+    }
+    .h-box {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+    .icon {
+        display: none !important;
+    }
+
+    .pure-menu-heading {
+        display: none !important;
+    }
+}

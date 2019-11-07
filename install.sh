@@ -215,5 +215,7 @@ cargo install "${rust_packages[@]}"
 # privacy settings
 # link cleaner
 
-ln -s "$(pwd)/firefox/user.js" /home/jens/.mozilla/firefox/17pihl7a.Default\ User/user.js
-ln -s "$(pwd)/firefox/userChrome.css" /home/jens/.mozilla/firefox/17pihl7a.Default\ User/chrome/userChrome.css
+FIREFOX_PROFILE="cf5z4a52.dev-edition-default"
+ln -s "$(pwd)/firefox/user.js" /home/jens/.mozilla/firefox/$FIREFOX_PROFILE/user.js
+ln -s "$(pwd)/firefox/userChrome.css" /home/jens/.mozilla/firefox/$FIREFOX_PROFILE/chrome/userChrome.css
+ln -s "$(pwd)/firefox/userContent.css" /home/jens/.mozilla/firefox/$FIREFOX_PROFILE/chrome/userContent.css
