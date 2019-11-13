@@ -278,5 +278,17 @@ function md5dir() {
     find "$dir" -type f -exec md5sum {} + | awk '{print $1}' | sort | md5sum | awk '{print $1}'
 }
 
+function tarencrypt() {
+    local archive=$1
+    shift
+    tar czvpf - $@ | gpg --symmetric --cipher-algo aes256 -o $archive.tar.gz.gpg
+}
+
+function tardecrypt() {
+    local archive=$1
+    gpg -d $archive | tar xzvf -
+}
+
+
 alias mount_ramdisk="_ mount -t tmpfs -o size=1024m tmpfs /mnt/ramdisk"
 alias umount_ramdisk="_ umount /mnt/ramdisk"
