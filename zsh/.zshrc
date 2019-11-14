@@ -51,7 +51,6 @@ eval $(dircolors -b $HOME/.dircolors)
 eval $(keychain --eval --quiet --agents ssh \
                 ~/.ssh/github \
                 ~/.ssh/sourcehut \
-                ~/.ssh/stuetop \
                 ~/.ssh/termux)
 
 source $ZSHHOME/autocomplete-setup.sh
