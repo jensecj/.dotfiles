@@ -1,6 +1,7 @@
 [Unit]
 Description=Mailbox synchronization service
 Wants=mbsync.timer
+ConditionPathExists=/home/jens/private/mail/
 
 [Service]
 ExecStart=/usr/local/bin/sync-mail
