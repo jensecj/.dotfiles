@@ -3,6 +3,6 @@
 # fix for stow not wanting to link into another symlink
 BUILD_DIR=$(pwd)/build
 rm -r "$BUILD_DIR/man" &> /dev/null
-cp -r "$BUILD_DIR/share/man" "$BUILD_DIR/man"
+mv "$BUILD_DIR/share/man" "$BUILD_DIR/man"
 
 sudo stow --verbose --target /usr/local --stow build/
