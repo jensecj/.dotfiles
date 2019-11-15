@@ -1,16 +1,66 @@
-#!/bin/bash
+#!/bin/env python
 
-keys=(
-    enc
-    git
-    pass
-)
+import os
+import re
+import sys
+import subprocess
 
-for key in ${keys[*]}; do
-    keygrip=$(gpg --fingerprint --with-keygrip $key | grep Keygrip | head -n 1 | awk '{print $3}')
-    cached=$(gpg-connect-agent "KEYINFO --no-ask $keygrip Err Pmt Des" /bye | xargs | awk '{print $7}')
 
-    if [ $cached = 1 ]; then
-        printf "$key "
-    fi
-done
+def shell(cmd):
+    p = subprocess.Popen(cmd, stdin=subprocess.PIPE, stdout=subprocess.PIPE)
+
+    output = p.stdout.read()
+    return_code = p.wait()
+    err = p.stderr.read() if p.stderr else None
+
+    return return_code, output.decode(), err
+
+
+def keygrips(id):
+    cmd = ["gpg", "--fingerprint", "--with-keygrip", id]
+    _, o, _ = shell(cmd)
+
+    parts = [p for p in re.split("\n\n", o) if p]
+    for p in parts:
+        keys = [k for k in re.split("sub", p) if k]
+        for k in keys:
+            caps = re.search("\[(A|S|E|C)+\]", k).group(0)
+            grip = (
+                re.search("Keygrip = [0-9A-Fa-f]+", k)
+                .group(0)
+                .replace("Keygrip = ", "")
+            )
+
+            yield caps, grip
+
+
+def is_cached(grip):
+    cmd = ["gpg-connect-agent", f"KEYINFO --no-ask {grip} Err Pmt Des", "/bye"]
+
+    _, o, _ = shell(cmd)
+    cached = o[57] == "1"
+    return cached
+
+
+def entry():
+    ids = ["enc", "git", "pass"]
+
+    picks = []
+
+    for id in ids:
+        out = ""
+        for cap, grip in keygrips(id):
+            if is_cached(grip):
+                out += cap
+        if out:
+            out += f" {id}"
+
+        picks.append(out)
+
+    picks = [p for p in picks if p]
+    result = " | ".join(picks)
+    print(result)
+
+
+if __name__ == "__main__":
+    entry()
