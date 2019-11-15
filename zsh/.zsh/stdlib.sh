@@ -40,6 +40,15 @@ wrap() {
     fi
 }
 
+substring() {
+    local val=$(cat -)
+    local val_len=$(echo "$val" | append "-1" | wc -c)
+    local offset=${1:-0}
+    local length=${2:-$val_len}
+
+    echo "${val:$offset:$length}"
+}
+
 ##############
 # whitespace #
 ##############
