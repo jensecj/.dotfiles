@@ -1,10 +1,16 @@
 #!/bin/bash
 
-keygrip=$(gpg-connect-agent -v 'keyinfo --list' /bye 2>&1 | grep -E "(6629933|3F019095) D - - 1")
+keys=(
+    enc
+    git
+    pass
+)
 
-if [ -n "$keygrip" ]; then
-    echo "key is cached"
-    exit 0
-fi
+for key in ${keys[*]}; do
+    keygrip=$(gpg --fingerprint --with-keygrip $key | grep Keygrip | head -n 1 | awk '{print $3}')
+    cached=$(gpg-connect-agent "KEYINFO --no-ask $keygrip Err Pmt Des" /bye | xargs | awk '{print $7}')
 
-exit 1
+    if [ $cached = 1 ]; then
+        printf "$key "
+    fi
+done

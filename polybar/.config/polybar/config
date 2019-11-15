@@ -33,10 +33,9 @@ tray-background = ${colors.background}
 
 [module/gpg-cache]
 type = custom/script
-exec-if = /usr/local/bin/gpg-cached
-exec = echo key
+exec = /usr/local/bin/gpg-cached
 format = <label>
-label = %{F#8f}%{F-}
+label = %{F#8f}%{F-} %output%
 interval = 61
 
 [module/notmuch-unread]
