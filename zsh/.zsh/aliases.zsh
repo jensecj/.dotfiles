@@ -18,6 +18,7 @@ alias diff="diff --color=always" # and diff
 alias mkdir='mkdir -p -v' # make parent directories and tell us
 alias df="df -h" # human-readable by default
 alias bc="bc -q"
+alias ssh-add="ssh-add -t 1h"
 
 # ** common shortcuts
 alias _='sudo'
