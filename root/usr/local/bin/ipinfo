@@ -1,0 +1,8 @@
+#!/bin/bash
+
+data=$(curl -s "ipinfo.io" | jq '.country,.city' | xargs)
+if [ -n "$data" ]; then
+    echo "$data"
+else
+    echo "-"
+fi
