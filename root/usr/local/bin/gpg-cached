@@ -53,12 +53,12 @@ def entry():
             if is_cached(grip):
                 out += cap
         if out:
-            out += f" {id}"
+            out = f"{id}"
 
         picks.append(out)
 
     picks = [p for p in picks if p]
-    result = " | ".join(picks)
+    result = " ".join(picks)
     print(result)
 
 
