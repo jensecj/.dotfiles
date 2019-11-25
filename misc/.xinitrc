@@ -14,5 +14,3 @@ synclient FingerLow=45
 
 # source our terminal resources
 xrdb ~/.Xresources
-
-echo "xinitrc ran" >> /home/jens/runlog
