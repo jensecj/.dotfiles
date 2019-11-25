@@ -291,6 +291,13 @@ function tardecrypt() {
     gpg -d $archive | tar xzvf -
 }
 
+function vpn-down() {
+    running=$(ip addr | grep --color=never vpn | sed -n '2p' | xargs | cut -d' ' -f5)
+
+    if [ -n "$running" ]; then
+        sudo wg-quick down "$running"
+    fi
+}
 
 alias mount_ramdisk="_ mount -t tmpfs -o size=1024m tmpfs /mnt/ramdisk"
 alias umount_ramdisk="_ umount /mnt/ramdisk"
