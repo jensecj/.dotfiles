@@ -1,0 +1,6 @@
+#!/bin/bash
+
+root=$(df / -h --output=avail | sed -n '2p' | xargs)
+extra=$(df /extra -h --output=avail | sed -n '2p' | xargs)
+
+echo "$root / $extra"

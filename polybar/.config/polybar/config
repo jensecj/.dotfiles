@@ -85,10 +85,11 @@ label-urgent-background = ${colors.alert}
 label-urgent-padding = 1
 
 [module/filesystem]
-type = internal/fs
-interval = 7
-mount-0 = /
-label-mounted = %{F#8f}%{F-} %free:5%
+type = custom/script
+exec = /usr/local/bin/freespace
+format = <label>
+label = %{F#8f}%{F-} %output%
+interval = 61
 
 [module/cpu]
 type = internal/cpu
