@@ -1,6 +1,6 @@
 #!/bin/bash
 
-data=$(curl -s "ipinfo.io" | jq '.country,.city' | xargs)
+data=$(curl --connect-timeout 2 -s "ipinfo.io" | jq '.country,.city' | xargs)
 if [ -n "$data" ]; then
     echo "$data"
 else
