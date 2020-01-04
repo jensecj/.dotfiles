@@ -1,8 +1,19 @@
 #!/bin/bash
 
-data=$(curl --connect-timeout 2 -s "ipinfo.io" | jq '.country,.city' | xargs)
+data=$(curl --connect-timeout 2 -s "ipinfo.io")
+error=$(echo "$data" | jq '.error' | xargs)
+
+if [ -n "$error" ] && [ "$error" != "null" ]; then
+    echo "error"
+    echo "$error"
+    exit 1
+fi
+
 if [ -n "$data" ]; then
-    echo "$data"
+    country=$(echo "$data" | jq '.country' | xargs)
+    city=$(echo "$data" | jq '.city' | xargs)
+
+    echo "$country $city"
 else
     echo "-"
 fi
