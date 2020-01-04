@@ -105,7 +105,7 @@ label = %{F#8f}Σ%{F-} %percentage_used:2%
 [module/date]
 type = internal/date
 interval = 5
-date = %Y-%m-%d
+date = %a %Y-%m-%d
 time = %H:%M
 label = %{F#8f}%{F-} %date% %time%
 
