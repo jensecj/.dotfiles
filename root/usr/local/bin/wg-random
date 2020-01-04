@@ -1,0 +1,51 @@
+#!/bin/bash
+
+# interface of current vpn connection, if any
+running=$(ip addr | grep --color=never vpn | sed -n '2p' | xargs | cut -d' ' -f5)
+
+# tear down current connection if it exists
+if [ -n "$running" ]; then
+    sudo wg-quick down "$running"
+fi
+
+# curated list of possible profiles
+vpns=(
+    vpn-mullvad-at1
+    vpn-mullvad-at2
+    vpn-mullvad-be2
+    vpn-mullvad-bg1
+    vpn-mullvad-bg2
+    vpn-mullvad-bg3
+    vpn-mullvad-ch1
+    vpn-mullvad-ch2
+    vpn-mullvad-ch3
+    vpn-mullvad-ch4
+    vpn-mullvad-cz1
+    vpn-mullvad-cz2
+    vpn-mullvad-cz3
+    vpn-mullvad-fi1
+    vpn-mullvad-fi2
+    vpn-mullvad-fi3
+    vpn-mullvad-hu1
+    vpn-mullvad-hu2
+    vpn-mullvad-lv1
+    vpn-mullvad-md1
+    vpn-mullvad-nl1
+    vpn-mullvad-nl2
+    vpn-mullvad-nl3
+    vpn-mullvad-nl4
+    vpn-mullvad-nl5
+    vpn-mullvad-pl1
+    vpn-mullvad-pl2
+    vpn-mullvad-pl3
+    vpn-mullvad-ro1
+    vpn-mullvad-ro2
+    vpn-mullvad-ro3
+    vpn-mullvad-rs1
+    vpn-mullvad-rs2
+)
+
+# pick a random profile, and setup connection
+pick=${vpns[$RANDOM % ${#vpns[@]} ]}
+sudo wg-quick up "$pick"
+printf "\033[1;37mnow on $pick"
