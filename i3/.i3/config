@@ -48,7 +48,7 @@ bindsym $mod+Ctrl+Return fullscreen disable; exec $term --name="float-me"
 
 bindsym $mod+d exec --no-startup-id rofi -show run
 bindsym $mod+Shift+d exec define "$(xsel -o)"
-bindsym $mod+Shift+e exec mpv --autofit "70%x60%" --loop --x11-name "mpv-float" "$(xsel -o)"
+bindsym $mod+Ctrl+y exec mpv --autofit "70%x60%" --loop --x11-name "mpv-float" "$(xsel -o)"
 
 bindsym $mod+Shift+b exec emacsclient -c -F '((title . "em-bookmarks"))' "/home/jens/vault/git/bookmarks.org"
 bindsym $mod+Delete exec $editor
