@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# read initial file if no argument given
+if [ -z "$1" ]; then
+    OLD=$(ls | fzf --no-multi)
+else
+    OLD="$1"
+fi
+
+read -e -i "$OLD" -r NEW
+
+# echo "old: $OLD"
+# echo "new: $NEW"
+mv "$OLD" "$NEW"
