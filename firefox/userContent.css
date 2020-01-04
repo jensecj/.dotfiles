@@ -43,3 +43,10 @@
         font-size: 12pt;
     }
 }
+
+@-moz-document domain("wikipedia.org") {
+    body {
+        margin: auto;
+        max-width: 1500px;
+    }
+}
