@@ -1,0 +1,21 @@
+[
+    {
+        "name": "sync",
+        "source": "/home/jens/sync",
+        "destination": "/mnt/extern/private/",
+        "order": 2
+    },
+    {
+        "name": "software",
+        "source": "/home/jens/software",
+        "destination": "/mnt/extern/",
+        "exclude": ["__pycache__/"],
+        "order": 1
+    },
+    {
+        "name": "pictures",
+        "source": "/home/jens/pictures",
+        "destination": "/mnt/extern/",
+        "order": 0
+    }
+]

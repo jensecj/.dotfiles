@@ -1,0 +1,20 @@
+[
+    {
+        "name": "ssh",
+        "source": "/home/jens/.ssh/",
+        "destination": "/home/jens/private/.keys/.ssh/",
+        "order": 0
+    },
+    {
+        "name": "gpg",
+        "source": "/home/jens/.gnupg/",
+        "destination": "/home/jens/private/.keys/.gpg/",
+        "order": 1
+    },
+    {
+        "name": "pass",
+        "source": "/home/jens/.password-store/",
+        "destination": "/home/jens/private/.keys/.pass/",
+        "order": 2
+    }
+]
