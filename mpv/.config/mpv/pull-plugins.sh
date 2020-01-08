@@ -1,8 +1,8 @@
 if [[ ! -f scripts/mpv_thumbnail_script_client_osc.lua ]]; then
     echo "downloading plugin: mpv_thumbnail_script"
     curl -s https://api.github.com/repos/TheAMM/mpv_thumbnail_script/releases/latest | grep browser_download_url | cut -d '"' -f 4 | wget -i -
-    cp mpv_thumbnail_script_server.lua scripts/mpv_thumbnail_script_server-a.lua
-    mv mpv_thumbnail_script_server.lua scripts/mpv_thumbnail_script_server-b.lua
+    cp mpv_thumbnail_script_server.lua scripts/mpv_thumbnail_script_server-1.lua
+    mv mpv_thumbnail_script_server.lua scripts/mpv_thumbnail_script_server-2.lua
     mv mpv_thumbnail_script_client_osc.lua scripts/mpv_thumbnail_script_client_osc.lua
 fi
 
