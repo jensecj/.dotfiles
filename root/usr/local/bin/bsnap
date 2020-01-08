@@ -1,0 +1,62 @@
+#!/bin/bash
+
+SNAPSHOT_DIR="/mnt/exhdd/snapshots/borg"
+BORG_PATH="$SNAPSHOT_DIR::{hostname}--{user}--{now}"
+
+if [ ! -d "$SNAPSHOT_DIR" ]; then
+    echo "snapshot directory not found"
+    exit 1
+fi
+
+dirs=(
+    "/boot"
+    "/build"
+    "/etc"
+    "/srv"
+    "$HOME/.config"
+)
+
+DATE=$(date +%Y-%m-%d--%H:%M:%S)
+
+info() { printf "\n%s %s\n\n" "$DATE" "$*" >&2; }
+trap 'echo $DATE Backup interrupted >&2; exit 2' INT TERM
+
+borg create \
+     --stats \
+     --progress \
+     --verbose \
+     --filter AME \
+     --list \
+     --show-rc \
+     --compression lz4 \
+     --exclude-caches \
+     --exclude '/home/*/.config/chromium/*' \
+     --exclude '/home/*/.config/Electron/*' \
+     "$BORG_PATH" \
+     "${dirs[@]}"
+
+backup_exit=$?
+
+borg prune \
+     --list \
+     --prefix '{hostname}--' \
+     --show-rc \
+     --keep-daily   7 \
+     --keep-weekly  4 \
+     --keep-monthly 12 \
+     "$SNAPSHOT_DIR"
+
+prune_exit=$?
+
+# use highest exit code as global exit code
+global_exit=$(( backup_exit > prune_exit ? backup_exit : prune_exit ))
+
+if [ ${global_exit} -eq 0 ]; then
+    info "Backup and Prune finished successfully"
+elif [ ${global_exit} -eq 1 ]; then
+    info "Backup and/or Prune finished with warnings"
+else
+    info "Backup and/or Prune finished with errors"
+fi
+
+exit ${global_exit}
