@@ -1,6 +1,6 @@
 #!/bin/bash
 
-SNAPSHOT_DIR="/mnt/exhdd/snapshots/borg"
+SNAPSHOT_DIR="$HOME/sync/.snapshots/borg"
 BORG_PATH="$SNAPSHOT_DIR::{hostname}--{user}--{now}"
 
 if [ ! -d "$SNAPSHOT_DIR" ]; then
