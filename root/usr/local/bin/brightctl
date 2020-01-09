@@ -1,0 +1,9 @@
+#!/bin/sh
+
+DEVICE=$1
+CHANGE=$2
+
+brightnessctl -d "$DEVICE" s "$CHANGE"
+
+BRIGHTNESS=$(brightnessctl -d "$DEVICE" | grep -i current | cut -d' ' -f4 | tr -d '()')
+notify-send -t 500 'backlight' "$BRIGHTNESS"
