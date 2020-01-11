@@ -252,9 +252,9 @@ exec --no-startup-id udiskie --tray
 # settings
 exec --no-startup-id feh --randomize --bg-fill /home/jens/pictures/wallpapers/
 exec --no-startup-id xidlehook \
-  --timer normal 180 \
+  --timer 180 \
   'dimmer dec 300' 'dimmer pop' \
-  --timer primary 10 \
+  --timer 10 \
   'dimmer pop; slock' ''\
   --not-when-fullscreen \
   --not-when-audio
