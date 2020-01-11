@@ -3,7 +3,14 @@
 DEVICE=$1
 CHANGE=$2
 
+brightnessctl -d "$DEVICE"
+
+if [ $? -ne 0 ]; then
+    notify-send -u critical -t 3000 'backlight' "brightctl: $DEVICE not found"
+    exit 1
+fi
+
 brightnessctl -d "$DEVICE" s "$CHANGE"
 
 BRIGHTNESS=$(brightnessctl -d "$DEVICE" | grep -i current | cut -d' ' -f4 | tr -d '()')
-notify-send -t 500 'backlight' "$BRIGHTNESS"
+notify-send -t 1000 'backlight' "$BRIGHTNESS"
