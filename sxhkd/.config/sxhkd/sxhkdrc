@@ -1,0 +1,84 @@
+# brightness
+XF86MonBrightnessUp
+    brightctl intel_backlight +5%
+
+shift + XF86MonBrightnessUp
+    brightctl intel_backlight +1%
+
+XF86MonBrightnessDown
+    brightctl intel_backlight 5%-
+
+shift + XF86MonBrightnessDown
+    brightctl intel_backlight 1%-
+
+ctrl + XF86MonBrightnessUp
+    brightctl ddcci5 +5%
+
+ctrl + XF86MonBrightnessDown
+    brightctl ddcci5 5%-
+
+# audio
+XF86AudioRaiseVolume
+    pactl set-sink-volume 0 +1db
+
+XF86AudioLowerVolume
+    pactl set-sink-volume 0 -1db
+
+XF86AudioMute
+    amixer -D pulse set Master 1+ toggle
+
+# programs
+super + Return
+    $TERMINAL -e 'tmux'
+
+super + shift + Return
+    $TERMINAL
+
+super + ctrl + Return
+    $TERMINAL --name="float-me"
+
+super + BackSpace
+    $BROWSER
+
+super + Delete
+    $EDITOR
+
+super + d
+    rofi -show run
+
+super + shift + d
+    define "$(xsel -o)"
+
+super + ctrl + y
+    mpv --autofit "70%x60%" --loop --x11-name "mpv-float" "$(xsel -o)"
+
+super + shift + b
+    emacsclient -c -F '((title . "em-bookmarks"))' "/home/jens/vault/git/bookmarks.org"
+
+# misc
+super + Print
+    scrot '%Y-%m-%d_%H:%M:%S_$wx$h.png' -e 'mv $f /home/jens/private/screenshots/'; exec notify-send 'Screenshot saved'
+
+super + shift + Print
+    scrot -s '%Y-%m-%d_%H:%M:%S_$wx$h.png' -e 'mv $f /home/jens/private/screenshots/' && notify-send 'Screengrab saved'; exec notify-send 'Select part of screen to grab'
+
+super + shift + u
+    xdotool key XF86Ungrab && notify-send 'ungrabbed'
+
+super + shift + g
+    autorandr -c && sleep .2 && dimmer
+
+super + l
+    slock
+
+
+# hide/show polybar
+super + shift + m
+    xdotool windowunmap <<< eval $(xdotool search --name "polybar-jensbar")
+
+super + m
+    xdotool windowmap <<< eval $(xdotool search --name "polybar-jensbar")
+
+# restart polybar
+super + shift + p
+    polybar-setup; exec notify-send 'Restarted polybar'

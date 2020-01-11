@@ -4,11 +4,6 @@
 
 # set mod key (Mod1=<Alt>, Mod4=<Super>)
 set $mod Mod4
-# set preferred terminal
-set $term LANG=en_DK.UTF-8 termite
-# preferred browser
-set $browser firefox-developer-edition
-set $editor em
 
 # configure border style <normal|1pixel|pixel xx|none|pixel>
 default_border pixel 1
@@ -27,44 +22,8 @@ floating_modifier $mod
 # KEYBINDINGS #
 ###############
 
-# screen brightness controls
-bindsym XF86MonBrightnessUp exec --no-startup-id "brightctl intel_backlight +5%"
-bindsym Shift+XF86MonBrightnessUp exec --no-startup-id "brightctl intel_backlight +1%"
-
-bindsym XF86MonBrightnessDown exec --no-startup-id "brightctl intel_backlight 5%-"
-bindsym Shift+XF86MonBrightnessDown exec --no-startup-id "brightctl intel_backlight 1%-"
-
-bindsym Ctrl+XF86MonBrightnessUp exec --no-startup-id "brightctl ddcci5 +5%"
-bindsym Ctrl+XF86MonBrightnessDown exec --no-startup-id "brightctl ddcci5 5%-"
-
 # kill focused window
 bindsym $mod+Shift+q kill
-
-# audio
-bindsym XF86AudioRaiseVolume exec --no-startup-id "pactl set-sink-volume 0 +1db"
-bindsym XF86AudioLowerVolume exec --no-startup-id "pactl set-sink-volume 0 -1db"
-bindsym XF86AudioMute exec --no-startup-id "amixer -D pulse set Master 1+ toggle"
-
-# programs
-bindsym $mod+Return exec $term -e 'tmux'
-bindsym $mod+Shift+Return exec $term
-bindsym $mod+Ctrl+Return fullscreen disable; exec $term --name="float-me"
-
-bindsym $mod+d exec --no-startup-id rofi -show run
-bindsym $mod+Shift+d exec define "$(xsel -o)"
-bindsym $mod+Ctrl+y exec mpv --autofit "70%x60%" --loop --x11-name "mpv-float" "$(xsel -o)"
-
-bindsym $mod+Shift+b exec emacsclient -c -F '((title . "em-bookmarks"))' "/home/jens/vault/git/bookmarks.org"
-bindsym $mod+Delete exec $editor
-bindsym $mod+BackSpace exec $browser
-bindsym $mod+F5 exec $term -e 'ranger'
-
-# screenshotting
-bindsym $mod+Print exec --no-startup-id scrot '%Y-%m-%d_%H:%M:%S_$wx$h.png' -e 'mv $f /home/jens/private/screenshots/'; exec notify-send 'Screenshot saved'
-bindsym $mod+Shift+Print --release exec --no-startup-id scrot -s '%Y-%m-%d_%H:%M:%S_$wx$h.png' -e 'mv $f /home/jens/private/screenshots/' && notify-send 'Screengrab saved'; exec notify-send 'Select part of screen to grab'
-
-bindsym $mod+Shift+u exec --no-startup-id xdotool key XF86Ungrab && notify-send 'ungrabbed'
-bindsym $mod+Shift+g exec --no-startup-id autorandr -c && sleep .2 && dimmer
 
 # change focus
 bindsym $mod+Left focus left
@@ -105,16 +64,6 @@ bindsym $mod+Shift+minus move scratchpad
 # show the next scratchpad window or hide the focused scratchpad window.
 # if there are multiple scratchpad windows, this command cycles through them.
 bindsym $mod+minus scratchpad show
-
-# lock screen
-bindsym $mod+l exec --no-startup-id sleep .1 && slock
-
-# hide/show polybar
-bindsym $mod+Shift+m exec --no-startup-id xdotool windowunmap <<< eval $(xdotool search --name "polybar-jensbar")
-bindsym $mod+m exec --no-startup-id xdotool windowmap <<< eval $(xdotool search --name "polybar-jensbar")
-
-# restart polybar
-bindsym $mod+Shift+p exec --no-startup-id polybar-setup; exec notify-send 'Restarted polybar'
 
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r fullscreen disable; restart; exec notify-send 'Restarted i3'
