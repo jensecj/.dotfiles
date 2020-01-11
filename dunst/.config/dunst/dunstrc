@@ -1,18 +1,19 @@
 [global]
 monitor = 0
+
 # width x number of notifications - padding + padding
-geometry = "300x20-10+10"
+geometry = "300x20-5+25"
 shrink = no # do not shrink to fit messages
-transparency = 0 # completely opaque, range [0;100]
+transparency = 20 # completely opaque, range [0;100]
 
 notification_height = 0 # fit to message
-padding = 8 # between text and seperator
+padding = 12 # between text and seperator
 separator_height = 1 # width of seperator between notifications
 horizontal_padding = 8
 frame_width = 1 # width of border around the notification
 
 frame_color = "#313131"
-separator_color = "#F0DFAF"
+separator_color = "#313131"
 
 indicate_hidden = yes # show how many message we have hidden because of space requirements
 sort = yes # sort messages by urgency.
@@ -27,7 +28,7 @@ show_age_threshold = 60 # show how old a message is if older than this threshold
 word_wrap = yes # wrap lines if they're longer than the window
 ignore_newline = no # do not ignore '\n' in notification texts
 stack_duplicates = true # merge duplicate notifications
-hide_duplicate_count = false # show how many times a duplicate notification occurs
+hide_duplicate_count = true # show how many times a duplicate notification occurs
 
 # Display indicators for URLs (U) and actions (A).
 show_indicators = yes
