@@ -56,11 +56,11 @@ super + shift + b
     emacsclient -c -F '((title . "em-bookmarks"))' "/home/jens/vault/git/bookmarks.org"
 
 # misc
-super + Print
-    scrot '%Y-%m-%d_%H:%M:%S_$wx$h.png' -e 'mv $f /home/jens/private/screenshots/'; exec notify-send 'Screenshot saved'
+@super + Print
+    scrot '%Y-%m-%d_%H:%M:%S_$wx$h.png' -e 'mv $f /home/jens/private/screenshots/' && notify-send "screen shot"
 
-super + shift + Print
-    scrot -s '%Y-%m-%d_%H:%M:%S_$wx$h.png' -e 'mv $f /home/jens/private/screenshots/' && notify-send 'Screengrab saved'; exec notify-send 'Select part of screen to grab'
+@super + shift + Print
+    scrot -s '%Y-%m-%d_%H:%M:%S_$wx$h.png' -e 'mv $f /home/jens/private/screenshots/' && notify-send "screen grabbed"
 
 super + shift + u
     xdotool key XF86Ungrab && notify-send 'ungrabbed'
