@@ -76,6 +76,7 @@ declare -a packages=(
     moreutils # more shell utils
     keychain # manage ssh agents
     brightnessctl # easy brightness controls
+    task-spooler # queue tasks to be completed sequentially
     unclutter # hide the curser when idle
     tldr # quick shell examples for most commands
     polybar # info bar / fringe for things
