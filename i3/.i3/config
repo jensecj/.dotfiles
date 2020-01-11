@@ -29,7 +29,11 @@ floating_modifier $mod
 
 # screen brightness controls
 bindsym XF86MonBrightnessUp exec --no-startup-id "brightctl intel_backlight +5%"
+bindsym Shift+XF86MonBrightnessUp exec --no-startup-id "brightctl intel_backlight +1%"
+
 bindsym XF86MonBrightnessDown exec --no-startup-id "brightctl intel_backlight 5%-"
+bindsym Shift+XF86MonBrightnessDown exec --no-startup-id "brightctl intel_backlight 1%-"
+
 bindsym Ctrl+XF86MonBrightnessUp exec --no-startup-id "brightctl ddcci5 +5%"
 bindsym Ctrl+XF86MonBrightnessDown exec --no-startup-id "brightctl ddcci5 5%-"
 
