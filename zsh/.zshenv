@@ -1,7 +1,11 @@
 # exports, common paths, etc.
 export DOTFILESHOME=$HOME/.dotfiles
 export ZSHHOME=$HOME/.zsh
-export EDITOR="em" # emacsclient, this scripts starts the daemon if needed
+export EDITOR=em # emacsclient, this scripts starts the daemon if needed
+export BROWSER=firefox-developer-edition
+export TERMINAL=termite
+
+export LANG="en_DK.UTF-8"
 
 # make gpg happy, needed for git signing from terminal
 export GPG_TTY=$(tty)
