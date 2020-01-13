@@ -1,6 +1,7 @@
 # exports, common paths, etc.
 export DOTFILESHOME=$HOME/.dotfiles
 export ZSHHOME=$HOME/.zsh
+export ZSHPLUGINS=$ZSHHOME/plugins
 export EDITOR=em # emacsclient, this scripts starts the daemon if needed
 export BROWSER=firefox-developer-edition
 export TERMINAL=termite
@@ -40,10 +41,9 @@ export TIMEFMT=''$'\n%J'$'\n%U user | %S system | %P cpu | %*Es total'$'\n'\
 
 # add things to PATH
 paths=("$DOTFILESHOME/bin"
-       "$HOME/.local/bin"
        "$HOME/.cargo/bin"
        "$HOME/.roswell/bin")
 
 for p in $paths; do
-    export PATH=${p}:${PATH}
+    export PATH=${PATH}:${p}
 done
