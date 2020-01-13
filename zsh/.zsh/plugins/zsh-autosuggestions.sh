@@ -1,1 +1,2 @@
-source ${ZSHHOME}/plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
+#!/bin/sh
+. $ZSHHOME/plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh

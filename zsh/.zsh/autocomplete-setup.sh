@@ -1,3 +1,5 @@
+#!/bin/sh
+
 # load the auto completion system and setup
 autoload -Uz complist
 autoload -Uz compinit
@@ -5,7 +7,7 @@ autoload -Uz compinit
 # if the cache does not exist, or if it is older
 # than 24 hours, rebuild it.
 cache_exists=$(test -e ~/.zcompdump)
-if [[ ! -e '/home/jens/.zcompdump' || $(find /home/jens/.zcompdump -mtime +1) ]]; then
+if [[ ! -e "$HOME/.zcompdump" || $(find "$HOME/.zcompdump" -mtime +1) ]]; then
     compinit
 else
     compinit -C

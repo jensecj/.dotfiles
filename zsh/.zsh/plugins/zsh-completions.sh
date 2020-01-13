@@ -1,1 +1,2 @@
-source ${ZSHHOME}/plugins/zsh-completions/zsh-completions.plugin.zsh
+#!/bin/sh
+. $ZSHHOME/plugins/zsh-completions/zsh-completions.plugin.zsh
