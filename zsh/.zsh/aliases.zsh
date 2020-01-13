@@ -161,8 +161,8 @@ alias dl='snatch --threads 4'
 # dont embed thumbnails until it works properly with mkv "--embed-thumbnail"
 alias ytdl='youtube-dl -i -f "bestvideo[height<=?1080]+bestaudio/best" --all-subs --embed-subs --add-metadata -o"%(uploader)s -- %(upload_date)s -- %(title)s.%(ext)s"'
 alias ytdlnr='ytdl -o"%(autonumber)s -- %(uploader)s -- %(upload_date)s -- %(title)s.%(ext)s"'
+alias ytarc="ytdlnr --write-description"
 alias ytmp3='youtube-dl -f "bestvideo[height<=?480]+bestaudio" -x --audio-format mp3 -o"%(uploader)s -- %(title)s.%(ext)s"'
-
 
 function sbclmk () {
     if [[ -z $1 ]]; then
@@ -180,6 +180,9 @@ function sbclmk () {
 alias fm="ranger"
 alias sl="streamlink --player=mpv --player-no-close --player-continuous-http --title '{title} - {url}'"
 alias myt="mpv --ytdl"
+alias myt720="mpv --ytdl --ytdl-raw-options=format=720p60"
+alias myt1080="mpv --ytdl --ytdl-raw-options=format=1080p60"
+
 alias py="python"
 alias qr="qrcode-terminal"
 
