@@ -68,9 +68,6 @@ bindsym $mod+minus scratchpad show
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r fullscreen disable; restart; exec notify-send 'Restarted i3'
 
-# exit i3 (logs you out of your X session)
-# bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
-
 #########
 # MODES #
 #########
@@ -94,17 +91,15 @@ mode "resize"
 ##############
 
 # workspace names
-# 零 # líng (zero)
-set $ws1 一 yī
-set $ws2 二 èr
-set $ws3 三 sān
-set $ws4 四 sì
-set $ws5 五 wǔ
-set $ws6 六 liù
-set $ws7 七 qī
-set $ws8 八 bā
-# 九 # jiǔ (nine)
-# 十 # shí (ten)
+set $ws1 1
+set $ws2 2
+set $ws3 3
+set $ws4 4
+set $ws5 5
+set $ws6 6
+set $ws7 7
+set $ws8 8
+set $ws9 9
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
@@ -115,6 +110,7 @@ bindsym $mod+5 workspace $ws5
 bindsym $mod+6 workspace $ws6
 bindsym $mod+7 workspace $ws7
 bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
 
 # move focused container to workspace
 bindsym $mod+Ctrl+1 move container to workspace $ws1
@@ -125,6 +121,7 @@ bindsym $mod+Ctrl+5 move container to workspace $ws5
 bindsym $mod+Ctrl+6 move container to workspace $ws6
 bindsym $mod+Ctrl+7 move container to workspace $ws7
 bindsym $mod+Ctrl+8 move container to workspace $ws8
+bindsym $mod+Ctrl+9 move container to workspace $ws9
 
 # move to workspace with focused container
 bindsym $mod+Shift+1 move container to workspace $ws1; workspace $ws1
@@ -135,6 +132,7 @@ bindsym $mod+Shift+5 move container to workspace $ws5; workspace $ws5
 bindsym $mod+Shift+6 move container to workspace $ws6; workspace $ws6
 bindsym $mod+Shift+7 move container to workspace $ws7; workspace $ws7
 bindsym $mod+Shift+8 move container to workspace $ws8; workspace $ws8
+bindsym $mod+Shift+9 move container to workspace $ws9; workspace $ws9
 
 ########################
 # APPLICATION SPECIFIC #
@@ -174,9 +172,11 @@ for_window [class="matplotlib"] floating enable
 for_window [class="Matplotlib"] floating enable
 
 
-############
-# STARTUPS #
-############
+###########
+# STARTUP #
+###########
+
+# TODO: start these somewhere else, .xprofile? move the ones that can to systemd
 
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 
@@ -206,10 +206,14 @@ exec --no-startup-id i3autotile >> ~/.i3log 2>&1
 exec --no-startup-id autocutsel -fork
 exec --no-startup-id autocutsel -selection PRIMARY -fork
 
+exec --no-startup-id sxhkd
+
 # apps that need to start every time i3 restarts
 exec_always --no-startup-id xset -b
 exec_always --no-startup-id setxkbmap -layout dk -option ctrl:nocaps
 exec_always --no-startup-id fix_xcursor
+
+exec --no-startup-id xterm -e 'syschk; zsh'
 
 #########
 # THEME #
@@ -221,5 +225,4 @@ client.focused_inactive #3f3f3f #3f3f3f #F0DFAF #3f3f3f
 client.unfocused        #3f3f3f #3f3f3f #F0DFAF #3f3f3f
 client.urgent           #3f3f3f #3f3f3f #F0DFAF #3f3f3f
 client.placeholder      #000000 #0c0c0c #ffffff #000000 #0c0c0c
-
 client.background       #2B2C2B
