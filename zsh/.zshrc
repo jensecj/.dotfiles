@@ -16,7 +16,7 @@ HISTFILE=~/.zsh_history
 # enable edit-then-execute binding
 autoload edit-command-line
 zle -N edit-command-line
-bindkey '^e' edit-command-line
+bindkey '^X' edit-command-line
 
 # use bash selection, so killing stops at delimiters
 autoload -U select-word-style && {
