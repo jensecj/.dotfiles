@@ -1,0 +1,25 @@
+#!/bin/bash
+
+function good() {
+    printf "\e[0;32m[+]\e[m %s\n" "$*"
+}
+
+function bad() {
+    printf "\e[0;31m[-]\e[m %s\n" "$*"
+}
+
+function chk() {
+    test $? -eq 0 && good "$*" || bad "$*"
+}
+
+
+systemctl is-active earlyoom &> /dev/null; chk "earlyoom"
+systemctl is-active dnscrypt-proxy &> /dev/null; chk "dnscrypt-proxy"
+pgrep "xidlehook" &> /dev/null; chk "xidlehook"
+pgrep "polybar" &> /dev/null; chk "polybar"
+pgrep "dunst" &> /dev/null; chk "dunst"
+pgrep "tincd" &> /dev/null; chk "tincd"
+pgrep "unclutter" &> /dev/null; chk "unclutter"
+pgrep "i3autotile" &> /dev/null; chk "i3autotile"
+pgrep "autocutsel" &> /dev/null; chk "autocutsel"
+systemctl --user is-active sxhkd &> /dev/null; chk "sxhkd"
