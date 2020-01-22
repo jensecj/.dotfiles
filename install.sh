@@ -68,7 +68,6 @@ declare -a packages=(
     watchman # inode change monitor and trigger
 
     # system
-    linux419 linux419-headers # kernel
     dkms # dynamic kernel module support
     earlyoom # out-of-memory daemon
 
