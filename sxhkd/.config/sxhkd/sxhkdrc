@@ -49,6 +49,9 @@ super + ctrl + Return
 super + m
     $TERMINAL -e 'ranger'
 
+super + p
+    $TERMINAL -e 'htop'
+
 super + BackSpace
     $BROWSER
 
