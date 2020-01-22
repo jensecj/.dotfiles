@@ -81,7 +81,7 @@ declare -a packages=(
     tldr # quick shell examples for most commands
     polybar # info bar / fringe for things
     sxhkd # hotkey daemon for x
-    compton # screen compositor for X11
+    picom # screen compositor for X11
     i3-gaps # tiling window manager
     dunst # notification manager
     ufw # firewall
