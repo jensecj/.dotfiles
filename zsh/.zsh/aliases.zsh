@@ -39,6 +39,8 @@ function whichshell() {
 }
 
 function bu() { cp "$1" "$1.bak"; }
+function mvbu() { mv "$1" "$1.bak"; }
+
 function mcd() { mkdir "$1"; cd "$1" || exit 1; }
 
 function del() {
