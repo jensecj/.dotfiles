@@ -160,10 +160,9 @@ alias rmv="rsync --verbose --human-readable --new-compress --archive --partial -
 alias pf=" peerflix --start --mpv"
 alias dl='snatch --threads 4'
 
-# dont embed thumbnails until it works properly with mkv "--embed-thumbnail"
-alias ytdl='youtube-dl -i -f "bestvideo[height<=?1080]+bestaudio/best" --all-subs --embed-subs --add-metadata -o"%(uploader)s -- %(upload_date)s -- %(title)s.%(ext)s"'
+alias ytdl='youtube-dl -i -f "bestvideo[height<=?1080]+bestaudio/best" -o"%(uploader)s -- %(upload_date)s -- %(title)s.%(ext)s" --prefer-ffmpeg --postprocessor-args="-threads 2"'
+alias ytarc="ytdl --write-description --all-subs --embed-subs --add-metadata" # --embed-thumbnail does not work with .mkv yet
 alias ytdlnr='ytdl -o"%(autonumber)s -- %(uploader)s -- %(upload_date)s -- %(title)s.%(ext)s"'
-alias ytarc="ytdlnr --write-description"
 alias ytmp3='youtube-dl -f "bestvideo[height<=?480]+bestaudio" -x --audio-format mp3 -o"%(uploader)s -- %(title)s.%(ext)s"'
 
 function sbclmk () {
