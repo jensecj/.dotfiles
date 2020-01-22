@@ -165,19 +165,6 @@ alias ytarc="ytdl --write-description --all-subs --embed-subs --add-metadata" # 
 alias ytdlnr='ytdl -o"%(autonumber)s -- %(uploader)s -- %(upload_date)s -- %(title)s.%(ext)s"'
 alias ytmp3='youtube-dl -f "bestvideo[height<=?480]+bestaudio" -x --audio-format mp3 -o"%(uploader)s -- %(title)s.%(ext)s"'
 
-function sbclmk () {
-    if [[ -z $1 ]]; then
-        echo "usage: sbclmk <path/to/project>";
-        return 1;
-    fi
-
-    echo "creating project $1"
-    sbcl --noinform \
-         --eval "(ql:quickload \"cl-project\")" \
-         --eval "(cl-project:make-project #p\"$1\")" \
-         --eval "(exit)"
-}
-
 alias fm="ranger"
 alias sl="streamlink --player=mpv --player-no-close --player-continuous-http --title '{title} - {url}'"
 alias myt="mpv --ytdl"
@@ -213,17 +200,6 @@ function myip() {
         echo "public: $public_ip";
     fi
 }
-
-function start_xidlehook() {
-    nohup xidlehook \
-          --timer normal 180 "dimmer 3000" "dimmer pop" \
-          --timer primary 10 "dimmer pop; slock" "" \
-          --not-when-fullscreen --not-when-audio \
-          >>& ~/.xidlehook.log & disown
-}
-
-alias rtags='rc -J'
-alias rtagsd='rdm'
 
 
 alias cl++="clang++ -std=c++17 -stdlib=libstdc++"
