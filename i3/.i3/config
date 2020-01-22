@@ -143,12 +143,12 @@ for_window [class="Termite" instance="dict-lookup"] floating enable
 for_window [class="Termite" instance="dict-lookup"] resize grow up 200px
 for_window [class="Termite" instance="dict-lookup"] resize grow down 200px
 
-for_window [class="Termite" instance="float-me"] floating enable
-for_window [class="Termite" instance="float-me"] resize grow up 150px
-for_window [class="Termite" instance="float-me"] resize grow down 150px
-for_window [class="Termite" instance="float-me"] resize grow left 150px
-for_window [class="Termite" instance="float-me"] resize grow right 150px
-for_window [class="Termite" instance="float-me"] move position center
+for_window [instance="float-me"] floating enable
+for_window [instance="float-me"] resize grow up 150px
+for_window [instance="float-me"] resize grow down 150px
+for_window [instance="float-me"] resize grow left 150px
+for_window [instance="float-me"] resize grow right 150px
+for_window [instance="float-me"] move position center
 
 for_window [title="cl-opengl"] floating enable
 for_window [class="anki"] floating enable
