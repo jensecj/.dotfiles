@@ -103,11 +103,11 @@ interval = 2
 label = %{F#8f}Σ%{F-} %percentage_used:2%
 
 [module/date]
-type = internal/date
-interval = 5
-date = %a %Y-%m-%d
-time = %H:%M
-label = %{F#8f}%{F-} %date% %time%
+type = custom/script
+exec = /usr/local/bin/nowdate
+format = <label>
+interval = 17
+label = %{F#8f}%{F-} %output%
 
 [module/alsa]
 type = internal/alsa
