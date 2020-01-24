@@ -165,11 +165,11 @@ alias ytarc="ytdl --write-description --all-subs --embed-subs --add-metadata" # 
 alias ytdlnr='ytdl -o"%(autonumber)s -- %(uploader)s -- %(upload_date)s -- %(title)s.%(ext)s"'
 alias ytmp3='youtube-dl -f "bestvideo[height<=?480]+bestaudio" -x --audio-format mp3 -o"%(uploader)s -- %(title)s.%(ext)s"'
 
+alias myt='mpv --ytdl --ytdl-raw-options=format="bestvideo[height<=?1080]+bestaudio/best[height<=1080]"'
+alias myt720='mpv --ytdl --ytdl-raw-options=format="bestvideo[height<=?720]+bestaudio/best[height<=720]"'
+
 alias fm="ranger"
 alias sl="streamlink --player=mpv --player-no-close --player-continuous-http --title '{title} - {url}'"
-alias myt="mpv --ytdl"
-alias myt720="mpv --ytdl --ytdl-raw-options=format=720p60"
-alias myt1080="mpv --ytdl --ytdl-raw-options=format=1080p60"
 
 alias py="python"
 alias qr="qrcode-terminal"
