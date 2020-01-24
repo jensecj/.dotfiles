@@ -1,0 +1,33 @@
+#!/bin/sh
+
+# starting apps
+sxhkd &                         # hotkey daemon
+udiskie --tray &                # tray icon for easy disk management
+nm-applet &                     # tray icon for wifi
+msmtp # smtp server
+dunst -conf "$HOME/.config/dunst/dunstrc" & # the notification daemon
+unclutter &                                           # hide cursor after 5sec of idle
+
+# sync the linux clipboards
+autocutsel -fork
+autocutsel -selection PRIMARY -fork
+
+# custom apps
+i3autotile >> ~/.i3log 2>&1 &
+
+# system setup
+xset -b                         # disable system beep
+setxkbmap -layout dk -option ctrl:nocaps # map CapsLock -> Ctrl
+# fix_xcursor                              # fix the xcursor
+
+xidlehook \
+    --timer 180 \
+    'dimmer dec 300' 'dimmer pop' \
+    --timer 10 \
+    'dimmer pop; slock' ''\
+    --not-when-fullscreen \
+    --not-when-audio &
+
+dimmer &                          # dim screen to fit time-of-day
+polybar-setup &                   # setup polybar for multihead
+autorandr --change &              # load saved multihead settings

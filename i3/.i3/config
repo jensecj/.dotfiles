@@ -160,44 +160,7 @@ for_window [class="Matplotlib"] floating enable
 # STARTUP #
 ###########
 
-# TODO: start these somewhere else, .xprofile? move the ones that can to systemd
-
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-
-# applets / etc.
-exec --no-startup-id nm-applet
-exec --no-startup-id udiskie --tray
-
-# settings
-exec --no-startup-id feh --randomize --bg-fill /home/jens/pictures/wallpapers/
-exec --no-startup-id xidlehook \
-  --timer 180 \
-  'dimmer dec 300' 'dimmer pop' \
-  --timer 10 \
-  'dimmer pop; slock' ''\
-  --not-when-fullscreen \
-  --not-when-audio
-
-# apps to run on startup
-exec --no-startup-id dunst -conf /home/jens/.dotfiles/dunst/.config/dunstrc # the notification daemon
-exec --no-startup-id msmtp # smtp server
-exec --no-startup-id compton --no-fading-openclose -b # deamonize / disable shadows/fading
-exec --no-startup-id unclutter # hiding the mouse cursor when idle
-exec --no-startup-id polybar-setup
-exec --no-startup-id i3autotile >> ~/.i3log 2>&1
-
-# try syncing the linux selections
-exec --no-startup-id autocutsel -fork
-exec --no-startup-id autocutsel -selection PRIMARY -fork
-
-exec --no-startup-id sxhkd
-
-# apps that need to start every time i3 restarts
-exec_always --no-startup-id xset -b
-exec_always --no-startup-id setxkbmap -layout dk -option ctrl:nocaps
-exec_always --no-startup-id fix_xcursor
-
-exec --no-startup-id xterm -e 'syschk; zsh'
 
 #########
 # THEME #

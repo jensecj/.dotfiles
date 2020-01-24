@@ -14,3 +14,5 @@ synclient FingerLow=45
 
 # source our terminal resources
 xrdb ~/.Xresources
+
+[ -f ~/.xprofile ] && . ~/.xprofile
