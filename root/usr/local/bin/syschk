@@ -47,8 +47,7 @@ systemd-chk "ufw"
 systemd-chk "clamav-daemon"
 systemd-chk "clamav-freshclam"
 
-systemd-chk "sxhkd" --user
-
+proc-chk "sxhkd"
 proc-chk "xidlehook"
 proc-chk "polybar"
 proc-chk "dunst"
