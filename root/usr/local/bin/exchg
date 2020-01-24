@@ -12,12 +12,19 @@ import requests
 @click.argument("exchange_currencies", type=str, nargs=-1)
 def entry(amount, base_currency, exchange_currencies):
     base_currency = base_currency.upper()
+
+    if not exchange_currencies:
+        exchange_currencies = ["dkk", "usd", "eur"]
+
     exchange_currencies = [c.upper() for c in exchange_currencies]
+    exchange_currencies.remove(base_currency)
 
     symbols = ",".join(exchange_currencies)
 
     # currency exchange api maintained by the European Central Bank
-    endpoint = f"https://api.exchangeratesapi.io/latest?base={base_currency}&symbols={symbols}"
+    endpoint = (
+        f"https://api.exchangeratesapi.io/latest?base={base_currency}&symbols={symbols}"
+    )
 
     try:
         resp = requests.get(endpoint)
