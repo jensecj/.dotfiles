@@ -27,3 +27,32 @@ Xcursor.size: 16
 *color13: #dca3a3
 *color14: #8cd0d3
 *color15: #ffffff
+!!!!!!!!!
+! xterm !
+!!!!!!!!!
+
+xterm.termName: xterm-256color
+xterm*locale: true
+xterm*metaSendsEscape: true
+xterm*saveLines: 10000
+xterm*faceName: Source Code Pro Semibold
+xterm*faceSize: 10
+xterm*font:     *-fixed-*-*-*-10-*
+xterm*backarrowKey: false
+xterm.ttyModes: erase ^?
+
+!!!!!!!!!
+! urxvt !
+!!!!!!!!!
+
+URxvt.scrollBar: false
+URxvt.font:     xft:Source Code Pro Semibold:pixelsize=10:antialias=true:hinting=true
+URxvt.scrollTtyOutput: false
+URxvt.scrollWithBuffer: true
+URxvt.scrollTtyKeypress: true
+
+URxvt.perl-ext-common: default,clipboard,resize-font
+
+URxvt.clipboard.autocopy: true
+URxvt.keysym.M-w: perl:clipboard:copy
+URxvt.keysym.C-y: perl:clipboard:paste
