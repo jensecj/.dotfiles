@@ -1,0 +1,23 @@
+#!/bin/env python
+
+import os
+from os.path import expanduser
+import sys
+from datetime import datetime, timedelta
+
+now = datetime.now()
+# print(now)
+
+date = None
+file = expanduser("~/.countdown")
+if os.path.isfile(file):
+    with open(file, "r") as f:
+        date = f.readline().strip()
+
+target = datetime.strptime(date, "%Y-%m-%d") if date else None
+if target:
+    diff = target - now
+    days = diff.days
+    hours, remainder = divmod(diff.seconds, 3600)
+    minutes, seconds = divmod(remainder, 60)
+    print(f"{days}d {hours}h {minutes}m")
