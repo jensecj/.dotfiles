@@ -5,7 +5,11 @@ Xft*hintstyle:  hintfull
 Xft*rgba:       rgb
 xft*font:       xft:Source Code Pro Semibold:pixelsize=14
 
-Xcursor.size: 16
+! Xcursor.size: 12
+
+!!!!!!!!!!!
+! general !
+!!!!!!!!!!!
 
 *background: #3f3f3f
 *foreground: #dcdccc
@@ -19,6 +23,7 @@ Xcursor.size: 16
 *color5: #bc8383
 *color6: #6cb0b3
 *color7: #dcdccc
+
 *color8: #5b605e
 *color9: #ffcfaf
 *color10: #9ece9e
@@ -27,6 +32,7 @@ Xcursor.size: 16
 *color13: #dca3a3
 *color14: #8cd0d3
 *color15: #ffffff
+
 !!!!!!!!!
 ! xterm !
 !!!!!!!!!
