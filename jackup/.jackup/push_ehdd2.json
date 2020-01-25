@@ -1,0 +1,52 @@
+[
+    {
+        "name": ".backup",
+        "source": "/home/jens/.backup",
+        "destination": "/run/media/jens/jcj-ehdd-2/backup/",
+        "order": 0
+    },
+    {
+        "name": "dotfiles",
+        "source": "/home/jens/.dotfiles",
+        "destination": "/run/media/jens/jcj-ehdd-2/backup/",
+        "order": 1
+    },
+    {
+        "name": ".emacs.d",
+        "source": "/home/jens/.emacs.d",
+        "destination": "/run/media/jens/jcj-ehdd-2/backup/",
+        "order": 2
+    },
+    {
+        "name": "pictures",
+        "source": "/home/jens/pictures",
+        "destination": "/mnt/ehdd2/",
+        "order": 3
+    },
+    {
+        "name": "books",
+        "source": "/home/jens/private/books",
+        "destination": "/mnt/ehdd2/",
+        "order": 4
+    },
+    {
+        "name": "archives",
+        "source": "/home/jens/private/archives",
+        "destination": "/mnt/ehdd2/",
+        "order": 5
+    },
+    {
+        "name": "software",
+        "source": "/home/jens/software",
+        "destination": "/mnt/ehdd2/",
+        "exclude": ["__pycache__/"],
+        "order": 6
+    },
+
+    {
+        "name": "private",
+        "source": "/home/jens/sync",
+        "destination": "/run/media/jens/jcj-ehdd-2/private/",
+        "order": 10
+    }
+]

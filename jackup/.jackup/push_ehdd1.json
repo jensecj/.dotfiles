@@ -2,51 +2,51 @@
     {
         "name": ".backup",
         "source": "/home/jens/.backup",
-        "destination": "/run/media/jens/jcj-exhdd-2/backup/",
+        "destination": "/run/media/jens/jcj-ehdd-1/backup/",
         "order": 0
     },
     {
         "name": "dotfiles",
         "source": "/home/jens/.dotfiles",
-        "destination": "/run/media/jens/jcj-exhdd-2/backup/",
+        "destination": "/run/media/jens/jcj-ehdd-1/backup/",
         "order": 1
     },
     {
         "name": ".emacs.d",
         "source": "/home/jens/.emacs.d",
-        "destination": "/run/media/jens/jcj-exhdd-2/backup/",
+        "destination": "/run/media/jens/jcj-ehdd-1/backup/",
         "order": 2
     },
     {
         "name": "pictures",
         "source": "/home/jens/pictures",
-        "destination": "/mnt/exhdd/",
+        "destination": "/mnt/ehdd1/",
         "order": 3
     },
     {
         "name": "books",
         "source": "/home/jens/private/books",
-        "destination": "/mnt/exhdd/",
+        "destination": "/mnt/ehdd1/",
         "order": 4
     },
     {
         "name": "archives",
         "source": "/home/jens/private/archives",
-        "destination": "/mnt/exhdd/",
+        "destination": "/mnt/ehdd1/",
         "order": 5
     },
     {
         "name": "software",
         "source": "/home/jens/software",
-        "destination": "/mnt/exhdd/",
+        "destination": "/mnt/ehdd1/",
         "exclude": ["__pycache__/"],
-        "order": 7
+        "order": 6
     },
     {
         "name": "private",
         "uuid": "6FD6391A10FC0C15",
         "source": "/home/jens/sync",
-        "destination": "/run/media/jens/jcj-exhdd-2/private/",
-        "order": 8
+        "destination": "/run/media/jens/jcj-ehdd-1/private/",
+        "order": 10
     }
 ]
