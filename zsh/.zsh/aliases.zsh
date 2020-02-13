@@ -47,6 +47,15 @@ function del() {
     mv '$@' ~/.local/share/Trash/files/
 }
 
+function lnk() {
+    [ $# -eq 2 ] || return 1
+
+    local src=$(realpath $1)
+    local dst=$(realpath $2)
+    echo "$src -> $dst"
+    ln -s $src $dst
+}
+
 # * fzf functions
 
 function fzf-cd() {
