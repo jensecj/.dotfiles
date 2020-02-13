@@ -10,6 +10,10 @@
 
 # Ctrl-Delete: delete next word
 "\e[3;5~": shell-kill-word
+"^[[M": shell-kill-word
 
 # Ctrl-Backspace
 "\C-H": shell-backward-kill-word
+
+"\es": "\C-asudo \C-e"
+"\em": "\C-aman \C-e"
