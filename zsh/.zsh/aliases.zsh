@@ -121,13 +121,10 @@ alias fd="fd --type d"
 alias rtorrent=" rtorrent"
 alias rtor=" rtorrent"
 
-alias git="hub"
-
 alias rcp="rsync --verbose --human-readable --new-compress --archive --partial --progress"
 alias rmv="rsync --verbose --human-readable --new-compress --archive --partial --progress --remove-source-files"
 
 alias pf=" peerflix --start --mpv"
-alias dl='snatch --threads 4'
 
 alias ytdl='youtube-dl -i -f "bestvideo[height<=?1080]+bestaudio/best" -o"%(uploader)s -- %(upload_date)s -- %(title)s.%(ext)s" --prefer-ffmpeg --postprocessor-args="-threads 2"'
 alias ytarc="ytdl --write-description --all-subs --embed-subs --add-metadata" # --embed-thumbnail does not work with .mkv yet
@@ -137,8 +134,6 @@ alias ytmp3='youtube-dl -f "bestvideo[height<=?480]+bestaudio" -x --audio-format
 alias myt='mpv --ytdl --ytdl-raw-options=format="bestvideo[height<=?1080]+bestaudio/best[height<=1080]"'
 alias myt720='mpv --ytdl --ytdl-raw-options=format="bestvideo[height<=?720]+bestaudio/best[height<=720]"'
 
-alias fm="ranger"
-alias sl="streamlink --player=mpv --player-no-close --player-continuous-http --title '{title} - {url}'"
 
 alias py="python"
 alias qr="qrcode-terminal"
