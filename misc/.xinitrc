@@ -2,15 +2,9 @@
 setxkbmap -layout dk -option ctrl:nocaps
 export LANG=en_DK.UTF-8
 
-xrandr
+xrandr & # ensure xrandr is started early
 
-# disable the dang beep
-xset -b
-
-# user and computer specific touchpad settings
-synclient CoastingSpeed=0
-synclient FingerHigh=50
-synclient FingerLow=45
+xset -b # disable the dang beep
 
 # source our terminal resources
 xrdb ~/.Xresources

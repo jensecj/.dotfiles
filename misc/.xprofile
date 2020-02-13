@@ -1,16 +1,16 @@
 #!/bin/sh
 
 # starting apps
-sxhkd &                         # hotkey daemon
-udiskie --tray &                # tray icon for easy disk management
-nm-applet &                     # tray icon for wifi
-msmtp # smtp server
+sxhkd & # hotkey daemon
+udiskie --tray & # tray icon for easy disk management
+nm-applet & # tray icon for wifi
+msmtp & # smtp server
 dunst -conf "$HOME/.config/dunst/dunstrc" & # the notification daemon
-unclutter &                                           # hide cursor after 5sec of idle
+unclutter & # hide cursor after 5sec of idle
 
 # sync the linux clipboards
-autocutsel -fork
-autocutsel -selection PRIMARY -fork
+autocutsel -fork &
+autocutsel -selection PRIMARY -fork &
 
 # custom apps
 i3autotile >> ~/.i3log 2>&1 &
