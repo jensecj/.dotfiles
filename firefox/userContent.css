@@ -19,6 +19,8 @@
     .h-box {
         padding-left: 0 !important;
         padding-right: 0 !important;
+        text-transform: lowercase;
+        margin: 2px;
     }
     .icon {
         display: none !important;
