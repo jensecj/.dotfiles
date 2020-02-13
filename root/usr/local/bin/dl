@@ -1,0 +1,157 @@
+#!/bin/env python
+
+import os
+import sys
+import subprocess
+
+import click
+from bs4 import BeautifulSoup
+import urllib.request
+from urllib.parse import urlparse, urljoin, urlsplit, urlunsplit
+from termcolor import colored
+
+
+USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36"
+
+
+def shell(cmd, input=None, log=True):
+    popen = subprocess.Popen(
+        cmd, stdin=subprocess.PIPE, stdout=subprocess.PIPE, universal_newlines=True
+    )
+
+    if input:
+        if not isinstance(input, list):
+            input = [input]
+
+        for i in input:
+            popen.stdin.write(i)
+            popen.stdin.flush()
+
+        popen.stdin.close()
+
+    output = ""
+    if log:
+        for o in iter(popen.stdout.readline, ""):
+            output += o
+            print(o, end="")
+    else:
+        output = popen.stdout.read()
+
+    return_code = popen.wait()
+
+    err = popen.stderr.read() if popen.stderr else None
+
+    return return_code, output, err
+
+
+def gather_links(url):
+    print("gethering links...")
+
+    req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
+    resp = urllib.request.urlopen(req)
+    soup = BeautifulSoup(
+        resp, from_encoding=resp.info().get_param("charset"), features="html.parser"
+    )
+
+    links = []
+    for link in soup.find_all("a", href=True):
+        links.append(urljoin(url, link.get("href")))
+
+    for link in soup.find_all("img", src=True):
+        links.append(urljoin(url, link.get("src")))
+
+    return links
+
+
+def dedupe_links(links):
+    deduped_links = set()
+    for s in sorted(links, reverse=True):
+        if not any([s in o for o in deduped_links]):
+            deduped_links.add(s)
+
+    return deduped_links
+
+
+def get_links_with_ext(links, ending):
+    return [l for l in links if l.endswith(ending)]
+
+
+def wget(url):
+    base = urlparse(url)
+    filename = os.path.basename(base.path)
+
+    if os.path.isfile(filename):
+        print(colored(f"file already exists, skipping", "yellow", attrs=["bold"]))
+        return 1
+
+    args = [
+        "-e",
+        "robots=off",
+        "--continue",
+        "--no-cookies",
+        "--no-clobber",
+        "--no-verbose",
+        "--progress=bar:force",
+        "--show-progress",
+        "--wait=1",
+        "--timeout=5",
+        "--random-wait",
+        "--tries=5",
+        "--quiet",
+        "--user-agent=Mozilla",
+        "-O",
+        filename,
+    ]
+
+    cmd = ["wget"] + args + [url]
+
+    return_code, stdout, stderr = shell(cmd)
+
+    if return_code == 0:
+        return stdout
+    elif return_code:
+        print(
+            colored(
+                f"failed to download, skipping. return_code: {return_code}. stderr: {stderr}",
+                "red",
+                attrs=["bold"],
+            )
+        )
+
+
+def download_links(links):
+    try:
+        for l in links:
+            wget(l)
+    except KeyboardInterrupt:
+        print(colored("\nUser interrupted, skipping...", "yellow", attrs=["bold"]))
+    except Exception as error:
+        print(repr(error))
+
+
+def download_all(url, extensions):
+    links = gather_links(url)
+    links = dedupe_links(links)
+
+    dls = []
+
+    for ext in [e for e in extensions.split(",") if e]:
+        dls += get_links_with_ext(links, f".{ext}")
+
+    if dls:
+        dls = sorted(dls)
+        download_links(dls)
+
+
+@click.command()
+@click.argument("url", type=str)
+@click.option("-a", "--all")
+def entry(url, all):
+    if all:
+        download_all(url, all)
+    else:
+        wget(url)
+
+
+if __name__ == "__main__":
+    entry()
