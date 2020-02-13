@@ -143,6 +143,8 @@ alias sl="streamlink --player=mpv --player-no-close --player-continuous-http --t
 alias py="python"
 alias qr="qrcode-terminal"
 
+alias drop_cache="sudo sync; sudo sysctl -w vm.drop_caches=3"
+
 function myip() {
     local arg=$1
 
