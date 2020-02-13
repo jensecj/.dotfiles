@@ -9,9 +9,6 @@ alias ls='ls --color=always --time-style="+%d-%m-%Y" --group-directories-first'
 alias l="exa --long --group-directories-first --time-style=long-iso"
 alias ll="l --all --group"
 
-# ** prefer interactive use, and human-readable outputs
-alias cp="cp -i" # ask before overwriting files
-alias mv="mv -i" # ask before overwriting files
 alias free="free -h" # show sizes in a human readable format
 alias grep='grep --color=always' # use colors in grep
 alias diff="diff --color=always" # and diff
@@ -26,6 +23,9 @@ alias _='sudo '
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
+
+alias cp="rsync --verbose --human-readable --new-compress --archive --partial --progress"
+alias mv="rsync --verbose --human-readable --new-compress --archive --partial --progress --remove-source-files"
 
 # * extra functions
 
@@ -121,8 +121,6 @@ alias fd="fd --type d"
 alias rtorrent=" rtorrent"
 alias rtor=" rtorrent"
 
-alias rcp="rsync --verbose --human-readable --new-compress --archive --partial --progress"
-alias rmv="rsync --verbose --human-readable --new-compress --archive --partial --progress --remove-source-files"
 
 alias pf=" peerflix --start --mpv"
 
