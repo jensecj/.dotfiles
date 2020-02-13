@@ -18,31 +18,48 @@
         "order": 2
     },
     {
-        "name": "pictures",
-        "source": "/home/jens/pictures",
-        "destination": "/mnt/ehdd2/",
-        "order": 3
-    },
-    {
         "name": "books",
         "source": "/home/jens/private/books",
         "destination": "/mnt/ehdd2/",
-        "order": 4
+        "order": 3
     },
     {
         "name": "archives",
         "source": "/home/jens/private/archives",
         "destination": "/mnt/ehdd2/",
+        "order": 4
+    },
+    {
+        "name": "screenshots",
+        "source": "/home/jens/private/screenshots",
+        "destination": "/mnt/ehdd2/",
         "order": 5
+    },
+    {
+        "name": "literature",
+        "source": "/home/jens/private/literature",
+        "destination": "/mnt/ehdd2/",
+        "order": 6
+    },
+    {
+        "name": "pictures",
+        "source": "/home/jens/pictures",
+        "destination": "/mnt/ehdd2/",
+        "order": 7
+    },
+    {
+        "name": "publications",
+        "source": "/home/jens/publications",
+        "destination": "/mnt/ehdd2/",
+        "order": 8
     },
     {
         "name": "software",
         "source": "/home/jens/software",
         "destination": "/mnt/ehdd2/",
         "exclude": ["__pycache__/"],
-        "order": 6
+        "order": 9
     },
-
     {
         "name": "private",
         "source": "/home/jens/sync",
