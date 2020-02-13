@@ -8,7 +8,7 @@ declare -a packages=(
     # java
     jdk10-openjdk jre10-openjdk
     graal-bin graal-native-image-bin # alternative vm
-    gradle apache-ant apache-ivy # java build tools
+    maven
 
     # python
     python python-pip python-setuptools
@@ -24,24 +24,14 @@ declare -a packages=(
     gcc gcc-libs
     boost boost-libs
     valgrind # performance tuning/debugging
-    rtags # tags / language-server
     cmake # build tool
 
     # lisps
     chicken
     sbcl roswell
 
-    #haskell
-    ghc ghc-libs ghc-static
-
     # rust
     rustup rls-git
-
-    # dot net
-    dotnet-host dotnet-runtime dotnet-sdk-2.0
-
-    # android
-    android-sdk
 
     # other languages
     octave nodejs
@@ -51,19 +41,14 @@ declare -a packages=(
     libotf
 
     # programming tools
-    emacs-git # now that the bootloader is installed, install the OS
     termite termite-terminfo # terminal emulator
     zsh # preferred shell
     tmux # terminal multiplexer
     hyperfine # command-line benchmarking
     git hub # git and the github wrapper
     jupyter # interactive science notebooks
-    virtualbox # virtual machine manager
-    vagrant # create virtual environments for provisioning using virtualbox
     docker # containerization
     podman buildah skopeo # more containers
-    # direnv # directory specific, automatically loading exports
-    python-cookiecutter # create new project skeletons from templates
     diff-so-fancy # fancy git diff
     watchman # inode change monitor and trigger
 
