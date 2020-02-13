@@ -17,7 +17,9 @@ def entry(amount, base_currency, exchange_currencies):
         exchange_currencies = ["dkk", "usd", "eur"]
 
     exchange_currencies = [c.upper() for c in exchange_currencies]
-    exchange_currencies.remove(base_currency)
+
+    if base_currency in exchange_currencies:
+        exchange_currencies.remove(base_currency)
 
     symbols = ",".join(exchange_currencies)
 
