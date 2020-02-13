@@ -93,6 +93,11 @@ function fman() {
     man -k . | fzf | awk '{print $1}' | xargs -r man
 }
 
+function rot90() {
+    [ $# -gt 0 ] || return 1
+    for img in $@; do
+        convert $img -rotate 90 $img
+    done
 }
 
 # * aliases
