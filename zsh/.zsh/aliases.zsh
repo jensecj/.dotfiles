@@ -7,7 +7,7 @@ alias ls='ls --color=always --time-style="+%d-%m-%Y" --group-directories-first'
 #alias ll="ls -agholXN"
 
 alias l="exa --long --group-directories-first --time-style=long-iso"
-alias ll="l --all"
+alias ll="l --all --group"
 
 # ** prefer interactive use, and human-readable outputs
 alias cp="cp -i" # ask before overwriting files
