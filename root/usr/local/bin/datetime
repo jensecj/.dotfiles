@@ -18,6 +18,9 @@ def entry(zone=None):
     else:
         print(f"local: {local:%H:%M:%S}")
 
+        cet = local.astimezone(tz=timezone("CET"))
+        print(f"CET: {cet:%H:%M:%S}")
+
         gmt = local.astimezone(tz=timezone("UTC"))
         print(f"GMT: {gmt:%H:%M:%S}")
 
