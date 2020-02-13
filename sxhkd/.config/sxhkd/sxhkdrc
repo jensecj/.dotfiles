@@ -65,7 +65,7 @@ super + shift + d
     define "$(xsel -o)"
 
 super + ctrl + y
-    mpv --autofit "70%x60%" --loop --x11-name "mpv-float" "$(xsel -o)"
+    mpv --ytdl --ytdl-raw-options=format="bestvideo[height<=?1080]+bestaudio/best[height<=1080]" --autofit="70%x60%" --loop --x11-name="mpv-float" "$(xsel -o)"
 
 super + shift + b
     emacsclient -c -F '((title . "em-bookmarks"))' '~/vault/git/bookmarks.org'
