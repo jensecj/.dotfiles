@@ -126,7 +126,6 @@ alias fd="fd --type d"
 alias rtorrent=" rtorrent"
 alias rtor=" rtorrent"
 
-
 alias pf=" peerflix --start --mpv"
 
 alias ytdl='youtube-dl -i -f "bestvideo[height<=?1080]+bestaudio/best" -o"%(uploader)s -- %(upload_date)s -- %(title)s.%(ext)s" --prefer-ffmpeg --postprocessor-args="-threads 2"'
@@ -168,7 +167,6 @@ function myip() {
         echo "public: $public_ip";
     fi
 }
-
 
 alias cl++="clang++ -std=c++17 -stdlib=libstdc++"
 alias cl++mj="cl++ -MJ compile_commands.json"

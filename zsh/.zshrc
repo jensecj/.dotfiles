@@ -44,7 +44,7 @@ eval $(keychain --eval --quiet --agents ssh \
 
 source $ZSHHOME/autocomplete-setup.sh
 source $ZSHHOME/keybindings.zsh
-source $ZSHHOME/aliases.zsh
+source $ZSHHOME/aliases.sh
 source $ZSHHOME/options.zsh
 source $ZSHHOME/jens-theme.zsh
 
