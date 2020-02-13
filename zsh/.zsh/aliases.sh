@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/bin/bash
 # * changing defaults
 
 # ** better ls
@@ -31,24 +31,24 @@ alias mv="rsync --verbose --human-readable --new-compress --archive --partial --
 
 # figure out which terminal emulator we're inside of
 # echo $TERM does not always work, because sometimes term lies
-function whichterm() {
+whichterm() {
     ps -p $PPID | awk '{print $4}' | sed -n '2p'
 }
 # same goes for a shell
-function whichshell() {
+whichshell() {
     ps -p "$$" | awk '{print $4}' | sed -n '2p'
 }
 
-function bu() { cp "$1" "$1.bak"; }
-function mvbu() { mv "$1" "$1.bak"; }
+bu() { cp "$1" "$1.bak"; }
+mvbu() { mv "$1" "$1.bak"; }
 
-function mcd() { mkdir "$1"; cd "$1" || exit 1; }
+mcd() { mkdir "$1"; cd "$1" || exit 1; }
 
-function del() {
+del() {
     mv '$@' ~/.local/share/Trash/files/
 }
 
-function lnk() {
+lnk() {
     [ $# -eq 2 ] || return 1
 
     local src=$(realpath $1)
@@ -59,26 +59,26 @@ function lnk() {
 
 # * fzf functions
 
-function fzf-cd() {
+fzf-cd() {
     cd $(fd | fzf --no-multi)
     zle clear-screen
 }
 
-function fzf-z() {
+fzf-z() {
     cd $(z | awk '{print $2}' | fzf --no-sort --no-multi)
     zle clear-screen
 }
 
-function fzf-locate() {
+fzf-locate() {
     locate | fzf | xargs | xsel -i
 }
 
-function fzf-history() {
+fzf-history() {
     BUFFER=$(history -n -r 1 | fzf --no-sort --no-multi --query "$LBUFFER")
     CURSOR=$#BUFFER
 }
 
-function fzf-urls() {
+fzf-urls() {
     # look at all scrollback contents of tmux buffer, and copy
     # selected url to clipboard
     local url_regex="(((http|https|ftp|gopher|git)|mailto)[.:@][^ >\"\t]*|www\.[-a-z0-9.]+)[^ .,;\t>\">\):]"
@@ -89,11 +89,11 @@ function fzf-urls() {
         | xsel -i
 }
 
-function fman() {
+fman() {
     man -k . | fzf | awk '{print $1}' | xargs -r man
 }
 
-function rot90() {
+rot90() {
     [ $# -gt 0 ] || return 1
     for img in $@; do
         convert $img -rotate 90 $img
@@ -109,7 +109,7 @@ alias pacrm='pac -Rns'
 alias pacss='pac -Ss'
 alias pacs='pac -S'
 alias pacls='pac -Qet'
-function paci() {
+paci() {
     pkg=$(yay -Sl | fzf --preview-window=top:70% --preview="yay -Si {2}" | awk '{print $2}')
     print -z $pkg
 }
@@ -141,7 +141,7 @@ alias qr="qrcode-terminal"
 
 alias drop_cache="sudo sync; sudo sysctl -w vm.drop_caches=3"
 
-function myip() {
+myip() {
     local arg=$1
 
     local show_local=0
@@ -176,7 +176,7 @@ alias dis="objdump -M intel -C -g -w -d"
 alias cloc="tokei"
 alias cook="cookiecutter"
 
-function video2webm () {
+video2webm () {
     local bitrate=$1;
     shift;
     for file in "$@"; do
@@ -189,7 +189,7 @@ function video2webm () {
     done;
 }
 
-function ffmpegnorm {
+ffmpegnorm() {
     if [ -z "$1" ]; then
         echo "usage: ffmpegnorm [FILE(s)]"
         return 1
@@ -211,11 +211,11 @@ function ffmpegnorm {
 }
 
 # quick compile/run with test data for hackathons
-function ccc {
+ccc() {
     clear && clang++ -std=c++17 "$1" -o "$1.out" && time "./$1.out" < test.in
 }
 
-function md5dir() {
+md5dir() {
     if [ $# -lt 1 ]; then
         echo "usage: md5dir path/to/dir"
         return 1
@@ -228,18 +228,18 @@ function md5dir() {
     find "$dir" -type f -exec md5sum {} + | awk '{print $1}' | sort | md5sum | awk '{print $1}'
 }
 
-function tarencrypt() {
+tarencrypt() {
     local archive=$1
     shift
     tar czvpf - $@ | gpg --symmetric --cipher-algo aes256 -o $archive.tar.gz.gpg
 }
 
-function tardecrypt() {
+tardecrypt() {
     local archive=$1
     gpg -d $archive | tar xzvf -
 }
 
-function vpn-down() {
+vpn-down() {
     running=$(ip addr | grep --color=never vpn | sed -n '2p' | xargs | cut -d' ' -f5)
 
     if [ -n "$running" ]; then
