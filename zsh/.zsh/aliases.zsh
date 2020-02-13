@@ -92,42 +92,6 @@ function fman() {
     man -k . | fzf | awk '{print $1}' | xargs -r man
 }
 
-# * stack based functions
-function speek() {
-    head -n 1 "$1"
-}
-function spush() {
-    local fil="$1"
-    shift
-
-    if [ -s "$fil" ]; then
-        sed -i "1i$*" "$fil"
-    else
-        echo "$*" > "$fil"
-    fi
-}
-function spop() {
-    local fil="$1"
-    local val=$(speek "$fil")
-    sed -i '1d' "$1"
-    echo "$val"
-}
-
-# * queue based functions
-function qpush () {
-    local fil="$1"
-    shift
-
-    echo "$*" >> "$fil"
-}
-function qpop() {
-    local fil="$1"
-    local val=$(speek "$fil")
-    sed -i '1d' "$1"
-    echo "$val"
-}
-function qpeek() {
-    head -n 1 "$1"
 }
 
 # * aliases

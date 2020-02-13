@@ -62,6 +62,48 @@ trim() {
     sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//'
 }
 
+#########
+# stack #
+#########
+speek() {
+    head -n 1 "$1"
+}
+spush() {
+    fil="$1"
+    shift
+
+    if [ -s "$fil" ]; then
+        sed -i "1i$*" "$fil"
+    else
+        echo "$*" > "$fil"
+    fi
+}
+spop() {
+    fil="$1"
+    val=$(speek "$fil")
+    sed -i '1d' "$1"
+    echo "$val"
+}
+
+#########
+# queue #
+#########
+qpush () {
+    fil="$1"
+    shift
+
+    echo "$*" >> "$fil"
+}
+qpop() {
+    fil="$1"
+    val=$(speek "$fil")
+    sed -i '1d' "$1"
+    echo "$val"
+}
+qpeek() {
+    head -n 1 "$1"
+}
+
 ###########
 # aliases #
 ###########
