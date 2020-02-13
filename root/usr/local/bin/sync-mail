@@ -1,5 +1,10 @@
 #!/bin/bash
 
+gpg-cached | grep pass &> /dev/null
+if [ ! $? -eq 0 ]; then
+    exit 1
+fi
+
 if [ -d /home/jens/private/mail/ ]; then
     mbsync -Va
     notmuch new
