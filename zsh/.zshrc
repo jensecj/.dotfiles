@@ -58,11 +58,6 @@ if [ "$HOME/.zcompdump" -nt "$HOME/.zcompdump.zwc" -o ! -e "$HOME/.zcompdump.zwc
 fi
 # zrecompile -p $HOME/.zshrc &>/dev/null
 
-bindkey -M emacs '^F' fzf-cd
-bindkey -M emacs '^R' fzf-history
-bindkey -M emacs '^U' fzf-urls
-bindkey -M emacs '^B' fzf-z
-bindkey -M emacs '\ei' fzf-locate
 
 source /usr/share/fzf/completion.zsh
 

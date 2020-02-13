@@ -45,6 +45,18 @@ bindkey ';5D' backward-word
 # bindkey "9~" insert-tilde
 # bindkey "9~" insert-tilde
 
+zle -N fzf-cd
+bindkey -M emacs '^F' fzf-cd
+zle -N fzf-history
+bindkey -M emacs '^R' fzf-history
+zle -N fzf-urls
+bindkey -M emacs '^U' fzf-urls
+zle -N fzf-z
+bindkey -M emacs '^B' fzf-z
+zle -N fzf-locate
+bindkey -M emacs '\ei' fzf-locate
+
+
 # <C-w> kills region or whole line
 kill-region-or-line()
 {

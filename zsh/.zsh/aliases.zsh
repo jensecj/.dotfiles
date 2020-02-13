@@ -62,24 +62,20 @@ function fzf-cd() {
     cd $(fd | fzf --no-multi)
     zle clear-screen
 }
-zle -N fzf-cd
 
 function fzf-z() {
     cd $(z | awk '{print $2}' | fzf --no-sort --no-multi)
     zle clear-screen
 }
-zle -N fzf-z
 
 function fzf-locate() {
     locate | fzf | xargs | xsel -i
 }
-zle -N fzf-locate
 
 function fzf-history() {
     BUFFER=$(history -n -r 1 | fzf --no-sort --no-multi --query "$LBUFFER")
     CURSOR=$#BUFFER
 }
-zle -N fzf-history
 
 function fzf-urls() {
     # look at all scrollback contents of tmux buffer, and copy
@@ -91,7 +87,6 @@ function fzf-urls() {
         | xargs \
         | xsel -i
 }
-zle -N fzf-urls
 
 function fman() {
     man -k . | fzf | awk '{print $1}' | xargs -r man
