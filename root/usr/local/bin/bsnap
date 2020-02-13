@@ -32,6 +32,7 @@ borg create \
      --exclude-caches \
      --exclude '/home/*/.config/chromium/*' \
      --exclude '/home/*/.config/Electron/*' \
+     --exclude '/home/*/.config/mpv/*' \
      "$BORG_PATH" \
      "${dirs[@]}"
 
