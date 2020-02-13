@@ -21,7 +21,8 @@ alias bc="bc -q"
 alias ssh-add="ssh-add -t 1h"
 
 # ** common shortcuts
-alias _='sudo'
+alias sudo='sudo '
+alias _='sudo '
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
