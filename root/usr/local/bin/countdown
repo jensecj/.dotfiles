@@ -3,7 +3,12 @@
 import os
 from os.path import expanduser
 import sys
+import subprocess
 from datetime import datetime, timedelta
+
+
+def notify(msg, level="normal"):
+    subprocess.run(["notify-send", "-u", level, msg])
 
 
 def get_next_target():
@@ -28,17 +33,27 @@ def main():
 
     if target := get_next_target():
         diff = target - now
+
+        out = ""
+
+        if diff.total_seconds() < 0:
+            notify("countdown complete", "critical")
+            out += "-"
+            diff = now - target
+
         days = diff.days
         hours, remainder = divmod(diff.seconds, 3600)
         minutes, seconds = divmod(remainder, 60)
 
-        out = ""
         if days:
             out += f"{days}d "
         if hours:
             out += f"{hours}h "
         if minutes:
             out += f"{minutes}m"
+
+        if days > 30:
+            out += f"({days/7:0.0f} weeks)"
 
         print(out)
 
