@@ -42,6 +42,7 @@ declare -a packages=(
 
     # programming tools
     termite termite-terminfo # terminal emulator
+    alacritty                # another terminal
     zsh # preferred shell
     tmux # terminal multiplexer
     hyperfine # command-line benchmarking
