@@ -25,3 +25,8 @@ systemctl --user enable lowtmp
 systemctl --user start random-wallpaper
 systemctl --user start mbsync
 systemctl --user start lowtmp
+
+# fix fork bombs
+if [[ ! $(grep "\* hard nproc" /etc/security/limits.conf) ]]; then
+    echo "* hard nproc 2048" >> /etc/security/limits.conf
+fi
