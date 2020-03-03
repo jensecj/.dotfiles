@@ -139,9 +139,9 @@ for_window [title="em-bookmarks"] move position center
 for_window [instance="mpv-float"] floating enable
 for_window [instance="mpv-float"] move position center;
 
-for_window [class="Termite" instance="dict-lookup"] floating enable
-for_window [class="Termite" instance="dict-lookup"] resize grow up 200px
-for_window [class="Termite" instance="dict-lookup"] resize grow down 200px
+for_window [instance="dict-lookup"] floating enable
+for_window [instance="dict-lookup"] resize grow up 200px
+for_window [instance="dict-lookup"] resize grow down 200px
 
 for_window [instance="float-me"] floating enable
 for_window [instance="float-me"] resize grow up 150px
