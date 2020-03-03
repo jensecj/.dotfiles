@@ -15,4 +15,4 @@ I try to stick to the [Zenburn colors](http://kippura.org/zenburnpage/), which
 is also how my window manager, terminal, and emacs are styled.
 
 For keybindings, etc. look at the relevant files (e.g. i3/confing for i3,
-aliases.zsh/keybindings.zsh for terminal, etc.)
+aliases.sh/keybindings.zsh for terminal, etc.)
