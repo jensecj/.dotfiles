@@ -4,7 +4,7 @@ export ZSHHOME=$HOME/.zsh
 export ZSHPLUGINS=$ZSHHOME/plugins
 export EDITOR=em # emacsclient, this scripts starts the daemon if needed
 export BROWSER=firefox-developer-edition
-export TERMINAL=termite
+export TERMINAL=alacritty
 
 export LANG="en_DK.UTF-8"
 
