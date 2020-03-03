@@ -124,7 +124,8 @@ declare -a packages=(
 
     # misc
     youtube-dl # for downloading video/sound from the internet
-    ranger # ncurses file explorer
+    ranger-git # ncurses file explorer
+    python-ueberzug-git # show images in the terminal
     redshift # screen dimmer / blue light reducer
     rofi # app menu / dmenu clone
     anki # flashcards
