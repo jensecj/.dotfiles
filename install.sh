@@ -146,6 +146,7 @@ declare -a packages=(
     wordnet-common wordnet-cli # wordnet dict and extras
     yad slop bashcaster-git # for simple screen recording
     clamav # anti-virus
+    fontpreview-git # simple cli for testing fonts
 
     # mail
     isync
