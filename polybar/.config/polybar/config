@@ -10,17 +10,17 @@ alert = #bd2c40
 [bar/jensbar]
 monitor = ${env:MONITOR:eDP1}
 width = 100%
-height = 20
+height = 18
 
 background = ${colors.background}
 foreground = ${colors.foreground}
 
-module-margin-left = 4
-module-margin-right = 4
-
-font-0 = "Source Code Pro Semibold:size=8;2"
+font-0 = "Source Code Pro Semibold:size=9;2"
 font-1 = "Material Icons:size=10;4"
 font-2 = "Noto Sans CJK SC:size=10;4"
+
+module-margin-left = 4
+module-margin-right = 4
 
 modules-left = i3
 modules-center = alsa vpn notmuch-unread temps filesystem cpu memory battery date  gpg-cache countdown
