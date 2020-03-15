@@ -44,11 +44,6 @@ bindsym $mod+v split v
 # toggle fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
 
-# change container layout (stacked, tabbed, toggle split)
-bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
-bindsym $mod+e layout toggle split
-
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
 
@@ -139,29 +134,22 @@ for_window [title="em-bookmarks"] move position center
 for_window [instance="mpv-float"] floating enable
 for_window [instance="mpv-float"] move position center;
 
-for_window [instance="dict-lookup"] floating enable
-for_window [instance="dict-lookup"] resize grow up 200px
-for_window [instance="dict-lookup"] resize grow down 200px
-
-for_window [instance="float-me"] floating enable
-for_window [instance="float-me"] resize grow up 150px
-for_window [instance="float-me"] resize grow down 150px
-for_window [instance="float-me"] resize grow left 150px
-for_window [instance="float-me"] resize grow right 150px
-for_window [instance="float-me"] move position center
+for_window [class="float"] floating enable
+for_window [class="float"] resize grow up 200px
+for_window [class="float"] resize grow down 200px
+for_window [class="float"] move position center
 
 for_window [title="cl-opengl"] floating enable
 for_window [class="anki"] floating enable
 for_window [class="matplotlib"] floating enable
 for_window [class="Matplotlib"] floating enable
 
-
 ###########
 # STARTUP #
 ###########
 
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-exec --no-startup-id xterm -name "float-me" -e 'syschk; zsh'
+exec --no-startup-id xterm -class "float" -e 'syschk; zsh'
 
 #########
 # THEME #
