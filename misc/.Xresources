@@ -5,8 +5,6 @@ Xft*hintstyle:  hintfull
 Xft*rgba:       rgb
 xft*font:       xft:Source Code Pro Semibold:pixelsize=14
 
-! Xcursor.size: 12
-
 !!!!!!!!!!!
 ! general !
 !!!!!!!!!!!
@@ -36,29 +34,13 @@ xft*font:       xft:Source Code Pro Semibold:pixelsize=14
 !!!!!!!!!
 ! xterm !
 !!!!!!!!!
-
-xterm.termName: xterm-256color
-xterm*locale: true
-xterm*metaSendsEscape: true
-xterm*saveLines: 10000
-xterm*faceName: Source Code Pro Semibold
-xterm*faceSize: 10
-xterm*font:     *-fixed-*-*-*-10-*
-xterm*backarrowKey: false
-xterm.ttyModes: erase ^?
-
-!!!!!!!!!
-! urxvt !
-!!!!!!!!!
-
-URxvt.scrollBar: false
-URxvt.font:     xft:Source Code Pro Semibold:pixelsize=10:antialias=true:hinting=true
-URxvt.scrollTtyOutput: false
-URxvt.scrollWithBuffer: true
-URxvt.scrollTtyKeypress: true
-
-URxvt.perl-ext-common: default,clipboard,resize-font
-
-URxvt.clipboard.autocopy: true
-URxvt.keysym.M-w: perl:clipboard:copy
-URxvt.keysym.C-y: perl:clipboard:paste
+XTerm*reverseVideo: true
+XTerm*termName: xterm-256color
+XTerm*locale: true
+XTerm*metaSendsEscape: true
+XTerm*saveLines: 10000
+XTerm*faceName: Source Code Pro Semibold
+XTerm*faceSize: 10
+XTerm*font: *-fixed-*-*-*-10-*
+XTerm*backarrowKey: false
+XTerm*ttyModes: erase ^?

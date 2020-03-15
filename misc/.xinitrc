@@ -6,7 +6,5 @@ xrandr & # ensure xrandr is started early
 
 xset -b # disable the dang beep
 
-# source our terminal resources
-xrdb ~/.Xresources
-
-[ -f ~/.xprofile ] && . ~/.xprofile
+[[ -f ~/.Xresources ]] && xrdb -merge -I$HOME ~/.Xresources
+[[ -f ~/.xprofile ]] && . ~/.xprofile
