@@ -15,3 +15,14 @@ if [[ ! -f scripts/reload.lua ]]; then
     echo "downloading plugin: reload"
     curl https://raw.githubusercontent.com/4e6/mpv-reload/master/reload.lua > scripts/reload.lua
 fi
+
+if [[ ! -f scripts/playlistmanager.lua ]]; then
+    echo "downloading plugin: playlistmanager"
+    curl https://github.com/jonniek/mpv-playlistmanager/blob/master/titleresolver.lua > scripts/titleresolver.lua
+    curl https://github.com/jonniek/mpv-playlistmanager/blob/master/playlistmanager.lua > scripts/playlistmanager.lua
+fi
+
+if [[ ! -f scripts/navigator.lua ]]; then
+    echo "downloading plugin: navigator"
+    curl https://github.com/jonniek/mpv-filenavigator/blob/master/navigator.lua > scripts/navigator.lua
+fi
