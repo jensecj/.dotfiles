@@ -38,7 +38,7 @@ XF86AudioMute
 # * shortcuts
 
 super + Return
-    $TERMINAL -e 'tmux'
+    $TERMINAL -e tmux
 
 super + shift + Return
     $TERMINAL
@@ -47,7 +47,7 @@ super + ctrl + Return
     $TERMINAL --name="float-me"
 
 super + m
-    $TERMINAL -e 'ranger'
+    $TERMINAL -e tmux -c ranger
 
 super + p
     $TERMINAL -e 'htop'
@@ -64,8 +64,8 @@ super + d
 super + shift + d
     define "$(xsel -o)"
 
-super + ctrl + y
-    mpv --ytdl --ytdl-raw-options=format="bestvideo[height<=?1080]+bestaudio/best[height<=1080]" --autofit="70%x60%" --loop --x11-name="mpv-float" "$(xsel -o)"
+super + y
+    mpv --ytdl --ytdl-raw-options=format="bestvideo[height<=?1080]+bestaudio/best[height<=1080]" --autofit="70%x60%" --loop --x11-name="mpv-float" $(xsel -o)
 
 super + shift + b
     emacsclient -c -F '((title . "em-bookmarks"))' '~/vault/git/bookmarks.org'
@@ -84,3 +84,5 @@ super + l
 # ** restart polybar
 super + shift + p
     polybar-setup; notify-send 'Restarted polybar'
+
+
