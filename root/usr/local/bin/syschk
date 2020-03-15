@@ -1,11 +1,11 @@
 #!/bin/bash
 
 good() {
-    printf "\e[0;32m[+]\e[m %s\n" "$*"
+    printf "\e[1;32m[+]\e[m %s\n" "$*"
 }
 
 bad() {
-    printf "\e[0;31m[-]\e[m %s\n" "$*"
+    printf "\e[1;31m[-]\e[m %s\n" "$*"
 }
 
 chk() {
@@ -33,6 +33,8 @@ file-age-chk() {
     if [ $epoch_diff -gt $limit ]; then
         age=$(stat -c "%y" $file)
         bad "$file last modified $age"
+    else
+        good "$file is up to date"
     fi
 }
 
@@ -55,5 +57,43 @@ proc-chk "tincd"
 proc-chk "unclutter"
 proc-chk "i3autotile"
 proc-chk "autocutsel"
+proc-chk "picom"
+
+
+######################
+# system information #
+######################
+
+printf "\n\n"
+
+local_dns=$(cat "/etc/resolv.conf" | grep ^nameserver | cut -d' ' -f2 | xargs)
+echo "dns: $local_dns"
+
+dnscrypt_servers=$(cat "/etc/dnscrypt-proxy/dnscrypt-proxy.toml" | grep ^server_names)
+echo "dnscrypt servers: ${dnscrypt_servers:15}"
+
+local_ip=$(ifconfig wlp3s0 | grep inet | sed -n 1p | awk '{print $2}');
+echo "local ip: $local_ip"
+
+public_ip=$(dig +timeout=5 +short myip.opendns.com @resolver1.opendns.com)
+echo "public ip: $public_ip";
+
+printf "\n\n"
+
+$(cat /proc/mounts | grep -q "$HOME/sync/.private $HOME/private")
+if [ $? -eq 0 ]; then
+    good "mounted /private"
+else
+    bad "mounted /private"
+fi
+
+$(cat /proc/mounts | grep -q "/dev/mapper/extra /extra")
+if [ $? -eq 0 ]; then
+    good "mounted /extra"
+else
+    bad "mounted /extra"
+fi
+
+printf "\n\n"
 
 file-age-chk "/etc/hosts" $month_in_secs
