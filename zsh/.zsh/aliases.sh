@@ -67,7 +67,7 @@ fzf-cd() {
 }
 
 fzf-z() {
-    cd $(z | awk '{print $2}' | fzf --no-sort --no-multi)
+    zi
     zle clear-screen
 }
 

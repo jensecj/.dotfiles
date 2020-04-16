@@ -26,12 +26,12 @@ autoload -Uz select-word-style && {
 source $ZSHHOME/stdlib.sh
 
 # load plugins
-source $ZSHPLUGINS/z.sh
 source $ZSHPLUGINS/colored-man-pages.sh
 source $ZSHPLUGINS/spectrum.sh
 source $ZSHPLUGINS/zsh-autosuggestions.sh
 source $ZSHPLUGINS/zsh-completions.sh
 source $ZSHPLUGINS/zsh-syntax-highlighting.sh
+eval "$(zoxide init zsh)"
 
 # color directories/files
 eval $(dircolors -b "$HOME/.dircolors")
