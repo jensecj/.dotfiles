@@ -9,6 +9,12 @@
 }
 
 @-moz-document domain("invidio.us") {
+    .pure-form, input[type="search"] {
+        border-bottom: none;
+        margin: 2px;
+        border: 2px solid #eee;
+        border-radius: 2px;
+    }
     .navbar {
         margin: 0 !important;
     }
@@ -28,6 +34,9 @@
 
     .pure-menu-heading {
         display: none !important;
+    }
+    [poster] {
+        /* display: none !important; */
     }
 }
 

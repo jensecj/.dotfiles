@@ -1,32 +1,5 @@
-#tabbrowser-tabs {
-    --tab-min-height: 20px !important;
+/* allow custom js */
+@namespace url(http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul);
+toolbarbutton#alltabs-button {
+    -moz-binding: url("userChrome.xml#js");
 }
-
-.tabbrowser-strip *[class^="scrollbutton"] {
-    /* Hide tab scroll buttons */
-    display: none;
-}
-
-.tabbrowser-strip *[class^="tabs-alltabs"] {
-    /* Hide tab drop-down list */
-    display: none;
-}
-
-.tabbrowser-strip *[class^="tabs-newtab-button"] {
-    /* Hide new-tab button */
-    display: none;
-}
-
-/* add '[pdf]' next to links to PDF files */
-a[href$=".pdf"]:after {
-    font-size: smaller;
-    content: " [pdf]";
-}
-
-:-moz-any(.tabs-newtab-button,#new-tab-button,#alltabs-button) .toolbarbutton-icon {
-    border-radius:0 !important;
-    display: none;
-}
-
-#tabbrowser-tabs .tabbrowser-tab .tab-close-button { display:none !important; }
-
