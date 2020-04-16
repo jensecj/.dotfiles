@@ -41,6 +41,16 @@ whichshell() {
     ps -p "$$" | awk '{print $4}' | sed -n '2p'
 }
 
+freejob() {
+    jobid=$(jobs -l | fzf | cut -d' ' -f1 | tr -d '[]')
+
+    if [ $jobid -gt 0 ]; then
+        echo $jobid
+        bg "%$jobid"
+        disown "%$jobid"
+    fi
+}
+
 bu() { cp "$1" "$1.bak"; }
 mvbu() { mv "$1" "$1.bak"; }
 
