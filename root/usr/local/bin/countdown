@@ -13,19 +13,24 @@ def notify(msg, level="normal"):
 
 def get_next_target():
     file = expanduser("~/.countdown")
-    if os.path.isfile(file):
-        with open(file, "r") as f:
-            date = f.readline()
+
+    if not os.path.isfile(file):
+        print("cannot locate .countdown")
+
+    with open(file, "r") as f:
+        while date := f.readline():
+            # strip comments
             comment_start = date.find("#")
             date = date[:comment_start]
             date = date.strip()
 
-    if date:
-        for fmt in ["%Y-%m-%d", "%Y-%m-%d %H:%M"]:
-            try:
-                return datetime.strptime(date, fmt)
-            except ValueError:
-                pass
+            # we just care about the first valid countdown date
+            if date:
+                for fmt in ["%Y-%m-%d", "%Y-%m-%d %H:%M"]:
+                    try:
+                        return datetime.strptime(date, fmt)
+                    except ValueError:
+                        pass
 
 
 def main():
@@ -35,15 +40,16 @@ def main():
         diff = target - now
 
         out = ""
-
         if diff.total_seconds() < 0:
-            notify("countdown complete", "critical")
             out += "-"
             diff = now - target
 
         days = diff.days
         hours, remainder = divmod(diff.seconds, 3600)
         minutes, seconds = divmod(remainder, 60)
+
+        if days == 0 and hours == 0 and minutes == 0:
+            notify("countdown complete", "critical")
 
         if days:
             out += f"{days}d "
@@ -53,7 +59,7 @@ def main():
             out += f"{minutes}m"
 
         if days > 30:
-            out += f"({days/7:0.0f} weeks)"
+            out += f" ({days/7:0.0f}w)"
 
         print(out)
 
