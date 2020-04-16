@@ -70,6 +70,7 @@ declare -a packages=(
     i3-gaps # tiling window manager
     dunst # notification manager
     ufw # firewall
+    opensnitch # app firewall
     slock # screen lock
     xidlehook # perform actions on idle (used with slock)
     dnscrypt-proxy # for running encrypted dnslookups

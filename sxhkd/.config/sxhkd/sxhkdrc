@@ -44,7 +44,7 @@ super + shift + Return
     $TERMINAL
 
 super + ctrl + Return
-    $TERMINAL --name="float-me"
+    $TERMINAL --class "float"
 
 super + m
     $TERMINAL -e tmux -c ranger

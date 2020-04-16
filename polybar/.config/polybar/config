@@ -23,7 +23,7 @@ module-margin-left = 4
 module-margin-right = 4
 
 modules-left = i3
-modules-center = alsa vpn notmuch-unread temps filesystem cpu memory battery date  gpg-cache countdown
+modules-center = alsa vpn notmuch-unread filesystem cpu memory battery date  gpg-cache countdown
 modules-right =
 
 tray-position = right

@@ -16,10 +16,11 @@ alias mkdir='mkdir -p -v' # make parent directories and tell us
 alias df="df -h" # human-readable by default
 alias bc="bc -q"
 alias ssh-add="ssh-add -t 1h"
+alias emacsd="emacs --no-site-file --daemon"
 
 # ** common shortcuts
-alias sudo='sudo '
-alias _='sudo '
+alias sudo='\sudo '
+alias _='\sudo '
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
@@ -153,7 +154,11 @@ alias mythq='mpv --ytdl --ytdl-raw-options=format="bestvideo[height<=?1080]+best
 alias py="python"
 alias qr="qrcode-terminal"
 
+alias srm=" srm -lr"
 alias drop_cache="sudo sync; sudo sysctl -w vm.drop_caches=3"
+
+alias rm="trash-put"
+alias urm="trash-list | fzf | cut -d' ' -f3"
 
 myip() {
     local arg=$1
