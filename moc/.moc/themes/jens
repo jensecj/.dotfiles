@@ -1,0 +1,37 @@
+# property		         fg      	bg	     fx
+
+background           = default	default
+frame                = green		default
+window_title         = green		default
+directory            = default	default	bold
+selected_directory   = blue		  default	bold
+playlist             = green		default	bold
+selected_playlist    = blue		  default bold
+file                 = white		default
+selected_file        = blue		  default	bold
+marked_file          = yellow	  default	bold
+marked_selected_file = yellow	  default bold
+info                 = white		default	bold
+selected_info        = blue     default bold
+marked_info          = yellow   default bold
+marked_selected_info = blue     default bold
+status               = green		default
+title                = white		default	bold
+state                = cyan 		default	bold
+current_time         = green		default	bold
+time_left            = green		default	bold
+total_time           = green		default	bold
+time_total_frames    = green		default
+sound_parameters     = green		default	bold
+legend               = green		default
+disabled             = white		default	bold
+enabled              = green		default	bold
+empty_mixer_bar      = green		default
+filled_mixer_bar     = black		cyan
+empty_time_bar       = green		default
+filled_time_bar      = black		cyan
+entry                = green		default
+entry_title          = black		default
+error                = red		  default	bold
+message              = yellow	  default	bold
+plist_time           = green		default	bold

@@ -1,0 +1,5 @@
+SoundDriver = PULSEAUDIO:JACK:ALSA:OSS
+Theme = jens
+SavePlaylist = yes
+PlaylistNumbering = no
+PlaylistFullPaths = no

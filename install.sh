@@ -133,6 +133,7 @@ declare -a packages=(
     peerflix # streaming torrents
     calibre # ebook manager
     mpv # video player
+    moc # music player
     mupdf # pdf viewer
     zathura # pdf viewer
     zathura-pdf-mupdf # mupdf backend for zathura
