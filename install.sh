@@ -116,6 +116,7 @@ declare -a packages=(
     exa # ls alternative
     lynis # hardening
     autorandr # automatic xrandr
+    secure-delete # securely delete files
 
     # ** system information
     lshw # print hardware information (like other ls* tools)
