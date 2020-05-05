@@ -2,12 +2,14 @@
 
 gpg-cached | grep pass &> /dev/null
 if [ ! $? -eq 0 ]; then
+    echo "gpg key is not in cache"
     exit 1
 fi
 
-if [ -d /home/jens/private/mail/ ]; then
-    mbsync -Va
-    notmuch new
-else
+if [ ! -d /home/jens/private/mail/ ]; then
     echo "sync-mail: mail directory does not exist."
+    exit 2
 fi
+
+mbsync -Va
+notmuch new
