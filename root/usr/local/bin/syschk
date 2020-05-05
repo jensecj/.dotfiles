@@ -75,8 +75,12 @@ echo "dnscrypt servers: ${dnscrypt_servers:15}"
 local_ip=$(ifconfig wlp3s0 | grep inet | sed -n 1p | awk '{print $2}');
 echo "local ip: $local_ip"
 
-public_ip=$(dig +timeout=5 +short myip.opendns.com @resolver1.opendns.com)
-echo "public ip: $public_ip";
+public_ip=$(dig +timeout=5 +short myip.opendns.com @resolver1.opendns.com 2> /dev/null)
+if [ -n "$public_ip" ]; then
+    echo "public ip: $public_ip";
+else
+    echo "public ip not found"
+fi
 
 printf "\n\n"
 
