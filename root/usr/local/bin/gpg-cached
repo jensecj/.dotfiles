@@ -58,6 +58,10 @@ def entry():
         picks.append(out)
 
     picks = [p for p in picks if p]
+
+    if not picks:
+        sys.exit(1)
+
     result = " ".join(picks)
     print(result)
 
