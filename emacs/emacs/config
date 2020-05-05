@@ -1,6 +1,16 @@
 #!/bin/bash
 
 (
-cd src/
-./configure --enable-link-time-optimization --with-imagemagick --with-cairo --with-modules --without-sound --with-pdumper=yes --with-x-toolkit=lucid
+    cd src/
+
+    ./configure \
+        --enable-link-time-optimization \
+        --with-modules \
+        --with-cairo \
+        --without-sound \
+        --with-pdumper=yes \
+        --with-x-toolkit=lucid \
+        --with-imagemagick \
+        --with-harfbuzz \
+        --with-json
 )
