@@ -48,9 +48,6 @@ source $ZSHHOME/aliases.sh
 source $ZSHHOME/options.zsh
 source $ZSHHOME/jens-theme.zsh
 
-# use direnv to allow directory specific exports
-# eval "$(direnv hook zsh)"
-
 autoload -U zrecompile
 # Compile zcompdump, if modified, to increase startup speed.
 if [ "$HOME/.zcompdump" -nt "$HOME/.zcompdump.zwc" -o ! -e "$HOME/.zcompdump.zwc" ]; then
