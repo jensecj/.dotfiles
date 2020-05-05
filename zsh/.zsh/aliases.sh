@@ -19,14 +19,14 @@ alias ssh-add="ssh-add -t 1h"
 alias emacsd="emacs --no-site-file --daemon"
 
 # ** common shortcuts
-alias sudo='\sudo '
-alias _='\sudo '
+alias sudo='\sudo -E '
+alias _='\sudo -E '
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
-
-alias cp="rsync --verbose --human-readable --new-compress --archive --partial --progress"
-alias mv="rsync --verbose --human-readable --new-compress --archive --partial --progress --remove-source-files"
+alias dd="dd status=progress"
+alias cp="xcp"
+alias uniq="runiq"
 
 alias escape="tr -cd '[:print:]'"
 
@@ -62,12 +62,17 @@ del() {
 }
 
 lnk() {
-    [ $# -eq 2 ] || return 1
+    [ $# -gt 1 ] || return 1
 
     local src=$(realpath $1)
     local dst=$(realpath $2)
     echo "$src -> $dst"
-    ln -s $src $dst
+
+    if [ "$3" = "-" ]; then
+        sudo ln -s $src $dst
+    else
+        ln -s $src $dst
+    fi
 }
 
 # * fzf functions
@@ -133,8 +138,8 @@ alias octave='octave-cli' # who uses the gui anyway?
 alias pdf='zathura'
 
 # easy file / directory search using `fd`
-alias ff="fd --type f"
-alias fd="fd --type d"
+alias ff="\fd --type f"
+alias fd="\fd --type d"
 
 # place space first so we ignore history (make sure HIST_IGNORE_SPACE is set)
 alias rtorrent=" rtorrent"
@@ -146,7 +151,7 @@ alias ytdl='youtube-dl -i -f "bestvideo[height<=?1080]+bestaudio/best" -o"%(uplo
 alias ytdlp='ytdl --yes-playlist'
 alias ytarc="ytdl --write-description --all-subs --embed-subs --add-metadata" # --embed-thumbnail does not work with .mkv yet
 alias ytdlnr='ytdl -o"%(autonumber)s -- %(uploader)s -- %(upload_date)s -- %(title)s.%(ext)s"'
-alias ytmp3='youtube-dl -f "bestvideo[height<=?480]+bestaudio" -x --audio-format mp3 -o"%(uploader)s -- %(title)s.%(ext)s"'
+alias ytmp3='youtube-dl -f "bestaudio" -x --audio-format mp3 -o"%(uploader)s -- %(title)s.%(ext)s"'
 
 alias myt='mpv --ytdl --ytdl-raw-options=format="bestvideo[height<=?720]+bestaudio/best[height<=720]"'
 alias mythq='mpv --ytdl --ytdl-raw-options=format="bestvideo[height<=?1080]+bestaudio/best[height<=1080]"'
@@ -154,7 +159,7 @@ alias mythq='mpv --ytdl --ytdl-raw-options=format="bestvideo[height<=?1080]+best
 alias py="python"
 alias qr="qrcode-terminal"
 
-alias srm=" srm -lr"
+alias srm=" srm -fllr"
 alias drop_cache="sudo sync; sudo sysctl -w vm.drop_caches=3"
 
 alias rm="trash-put"
