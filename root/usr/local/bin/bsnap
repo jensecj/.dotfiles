@@ -1,5 +1,7 @@
 #!/bin/bash
 
+trap 'echo $DATE Backup interrupted >&2; exit 2' INT TERM
+
 SNAPSHOT_DIR="$HOME/sync/.snapshots/borg"
 BORG_PATH="$SNAPSHOT_DIR::{hostname}--{user}--{now}"
 
@@ -9,17 +11,14 @@ if [ ! -d "$SNAPSHOT_DIR" ]; then
 fi
 
 dirs=(
-    "/boot"
-    "/build"
+    "/boot/efi"
+    "/boot/grub"
     "/etc"
     "/srv"
     "$HOME/.config"
 )
 
 DATE=$(date +%Y-%m-%d--%H:%M:%S)
-
-info() { printf "\n%s %s\n\n" "$DATE" "$*" >&2; }
-trap 'echo $DATE Backup interrupted >&2; exit 2' INT TERM
 
 borg create \
      --stats \
@@ -28,11 +27,11 @@ borg create \
      --filter AME \
      --list \
      --show-rc \
-     --compression lz4 \
+     --compression zstd \
      --exclude-caches \
      --exclude '/home/*/.config/chromium/*' \
      --exclude '/home/*/.config/Electron/*' \
-     --exclude '/home/*/.config/mpv/*' \
+     --exclude '/home/*/.config/mpv/watch_later/*' \
      "$BORG_PATH" \
      "${dirs[@]}"
 
@@ -51,6 +50,8 @@ prune_exit=$?
 
 # use highest exit code as global exit code
 global_exit=$(( backup_exit > prune_exit ? backup_exit : prune_exit ))
+
+info() { printf "\n%s %s\n\n" "$DATE" "$*" >&2; }
 
 if [ ${global_exit} -eq 0 ]; then
     info "Backup and Prune finished successfully"
