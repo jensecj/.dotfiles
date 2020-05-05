@@ -4,20 +4,21 @@
 AURHELPER=yay # or trizen, bauerbill, etc.
 pacman -S $AURHELPER
 
+# * system
 declare -a packages=(
-    # java
+    # ** java
     jdk10-openjdk jre10-openjdk
     graal-bin graal-native-image-bin # alternative vm
     maven
 
-    # python
+    # ** python
     python python-pip python-setuptools
     pyenv python-pew python-virtualenv # virtual environments
     python-language-server #
     mypy # type checking
     hy # lispy-python
 
-    # c++
+    # ** c++
     clang clang-tools-extra
     llvm llvm-libs lld
     libc++ openmp
@@ -26,21 +27,21 @@ declare -a packages=(
     valgrind # performance tuning/debugging
     cmake # build tool
 
-    # lisps
+    # ** lisps
     chicken
     sbcl roswell
 
-    # rust
+    # ** rust
     rustup rls-git
 
-    # other languages
+    # ** other languages
     octave nodejs
     ocaml dune opam llvm-ocaml
 
-    # libraries
+    # ** libraries
     libotf
 
-    # programming tools
+    # ** programming tools
     termite termite-terminfo # terminal emulator
     alacritty                # another terminal
     zsh # preferred shell
@@ -53,11 +54,11 @@ declare -a packages=(
     diff-so-fancy # fancy git diff
     watchman # inode change monitor and trigger
 
-    # system
+    # ** system
     dkms # dynamic kernel module support
     earlyoom # out-of-memory daemon
 
-    # utilities
+    # ** utilities
     moreutils # more shell utils
     keychain # manage ssh agents
     brightnessctl # easy brightness controls
@@ -116,14 +117,14 @@ declare -a packages=(
     lynis # hardening
     autorandr # automatic xrandr
 
-    # system information
+    # ** system information
     lshw # print hardware information (like other ls* tools)
     glances # monitor for lots of system info
     iotop # I/O monitor
     iftop # network monitor
     htop # process manager
 
-    # misc
+    # ** misc
     youtube-dl # for downloading video/sound from the internet
     ranger-git # ncurses file explorer
     python-ueberzug-git # show images in the terminal
@@ -150,16 +151,16 @@ declare -a packages=(
     clamav # anti-virus
     fontpreview-git # simple cli for testing fonts
 
-    # mail
+    # ** mail
     isync
     msmtp
     notmuch
 
-    # browsers
+    # ** browsers
     chromium
     firefox
 
-    # fonts
+    # ** fonts
     adobe-source-sans-pro-fonts
     adobe-source-code-pro-fonts # for programming
     noto-sans-cjk # chinese-japanses-korean
@@ -168,17 +169,20 @@ declare -a packages=(
 )
 $AURHELPER -S "${packages[@]}"
 
+# * pip
 declare -a pip_packages=(
     i3altlayout
 )
 pip install -g "${pip_packages[@]}"
 
+# * npm
 declare -a npm_packages=(
     qrcode-terminal # generate qrcodes in the terminal
     http-server
 )
 npm -g install "${npm_packages[@]}"
 
+# * cargo
 declare -a rustup_components=(
     clippy # linting
     rls # rust language server
