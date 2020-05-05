@@ -7,8 +7,6 @@ else
     OLD="$1"
 fi
 
-read -e -i "$OLD" -r NEW
+read -e -p ">> " -i "$OLD" -r NEW
 
-# echo "old: $OLD"
-# echo "new: $NEW"
 mv "$OLD" "$NEW"
