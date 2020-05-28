@@ -1,5 +1,11 @@
 @namespace url(http://www.w3.org/1999/xhtml);
 
+@-moz-document url(about:newtab), url(about:home), url(about:blank) {
+    body {
+	      background-color: #3f3f3f !important;
+    }
+}
+
 @-moz-document domain("news.ycombinator.com") {
     body {
         max-width: 1000px;
