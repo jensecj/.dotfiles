@@ -1,13 +1,19 @@
 #!/bin/bash
 
-trap 'echo $DATE Backup interrupted >&2; exit 2' INT TERM
+set -e
+set -o pipefail
+
+err() { echo -e "$*" >&2; }
+err_exit() { err "$@"; exit 1; }
+info() { printf "\n%s %s\n\n" "$DATE" "$*" >&2; }
+
+trap 'err_exit "[$DATE] Backup interrupted"' INT TERM
 
 SNAPSHOT_DIR="$HOME/sync/.snapshots/borg"
 BORG_PATH="$SNAPSHOT_DIR::{hostname}--{user}--{now}"
 
 if [ ! -d "$SNAPSHOT_DIR" ]; then
-    echo "snapshot directory not found"
-    exit 1
+    err_exit "snapshot directory not found"
 fi
 
 dirs=(
@@ -50,8 +56,6 @@ prune_exit=$?
 
 # use highest exit code as global exit code
 global_exit=$(( backup_exit > prune_exit ? backup_exit : prune_exit ))
-
-info() { printf "\n%s %s\n\n" "$DATE" "$*" >&2; }
 
 if [ ${global_exit} -eq 0 ]; then
     info "Backup and Prune finished successfully"
