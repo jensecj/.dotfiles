@@ -1,5 +1,11 @@
 #!/bin/sh
 
+# TODO: auto-detect firefox profile?
+FIREFOX_PROFILE="cf5z4a52.dev-edition-default"
+ln -s "$(pwd)/firefox/user.js" "$HOME/.mozilla/firefox/$FIREFOX_PROFILE/user.js"
+ln -s "$(pwd)/firefox/userChrome.css" "$HOME/.mozilla/firefox/$FIREFOX_PROFILE/chrome/userChrome.css"
+ln -s "$(pwd)/firefox/userContent.css" "$HOME/.mozilla/firefox/$FIREFOX_PROFILE/chrome/userContent.css"
+
 # use a fancier diff
 git config --global core.pager "diff-so-fancy | less --tabs=4 -RFX"
 
@@ -27,6 +33,6 @@ systemctl --user start mbsync
 systemctl --user start lowtmp
 
 # fix fork bombs
-if [[ ! $(grep "\* hard nproc" /etc/security/limits.conf) ]]; then
+if [ ! $(grep "\* hard nproc" /etc/security/limits.conf) ]; then
     echo "* hard nproc 2048" >> /etc/security/limits.conf
 fi
