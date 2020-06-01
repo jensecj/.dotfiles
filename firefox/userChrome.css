@@ -1,6 +1,5 @@
 @namespace url(http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul);
 
-browser { background-color: #3f3f3f !important; } /* default background color */
 #window-controls  { display:none !important; }    /* hide the minimize / maximize / close buttons  */
 
 /********/
@@ -8,10 +7,7 @@ browser { background-color: #3f3f3f !important; } /* default background color */
 /********/
 
 /* hide buttons on tabs */
-#tabbrowser-tabs .tabbrowser-tab .tab-close-button {
-	  display:none !important;
-}
-
+#tabbrowser-tabs .tabbrowser-tab .tab-close-button,
 .tabs-newtab-button,
 #tabs-newtab-button {
     display: none !important;
@@ -129,7 +125,42 @@ browser { background-color: #3f3f3f !important; } /* default background color */
     border-bottom-right-radius: 0px !important;
 }
 
+
+/***********/
+/* sidebar */
+/***********/
+
+
+#sidebar-header {
+    font-size: 1em !important;
+    padding: 3px !important;
+}
+
+#sidebar-search-container {
+    display: none;
+}
+
+.sidebar-placesTree treechildren::-moz-tree-row {
+    height: 1.6em !important;
+    min-height: 1.6em !important;
+    border-width: 1px !important;
+}
+
+.sidebar-placesTree treechildren::-moz-tree-indentation {
+    width: 0 !important;
+}
+
+.sidebar-placesTree treechildren::-moz-tree-twisty {
+    padding-inline-start: 0 !important;
+    padding-inline-end: 2px !important;
+}
+
 /********* ****/
 /* general ui */
 /********* ****/
 
+/* force the reader button to be visible */
+#reader-mode-button {
+    display: -moz-box !important;
+    visibility: visible !important;
+}

@@ -1,4 +1,7 @@
-user_pref("general.warnOnAboutConfig", false);
+user_pref("general.warnOnAboutConfig", false); // XUL/XHTML version
+user_pref("privacy.userContext.ui.enabled", true);
+user_pref("privacy.userContext.enabled", true);
+user_pref("browser.aboutConfig.showWarning", false); // HTML version [FF71+]
 user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true); // load userChrome / userContent
 user_pref("toolkit.cosmeticAnimations.enabled", false);
 user_pref("browser.tabs.insertAfterCurrent", true);
@@ -11,8 +14,32 @@ user_pref("dom.disable_beforeunload", true);       // dont let pages hijack 'bac
 user_pref("browser.shell.checkDefaultBrowser", false);
 user_pref("browser.urlbar.trimURLs", false); // show full url to see if http or https
 user_pref("webgl.disabled", true);
+user_pref("dom.webnotifications.enabled", false);
+user_pref("media.webspeech.synth.enabled",			false);
+user_pref("dom.gamepad.enabled",				false);
+user_pref("dom.vr.enabled",					false);
+user_pref("dom.vibrator.enabled",           false);
+user_pref("dom.enable_resource_timing",				false);
+user_pref("camera.control.face_detection.enabled",		false);
+user_pref("browser.search.countryCode",				"US");
+user_pref("browser.search.region",				"US");
+user_pref("browser.search.geoip.url",				"");
+user_pref("intl.accept_languages",				"en-US, en");
+user_pref("intl.locale.matchOS",				false);
+user_pref("javascript.use_us_english_locale",			true);
+user_pref("clipboard.autocopy",					false);
+
 
 // privacy and telemetry
+user_pref("plugin.state.java",					0);
+user_pref("plugin.state.flash",					0);
+user_pref("extensions.getAddons.cache.enabled",			false);
+user_pref("browser.display.use_document_fonts",			0); // try to prevent font fingerprinting
+user_pref("general.buildID.override",				"20100101");
+user_pref("browser.startup.homepage_override.buildID",		"20100101");
+user_pref("browser.send_pings.require_same_host",		true);
+user_pref("media.webspeech.recognition.enable",			false);
+user_pref("browser.send_pings",					false);
 user_pref("media.peerconnection.enabled", false)
 user_pref("extensions.htmlaboutaddons.recommendations.enabled", false);
 user_pref("extensions.htmlaboutaddons.discover.enabled", false);
@@ -20,7 +47,7 @@ user_pref("privacy.firstparty.isolate", true);
 user_pref("geo.enabled", false);
 user_pref("privacy.resistFingerprinting", true);
 user_pref("browser.newtabpage.directory.ping", "");
-user_pref("browser.newtabpage.directory.source", "");
+user_pref("browser.newtabpage.directory.source",		"data:text/plain,{}");
 user_pref("browser.newtabpage.enhanced", false);
 user_pref("browser.search.geoip.url", "");
 user_pref("browser.search.region", "US");
@@ -28,14 +55,22 @@ user_pref("browser.search.suggest.enabled", false);
 user_pref("browser.search.update", false);
 user_pref("browser.selfsupport.url", "");
 user_pref("datareporting.healthreport.uploadEnabled", false);
+user_pref("datareporting.healthreport.service.enabled",		false);
 user_pref("datareporting.policy.dataSubmissionEnabled", false);
 user_pref("datareporting.sessions.current.clean", true);
 user_pref("device.sensors.enabled", false);
 user_pref("dom.battery.enabled", false);
-user_pref("dom.enable_performance", false);
+user_pref("dom.enable_performance", false); // disable the timing api
+user_pref("dom.enable_user_timing", false); // also disable the user timing api
+user_pref("dom.netinfo.enabled", false); // dont leak network/browser information through javascript
+user_pref("dom.telephony.enabled",				false);
 user_pref("extensions.getAddons.cache.enabled", false);
 user_pref("extensions.pocket.enabled", false);
 user_pref("media.getusermedia.screensharing.enabled", false);
+user_pref("media.getusermedia.audiocapture.enabled",		false);
+user_pref("media.navigator.video.enabled",			false);
+user_pref("media.navigator.enabled",				false);
+user_pref("beacon.enabled",					false);
 user_pref("media.video_stats.enabled", false);
 user_pref("network.dns.disablePrefetch", true);
 user_pref("network.http.speculative-parallel-limit", 0);
@@ -46,7 +81,9 @@ user_pref("privacy.donottrackheader.enabled", true);
 user_pref("privacy.trackingprotection.enabled", true);
 user_pref("privacy.trackingprotection.introCount", 20);
 user_pref("browser.newtabpage.activity-stream.feeds.telemetry", false);
+user_pref("browser.newtabpage.activity-stream.asrouter.userprefs.cfr",	false);
 user_pref("browser.newtabpage.activity-stream.telemetry", false);
+user_pref("browser.newtabpage.activity-stream.feeds.section.topstories",	false);
 user_pref("browser.ping-centre.telemetry", false);
 user_pref("toolkit.telemetry.enabled", false);
 user_pref("toolkit.telemetry.firstShutdownPing.enabled", false);
@@ -77,3 +114,8 @@ user_pref("browser.safebrowsing.phishing.enabled", false);
 user_pref("extensions.screenshots.disabled", true);
 user_pref("extensions.screenshots.system-disabled", true);
 user_pref("extensions.screenshots.upload-disabled", true);
+user_pref("loop.logDomains",					false);
+user_pref("extensions.shield-recipe-client.enabled",		false);
+user_pref("app.shield.optoutstudies.enabled",			false);
+user_pref("network.negotiate-auth.allow-insecure-ntlm-v1",	false);
+user_pref("network.http.referer.spoofSource",			true);
