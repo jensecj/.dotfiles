@@ -1,22 +1,4 @@
 #!/bin/bash
-# * changing defaults
-
-# ** better ls
-alias ls='ls --color=always --time-style="+%d-%m-%Y" --group-directories-first'
-#alias l="ls -gholXN"
-#alias ll="ls -agholXN"
-
-alias l="exa --long --group-directories-first --time-style=long-iso"
-alias ll="l --all --group"
-
-alias free="free -h" # show sizes in a human readable format
-alias grep='grep --color=always' # use colors in grep
-alias diff="diff --color=always" # and diff
-alias mkdir='mkdir -p -v' # make parent directories and tell us
-alias df="df -h" # human-readable by default
-alias bc="bc -q"
-alias ssh-add="ssh-add -t 1h"
-alias emacsd="emacs --no-site-file --daemon"
 
 # ** common shortcuts
 alias sudo='\sudo -E '
@@ -25,58 +7,93 @@ alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
 alias dd="dd status=progress"
+
+# * better defaults
+alias ls='ls --color=always --time-style="+%d-%m-%Y" --group-directories-first'
+#alias l="ls -gholXN"
+#alias ll="ls -agholXN"
+
+alias free="free -h" # show sizes in a human readable format
+alias grep='grep --color=always' # use colors in grep
+alias diff="diff --color=always" # use colors in diff
+alias mkdir='mkdir -p -v' # create parent directories and tell us
+alias df="df -h" # human-readable by default
+alias bc="bc -ql" # be quiet, and load floating-point math and stdlib
+alias ssh-add="ssh-add -t 1h" # 1-hour default timeout for cached ssh keys
+alias emacsd="emacs --no-site-file --daemon"
+
+
+# ** replacements
 alias cp="xcp"
 alias uniq="runiq"
+alias rm="trash-put"
+alias urm="trash-list | fzf | cut -d' ' -f3"
+alias l="exa --long --group-directories-first --time-style=long-iso"
+alias ll="l --all --group"
 
-alias escape="tr -cd '[:print:]'"
+# * pacman
+alias pac='yay'
+alias pacu='pac -Syyu --combinedupgrade'
+alias pacrm='pac -Rns'
+alias pacss='pac -Ss'
+alias pacs='pac -S'
+alias pacls='pac -Qet'
+alias pacown="pac -Qo"
 
-# * extra functions
-
-# figure out which terminal emulator we're inside of
-# echo $TERM does not always work, because sometimes term lies
-whichterm() {
-    ps -p $PPID | awk '{print $4}' | sed -n '2p'
-}
-# same goes for a shell
-whichshell() {
-    ps -p "$$" | awk '{print $4}' | sed -n '2p'
-}
-
-freejob() {
-    jobid=$(jobs -l | fzf | cut -d' ' -f1 | tr -d '[]')
-
-    if [ $jobid -gt 0 ]; then
-        echo $jobid
-        bg "%$jobid"
-        disown "%$jobid"
-    fi
+paci() {
+    pkg=$(yay -Sl | fzf --preview-window=top:70% --preview="yay -Si {2}" | awk '{print $2}')
+    print -z $pkg
 }
 
-bu() { cp "$1" "$1.bak"; }
-mvbu() { mv "$1" "$1.bak"; }
+# * youtube-dl
 
-mcd() { mkdir -p "$1"; cd "$1" || exit 1; }
-
-del() {
-    mv '$@' ~/.local/share/Trash/files/
+ytdl() {
+    youtube-dl -i \
+               -f "bestvideo[height<=?1080]+bestaudio/best" \
+               -o"%(uploader)s -- %(upload_date)s -- %(title)s.%(ext)s" \
+               --no-playlist \
+               --prefer-ffmpeg \
+               --postprocessor-args="-threads 2" \
+               "$@"
 }
 
-lnk() {
-    [ $# -gt 1 ] || return 1
+alias ytdlp='ytdl --yes-playlist'
+alias ytarc="ytdl --write-description --all-subs --embed-subs --add-metadata" # --embed-thumbnail does not work with .mkv yet
+alias ytdlnr='ytdl -o"%(autonumber)s -- %(uploader)s -- %(upload_date)s -- %(title)s.%(ext)s"'
+alias ytmp3='youtube-dl -f "bestaudio" -x --audio-format mp3 -o"%(uploader)s -- %(title)s.%(ext)s"'
 
-    local src=$(realpath $1)
-    local dst=$(realpath $2)
-    echo "$src -> $dst"
+alias myt='mpv --ytdl --ytdl-raw-options=format="bestvideo[height<=?720]+bestaudio/best[height<=720]"'
+alias mythq='mpv --ytdl --ytdl-raw-options=format="bestvideo[height<=?1080]+bestaudio/best[height<=1080]"'
 
-    if [ "$3" = "-" ]; then
-        sudo ln -s $src $dst
-    else
-        ln -s $src $dst
-    fi
-}
+# * applications
+
+# easy file / directory search using `fd`
+alias ff="\fd --type f"
+alias fd="\fd --type d"
+
+alias octave='octave-cli' # who uses the gui anyway?
+alias pdf='zathura'
+
+alias rtorrent=" rtorrent"
+alias rtor=" rtorrent"
+
+alias pf=" peerflix --start --mpv"
+
+alias py="python"
+alias qr="qrcode-terminal"
+
+alias srm=" srm -fllr"
+
+alias cloc="tokei"
+alias cook="cookiecutter"
+
+# ** misc
+
+alias drop_cache="sudo sync; sudo sysctl -w vm.drop_caches=3"
+alias mount_ramdisk="_ mount -t tmpfs -o size=1024m tmpfs /mnt/ramdisk"
+alias umount_ramdisk="_ umount /mnt/ramdisk"
 
 # * fzf functions
-
 fzf-cd() {
     cd $(fd | fzf --no-multi)
     zle clear-screen
@@ -111,59 +128,55 @@ fman() {
     man -k . | fzf | awk '{print $1}' | xargs -r man
 }
 
+# * extra functions
+
+# figure out which terminal emulator we're inside of
+# echo $TERM does not always work, because sometimes term lies
+whichterm() {
+    ps -p $PPID | awk '{print $4}' | sed -n '2p'
+}
+# same goes for a shell
+whichshell() {
+    ps -p "$$" | awk '{print $4}' | sed -n '2p'
+}
+
+bu() { cp "$1" "$1.bak"; }
+mvbu() { mv "$1" "$1.bak"; }
+mcd() { mkdir -p "$1"; cd "$1" || exit 1; }
+del() {
+    mv '$@' ~/.local/share/Trash/files/
+}
+
+lnk() {
+    [ $# -gt 1 ] || return 1
+
+    local src=$(realpath $1)
+    local dst=$(realpath $2)
+    echo "$src -> $dst"
+
+    if [ "$3" = "-" ]; then
+        sudo ln -s "$src" "$dst"
+    else
+        ln -s "$src" "$dst"
+    fi
+}
+
+freejob() {
+    jobid=$(jobs -l | fzf | cut -d' ' -f1 | tr -d '[]')
+
+    if [ $jobid -gt 0 ]; then
+        echo $jobid
+        bg "%$jobid"
+        disown "%$jobid"
+    fi
+}
+
 rot90() {
     [ $# -gt 0 ] || return 1
     for img in $@; do
         convert $img -rotate 90 $img
     done
 }
-
-# * aliases
-
-# easy pacman
-alias pac='yay'
-alias pacu='pac -Syyu --combinedupgrade'
-alias pacrm='pac -Rns'
-alias pacss='pac -Ss'
-alias pacs='pac -S'
-alias pacls='pac -Qet'
-
-paci() {
-    pkg=$(yay -Sl | fzf --preview-window=top:70% --preview="yay -Si {2}" | awk '{print $2}')
-    print -z $pkg
-}
-
-# misc
-alias octave='octave-cli' # who uses the gui anyway?
-alias pdf='zathura'
-
-# easy file / directory search using `fd`
-alias ff="\fd --type f"
-alias fd="\fd --type d"
-
-# place space first so we ignore history (make sure HIST_IGNORE_SPACE is set)
-alias rtorrent=" rtorrent"
-alias rtor=" rtorrent"
-
-alias pf=" peerflix --start --mpv"
-
-alias ytdl='youtube-dl -i -f "bestvideo[height<=?1080]+bestaudio/best" -o"%(uploader)s -- %(upload_date)s -- %(title)s.%(ext)s" --no-playlist --prefer-ffmpeg --postprocessor-args="-threads 2"'
-alias ytdlp='ytdl --yes-playlist'
-alias ytarc="ytdl --write-description --all-subs --embed-subs --add-metadata" # --embed-thumbnail does not work with .mkv yet
-alias ytdlnr='ytdl -o"%(autonumber)s -- %(uploader)s -- %(upload_date)s -- %(title)s.%(ext)s"'
-alias ytmp3='youtube-dl -f "bestaudio" -x --audio-format mp3 -o"%(uploader)s -- %(title)s.%(ext)s"'
-
-alias myt='mpv --ytdl --ytdl-raw-options=format="bestvideo[height<=?720]+bestaudio/best[height<=720]"'
-alias mythq='mpv --ytdl --ytdl-raw-options=format="bestvideo[height<=?1080]+bestaudio/best[height<=1080]"'
-
-alias py="python"
-alias qr="qrcode-terminal"
-
-alias srm=" srm -fllr"
-alias drop_cache="sudo sync; sudo sysctl -w vm.drop_caches=3"
-
-alias rm="trash-put"
-alias urm="trash-list | fzf | cut -d' ' -f3"
 
 myip() {
     local arg=$1
@@ -192,19 +205,14 @@ myip() {
     fi
 }
 
-alias cl++="clang++ -std=c++17 -stdlib=libstdc++"
-alias cl++mj="cl++ -MJ compile_commands.json"
-
-alias dis="objdump -M intel -C -g -w -d"
-
-alias cloc="tokei"
-alias cook="cookiecutter"
+# run everything in docker?
+# https://github.com/jessfraz/dotfiles/blob/master/.dockerfunc
 
 video2webm () {
     local bitrate=$1;
     shift;
     for file in "$@"; do
-        local out=${file%.*}.webm;
+        local out="${file%.*}.webm";
 
         ffmpeg -y -i "$file" -c:v libvpx-vp9 -b:v "$bitrate" -pass 1 -speed 4 \
                -c:a libopus -f webm /dev/null -async 1 -vsync passthrough
@@ -271,5 +279,3 @@ vpn-down() {
     fi
 }
 
-alias mount_ramdisk="_ mount -t tmpfs -o size=1024m tmpfs /mnt/ramdisk"
-alias umount_ramdisk="_ umount /mnt/ramdisk"
