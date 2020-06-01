@@ -1,11 +1,10 @@
 #!/bin/bash
 
-err() { echo -e "$*" >&2; }
+set -e
+set -o pipefail
 
-err_exit() {
-    err "$@"
-    exit 1
-}
+err() { echo -e "$*" >&2; }
+err_exit() { err "$@"; exit 1; }
 
 reencrypt() {
     local id="$1"
@@ -16,7 +15,7 @@ reencrypt() {
 
 main() {
     if [ $# -lt 2 ]; then
-        err_exit "Usage: gpg-reencrypt ID FILE..."
+        err_exit "Usage: gpg-reencrypt ID FILE"
     fi
 
     local id=$1
