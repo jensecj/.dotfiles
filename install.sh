@@ -13,6 +13,7 @@ declare -a packages=(
 
     # ** python
     python python-pip python-setuptools
+    pypy3 pypy3-pip pypy3-setuptools
     pyenv python-pew python-virtualenv # virtual environments
     python-language-server #
     mypy # type checking
@@ -56,26 +57,44 @@ declare -a packages=(
 
     # ** system
     dkms # dynamic kernel module support
+    i3-gaps # tiling window manager
     earlyoom # out-of-memory daemon
+    psi-notify # notify on high system-resource use
+    dunst # notification manager
+    sxhkd # hotkey daemon for x
+    picom # screen compositor for X11
+    polybar # info bar / fringe for things
+    dnscrypt-proxy # for running encrypted dnslookups
+    ufw # firewall
+    keychain # manage ssh agents
+    unclutter # hide the curser when idle
+    opensnitch # app firewall
+    xidlehook # perform actions on idle (used with slock)
+    autocutsel # for synching clipboards
+
+    # ** sys tools
+    ripgrep # fast grep alternative
+    exa # ls alternative
+    bat # cat alternative with syntax highlighting, etc.
+    fd # find alternative
+    jq # work with json in the terminal
+    tokei # count lines of code
+    xsv # work with csv in the terminal
+    fdupes # find duplicate files in directories
+    dua-cli # ncdu alternative
+    fselect # find files using SQL syntax
+    xcp # extended cp
+    sd # simple find-and-replace
+    just # modern make
+    runiq # fast filter for duplicate lines
+    zoxide # z.sh alternative
 
     # ** utilities
     moreutils # more shell utils
-    keychain # manage ssh agents
     brightnessctl # easy brightness controls
     task-spooler # queue tasks to be completed sequentially
-    unclutter # hide the curser when idle
     tldr # quick shell examples for most commands
-    polybar # info bar / fringe for things
-    sxhkd # hotkey daemon for x
-    picom # screen compositor for X11
-    i3-gaps # tiling window manager
-    dunst # notification manager
-    ufw # firewall
-    opensnitch # app firewall
     slock # screen lock
-    xidlehook # perform actions on idle (used with slock)
-    dnscrypt-proxy # for running encrypted dnslookups
-    autocutsel # for synching clipboards
     gperftools # performance analysis tools
     openssh openvpn
     wireguard-tools wireguard-dkms
@@ -87,25 +106,17 @@ declare -a packages=(
     borg # incremental, encrypted backups
     gocryptfs # encrypted mount points
     rsync # synching things
-    ripgrep # more file searching
     rtorrent # torrenting
     texlive-bin # latex
     texlive-core # latex
-    jq # explore json in the terminal
     gnuplot # plotting
     downgrade # for downgrading packages to a version in cache
-    tokei # count lines of code
-    fdupes # find duplicate files in directories
     lsyncd # "real-time" directory synchronization
-    ncdu # free-space visualizer for filesystem
     firejail # app sandboxing
     ddrescue # disk recovery
     udiskie # automounting removable disks
-    bat # cat clone with syntax highlighting, etc.
     httpie # simple http client for the terminal
-    fd # alternative to find
     insect # scientific calculator, with many features (kg -> grams, etc.)
-    xsv # work with csv in the terminal
     fzf # fuzzy file finder
     detox # clean up filenames
     rawdog # raw rss feeds in the terminal
@@ -113,17 +124,15 @@ declare -a packages=(
     plantuml # create UML diagrams from ascii
     rsstail # tail for rss-feeds
     hexyl # cat, but spits out hex
-    exa # ls alternative
     lynis # hardening
     autorandr # automatic xrandr
     secure-delete # securely delete files
 
     # ** system information
+    htop # process manager
     lshw # print hardware information (like other ls* tools)
-    glances # monitor for lots of system info
     iotop # I/O monitor
     iftop # network monitor
-    htop # process manager
 
     # ** misc
     youtube-dl # for downloading video/sound from the internet
@@ -150,7 +159,6 @@ declare -a packages=(
     wordnet-common wordnet-cli # wordnet dict and extras
     yad slop bashcaster-git # for simple screen recording
     clamav # anti-virus
-    fontpreview-git # simple cli for testing fonts
 
     # ** mail
     isync
@@ -160,10 +168,11 @@ declare -a packages=(
     # ** browsers
     chromium
     firefox
+    firefox-developer-edition
 
     # ** fonts
-    adobe-source-sans-pro-fonts
     adobe-source-code-pro-fonts # for programming
+    adobe-source-sans-pro-fonts
     noto-sans-cjk # chinese-japanses-korean
     nerd-fonts-complete # a collection of patched and icon fonts
     otf-fira-code # programming font with ligitures
@@ -179,7 +188,6 @@ pip install -g "${pip_packages[@]}"
 # * npm
 declare -a npm_packages=(
     qrcode-terminal # generate qrcodes in the terminal
-    http-server
 )
 npm -g install "${npm_packages[@]}"
 
@@ -197,22 +205,3 @@ declare -a rust_packages=(
     snatch # threaded downloader
 )
 cargo install "${rust_packages[@]}"
-
-
-# TODO: setup config for the following
-# firefox:
-# cookie autodelete
-# decentral eyes
-# https everywhere
-# mute sites by default
-# privacy badger
-# umatrix
-# ublock origin
-# tamper monkey
-# privacy settings
-# link cleaner
-
-FIREFOX_PROFILE="cf5z4a52.dev-edition-default"
-ln -s "$(pwd)/firefox/user.js" /home/jens/.mozilla/firefox/$FIREFOX_PROFILE/user.js
-ln -s "$(pwd)/firefox/userChrome.css" /home/jens/.mozilla/firefox/$FIREFOX_PROFILE/chrome/userChrome.css
-ln -s "$(pwd)/firefox/userContent.css" /home/jens/.mozilla/firefox/$FIREFOX_PROFILE/chrome/userContent.css
