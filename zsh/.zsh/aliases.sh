@@ -150,8 +150,8 @@ del() {
 lnk() {
     [ $# -gt 1 ] || return 1
 
-    local src=$(realpath $1)
-    local dst=$(realpath $2)
+    local src=$(realpath "$1")
+    local dst=$(realpath "$2")
     echo "$src -> $dst"
 
     if [ "$3" = "-" ]; then

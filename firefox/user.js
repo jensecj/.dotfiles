@@ -1,4 +1,5 @@
 user_pref("general.warnOnAboutConfig", false); // XUL/XHTML version
+user_pref("security.dialog_enable_delay", 0)   // dont delay the download-file dialog
 user_pref("privacy.userContext.ui.enabled", true);
 user_pref("privacy.userContext.enabled", true);
 user_pref("browser.aboutConfig.showWarning", false); // HTML version [FF71+]
