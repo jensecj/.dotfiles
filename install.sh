@@ -6,6 +6,10 @@ pacman -S $AURHELPER
 
 # * system
 declare -a packages=(
+    # ** core
+    base-devel
+    coreutils
+
     # ** java
     jdk10-openjdk jre10-openjdk
     graal-bin graal-native-image-bin # alternative vm
