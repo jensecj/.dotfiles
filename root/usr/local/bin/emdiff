@@ -1,0 +1,12 @@
+#!/bin/bash
+
+if [ $# -lt 2 ]
+then
+    echo "usage: emdiff <old file> <new file>"
+    exit 0;
+fi
+
+OLD_FILE=$(realpath $1)
+NEW_FILE=$(realpath $2)
+
+emacsclient -c --eval "(diff-fullscreen \"$OLD_FILE\" \"$NEW_FILE\")"
