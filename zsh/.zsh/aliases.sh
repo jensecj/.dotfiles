@@ -62,6 +62,8 @@ alias ytarc="ytdl --write-description --all-subs --embed-subs --add-metadata" # 
 alias ytdlnr='ytdl -o"%(autonumber)s -- %(uploader)s -- %(upload_date)s -- %(title)s.%(ext)s"'
 alias ytmp3='youtube-dl -f "bestaudio" -x --audio-format mp3 -o"%(uploader)s -- %(title)s.%(ext)s"'
 
+alias mpv="devour mpv"
+
 alias myt='mpv --ytdl --ytdl-raw-options=format="bestvideo[height<=?720]+bestaudio/best[height<=720]"'
 alias mythq='mpv --ytdl --ytdl-raw-options=format="bestvideo[height<=?1080]+bestaudio/best[height<=1080]"'
 
@@ -72,12 +74,12 @@ alias ff="\fd --type f"
 alias fd="\fd --type d"
 
 alias octave='octave-cli' # who uses the gui anyway?
-alias pdf='zathura'
+alias pdf='devour zathura'
+
+alias pf=" devour peerflix --start --mpv"
 
 alias rtorrent=" rtorrent"
 alias rtor=" rtorrent"
-
-alias pf=" peerflix --start --mpv"
 
 alias py="python"
 alias qr="qrcode-terminal"
