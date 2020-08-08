@@ -6,24 +6,68 @@ pacman -S $AURHELPER
 
 # * system
 declare -a packages=(
+    # ** setup
+    efibootmgr
+    grub
+
     # ** core
     base-devel
     coreutils
 
-    # ** java
-    jdk10-openjdk jre10-openjdk
-    graal-bin graal-native-image-bin # alternative vm
+    # ** networking
+    NetworkManager # wifi
+
+    # ** display server
+    xorg-server
+    xorg-xev
+    xorg-xbacklight
+    xorg-xgamma
+    xorg-setxkbmap
+    xorg-xrandr
+
+    # ** video drivers
+    xf86-video-intel
+
+    # ** audio
+    pulseaudio
+    pavucontrol
+
+    # ** fonts
+    adobe-source-code-pro-fonts # for programming
+    noto-fonts-cjk # chinese-japanses-korean
+    ttf-nerd-fonts-symbols # icon font amalgamation
+    # nerd-fonts-complete # a collection of patched and icon fonts
+
+    # early
+    bc # scientific cli calculator
+    acpi # battery info
+    inotify-tools # notify-send, etc.
+    harfbuzz # textshaping
+    imagemagick # image tools
+    stow # symlink manager
+    sudo # do things as root
+    xdo # do things to X windows
+    lsof # list open files for file-descriptor
+    cpupower # helper for powersaving, frequency scaling, etc.
+    xsel # work with clipboard
+    pass # password manager
+    poppler # pdfrendering
+
+    # ** programming languages
+    # *** java
+    jdk11-openjdk jre11-openjdk
+    jdk8-graalvm-bin jdk11-graalvm-bin # alternative vm
+    native-image-jdk8-bin native-image-jdk11-bin
     maven
 
-    # ** python
+    # *** python
     python python-pip python-setuptools
     pypy3 pypy3-pip pypy3-setuptools
     pyenv python-pew python-virtualenv # virtual environments
     python-language-server #
     mypy # type checking
-    hy # lispy-python
 
-    # ** c++
+    # *** c++
     clang clang-tools-extra
     llvm llvm-libs lld
     libc++ openmp
@@ -32,14 +76,14 @@ declare -a packages=(
     valgrind # performance tuning/debugging
     cmake # build tool
 
-    # ** lisps
+    # *** lisps
     chicken
     sbcl roswell
 
-    # ** rust
+    # *** rust
     rustup rls-git
 
-    # ** other languages
+    # *** other languages
     octave nodejs
     ocaml dune opam llvm-ocaml
 
@@ -47,8 +91,8 @@ declare -a packages=(
     libotf
 
     # ** programming tools
-    termite termite-terminfo # terminal emulator
-    alacritty                # another terminal
+    # termite termite-terminfo # terminal emulator
+    alacritty # another terminal
     zsh # preferred shell
     tmux # terminal multiplexer
     hyperfine # command-line benchmarking
@@ -60,21 +104,24 @@ declare -a packages=(
     watchman # inode change monitor and trigger
 
     # ** system
-    dkms # dynamic kernel module support
-    i3-gaps # tiling window manager
-    earlyoom # out-of-memory daemon
-    psi-notify # notify on high system-resource use
+    i3-wm # tiling window manager
     dunst # notification manager
     sxhkd # hotkey daemon for x
     picom # screen compositor for X11
     polybar # info bar / fringe for things
+    unclutter # hide the curser when idle
+    xidlehook # perform actions on idle (used with slock)
+    autocutsel # for synching clipboards
+    earlyoom # out-of-memory daemon
+    psi-notify # notify on high system-resource use
+
+    dkms # dynamic kernel module support
     dnscrypt-proxy # for running encrypted dnslookups
     ufw # firewall
     keychain # manage ssh agents
-    unclutter # hide the curser when idle
     opensnitch # app firewall
-    xidlehook # perform actions on idle (used with slock)
-    autocutsel # for synching clipboards
+    expac # package info
+    pacman-contrib # pactree, etc. # listing pacman package dependencies
 
     # ** sys tools
     ripgrep # fast grep alternative
@@ -92,6 +139,7 @@ declare -a packages=(
     just # modern make
     runiq # fast filter for duplicate lines
     zoxide # z.sh alternative
+    tree # list files in tree-view
 
     # ** utilities
     moreutils # more shell utils
@@ -173,13 +221,6 @@ declare -a packages=(
     chromium
     firefox
     firefox-developer-edition
-
-    # ** fonts
-    adobe-source-code-pro-fonts # for programming
-    adobe-source-sans-pro-fonts
-    noto-sans-cjk # chinese-japanses-korean
-    nerd-fonts-complete # a collection of patched and icon fonts
-    otf-fira-code # programming font with ligitures
 )
 $AURHELPER -S "${packages[@]}"
 
