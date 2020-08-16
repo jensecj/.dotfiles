@@ -53,13 +53,6 @@ bindsym $mod+space focus mode_toggle
 # toggle sticky
 bindsym $mod+Shift+s sticky toggle
 
-# move the currently focused window to the scratchpad
-bindsym $mod+Shift+minus move scratchpad
-
-# show the next scratchpad window or hide the focused scratchpad window.
-# if there are multiple scratchpad windows, this command cycles through them.
-bindsym $mod+minus scratchpad show
-
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r fullscreen disable; restart; exec notify-send 'Restarted i3'
 
@@ -144,8 +137,7 @@ for_window [class="Matplotlib"] floating enable
 # STARTUP #
 ###########
 
-exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-exec --no-startup-id xterm -class "float" -e 'syschk; zsh'
+exec --no-startup-id alacritty --hold -d 75 15 --class "Alacritty,float" -e "syschk"
 
 #########
 # THEME #
