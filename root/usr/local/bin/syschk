@@ -42,12 +42,13 @@ day_in_secs=$(bc <<< "60 * 60 * 24")
 week_in_secs=$(bc <<< "$day_in_secs * 7")
 month_in_secs=$(bc <<< "$week_in_secs * 4")
 
-
 systemd-chk "earlyoom"
 systemd-chk "dnscrypt-proxy"
 systemd-chk "ufw"
 systemd-chk "clamav-daemon"
 systemd-chk "clamav-freshclam"
+systemd-chk "apparmor"
+systemd-chk "auditd"
 
 proc-chk "sxhkd"
 proc-chk "xidlehook"
@@ -59,20 +60,19 @@ proc-chk "i3autotile"
 proc-chk "autocutsel"
 proc-chk "picom"
 
-
-######################
-# system information #
-######################
-
 printf "\n\n"
 
 local_dns=$(cat "/etc/resolv.conf" | grep ^nameserver | cut -d' ' -f2 | xargs)
 echo "dns: $local_dns"
 
-dnscrypt_servers=$(cat "/etc/dnscrypt-proxy/dnscrypt-proxy.toml" | grep ^server_names)
-echo "dnscrypt servers: ${dnscrypt_servers:15}"
+if [ -f "/etc/dnscrypt-proxy/dnscrypt-proxy.toml" ]; then
+    dnscrypt_servers=$(cat "/etc/dnscrypt-proxy/dnscrypt-proxy.toml" | grep ^server_names)
+    echo "dnscrypt servers: ${dnscrypt_servers:15}"
+else
+    bad "dnscrypt config not found"
+fi
 
-local_ip=$(ifconfig wlp3s0 | grep inet | sed -n 1p | awk '{print $2}');
+local_ip=$(ip -4 -br a | grep wlp3s0 | awk '{print $3}');
 echo "local ip: $local_ip"
 
 public_ip=$(dig +timeout=5 +short myip.opendns.com @resolver1.opendns.com 2> /dev/null)
@@ -84,20 +84,17 @@ fi
 
 printf "\n\n"
 
-$(cat /proc/mounts | grep -q "$HOME/sync/.private $HOME/private")
-if [ $? -eq 0 ]; then
-    good "mounted /private"
+if [ $(ps -o user $(pgrep Xorg) | grep "root") ]; then
+    bad "Xorg is running as root"
 else
-    bad "mounted /private"
+    good "Xorg is running rootless"
 fi
 
-$(cat /proc/mounts | grep -q "/dev/mapper/extra /extra")
+$(cat /proc/mounts | grep -q "$HOME/.private $HOME/private")
 if [ $? -eq 0 ]; then
-    good "mounted /extra"
+    good "mounted ~/private"
 else
-    bad "mounted /extra"
+    bad "mounted ~/private"
 fi
-
-printf "\n\n"
 
 file-age-chk "/etc/hosts" $month_in_secs
