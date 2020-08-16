@@ -2,43 +2,44 @@
     {
         "name": "pictures",
         "source": "phone:/storage/emulated/0/Pictures",
-        "destination": "/home/jens/private/phone",
+        "destination": "~/private/phone",
         "order": 0
     },
     {
         "name": "Downloads",
         "source": "phone:/storage/emulated/0/Downloads",
-        "destination": "/home/jens/private/phone",
+        "destination": "~/private/phone",
         "order": 1
     },
     {
         "name": "downloads",
         "source": "phone:/storage/emulated/0/downloads",
-        "destination": "/home/jens/private/phone",
+        "destination": "~/private/phone",
         "order": 2
     },
     {
         "name": "Documents",
         "source": "phone:/storage/emulated/0/Documents",
-        "destination": "/home/jens/private/phone",
+        "destination": "~/private/phone",
         "order": 3
     },
     {
         "name": "dcim",
         "source": "phone:/storage/emulated/0/DCIM",
-        "destination": "/home/jens/private/phone",
+        "destination": "~/private/phone",
+        "exclude": [".thumbnails/"],
         "order": 4
     },
     {
         "name": "backup",
         "source": "phone:/storage/emulated/0/backup",
-        "destination": "/home/jens/private/phone",
+        "destination": "~/private/phone",
         "order": 5
     },
     {
         "name": "anki",
         "source": "phone:/storage/emulated/0/AnkiDroid",
-        "destination": "/home/jens/private/phone",
+        "destination": "~/private/phone",
         "order": 6
     }
 ]

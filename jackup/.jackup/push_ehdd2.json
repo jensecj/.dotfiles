@@ -1,68 +1,68 @@
 [
     {
         "name": ".backup",
-        "source": "/home/jens/.backup",
+        "source": "~/.backup",
         "destination": "/run/media/jens/jcj-ehdd-2/backup/",
         "order": 0
     },
     {
         "name": "dotfiles",
-        "source": "/home/jens/.dotfiles",
+        "source": "~/.dotfiles",
         "destination": "/run/media/jens/jcj-ehdd-2/backup/",
         "order": 1
     },
     {
         "name": ".emacs.d",
-        "source": "/home/jens/.emacs.d",
+        "source": "~/.emacs.d",
         "destination": "/run/media/jens/jcj-ehdd-2/backup/",
         "order": 2
     },
     {
         "name": "books",
-        "source": "/home/jens/private/books",
+        "source": "~/private/books",
         "destination": "/mnt/ehdd2/",
         "order": 3
     },
     {
         "name": "archives",
-        "source": "/home/jens/private/archives",
+        "source": "~/private/archives",
         "destination": "/mnt/ehdd2/",
         "order": 4
     },
     {
         "name": "screenshots",
-        "source": "/home/jens/private/screenshots",
+        "source": "~/private/screenshots",
         "destination": "/mnt/ehdd2/",
         "order": 5
     },
     {
         "name": "literature",
-        "source": "/home/jens/private/literature",
+        "source": "~/private/literature",
         "destination": "/mnt/ehdd2/",
         "order": 6
     },
     {
         "name": "pictures",
-        "source": "/home/jens/pictures",
+        "source": "~/pictures",
         "destination": "/mnt/ehdd2/",
         "order": 7
     },
     {
         "name": "publications",
-        "source": "/home/jens/publications",
+        "source": "~/publications",
         "destination": "/mnt/ehdd2/",
         "order": 8
     },
     {
         "name": "software",
-        "source": "/home/jens/software",
+        "source": "~/software",
         "destination": "/mnt/ehdd2/",
         "exclude": ["__pycache__/"],
         "order": 9
     },
     {
         "name": "private",
-        "source": "/home/jens/sync",
+        "source": "~/sync",
         "destination": "/run/media/jens/jcj-ehdd-2/private/",
         "order": 10
     }
