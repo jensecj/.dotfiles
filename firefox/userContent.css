@@ -1,5 +1,12 @@
 @namespace url(http://www.w3.org/1999/xhtml);
 
+/* disable animations */
+*, :before, :after {
+    transition-property: none !important;
+    transform: none !important;
+    animation: none !important;
+}
+
 @-moz-document url(about:newtab), url(about:home), url(about:blank) {
     body {
 	      background-color: #2A2A2E !important;
@@ -7,14 +14,45 @@
 }
 
 @-moz-document domain("news.ycombinator.com") {
+    html {
+        background-color: #f6f6ef;
+    }
     body {
-        max-width: 1000px;
+        max-width: 900px;
         margin-left: auto;
         margin-right: auto;
     }
+    #hnmain {
+        width: 100% !important;
+    }
+    .votearrow {
+        display: none;
+    }
 }
 
-@-moz-document domain("invidio.us") {
+@-moz-document domain("metager.org") {
+    #options .scrollbox {
+        max-height: 50px !important;
+    }
+}
+
+@-moz-document domain("wiki.archlinux.org") {
+    #content {
+        max-width: 1000px !important;
+        margin: auto !important;
+    }
+    #mw-panel {
+        z-index: -99;
+    }
+}
+
+@-moz-document domain("reddit.org") {
+    .commentarea {
+        max-width: 800px;
+    }
+}
+
+@-moz-document domain("invidious.snopyta.org") {
     .pure-form, input[type="search"] {
         border-bottom: none;
         margin: 2px;
@@ -37,12 +75,12 @@
     .icon {
         display: none !important;
     }
-
     .pure-menu-heading {
         display: none !important;
     }
-    [poster] {
-        /* display: none !important; */
+    #watch-on-youtube,
+    #annotations {
+        display: none !important;
     }
 }
 
