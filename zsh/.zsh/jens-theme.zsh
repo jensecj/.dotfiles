@@ -16,7 +16,8 @@ function _user_host() {
 
 function _current_dir() {
     if [[ "$PWD" != "$HOME" ]]; then
-        echo "$FG[181]% %~ $FX[reset]"
+        cwd=$(realpath "$(pwd)" --relative-base="$HOME")
+        echo "$FG[181]% $cwd $FX[reset]"
     fi
 }
 
