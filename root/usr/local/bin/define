@@ -1,4 +1,4 @@
 #!/bin/sh
 # save each word, so they can be used for statistics/practice/etc.
 echo $(date +'%Y-%m-%dT%H:%M:%S%z') " | " $1 >> ~/.dict-lookups
-termite --class="float" -e "bash -c 'dict $1| less'"
+alacritty -d 75 15 --class "Alacritty,float" -e zsh -c "dict '$1' | less"
