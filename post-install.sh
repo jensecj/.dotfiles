@@ -14,6 +14,9 @@ mkdir "$HOME/.rtorrent.session"
 # disable beeps by not loading the pcspkr module
 echo "blacklist pcspkr" >> /etc/modprobe.d/pcspkr-blacklist.conf
 
+# disable xdg-user-dirs
+echo "enabled=false" >> ~/.config/xdg-user-dirs.conf
+
 # dont wait for a minute and a half before force stopping things
 sed -i 's/#DefaultTimeoutStartSec=90s/DefaultTimeoutStartSec=30s/' /etc/systemd/system.conf
 sed -i 's/#DefaultTimeoutStopSec=90s/DefaultTimeoutStopSec=30s/' /etc/systemd/system.conf
@@ -24,13 +27,13 @@ systemctl start dnscrypt-proxy.service
 # enable custom systemd units
 systemctl enable lock-on-sleep.service
 
-systemctl --user enable random-wallpaper
-systemctl --user enable mbsync
+systemctl --user enable random-wallpaper.timer
 systemctl --user enable lowtmp
+systemctl --user enable mbsync
 
-systemctl --user start random-wallpaper
-systemctl --user start mbsync
+systemctl --user start random-wallpaper.timer
 systemctl --user start lowtmp
+systemctl --user start mbsync
 
 # fix fork bombs
 if [ ! $(grep "\* hard nproc" /etc/security/limits.conf) ]; then
