@@ -7,6 +7,8 @@ alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
 alias dd="dd status=progress"
+alias mv="mv -i"
+alias cp="cp -i"
 
 # * better defaults
 alias ls='ls --color=always --time-style="+%d-%m-%Y" --group-directories-first'
@@ -24,7 +26,7 @@ alias emacsd="emacs --no-site-file --daemon"
 
 
 # ** replacements
-alias cp="xcp"
+alias cp="xcp "
 alias uniq="runiq"
 alias rm="trash-put"
 alias urm="trash-list | fzf | cut -d' ' -f3"
@@ -33,12 +35,14 @@ alias ll="l --all --group"
 
 # * pacman
 alias pac='yay'
-alias pacu='pac -Syyu --combinedupgrade'
-alias pacrm='pac -Rns'
-alias pacss='pac -Ss'
-alias pacs='pac -S'
-alias pacls='pac -Qet'
-alias pacown="pac -Qo"
+alias pacu='pac -Syyu --combinedupgrade' # update all packages
+alias pacrm='pac -Rns'                   # remove a package
+alias pacss='pac -Ss'                    # search for a package
+alias pacs='pac -S'                      # install a package
+alias pacls='pac -Qet'                   # list installed packages
+alias pacown="pac -Qo"                   # list package which owns <file>
+alias pacdeps="pactree -u"               # list package dependencies
+alias pacrdeps="pactree -ur"             # list package dependents
 
 paci() {
     pkg=$(yay -Sl | fzf --preview-window=top:70% --preview="yay -Si {2}" | awk '{print $2}')
@@ -79,7 +83,7 @@ alias pdf='devour zathura'
 alias pf=" devour peerflix --start --mpv"
 
 alias rtorrent=" rtorrent"
-alias rtor=" rtorrent"
+alias rtor=" \rtorrent"
 
 alias py="python"
 alias qr="qrcode-terminal"
@@ -87,7 +91,6 @@ alias qr="qrcode-terminal"
 alias srm=" srm -fllr"
 
 alias cloc="tokei"
-alias cook="cookiecutter"
 
 # ** misc
 
@@ -167,7 +170,6 @@ freejob() {
     jobid=$(jobs -l | fzf | cut -d' ' -f1 | tr -d '[]')
 
     if [ $jobid -gt 0 ]; then
-        echo $jobid
         bg "%$jobid"
         disown "%$jobid"
     fi
