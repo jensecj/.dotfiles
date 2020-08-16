@@ -1,5 +1,5 @@
 [Unit]
-Description=Changes the wallpaper to a random image from the wallpaper folder
+Description=Randomize wallpaper
 Wants=random-wallpaper.timer
 
 [Service]
