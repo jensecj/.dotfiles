@@ -3,9 +3,9 @@
 killall -qe "polybar"
 while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done # wait for polybars to shutdown
 
-MONITOR=eDP1 polybar jensbar & disown
+MONITOR=eDP1 polybar topbar & disown
 
 SETUP=$(autorandr | grep detected | cut -d' ' -f1)
 if [ "$SETUP" = "docked" ]; then
-    MONITOR=DP1 polybar jensbar & disown
+    MONITOR=DP1 polybar topbar & disown
 fi
