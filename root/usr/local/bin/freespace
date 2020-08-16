@@ -1,6 +1,5 @@
 #!/bin/bash
 
 root=$(df / -h --output=avail | sed -n '2p' | tr -d 'G' | xargs)
-extra=$(df /extra -h --output=avail | sed -n '2p' | tr -d 'G' | xargs)
 
-echo "${root}+${extra} GB"
+echo "${root} GB"
