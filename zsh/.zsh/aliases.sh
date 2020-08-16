@@ -66,6 +66,7 @@ alias ytarc="ytdl --write-description --all-subs --embed-subs --add-metadata" # 
 alias ytdlnr='ytdl -o"%(autonumber)s -- %(uploader)s -- %(upload_date)s -- %(title)s.%(ext)s"'
 alias ytmp3='youtube-dl -f "bestaudio" -x --audio-format mp3 -o"%(uploader)s -- %(title)s.%(ext)s"'
 
+alias feh="devour feh"
 alias mpv="devour mpv"
 
 alias myt='mpv --ytdl --ytdl-raw-options=format="bestvideo[height<=?720]+bestaudio/best[height<=720]"'
