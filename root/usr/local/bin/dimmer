@@ -28,8 +28,8 @@ HOUR=$(date +%H)
 DIM=""
 
 case $HOUR in
-    00) DIM=1800;;
-    01) DIM=1800;;
+    00) DIM=1500;;
+    01) DIM=1500;;
     02) DIM=1800;;
     06) DIM=2400;;
     07) DIM=3500;;
@@ -44,9 +44,9 @@ case $HOUR in
     18) DIM=4900;;
     19) DIM=4800;;
     20) DIM=4500;;
-    21) DIM=4050;;
-    22) DIM=3050;;
-    23) DIM=2800;;
+    21) DIM=3850;;
+    22) DIM=1900;;
+    23) DIM=1500;;
 esac
 
 if [ ! -e $DIMMER_FILE ]; then
