@@ -12,11 +12,7 @@ info() { printf "\n%s %s\n\n" "$DATE" "$*" >&2; }
 trap 'err_exit "[$DATE] Backup interrupted"' INT TERM
 
 dirs=(
-    "/boot/efi"
-    "/boot/grub"
-    "/etc"
-    "/srv"
-    "$HOME/.config"
+    "$HOME/vault"
 )
 
 for d in $dirs; do
@@ -25,7 +21,7 @@ for d in $dirs; do
     fi
 done
 
-CRYPT_DIR="$HOME/.snapshots/boot"
+CRYPT_DIR="$HOME/.snapshots/vault"
 if [ ! -d "$CRYPT_DIR" ]; then
     err_exit "crypt directory not found"
 fi
@@ -37,11 +33,10 @@ borg create \
      --compression zstd \
      --exclude-caches \
      --show-rc \
-     --filter AME \
-     --list \
-     --exclude '/home/*/.config/chromium/*' \
-     --exclude '/home/*/.config/Electron/*' \
-     --exclude '/home/*/.config/mpv/watch_later/*' \
+     --exclude '*.pyc' \
+     --exclude '*/__pycache__/*' \
+     --exclude '*/.pytest_cache/*' \
+     --exclude '*/.mypy_cache/*' \
      "$CRYPT_DIR::{hostname}--{user}--{now}" \
      "${dirs[@]}"
 
