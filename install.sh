@@ -13,17 +13,31 @@ declare -a packages=(
     # ** core
     base-devel
     coreutils
+    diffutils
+    findutils
+    usbutils
+    moreutils
 
     # ** networking
     NetworkManager # wifi
 
-    # ** display server
+    # ** display server, window manager, etc
     xorg-server
     xorg-xev
     xorg-xbacklight
     xorg-xgamma
     xorg-setxkbmap
     xorg-xrandr
+
+    # NOTE: not yet wayland, maybe someday
+    # wayland
+    # xorg-server-xwayland # X for wayland
+    # wlroots
+    # sway # window manager, i3 drop-in replacement
+    # swaylock # screen locker
+    # swayidle # idle trigger
+    # waybar # wayland info bar
+    # mako # wayland notification daemon
 
     # ** video drivers
     xf86-video-intel
@@ -34,61 +48,36 @@ declare -a packages=(
 
     # ** fonts
     adobe-source-code-pro-fonts # for programming
+    adobe-source-sans-pro-fonts # for everything else
     noto-fonts-cjk # chinese-japanses-korean
     ttf-nerd-fonts-symbols # icon font amalgamation
-    # nerd-fonts-complete # a collection of patched and icon fonts
 
-    # early
-    bc # scientific cli calculator
+    # ** early
+    sudo # do things as root
+    cpupower # helper for powersaving, frequency scaling, etc.
     acpi # battery info
+    gptfdisk # partition disks
     inotify-tools # notify-send, etc.
-    harfbuzz # textshaping
+    harfbuzz # textshaping engine
     imagemagick # image tools
     stow # symlink manager
-    sudo # do things as root
     xdo # do things to X windows
     lsof # list open files for file-descriptor
-    cpupower # helper for powersaving, frequency scaling, etc.
     xsel # work with clipboard
     pass # password manager
-    poppler # pdfrendering
+    bc # scientific cli calculator
+    poppler # pdf rendering
+    ntfs-3g # ntfs support
 
-    # ** programming languages
-    # *** java
-    jdk11-openjdk jre11-openjdk
-    jdk8-graalvm-bin jdk11-graalvm-bin # alternative vm
-    native-image-jdk8-bin native-image-jdk11-bin
-    maven
-
-    # *** python
-    python python-pip python-setuptools
-    pypy3 pypy3-pip pypy3-setuptools
-    pyenv python-pew python-virtualenv # virtual environments
-    python-language-server #
-    mypy # type checking
-
-    # *** c++
-    clang clang-tools-extra
-    llvm llvm-libs lld
-    libc++ openmp
-    gcc gcc-libs
-    boost boost-libs
-    valgrind # performance tuning/debugging
-    cmake # build tool
-
-    # *** lisps
-    chicken
-    sbcl roswell
-
-    # *** rust
-    rustup rls-git
-
-    # *** other languages
-    octave nodejs
-    ocaml dune opam llvm-ocaml
-
-    # ** libraries
-    libotf
+    # ** security
+    clamav # anti-virus
+    apparmor # MAC system as a linux sec. module
+    audit # kernel logging - for building apparmor profiles
+    firejail # app sandboxing
+    bubblewrap # app sandboxing
+    dnscrypt-proxy # for running encrypted dnslookups
+    ufw # firewall
+    # opensnitch # app firewall
 
     # ** programming tools
     # termite termite-terminfo # terminal emulator
@@ -96,7 +85,7 @@ declare -a packages=(
     zsh # preferred shell
     tmux # terminal multiplexer
     hyperfine # command-line benchmarking
-    git hub # git and the github wrapper
+    git # git and the github wrapper
     jupyter # interactive science notebooks
     docker # containerization
     podman buildah skopeo # more containers
@@ -107,21 +96,18 @@ declare -a packages=(
     i3-wm # tiling window manager
     dunst # notification manager
     sxhkd # hotkey daemon for x
-    picom # screen compositor for X11
+    picom # screen compositor for X
     polybar # info bar / fringe for things
     unclutter # hide the curser when idle
     xidlehook # perform actions on idle (used with slock)
     autocutsel # for synching clipboards
     earlyoom # out-of-memory daemon
     psi-notify # notify on high system-resource use
-
     dkms # dynamic kernel module support
-    dnscrypt-proxy # for running encrypted dnslookups
-    ufw # firewall
     keychain # manage ssh agents
-    opensnitch # app firewall
     expac # package info
     pacman-contrib # pactree, etc. # listing pacman package dependencies
+    arch-audit # check installed packages against security.archlinux.org
 
     # ** sys tools
     ripgrep # fast grep alternative
@@ -142,43 +128,53 @@ declare -a packages=(
     tree # list files in tree-view
 
     # ** utilities
-    moreutils # more shell utils
+    ffmpeg # working with video/audio
+    ffmpegthumbnailer # create video thumbnails
     brightnessctl # easy brightness controls
     task-spooler # queue tasks to be completed sequentially
     tldr # quick shell examples for most commands
     slock # screen lock
-    gperftools # performance analysis tools
+    perf # performance analysis tools
     openssh openvpn
-    wireguard-tools wireguard-dkms
-    mosh # ssh-replacement, with persistent connections
-    knockd # port-knocker
+    wireguard-tools
+    links # cli browser
+    # mosh # ssh-replacement, with persistent connections
+    # knockd # port-knocker
     gnupg
-    progress # progress monitor (bar/throughput/etc.) for processes (e.g. gzip, cp, mv, ...)
-    pv # also a progress monitor (uses pipes instead processes)
+    progress # cmd monitor (progress/throughput/eta/etc.) for processes (e.g. gzip, cp, mv)
     borg # incremental, encrypted backups
     gocryptfs # encrypted mount points
     rsync # synching things
     rtorrent # torrenting
     texlive-bin # latex
-    texlive-core # latex
+    texlive-core
+    texlive-science
+    texlive-latexextra
+    texlive-pictures
+    texlive-fontsextra
+    texlive-formatsextra
+    minted # syntax-highlighting for latex
+    # biber # bibtex extras
     gnuplot # plotting
+    gucharmap # explore font glyphs
     downgrade # for downgrading packages to a version in cache
-    lsyncd # "real-time" directory synchronization
-    firejail # app sandboxing
+    # lsyncd # "real-time" directory synchronization
     ddrescue # disk recovery
     udiskie # automounting removable disks
-    httpie # simple http client for the terminal
-    insect # scientific calculator, with many features (kg -> grams, etc.)
+    # httpie # simple http client for the terminal
+    # insect # scientific calculator, with many features (kg -> grams, etc.)
     fzf # fuzzy file finder
-    detox # clean up filenames
-    rawdog # raw rss feeds in the terminal
+    # detox # clean up filenames
+    # rawdog # raw rss feeds in the terminal
     ditaa # create disgrams from ascii
     plantuml # create UML diagrams from ascii
     rsstail # tail for rss-feeds
-    hexyl # cat, but spits out hex
+    # hexyl # cat, but spits out hex
     lynis # hardening
     autorandr # automatic xrandr
+    qrencode # turn strings into qr codes
     secure-delete # securely delete files
+    hashdeep # hash all files in a directory recursively
 
     # ** system information
     htop # process manager
@@ -188,13 +184,14 @@ declare -a packages=(
 
     # ** misc
     youtube-dl # for downloading video/sound from the internet
+    axel # download accelerator
     ranger-git # ncurses file explorer
-    python-ueberzug-git # show images in the terminal
+    ueberzug # show images in the terminal
     redshift # screen dimmer / blue light reducer
     rofi # app menu / dmenu clone
-    anki # flashcards
+    # anki # flashcards
     peerflix # streaming torrents
-    calibre # ebook manager
+    # calibre # ebook manager
     mpv # video player
     moc # music player
     mupdf # pdf viewer
@@ -202,25 +199,58 @@ declare -a packages=(
     zathura-pdf-mupdf # mupdf backend for zathura
     zathura-djvu zathura-ps # djvu and postscript backends for zathura
     feh # image viewer
-    translate-shell # google-translate cli
+    sxiv # image / gif viewer
     dictd # offline dictionary and daemon
-    dict-wm # wordnet
+    dict-wn # wordnet
     dict-gcide # gnu english dictionary
     dict-foldoc # gnu english dictionary
     dict-wikt-en-all # english wikitionary
-    wordnet-common wordnet-cli # wordnet dict and extras
-    yad slop bashcaster-git # for simple screen recording
-    clamav # anti-virus
+    slop bashcaster-git # for simple screen recording
 
     # ** mail
-    isync
-    msmtp
-    notmuch
+    isync # IMAP sync, provides mbsync
+    msmtp # smtp client/server
+    msmtp-mta # setup sendmail to use msmtp
+    notmuch # cli mail client
+    # s-nail
 
     # ** browsers
-    chromium
     firefox
     firefox-developer-edition
+
+    # ** programming languages
+    # *** java
+    jdk-openjdk # latest jdk
+    jdk11-openjdk jre11-openjdk
+    jdk8-graalvm-bin jdk11-graalvm-bin # alternative vm
+    native-image-jdk8-bin native-image-jdk11-bin
+    maven
+
+    # *** clojure
+    clojure leiningen
+
+    # *** python
+    python python-pip python-setuptools
+    pypy3 pypy3-pip pypy3-setuptools
+    pyenv python-poetry python-virtualenv # virtual environments
+    python-language-server
+    mypy # type checking
+
+    # *** c++
+    clang clang-tools-extra
+    llvm llvm-libs lld
+    libc++ openmp
+    gcc gcc-libs
+    boost boost-libs
+    valgrind # performance tuning/debugging
+    cmake # build tool
+
+    # *** lisps
+    chicken
+    sbcl roswell
+
+    # *** rust
+    rustup rls-git
 )
 $AURHELPER -S "${packages[@]}"
 
@@ -229,12 +259,6 @@ declare -a pip_packages=(
     i3altlayout
 )
 pip install -g "${pip_packages[@]}"
-
-# * npm
-declare -a npm_packages=(
-    qrcode-terminal # generate qrcodes in the terminal
-)
-npm -g install "${npm_packages[@]}"
 
 # * cargo
 declare -a rustup_components=(
@@ -247,6 +271,5 @@ do
 done
 
 declare -a rust_packages=(
-    snatch # threaded downloader
 )
 cargo install "${rust_packages[@]}"
