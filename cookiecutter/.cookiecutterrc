@@ -1,5 +1,0 @@
-default_context:
-    full_name: "Jens Christian Jensen"
-    email: "jensecj@gmail.com"
-    github_username: "jensecj"
-cookiecutters_dir: "~/.cookiecutters/"
