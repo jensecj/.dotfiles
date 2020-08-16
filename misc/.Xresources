@@ -34,13 +34,14 @@ xft*font:       xft:Source Code Pro Semibold:pixelsize=14
 !!!!!!!!!
 ! xterm !
 !!!!!!!!!
-XTerm*reverseVideo: true
-XTerm*termName: xterm-256color
+XTerm.termName: xterm-256color
+XTerm*renderFont: true
+XTerm*faceName: xft:Source Code Pro Semibold
+XTerm*dynamiccolors: true
+XTerm*utf8: 2
+XTerm*faceSize: 10
 XTerm*locale: true
 XTerm*metaSendsEscape: true
 XTerm*saveLines: 10000
-XTerm*faceName: Source Code Pro Semibold
-XTerm*faceSize: 10
-XTerm*font: *-fixed-*-*-*-10-*
 XTerm*backarrowKey: false
-XTerm*ttyModes: erase ^?
+XTerm.ttyModes: erase ^?

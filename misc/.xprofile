@@ -1,25 +1,20 @@
 #!/bin/sh
 
-# starting apps
 sxhkd & # hotkey daemon
-udiskie --tray & # tray icon for easy disk management
-nm-applet & # tray icon for wifi
-msmtp & # smtp server
 dunst -conf "$HOME/.config/dunst/dunstrc" & # the notification daemon
 unclutter & # hide cursor after 5sec of idle
-opensnitch-ui &
+autorandr --change & # load saved multihead settings
+nm-applet & # tray icon for wifi
+udiskie --smart-tray & # tray icon for easy disk management
+# msmtp & # smtp server # TODO: is this even needed?
+# picom & # composition manager
+# opensnitch-ui &
 
 # sync the linux clipboards
 autocutsel -fork &
 autocutsel -selection PRIMARY -fork &
 
-# custom apps
-i3autotile >> ~/.i3log 2>&1 &
-
-# system setup
-xset -b                         # disable system beep
-setxkbmap -layout dk -option ctrl:nocaps # map CapsLock -> Ctrl
-# fix_xcursor                              # fix the xcursor
+# fix_xcursor # fix the xcursor
 
 xidlehook \
     --timer 180 \
@@ -28,6 +23,18 @@ xidlehook \
     'dimmer pop; slock' ''\
     --not-when-audio &
 
+# custom apps
+# i3autotile >> ~/.i3log 2>&1 &
 dimmer &                          # dim screen to fit time-of-day
 polybar-setup &                   # setup polybar for multihead
-autorandr --change &              # load saved multihead settings
+
+# load customs from xinitrc.d
+if [ -d /etc/X11/xinit/xinitrc.d ]; then
+    for f in /etc/X11/xinit/xinitrc.d/?*.sh; do
+        [ -x "$f" ] && . "$f"
+    done
+    unset f
+fi
+
+# exec bspwm
+exec i3
