@@ -68,12 +68,9 @@ super + y
     mpv --ytdl --ytdl-raw-options=format="bestvideo[height<=?1080]+bestaudio/best[height<=1080]" --autofit="70%x60%" --loop --x11-name="mpv-float" $(xsel -o)
 
 super + shift + b
-    emacsclient -c -F '((title . "em-bookmarks"))' '~/vault/git/bookmarks.org'
+    emacsclient -c -F '((title . "em-bookmarks"))' '~/vault/org/bookmarks.org'
 
 # * misc
-super + shift + u
-    xdotool key XF86Ungrab && notify-send "ungrabbed"
-
 super + shift + g
     autorandr -c && sleep .2 && dimmer
 
