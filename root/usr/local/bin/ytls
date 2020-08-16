@@ -1,0 +1,43 @@
+#!/bin/bash
+
+if [ $# -eq 0 ]
+then
+    echo "usage: ytls <url>"
+    exit 1
+fi
+
+err() { echo -e "$*" >&2; }
+err_exit() { err "$@"; exit 1; }
+trap 'err_exit "interrupted"' INT TERM
+
+LIMIT=10
+
+while getopts l:u:f: option
+do
+    case "${option}"
+    in
+        l) LIMIT=${OPTARG};;
+        u) URL=${OPTARG};;
+        f) FILE=${OPTARG};;
+
+    esac
+done
+
+dump_ch() {
+    url=$1
+    for i in $(seq $LIMIT); do
+        youtube-dl --simulate --ignore-errors --quiet --dump-json --playlist-items $i "$url" | jq -r ".uploader,.upload_date,.webpage_url,.title" | tr "\n" "\t"
+        echo ""
+    done
+}
+
+if [ -n "$FILE" ]; then
+    while IFS="" read -r p || [ -n "$p" ]
+    do
+        ch_name = $(echo | cut -d' ' -f1)
+        ch_url = $(echo | cut -d' ' -f2)
+        dump_ch "$url"
+    done < "$FILE"
+elif [ -n "$URL" ]; then
+    dump_ch "$URL"
+fi
