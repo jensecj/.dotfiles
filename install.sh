@@ -9,6 +9,9 @@ declare -a packages=(
     # ** setup
     efibootmgr
     grub
+    linux linux-headers
+    linux-lts linux-lts-headers
+    linux-hardened linux-hardened-headers
 
     # ** core
     base-devel
@@ -74,7 +77,7 @@ declare -a packages=(
     apparmor # MAC system as a linux sec. module
     audit # kernel logging - for building apparmor profiles
     firejail # app sandboxing
-    bubblewrap # app sandboxing
+    bubblewrap-suid # app sandboxing
     dnscrypt-proxy # for running encrypted dnslookups
     ufw # firewall
     # opensnitch # app firewall
@@ -90,7 +93,7 @@ declare -a packages=(
     docker # containerization
     podman buildah skopeo # more containers
     diff-so-fancy # fancy git diff
-    watchman # inode change monitor and trigger
+    entr # watch for file changes using inotify and kqueue
 
     # ** system
     i3-wm # tiling window manager
@@ -118,7 +121,7 @@ declare -a packages=(
     jq # work with json in the terminal
     tokei # count lines of code
     xsv # work with csv in the terminal
-    fdupes # find duplicate files in directories
+    rmlint # find duplicate files in directories
     dua-cli # ncdu alternative
     fselect # find files using SQL syntax
     xcp # extended cp
@@ -150,6 +153,7 @@ declare -a packages=(
     texlive-bin # latex
     texlive-core
     texlive-science
+    texlive-publishers
     texlive-latexextra
     texlive-pictures
     texlive-fontsextra
@@ -178,8 +182,8 @@ declare -a packages=(
     hashdeep # hash all files in a directory recursively
 
     # ** system information
-    htop # process manager
     lshw # print hardware information (like other ls* tools)
+    htop # process manager
     iotop # I/O monitor
     iftop # network monitor
 
@@ -232,9 +236,12 @@ declare -a packages=(
 
     # *** python
     python python-pip python-setuptools
+    python-virtualenv # virtual environments
+    pyenv # version management
+    python-black # code formatter
+    python-tox # testing and building
+    python-poetry # dependency management
     pypy3 pypy3-pip pypy3-setuptools
-    pyenv python-poetry python-virtualenv # virtual environments
-    python-language-server
     mypy # type checking
 
     # *** c++
