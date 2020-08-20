@@ -8,5 +8,5 @@ fi
 
 ZIP=$1
 TMPFILE=$(mktemp)
-curl "http://servlet.dmi.dk/byvejr/servlet/byvejr_dag1?by=$ZIP&mode=long" -o $TMPFILE
+curl "http://servlet.dmi.dk/byvejr/servlet/byvejr_dag1?by=$ZIP&mode=long&eps=true" -o $TMPFILE
 feh $TMPFILE

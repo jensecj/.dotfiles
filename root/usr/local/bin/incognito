@@ -1,3 +1,2 @@
 #!/bin/sh
-
-chromium --incognito --disable-field-trial-config --fake-variations-channel 
+firefox --private-window

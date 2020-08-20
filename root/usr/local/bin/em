@@ -5,4 +5,4 @@ if [ ! -e /run/user/1000/emacs/server ]; then
     exit 1
 fi
 
-emacsclient -c $*
+emacsclient --frame-parameters "((internal-border-width . 0))" -c $*
