@@ -10,7 +10,7 @@ default_border pixel 1
 default_floating_border pixel 1
 
 # hide borders near edges of screen
-hide_edge_borders none
+hide_edge_borders smart
 
 # font for window titles / i3bar / etc.
 font xft:Source Code Pro Semibold 10
@@ -107,13 +107,9 @@ bindsym $mod+Shift+4 move container to workspace $ws4; workspace $ws4
 ########################
 
 # open specific applications in floating mode
-for_window [class="feh"] floating enable border pixel 1
-for_window [class="alsamixer"] floating enable border pixel 1
-for_window [class="Lightdm-gtk-greeter-settings"] floating enable
-for_window [class="Lxappearance"] floating enable sticky enable border normal
-for_window [class="Manjaro-hello"] floating enable
-for_window [class="Manjaro Settings Manager"] floating enable border normal
-for_window [class="(?i)virtualbox"] floating enable border normal
+for_window [class="feh"] floating enable #border pixel 1
+for_window [class="alsamixer"] floating enable #border pixel 1
+for_window [class="Lxappearance"] floating enable sticky enable
 
 for_window [title="em-bookmarks"] floating enable
 for_window [title="em-bookmarks"] resize grow up 200px
@@ -121,17 +117,19 @@ for_window [title="em-bookmarks"] resize grow down 200px
 for_window [title="em-bookmarks"] move position center
 
 for_window [instance="mpv-float"] floating enable
-for_window [instance="mpv-float"] move position center;
+for_window [instance="mpv-float"] move position center
 
 for_window [class="float"] floating enable
 for_window [class="float"] resize grow up 200px
 for_window [class="float"] resize grow down 200px
 for_window [class="float"] move position center
 
-for_window [title="cl-opengl"] floating enable
-for_window [class="anki"] floating enable
+for_window [title="cl-opengl"]  floating enable
+for_window [class="anki"]       floating enable
 for_window [class="matplotlib"] floating enable
 for_window [class="Matplotlib"] floating enable
+for_window [class="Alacritty"] border pixel
+for_window [class="emacs"] border pixel
 
 ###########
 # STARTUP #
@@ -144,9 +142,9 @@ exec --no-startup-id alacritty --hold -d 75 15 --class "Alacritty,float" -e "sys
 #########
 
 # class                 border  backgr. text    indic.  child_border
-client.focused          #8f8f8f #8f8f8f #F0DFAF #8f8f8f
-client.focused_inactive #3f3f3f #3f3f3f #F0DFAF #3f3f3f
-client.unfocused        #3f3f3f #3f3f3f #F0DFAF #3f3f3f
-client.urgent           #3f3f3f #3f3f3f #F0DFAF #3f3f3f
-client.placeholder      #000000 #0c0c0c #ffffff #000000 #0c0c0c
-client.background       #2B2C2B
+client.focused          #aaaaaa #3f3f3f #F0DFAF #3f3f3f #aaaaaa
+client.focused_inactive #2f2f2f #3f3f3f #F0DFAF #3f3f3f #2f2f2f
+client.unfocused        #2f2f2f #3f3f3f #F0DFAF #3f3f3f #2f2f2f
+client.urgent           #2f2f2f #3f3f3f #F0DFAF #3f3f3f #2f2f2f
+client.placeholder      #2f2f2f #3f3f3f #ffffff #3f3f3f #2f2f2f
+client.background       #000000
