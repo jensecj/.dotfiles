@@ -20,13 +20,13 @@ ctrl + XF86MonBrightnessDown
 
 # ** audio
 XF86AudioRaiseVolume
-    pactl set-sink-volume 0 +1db
+    volctl -d pulse -s 0 -v +1%
 
 XF86AudioLowerVolume
-    pactl set-sink-volume 0 -1db
+    volctl -d pulse -s 0 -v -1%
 
 XF86AudioMute
-    amixer -D pulse set Master 1+ toggle
+    volctl -d pulse -s Master -v toggle
 
 # ** screenshotting
 @super + Print

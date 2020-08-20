@@ -1,0 +1,33 @@
+#!/bin/bash
+
+while getopts d:s:v: option
+do
+    case "${option}"
+    in
+        v) VOL=${OPTARG};;
+    esac
+done
+
+if [[ $VOL == "toggle" ]]; then
+    amixer -D pulse set Master 1+ toggle > /dev/null
+elif [ -n $VOL ]; then
+    pactl set-sink-volume 0 $VOL
+fi
+
+volume=$(amixer -D pulse sget Master | grep -i 'Left:' | awk -F'[][]' '{ print $2 }' | tr -d %)
+muted=$(amixer -D pulse sget Master | grep -qi '\[off\]')
+muted=$?
+
+PIPE="/tmp/xobpipe-volume"
+if [ ! -w $PIPE ]; then
+    mkfifo $PIPE
+fi
+
+if [[ muted -eq 0 ]]; then
+    muted="!"
+else
+    muted=""
+fi
+
+echo "$volume$muted" > $PIPE
+

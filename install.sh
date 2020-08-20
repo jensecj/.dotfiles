@@ -96,6 +96,7 @@ declare -a packages=(
     i3-wm # tiling window manager
     dunst # notification manager
     sxhkd # hotkey daemon for x
+    xob # simple X screen bar, multiple uses, volume, brightness, etc.
     picom # screen compositor for X
     polybar # info bar / fringe for things
     unclutter # hide the curser when idle

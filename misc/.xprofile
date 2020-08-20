@@ -10,6 +10,12 @@ udiskie --smart-tray & # tray icon for easy disk management
 # picom & # composition manager
 # opensnitch-ui &
 
+# create the xob pipes if they dont exist
+[ -w "/tmp/xobpipe-volume" ] || mkfifo "/tmp/xobpipe-volume"
+tail -f "/tmp/xobpipe-volume" | xob -s bar &
+[ -w "/tmp/xobpipe-brightness" ] || mkfifo "/tmp/xobpipe-brightness"
+tail -f "/tmp/xobpipe-brightness" | xob -s bar &
+
 # sync the linux clipboards
 autocutsel -fork &
 autocutsel -selection PRIMARY -fork &
