@@ -1,0 +1,67 @@
+#!/bin/bash
+
+while getopts d:bwr option
+do
+    case "${option}"
+    in
+        d) DIR=${OPTARG};;
+        b) BEST=1;;
+        w) WORST=1;;
+        r) REAL=1;;
+    esac
+done
+
+DIR=$(realpath "$DIR")
+
+# create the temp file used for I/O
+if [ -d "$DIR" ]; then
+    FILE=$(mktemp -p "$DIR" ".diskbench.XXXX")
+    rc=$?
+    if [[ ! $rc -eq 0 ]]; then
+        echo "failed making temp data file: $rc"
+        exit 2
+    fi
+else
+    echo "$DIR does not exist"
+    exit 1
+fi
+
+trap "rm -f $FILE" INT EXIT # make sure we clean up the temp file
+
+_fio() {
+    fio --name TEST \
+        --eta-newline=5s \
+        --filename="$FILE" \
+        --size=500m \
+        --io_size=10g \
+        --ioengine=libaio \
+        --direct=1 \
+        --numjobs=1 \
+        --runtime=60 \
+        --group_reporting \
+        $@  | \grep "READ:\|WRITE:"
+}
+
+if [ $BEST ]; then
+    echo "best case:"
+    # almost optimal cases for read and write; big blocks
+    _fio --rw=read --blocksize=1024k --fsync=10000 --iodepth=32
+    _fio --rw=write --blocksize=1024k --fsync=10000 --iodepth=32
+fi
+
+if [ $REAL ]; then
+    echo "real-world case:"
+    # near real-world cases for read/write, random 4k blocks
+    _fio --rw=randread --blocksize=4k --fsync=1 --iodepth=1
+    _fio --rw=randwrite --blocksize=4k --fsync=1 --iodepth=1
+fi
+
+if [ $WORST ]; then
+    echo "worst case:"
+    # mix of small reads and writes
+    _fio --rw=randrw --blocksize=4k --fsync=1 --iodepth=1
+fi
+
+if [[ -z $BEST ]] && [[ -z $WORST ]] && [[ -z $REAL ]]; then
+    printf "pick a case:\n -b best case\n -w worst case\n -r real-world case\n"
+fi
