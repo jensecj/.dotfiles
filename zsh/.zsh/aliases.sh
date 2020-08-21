@@ -66,7 +66,6 @@ alias ytarc="ytdl --write-description --all-subs --embed-subs --add-metadata" # 
 alias ytdlnr='ytdl -o"%(autonumber)s -- %(uploader)s -- %(upload_date)s -- %(title)s.%(ext)s"'
 alias ytmp3='youtube-dl -f "bestaudio" -x --audio-format mp3 -o"%(uploader)s -- %(title)s.%(ext)s"'
 
-alias feh="devour feh"
 alias mpv="devour mpv"
 
 alias myt='mpv --ytdl --ytdl-raw-options=format="bestvideo[height<=?720]+bestaudio/best[height<=720]"'
@@ -74,12 +73,11 @@ alias mythq='mpv --ytdl --ytdl-raw-options=format="bestvideo[height<=?1080]+best
 
 # * applications
 
+alias feh="devour feh"
+
 # easy file / directory search using `fd`
 alias ff="\fd --type f"
 alias fd="\fd --type d"
-
-alias octave='octave-cli' # who uses the gui anyway?
-alias pdf='devour zathura'
 
 alias pf=" devour peerflix --start --mpv"
 
@@ -91,6 +89,7 @@ alias qr="qrcode-terminal"
 
 alias srm=" srm -fllr"
 
+alias pdf='devour zathura'
 alias cloc="tokei"
 
 # ** misc
@@ -128,10 +127,6 @@ fzf-urls() {
         | fzf --no-sort --no-multi \
         | xargs \
         | xsel -i
-}
-
-fman() {
-    man -k . | fzf | awk '{print $1}' | xargs -r man
 }
 
 # * extra functions
@@ -247,24 +242,6 @@ ffmpegnorm() {
     done
 }
 
-# quick compile/run with test data for hackathons
-ccc() {
-    clear && clang++ -std=c++17 "$1" -o "$1.out" && time "./$1.out" < test.in
-}
-
-md5dir() {
-    if [ $# -lt 1 ]; then
-        echo "usage: md5dir path/to/dir"
-        return 1
-    fi
-
-    # calculate the md5sum for each file entry in $dir, sort that
-    # list, and calculate the md5sum of that list, to get a reasonably
-    # unique aggregate
-    dir=$(readlink -f "$1")
-    find "$dir" -type f -exec md5sum {} + | awk '{print $1}' | sort | md5sum | awk '{print $1}'
-}
-
 tarencrypt() {
     local archive=$1
     shift
@@ -275,12 +252,3 @@ tardecrypt() {
     local archive=$1
     gpg -d $archive | tar xzvf -
 }
-
-vpn-down() {
-    running=$(ip addr | grep --color=never vpn | sed -n '2p' | xargs | cut -d' ' -f5)
-
-    if [ -n "$running" ]; then
-        sudo wg-quick down "$running"
-    fi
-}
-
