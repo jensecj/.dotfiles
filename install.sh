@@ -210,7 +210,7 @@ declare -a packages=(
     dict-gcide # gnu english dictionary
     dict-foldoc # gnu english dictionary
     dict-wikt-en-all # english wikitionary
-    slop bashcaster-git # for simple screen recording
+    slop # select region on screen and output to stdout
 
     # ** mail
     isync # IMAP sync, provides mbsync
@@ -233,6 +233,7 @@ declare -a packages=(
 
     # *** clojure
     clojure leiningen
+    # sci babashka
 
     # *** python
     python python-pip python-setuptools
@@ -262,13 +263,7 @@ declare -a packages=(
 )
 $AURHELPER -S "${packages[@]}"
 
-# * pip
-declare -a pip_packages=(
-    i3altlayout
-)
-pip install -g "${pip_packages[@]}"
-
-# * cargo
+# * rust components
 declare -a rustup_components=(
     clippy # linting
     rls # rust language server
