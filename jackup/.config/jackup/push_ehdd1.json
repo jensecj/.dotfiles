@@ -1,0 +1,45 @@
+[
+    {
+        "name": "books",
+        "src": "~/private/books",
+        "dest": "/mnt/ehdd1/",
+        "dest_mounted": true
+    },
+    {
+        "name": "archives",
+        "src": "~/private/archives",
+        "dest": "/mnt/ehdd1/",
+        "dest_mounted": true
+    },
+    {
+        "name": "screenshots",
+        "src": "~/private/screenshots",
+        "dest": "/mnt/ehdd1/",
+        "dest_mounted": true
+    },
+    {
+        "name": "literature",
+        "src": "~/private/literature",
+        "dest": "/mnt/ehdd1/",
+        "dest_mounted": true
+    },
+    {
+        "name": "pictures",
+        "src": "~/pictures",
+        "dest": "/mnt/ehdd1/",
+        "dest_mounted": true
+    },
+    {
+        "name": "publications",
+        "src": "~/publications",
+        "dest": "/mnt/ehdd1/",
+        "dest_mounted": true
+    },
+    {
+        "name": "software",
+        "src": "~/software",
+        "dest": "/mnt/ehdd1/",
+        "dest_mounted": true,
+        "exclude": ["*/__pycache__/"]
+    }
+]

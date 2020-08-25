@@ -1,0 +1,20 @@
+[
+    {
+        "name": "ssh",
+        "src": "~/.ssh",
+        "dest": "~/private/.keys/",
+        "args": ["--backup"]
+    },
+    {
+        "name": "gpg",
+        "src": "~/.gnupg",
+        "dest": "~/private/.keys/",
+        "args": ["--backup"]
+    },
+    {
+        "name": "pass",
+        "src": "~/.password-store",
+        "dest": "~/private/.keys/",
+        "args": ["--backup"]
+    }
+]

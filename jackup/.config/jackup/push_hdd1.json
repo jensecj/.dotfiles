@@ -1,0 +1,37 @@
+[
+    {
+        "name": ".backup",
+        "src": "~/.backup",
+        "dest": "/run/media/jens/jcj-ehdd-1/backups/"
+    },
+    {
+        "name": "dotfiles",
+        "src": "~/.dotfiles",
+        "dest": "/run/media/jens/jcj-ehdd-1/backups/",
+        "args": ["--delete"]
+    },
+    {
+        "name": ".emacs.d",
+        "src": "~/.emacs.d",
+        "dest": "/run/media/jens/jcj-ehdd-1/backups/",
+        "args": ["--delete"]
+    },
+    {
+        "name": "emacs",
+        "src": "~/emacs",
+        "dest": "/run/media/jens/jcj-ehdd-1/backups/",
+        "args": ["--delete"]
+    },
+    {
+        "name": "snapshots",
+        "src": "~/.snapshots",
+        "dest": "/run/media/jens/jcj-ehdd-1/",
+        "args": ["--delete"]
+    },
+    {
+        "name": "private",
+        "src": "~/.private",
+        "dest": "/run/media/jens/jcj-ehdd-1/",
+        "args": ["--delete"]
+    }
+]

@@ -1,0 +1,38 @@
+[
+    {
+        "name": "pictures",
+        "src": "phone:/storage/emulated/0/Pictures",
+        "dest": "~/private/phone/"
+    },
+    {
+        "name": "Downloads",
+        "src": "phone:/storage/emulated/0/Downloads",
+        "dest": "~/private/phone/"
+    },
+    {
+        "name": "downloads",
+        "src": "phone:/storage/emulated/0/downloads",
+        "dest": "~/private/phone/"
+    },
+    {
+        "name": "Documents",
+        "src": "phone:/storage/emulated/0/Documents",
+        "dest": "~/private/phone/"
+    },
+    {
+        "name": "dcim",
+        "src": "phone:/storage/emulated/0/DCIM",
+        "dest": "~/private/phone/",
+        "exclude": [".thumbnails/"]
+    },
+    {
+        "name": "backup",
+        "src": "phone:/storage/emulated/0/backup",
+        "dest": "~/private/phone/"
+    },
+    {
+        "name": "anki",
+        "src": "phone:/storage/emulated/0/AnkiDroid",
+        "dest": "~/private/phone/"
+    }
+]
