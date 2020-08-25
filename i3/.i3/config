@@ -10,7 +10,7 @@ default_border pixel 1
 default_floating_border pixel 1
 
 # hide borders near edges of screen
-hide_edge_borders smart
+hide_edge_borders none
 
 # font for window titles / i3bar / etc.
 font xft:Source Code Pro Semibold 10
