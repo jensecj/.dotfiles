@@ -97,5 +97,12 @@ fi
 if [ -n "$DIM" ]
 then
     redshift -P -O "$DIM" >> /dev/null
-    echo "dimmer: setting screen temp to $DIM"
+    rc=$?
+    if [ $rc -eq 0 ]; then
+        echo "dimmer: setting screen temp to $DIM"
+    else
+        echo "dimmer: failed to set screen temp"
+    fi
+
+    exit $rc
 fi
