@@ -22,7 +22,8 @@ declare -a packages=(
     moreutils
 
     # ** networking
-    NetworkManager # wifi
+    iwd # wifi
+    dhcpcd # DHCP client for ip leasing
 
     # ** display server, window manager, etc
     xorg-server
