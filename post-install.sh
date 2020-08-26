@@ -24,6 +24,10 @@ sed -i 's/#DefaultTimeoutStopSec=90s/DefaultTimeoutStopSec=30s/' /etc/systemd/sy
 systemctl enable dnscrypt-proxy.service
 systemctl start dnscrypt-proxy.service
 
+# get the network up
+systemctl enable iwd
+systemctl enable dhcpcd
+
 # enable custom systemd units
 systemctl enable lock-on-sleep.service
 
