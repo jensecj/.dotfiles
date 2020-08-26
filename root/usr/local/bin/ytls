@@ -19,7 +19,6 @@ do
         l) LIMIT=${OPTARG};;
         u) URL=${OPTARG};;
         f) FILE=${OPTARG};;
-
     esac
 done
 
@@ -34,9 +33,10 @@ dump_ch() {
 if [ -n "$FILE" ]; then
     while IFS="" read -r p || [ -n "$p" ]
     do
-        ch_name = $(echo | cut -d' ' -f1)
-        ch_url = $(echo | cut -d' ' -f2)
+        name=$(echo "$p" | cut -d' ' -f1)
+        url=$(echo "$p" | cut -d' ' -f2)
         dump_ch "$url"
+        printf "\n"
     done < "$FILE"
 elif [ -n "$URL" ]; then
     dump_ch "$URL"
