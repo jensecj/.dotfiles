@@ -1,0 +1,13 @@
+#!/bin/bash
+
+check() {
+    if $(mountpoint "$1" &> /dev/null); then
+        printf "$2"
+    fi
+}
+
+check "$HOME/private" " P"
+check "/run/media/jens/jcj-ehdd-1" " H1"
+check "/run/media/jens/jcj-ehdd-2" " H2"
+check "/mnt/ehdd1" " E1"
+check "/mnt/ehdd2" " E2"
