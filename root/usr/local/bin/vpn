@@ -1,0 +1,35 @@
+#!/bin/bash
+
+VPNS="$HOME/.vpn"
+
+usage="vpn up <config> | down"
+
+ACTION=$1
+case "${ACTION}"
+in
+    down)
+        DOWN=1
+        ;;
+    up)
+        UP=1
+        PROFILE=$2
+        ;;
+esac
+
+down() {
+    profile=$(ip addr | grep --color=never mullvad | sed -n '2p' | xargs | cut -d' ' -f5)
+    [[ -z $profile ]] && echo "no active vpn found" && exit 1
+
+    sudo wg-quick down "$VPNS/$profile.conf"
+}
+
+up() {
+    if [[ -z $PROFILE ]]; then
+        PROFILE=$(find "$VPNS" -type f -iname '*.conf' | xargs basename -s '.conf' | fzf) || exit 1
+    fi
+
+    sudo wg-quick up "$VPNS/$PROFILE.conf"
+}
+
+[[ $DOWN ]] && down
+[[ $UP ]] && up
