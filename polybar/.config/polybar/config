@@ -26,7 +26,7 @@ font-1 = "Symbols Nerd Font:size=9;2"
 module-margin = 4
 
 modules-left = i3
-modules-center = alsa vpn filesystem cpu memory battery gpg-cache date
+modules-center = alsa vpn filesystem cpu memory battery gpg-cache date wifiicon
 modules-right = mounts
 
 tray-position = right
@@ -58,6 +58,13 @@ label-unfocused-padding = 1
 label-urgent = %name%
 label-urgent-background = ${colors.alert}
 label-urgent-padding = 1
+
+[module/wifiicon]
+type = custom/script
+exec = /usr/local/bin/wifiicon
+format = <label>
+label =  %{F#8f}%output%%{F-}
+interval = 11
 
 [module/mounts]
 type = custom/script
