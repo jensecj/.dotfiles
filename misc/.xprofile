@@ -4,7 +4,7 @@ sxhkd & # hotkey daemon
 dunst -conf "$HOME/.config/dunst/dunstrc" & # the notification daemon
 unclutter & # hide cursor after 5sec of idle
 autorandr --change & # load saved multihead settings
-udiskie --smart-tray & # tray icon for easy disk management
+udiskie & # automatic usb-device mounting
 # msmtp & # smtp server # TODO: is this even needed?
 # picom & # composition manager
 # opensnitch-ui &
