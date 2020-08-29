@@ -16,17 +16,24 @@ in
         ;;
 esac
 
-down() {
-    profile=$(ip addr | grep --color=never mullvad | sed -n '2p' | xargs | cut -d' ' -f5)
-    [[ -z $profile ]] && echo "no active vpn found" && exit 1
+get_active_vpn() {
+    ACTIVEVPN=$(ip a | \grep -E 'mullvad-[a-z0-9]+' -o | head -n +1) || ACTIVEVPN=0
+}
 
-    sudo wg-quick down "$VPNS/$profile.conf"
+down() {
+    get_active_vpn
+    [[ -z $ACTIVEVPN ]] && echo "no active vpn found" && exit 1
+    sudo wg-quick down "$VPNS/$ACTIVEVPN.conf"
 }
 
 up() {
     if [[ -z $PROFILE ]]; then
-        PROFILE=$(find "$VPNS" -type f -iname '*.conf' | xargs basename -s '.conf' | fzf) || exit 1
+        PROFILE=$(find "$VPNS" -type f -iname '*.conf' | xargs basename -s '.conf' | sort | fzf) || exit 1
     fi
+
+    # tear down currently active vpn before setting up a new one
+    get_active_vpn
+    [[ -z $ACTIVEVPN ]] || down
 
     sudo wg-quick up "$VPNS/$PROFILE.conf"
 }
