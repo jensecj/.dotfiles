@@ -1,4 +1,4 @@
---theme="my-zenburn"
+--theme="zenburn"
 --map-syntax h:cpp
 --style="changes"
 --color=always
