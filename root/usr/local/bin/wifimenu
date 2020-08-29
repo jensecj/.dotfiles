@@ -1,0 +1,69 @@
+#!/bin/bash
+
+MENU="rofi -dmenu -l 10 -p"
+SECMENU="rofi -dmenu -l 0 -password -p"
+
+# MENU="dmenu -l 10 -p"
+# SECMENU="dmenu -l 0 -P -p" # needs the =dmenu-password= patch
+
+if [ $# -gt 0 ]; then
+    INTERFACE="$1"
+else
+    INTERFACE="wlan0"
+fi
+
+iwctlstrip() {
+    tail -n +5 | sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[m|K]//g"
+}
+
+# get_interface() {
+#     INTERFACE=$(iwctl device list | iwctlstrip | $MENU "Select interface:" | awk '{print $1}')
+# }
+
+scan() {
+    iwctl station $INTERFACE scan && sleep 1
+    NETWORKS=$(iwctl station $INTERFACE get-networks | iwctlstrip)
+}
+
+get_ssid() {
+    PICK=$(echo -e "$NETWORKS" "\nscan"| $MENU "Chose a network")
+    SSID=$(printf "$PICK" | awk -F" {2,}" '{print $2}' | sed 's/>//' | awk '{$1=$1;print}')
+    [[ "$(printf "$PICK" | awk -F" {2,}" '{print $3}')" == "psk" ]] && PSK=1 || PSK=0
+    [[ "$(printf "$PICK" | awk -F" {2,}" '{print $3}')" == "open" ]] && OPEN=1 || OPEN=0
+
+    [[ "$PICK" == "test" ]] && {
+        notify-send "net test"
+    };
+    [[ "$PICK" == "scan" ]] && {
+        scan
+        get_ssid
+    };
+    [[ "$PICK" == "exit" ]] && exit 1
+}
+
+get_psk() {
+    PSK=$($SECMENU "Enter WPA/WPA2 Secret Passphrase" | awk '{print}')
+}
+
+connect_with_open() {
+    iwctl station $INTERFACE connect "$SSID" || notify-send -u "critical" "failed to connect to $SSID"
+}
+
+connect_with_psk() {
+    get_psk || exit 1
+    iwctl station $INTERFACE connect "$SSID" -P "$PSK" || notify-send -u "critical" "failed to connect to $SSID"
+}
+
+connect_to_a_network() {
+    # get_interface &&
+    scan && get_ssid
+    [[ "$PSK" == "1" ]] && connect_with_psk && notify-send "connected to $SSID"
+    [[ "$OPEN" == "1" ]] && connect_with_open && notify-send "connected to $SSID"
+}
+
+
+connect_to_a_network
+
+
+# https://github.com/sinetoami/nmcli-rofi/blob/master/nmcli-rofi
+# https://github.com/zbaylin/rofi-wifi-menu/blob/master/rofi-wifi-menu.sh

@@ -13,15 +13,15 @@ screenchange-reload = true
 [bar/topbar]
 monitor = ${env:MONITOR:eDP1}
 width = 100%
-height = 15
+height = 14
 fixed-center = true
 wm-restack = i3
 
 background = ${colors.background}
 foreground = ${colors.foreground}
 
-font-0 = "Source Code Pro Semibold:size=9;3"
-font-1 = "Symbols Nerd Font:size=8;3"
+font-0 = "Source Code Pro Semibold:size=9;2"
+font-1 = "Symbols Nerd Font:size=9;2"
 
 module-margin = 4
 
@@ -63,7 +63,7 @@ label-urgent-padding = 1
 type = custom/script
 exec = /usr/local/bin/mounts
 format = <label>
-label =  %output% %{F#8f} %{F-}
+label =  %output% %{F#8f}%{F-}
 interval = 11
 
 [module/gpg-cache]
@@ -98,7 +98,7 @@ interval = 61
 type = custom/script
 exec = /usr/local/bin/freespace
 format = <label>
-label = %{F#8f}%{F-} %output%
+label = %{F#8f}%{F-} %output%
 interval = 61
 
 [module/cpu]
@@ -117,18 +117,18 @@ type = custom/script
 exec = /usr/local/bin/nowdate
 format = <label>
 interval = 17
-label = %{F#8f}%{F-} %output%
+label = %{F#8f}%{F-} %output%
 
 [module/alsa]
 type = internal/alsa
-label-volume = %{F#8f}%{F-} %percentage:2%
-label-muted = %{F#8f} %{F-}%percentage:2%
+label-volume = %{F#8f}%{F-} %percentage:2%
+label-muted = %{F#8f}%{F-} %percentage:2%
 handle-events = false
 
 [module/battery]
 type = internal/battery
 battery = BAT0
 adapter = AC
-label-charging = %{F#8f}%{F-} %percentage:2%+
-label-discharging = %{F#8f}%{F-} %percentage:2%-
+label-charging = %{F#8f}%{F-} %percentage:2%+
+label-discharging = %{F#8f}%{F-} %percentage:2%-
 
