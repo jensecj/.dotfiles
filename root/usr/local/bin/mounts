@@ -1,13 +1,21 @@
 #!/bin/bash
 
+SET=0
+
 check() {
     if $(mountpoint "$1" &> /dev/null); then
         printf "$2"
+        SET=1
     fi
 }
 
-check "$HOME/private" " P"
-check "/run/media/jens/jcj-ehdd-1" " H1"
-check "/run/media/jens/jcj-ehdd-2" " H2"
-check "/mnt/ehdd1" " E1"
-check "/mnt/ehdd2" " E2"
+check "$HOME/private" "P "
+check "/run/media/jens/jcj-ehdd-1" "H1 "
+check "/run/media/jens/jcj-ehdd-2" "H2 "
+check "/mnt/ehdd1" "E1 "
+check "/mnt/ehdd2" "E2 "
+
+# if no mountpoints were found, print a space, to avoid polybar hiding module
+if [[ $SET -eq 0 ]]; then
+    echo " "
+fi

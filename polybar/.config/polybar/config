@@ -70,7 +70,7 @@ interval = 11
 type = custom/script
 exec = /usr/local/bin/mounts
 format = <label>
-label =  %output% %{F#8f}%{F-}
+label =  %output% %{F#8f} %{F-}
 interval = 11
 
 [module/gpg-cache]
