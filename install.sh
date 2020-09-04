@@ -45,6 +45,7 @@ declare -a packages=(
 
     # ** video drivers
     xf86-video-intel
+    mesa
 
     # ** audio
     pulseaudio
@@ -71,7 +72,10 @@ declare -a packages=(
     pass # password manager
     bc # scientific cli calculator
     poppler # pdf rendering
-    ntfs-3g # ntfs support
+    snapraid # software raid
+    ntfs-3g # ntfs support through fuse
+    mergerfs # fuse union filesystem
+    sshfs # fuse fs for mounting remote directories locally
 
     # ** security
     clamav # anti-virus
@@ -133,11 +137,12 @@ declare -a packages=(
     tree # list files in tree-view
 
     # ** utilities
+    libvterm # vterms for everyone
     ffmpeg # working with video/audio
     ffmpegthumbnailer # create video thumbnails
     brightnessctl # easy brightness controls
     task-spooler # queue tasks to be completed sequentially
-    tldr # quick shell examples for most commands
+    tealdeer # tldr # quick shell examples for most commands
     slock # screen lock
     perf # performance analysis tools
     openssh openvpn
@@ -186,6 +191,7 @@ declare -a packages=(
     lshw # print hardware information (like other ls* tools)
     htop # process manager
     iotop # I/O monitor
+    bandwhich # network monitor
     iftop # network monitor
 
     # ** misc
