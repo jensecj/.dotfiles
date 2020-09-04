@@ -29,7 +29,7 @@ user_pref("intl.accept_languages",				"en-US, en");
 user_pref("intl.locale.matchOS",				false);
 user_pref("javascript.use_us_english_locale",			true);
 user_pref("clipboard.autocopy",					false);
-
+user_pref("apz.gtk.kinetic_scroll.enabled", false) // dont imitate physics while scrolling
 
 // privacy and telemetry
 user_pref("plugin.state.java",					0);
