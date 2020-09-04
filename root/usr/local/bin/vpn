@@ -14,6 +14,9 @@ in
         UP=1
         PROFILE=$2
         ;;
+    rand|random)
+        RAND=1
+        ;;
 esac
 
 get_active_vpn() {
@@ -22,8 +25,15 @@ get_active_vpn() {
 
 down() {
     get_active_vpn
-    [[ -z $ACTIVEVPN ]] && echo "no active vpn found" && exit 1
-    sudo wg-quick down "$VPNS/$ACTIVEVPN.conf"
+    [[ -n $ACTIVEVPN ]] && wg-quick down "$VPNS/$ACTIVEVPN.conf"
+}
+
+connect_to_vpn() {
+    vpn=$1
+
+    # tear down currently active vpn before setting up a new one
+    down &> /dev/null
+    wg-quick up $vpn
 }
 
 up() {
@@ -31,12 +41,14 @@ up() {
         PROFILE=$(find "$VPNS" -type f -iname '*.conf' | xargs basename -s '.conf' | sort | fzf) || exit 1
     fi
 
-    # tear down currently active vpn before setting up a new one
-    get_active_vpn
-    [[ -z $ACTIVEVPN ]] || down
-
-    sudo wg-quick up "$VPNS/$PROFILE.conf"
+    connect_to_vpn "$VPNS/$PROFILE.conf"
 }
 
-[[ $DOWN ]] && down
+random() {
+    PROFILE=$(find "$VPNS" -type f -iname '*.conf' | shuf -n 1) || exit 1
+    connect_to_vpn "$PROFILE"
+}
+
+[[ $DOWN ]] && down && echo "vpn disconnected"
 [[ $UP ]] && up
+[[ $RAND ]] && random
