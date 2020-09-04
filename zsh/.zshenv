@@ -34,6 +34,8 @@ export EXA_COLORS="da=38;5;7:*.org=38;5;184:uu=0:gu=0"
 export RANGER_LOAD_DEFAULT_RC="FALSE"
 export PIP_REQUIRE_VIRTUALENV="true"
 
+export GOPATH=$HOME/.go
+
 export TIMEFMT=''$'\n%J'$'\n%U user | %S system | %P cpu | %*Es total'$'\n'\
 'avg. shared (code):         %X KB'$'\n'\
 'avg. unshared (data/stack): %D KB'$'\n'\
