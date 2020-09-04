@@ -1,15 +1,15 @@
 #!/bin/bash
 
 INTERFACE="wlan0"
-STRENGTH=$(cat /proc/net/wireless | grep $INTERFACE | awk '{print $3}' | tr -d '.')
 
+STRENGTH=$(grep $INTERFACE /proc/net/wireless | awk '{print $4}' | tr -d '.')
 if [ -z $STRENGTH ]; then
     echo ""
-elif [ $STRENGTH -lt 25 ]; then
+elif [ $STRENGTH -lt -70 ]; then
     echo ""
-elif [ $STRENGTH -lt 50 ]; then
+elif [ $STRENGTH -lt -60 ]; then
     echo ""
-elif [ $STRENGTH -lt 75 ]; then
+elif [ $STRENGTH -lt -50 ]; then
     echo ""
 else
     echo ""
