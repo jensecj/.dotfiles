@@ -34,14 +34,15 @@ declare -a packages=(
     xorg-xrandr
 
     # NOTE: not yet wayland, maybe someday
-    # wayland
-    # xorg-server-xwayland # X for wayland
+    # wayland # display server
     # wlroots
+    # xorg-server-xwayland # X for wayland
     # sway # window manager, i3 drop-in replacement
     # swaylock # screen locker
     # swayidle # idle trigger
-    # waybar # wayland info bar
-    # mako # wayland notification daemon
+    # swaybg # wallpaper manager
+    # waybar # status bar
+    # mako # notification daemon
 
     # ** video drivers
     xf86-video-intel
