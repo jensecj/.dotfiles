@@ -4,7 +4,7 @@ monitor = 0
 # width x number of notifications - padding + padding
 geometry = "300x20-5+25"
 shrink = no # do not shrink to fit messages
-transparency = 20 # completely opaque, range [0;100]
+transparency = 0 # completely opaque, range [0;100]
 
 notification_height = 0 # fit to message
 padding = 12 # between text and seperator
@@ -32,11 +32,6 @@ hide_duplicate_count = true # show how many times a duplicate notification occur
 
 # Display indicators for URLs (U) and actions (A).
 show_indicators = yes
-
-### Icons ###
-icon_position = left
-max_icon_size = 32
-icon_folders = /usr/share/icons/gnome/16x16/status/:/usr/share/icons/gnome/16x16/devices/
 
 sticky_history = yes
 history_length = 50
