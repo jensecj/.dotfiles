@@ -1,5 +1,5 @@
 user_pref("general.warnOnAboutConfig", false); // XUL/XHTML version
-user_pref("security.dialog_enable_delay", 0)   // dont delay the download-file dialog
+user_pref("security.dialog_enable_delay", 0);   // dont delay the download-file dialog
 user_pref("privacy.userContext.ui.enabled", true);
 user_pref("privacy.userContext.enabled", true);
 user_pref("browser.aboutConfig.showWarning", false); // HTML version [FF71+]
@@ -10,7 +10,7 @@ user_pref("general.smoothScroll.currentVelocityWeighting", "0.55");
 user_pref("browser.fullscreen.autohide", false);
 user_pref("full-screen-api.warning.timeout", 0); // dont show popup when going fullscreen
 user_pref("dom.event.contextmenu.enabled", false); // dont let pages hijack rightclick
-user_pref("dom.event.clipboardevents.enabled", false) // dont tell websites if i copy/paste things
+user_pref("dom.event.clipboardevents.enabled", false); // dont tell websites if i copy/paste things
 user_pref("dom.disable_beforeunload", true);       // dont let pages hijack 'back'
 user_pref("browser.shell.checkDefaultBrowser", false);
 user_pref("browser.urlbar.trimURLs", false); // show full url to see if http or https
@@ -29,7 +29,7 @@ user_pref("intl.accept_languages",				"en-US, en");
 user_pref("intl.locale.matchOS",				false);
 user_pref("javascript.use_us_english_locale",			true);
 user_pref("clipboard.autocopy",					false);
-user_pref("apz.gtk.kinetic_scroll.enabled", false) // dont imitate physics while scrolling
+user_pref("apz.gtk.kinetic_scroll.enabled", false); // dont imitate physics while scrolling
 
 // privacy and telemetry
 user_pref("plugin.state.java",					0);
@@ -41,7 +41,7 @@ user_pref("browser.startup.homepage_override.buildID",		"20100101");
 user_pref("browser.send_pings.require_same_host",		true);
 user_pref("media.webspeech.recognition.enable",			false);
 user_pref("browser.send_pings",					false);
-user_pref("media.peerconnection.enabled", false)
+user_pref("media.peerconnection.enabled", false);
 user_pref("extensions.htmlaboutaddons.recommendations.enabled", false);
 user_pref("extensions.htmlaboutaddons.discover.enabled", false);
 user_pref("privacy.firstparty.isolate", true);
