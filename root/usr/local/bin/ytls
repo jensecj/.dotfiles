@@ -25,8 +25,28 @@ done
 dump_ch() {
     url=$1
     for i in $(seq $LIMIT); do
-        youtube-dl --simulate --ignore-errors --quiet --dump-json --playlist-items $i "$url" | jq -r ".uploader,.upload_date,.webpage_url,.title" | tr "\n" "\t"
-        echo ""
+        local TRIES=0
+        local RESULT=1
+
+        while [[ ! $RESULT -eq 0 ]]; do
+            if [[ $TRIES -gt 5 ]]; then
+                break
+            fi
+
+            OUT=$(youtube-dl --simulate --ignore-errors --quiet --dump-json --playlist-items $i -- "$url" 2> /dev/null)
+
+            RESULT=$?
+            TRIES=$((TRIES+1))
+
+            # echo "result: $RESULT  --  tries: $TRIES"
+        done
+
+        if [[ "$RESULT" -eq 0 ]]; then
+            res=$(echo "$OUT" | jq -r ".uploader,.upload_date,.webpage_url,.title" | tr "\n" "\t")
+            echo "$res"
+        else
+            echo "failed to fetch $url"
+        fi
     done
 }
 
