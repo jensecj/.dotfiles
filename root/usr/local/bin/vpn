@@ -5,7 +5,7 @@ VPNS="$HOME/.vpn"
 usage="vpn up <config> | down"
 
 ACTION=$1
-case "${ACTION}"
+case "$ACTION"
 in
     down)
         DOWN=1
