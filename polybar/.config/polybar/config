@@ -21,7 +21,7 @@ background = ${colors.background}
 foreground = ${colors.foreground}
 
 font-0 = "Source Code Pro Semibold:size=9;2"
-font-1 = "Symbols Nerd Font:size=9;2"
+font-1 = "Symbols Nerd Font:size=8;3"
 
 module-margin = 4
 
