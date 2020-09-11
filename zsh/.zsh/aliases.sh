@@ -35,7 +35,7 @@ alias ll="l --all --group"
 
 # * pacman
 alias pac='yay'
-alias pacu='pac -Syyu --combinedupgrade' # update all packages
+alias pacu='pac -Syu --combinedupgrade' # update all packages
 alias pacrm='pac -Rns'                   # remove a package
 alias pacss='pac -Ss'                    # search for a package
 alias pacs='pac -S'                      # install a package
