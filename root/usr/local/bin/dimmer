@@ -27,29 +27,35 @@ DIMMER_FILE=~/.dimmer
 HOUR=$(date +%H)
 DIM=""
 
+MAX=5000
+MIN=1300
+
+# TODO: use a curve based on time of day and date (number of sunlight hours?)
 case $HOUR in
-    00) DIM=1500;;
-    01) DIM=1500;;
-    02) DIM=1400;;
-    03) DIM=1400;;
-    04) DIM=1400;;
-    05) DIM=1400;;
-    06) DIM=1700;;
+    00) DIM=$MIN;;
+    01) DIM=$MIN;;
+    02) DIM=$MIN;;
+    03) DIM=$MIN;;
+    04) DIM=$MIN;;
+    05) DIM=$MIN;;
+    06) DIM=2000;;
     07) DIM=2500;;
-    08) DIM=3200;;
+    08) DIM=3500;;
     09) DIM=4000;;
-    10) DIM=4500;;
-    11) DIM=5000;;
-    12|13|14) DIM=5000;;
-    15) DIM=5000;;
-    16) DIM=5000;;
-    17) DIM=4500;;
-    18) DIM=4400;;
-    19) DIM=4300;;
-    20) DIM=3000;;
-    21) DIM=2500;;
-    22) DIM=1900;;
-    23) DIM=1500;;
+    10) DIM=$MAX;;
+    11) DIM=$MAX;;
+    12) DIM=$MAX;;
+    13) DIM=$MAX;;
+    14) DIM=$MAX;;
+    15) DIM=$MAX;;
+    16) DIM=4000;;
+    17) DIM=3750;;
+    18) DIM=3300;;
+    19) DIM=2700;;
+    20) DIM=2300;;
+    21) DIM=2000;;
+    22) DIM=1700;;
+    23) DIM=$MIN;;
 esac
 
 if [ ! -e $DIMMER_FILE ]; then
