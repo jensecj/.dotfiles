@@ -44,7 +44,7 @@ super + shift + Return
     $TERMINAL
 
 super + ctrl + Return
-    $TERMINAL --class Alacritty,float
+    popterm $SHELL
 
 super + m
     $TERMINAL -e tmux -c ranger
