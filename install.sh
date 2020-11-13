@@ -56,6 +56,7 @@ declare -a packages=(
     adobe-source-code-pro-fonts # for programming
     adobe-source-sans-pro-fonts # for everything else
     noto-fonts-cjk # chinese-japanses-korean
+    noto-fonts-emoji # emoji icons
     ttf-nerd-fonts-symbols # icon font amalgamation
 
     # ** early
@@ -114,7 +115,6 @@ declare -a packages=(
     earlyoom # out-of-memory daemon
     psi-notify # notify on high system-resource use
     dkms # dynamic kernel module support
-    keychain # manage ssh agents
     expac # package info
     pacman-contrib # pactree, etc. # listing pacman package dependencies
     arch-audit # check installed packages against security.archlinux.org
@@ -143,7 +143,8 @@ declare -a packages=(
     ffmpegthumbnailer # create video thumbnails
     brightnessctl # easy brightness controls
     task-spooler # queue tasks to be completed sequentially
-    tealdeer # tldr # quick shell examples for most commands
+    wikiman # docs from man-pages, arch-wiki, etc.
+    tldr # quick shell examples for most commands
     slock # screen lock
     perf # performance analysis tools
     openssh openvpn
@@ -187,6 +188,12 @@ declare -a packages=(
     qrencode # turn strings into qr codes
     secure-delete # securely delete files
     hashdeep # hash all files in a directory recursively
+    hunspell # spellchecking
+    ispell # spellchecking
+    aspell # spellchecking
+    aspell-en # english dictionary for apell
+    xmeasure # screen ruler
+    xcolor # color picker
 
     # ** system information
     lshw # print hardware information (like other ls* tools)
@@ -206,19 +213,21 @@ declare -a packages=(
     peerflix # streaming torrents
     # calibre # ebook manager
     mpv # video player
-    moc # music player
+    moc wavpack libmpcdec taglib faad2 # music player, and codex etc.
     mupdf # pdf viewer
     zathura # pdf viewer
     zathura-pdf-mupdf # mupdf backend for zathura
     zathura-djvu zathura-ps # djvu and postscript backends for zathura
     feh # image viewer
     sxiv # image / gif viewer
+    chafa # cat images/gifs in terminal
+    slop # select region on screen and output to stdout
+
     dictd # offline dictionary and daemon
     dict-wn # wordnet
     dict-gcide # gnu english dictionary
     dict-foldoc # gnu english dictionary
     dict-wikt-en-all # english wikitionary
-    slop # select region on screen and output to stdout
 
     # ** mail
     isync # IMAP sync, provides mbsync
