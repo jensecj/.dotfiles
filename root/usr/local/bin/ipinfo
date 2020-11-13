@@ -1,6 +1,6 @@
 #!/bin/bash
 
-data=$(curl --connect-timeout 2 -s "ipinfo.io")
+data=$(curl --connect-timeout 2 -s "https://ipinfo.io")
 error=$(echo "$data" | jq '.error' | xargs)
 
 if [ -n "$error" ] && [ "$error" != "null" ]; then
