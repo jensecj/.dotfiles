@@ -12,6 +12,7 @@ xft*font:       xft:Source Code Pro Semibold:pixelsize=14
 *background: #3f3f3f
 *foreground: #dcdccc
 *cursorColor: #8faf9f
+Xcursor.size: 16
 
 *color0: #2f2f2f
 *color1: #dfaf8f
