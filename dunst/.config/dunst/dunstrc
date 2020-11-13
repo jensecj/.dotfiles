@@ -2,14 +2,14 @@
 monitor = 0
 
 # width x number of notifications - padding + padding
-geometry = "260x20-0+15"
+geometry = "300x30-2+17"
 shrink = no # do not shrink to fit messages
 transparency = 0 # completely opaque, range [0;100]
 
 notification_height = 0 # fit to message
 padding = 15 # between text and seperator
 separator_height = 2 # width of seperator between notifications
-horizontal_padding = 4
+horizontal_padding = 40
 frame_width = 2 # width of border around the notification
 
 frame_color = "#000000"
