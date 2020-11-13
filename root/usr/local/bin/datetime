@@ -22,6 +22,9 @@ def entry(zone=None):
         print(f"CET: {cet:%H:%M:%S}")
 
         gmt = local.astimezone(tz=timezone("UTC"))
+        print(f"UTC: {gmt:%H:%M:%S}")
+
+        gmt = local.astimezone(tz=timezone("GMT"))
         print(f"GMT: {gmt:%H:%M:%S}")
 
         est = local.astimezone(tz=timezone("EST"))
