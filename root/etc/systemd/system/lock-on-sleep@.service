@@ -4,8 +4,10 @@ Before=sleep.target
 
 [Service]
 User=%i
-Environment=DISPLAY=:0.0
-ExecStart=/usr/bin/slock
+Environment=DISPLAY=:0
+ExecStart=/usr/local/bin/slock
+# why is this needed to ensure the actual screen does not blink into existene and then lock?
+ExecStartPost=/usr/bin/sleep 0.5
 
 [Install]
 WantedBy=sleep.target
