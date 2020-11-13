@@ -27,7 +27,7 @@ scan() {
 
 get_ssid() {
     options="\ndisconnect\nscan"
-    PICK=$(echo -e "$NETWORKS" "$options"| $MENU "Pick a network")
+    PICK=$(echo -e "$NETWORKS" "$options"| $MENU "network")
     SSID=$(printf "$PICK" | awk -F" {2,}" '{print $2}' | sed 's/>//' | awk '{$1=$1;print}')
 
     [[ "$(printf "$PICK" | awk -F" {2,}" '{print $3}')" == "psk" ]] && PSK=1 || PSK=0
@@ -43,12 +43,12 @@ get_psk() {
 }
 
 connect_open() {
-    iwctl station "$INTERFACE" connect "$SSID" || notify-send -u "critical" "failed to connect to $SSID"
+    iwctl station "$INTERFACE" connect "$SSID" || (notify-send -u "critical" "failed to connect to $SSID"; exit 1)
 }
 
 connect_psk() {
     get_psk || exit 1
-    iwctl station "$INTERFACE" connect "$SSID" -P "$PSK" || notify-send -u "critical" "failed to connect to $SSID"
+    iwctl station "$INTERFACE" connect "$SSID" -P "$PSK" || (notify-send -u "critical" "failed to connect to $SSID"; exit 1)
 }
 
 connect_to_network() {
