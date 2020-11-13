@@ -4,6 +4,7 @@
 notmuch tag -new +lists +lists/emacs-devel +unread -- tag:new and to:emacs-devel@gnu.org
 notmuch tag -new +lists +lists/emacs-help +unread -- tag:new and to:help-gnu-emacs@gnu.org
 notmuch tag -new +lists +lists/emacs-orgmode +unread -- tag:new and to:emacs-orgmode@gnu.org
+notmuch tag -new +lists +lists/gemini +unread -- tag:new and to:gemini@lists.orbitalfox.eu
 
 # tag mails from build servers
 notmuch tag -new +builds +unread -- tag:new and from:builds@circleci.com
@@ -11,6 +12,9 @@ notmuch tag -new +builds +unread -- tag:new and from:builds@circleci.com
 # drafts and sent mail are not new
 notmuch tag -new -- tag:new and tag:draft
 notmuch tag -new -- tag:new and tag:sent
+
+# mails sent from different muas are still sent by me
+notmuch tag -new +sent -- tag:new and from:jensecj@gmail.com
 
 # mute new mails from muted threads
 notmuch tag -new -unread +muted -- $(notmuch search --output=threads tag:muted)
