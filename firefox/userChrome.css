@@ -14,11 +14,27 @@
     visibility: hidden !important;
 }
 
+tab {
+    /* color: #f6f6ef !important; */
+}
+
+tab[selected="true"] {
+    /* font-weight: bold !important; */
+}
+.tab-line[selected="true"] {
+    background-color: #616161 !important;
+}
+
+.tab-background[selected="true"] {
+    background-color: #616161 !important;
+    background-image: none !important;
+}
+
 /*****************/
 /* context menus */
 /*****************/
 
-/* hide from ahmburger */
+/* hide from hamburger */
 #appMenu-fxa-status,
 #appMenu-mainView toolbarseparator.sync-ui-item,
 #appMenu-protection-report-button
