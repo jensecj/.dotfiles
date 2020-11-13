@@ -7,6 +7,10 @@
     animation: none !important;
 }
 
+body {
+    background-image: none !important;
+}
+
 @-moz-document url(about:newtab), url(about:home), url(about:blank) {
     body {
 	      background-color: #2A2A2E !important;
@@ -33,6 +37,9 @@
 @-moz-document domain("metager.org") {
     #options .scrollbox {
         max-height: 50px !important;
+    }
+    #resultpage-container {
+        grid-template-columns: 500px 1000px 100px !important;
     }
 }
 
