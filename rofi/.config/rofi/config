@@ -1,6 +1,6 @@
 rofi.modi:     run
 rofi.width:    30
-rofi.lines:    10
+rofi.lines:    7
 rofi.font:     Source Code Pro Semibold 11
 rofi.padding:  2
 
