@@ -18,7 +18,7 @@ fi
 brightnessctl -d "$DEVICE" s "$CHANGE"
 BRIGHTNESS=$(brightnessctl -d "$DEVICE" | grep -i current | cut -d' ' -f4 | tr -d '()%')
 
-PIPE="/tmp/xobpipe-brightness"
+PIPE="/tmp/xob-backlight"
 if [ ! -w $PIPE ]; then
     mkfifo $PIPE
 fi

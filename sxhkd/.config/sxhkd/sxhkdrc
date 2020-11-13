@@ -1,22 +1,22 @@
 # * system
 # ** brightness
 XF86MonBrightnessUp
-    brightctl intel_backlight +5%
+    backlightctl intel_backlight +5%
 
 shift + XF86MonBrightnessUp
-    brightctl intel_backlight +1%
+    backlightctl intel_backlight +1%
 
 XF86MonBrightnessDown
-    brightctl intel_backlight 5%-
+    backlightctl intel_backlight 5%-
 
 shift + XF86MonBrightnessDown
-    brightctl intel_backlight 1%-
+    backlightctl intel_backlight 1%-
 
 ctrl + XF86MonBrightnessUp
-    brightctl ddcci5 +5%
+    backlightctl ddcci5 +5%
 
 ctrl + XF86MonBrightnessDown
-    brightctl ddcci5 5%-
+    backlightctl ddcci5 5%-
 
 # ** audio
 XF86AudioRaiseVolume
