@@ -1,0 +1,27 @@
+#!/bin/bash
+
+BACKLIGHT="/tmp/xob-backlight"
+VOLUME="/tmp/xob-volume"
+
+BARS=($BACKLIGHT $VOLUME)
+
+reload() {
+    BAR=$1
+
+    killall -qe "xob"
+    for b in ${BARS[@]}; do
+        [[ -w "$b" ]] || mkfifo "$b"
+        tail -f "$b" | xob -s "$BAR" > /dev/null & disown
+    done
+
+}
+
+SETUP=$(autorandr | grep detected | cut -d' ' -f1)
+
+if [ "$SETUP" = "docked" ]; then
+    reload "docked"
+else
+    reload "mobile"
+fi
+
+
