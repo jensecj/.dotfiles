@@ -144,8 +144,16 @@ whichshell() {
     ps -p "$$" | awk '{print $4}' | sed -n '2p'
 }
 
-bu() { cp "$1" "$1.bak"; }
-mvbu() { mv "$1" "$1.bak"; }
+bu() {
+    for f in "$@"; do
+        cp "$f" "$f.bak"
+    done
+}
+mvbu() {
+    for f in "$@"; do
+        mv "$f" "$f.bak"
+    done
+}
 mcd() { mkdir -p "$1"; cd "$1" || exit 1; }
 del() {
     mv '$@' ~/.local/share/Trash/files/
