@@ -30,10 +30,10 @@ XF86AudioMute
 
 # ** screenshotting
 @super + Print
-    scrot '%Y-%m-%d_%H:%M:%S_$wx$h.png' -e 'mv $f ~/private/screenshots/' && notify-send "screen shot"
+    scrshot -d "~/private/screenshots/"
 
 @super + shift + Print
-    scrot -s '%Y-%m-%d_%H:%M:%S_$wx$h.png' -e 'mv $f ~/private/screenshots/' && notify-send "screen grabbed"
+    scrshot -s -d "~/private/screenshots/"
 
 # * shortcuts
 

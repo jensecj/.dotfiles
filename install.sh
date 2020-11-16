@@ -222,6 +222,7 @@ declare -a packages=(
     sxiv # image / gif viewer
     chafa # cat images/gifs in terminal
     slop # select region on screen and output to stdout
+    maim # take screen shots/grabs
 
     dictd # offline dictionary and daemon
     dict-wn # wordnet
