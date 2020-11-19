@@ -91,7 +91,7 @@ body {
     }
 }
 
-@-moz-document domain("lists.gnu.org"), domain("debbugs.gnu.org") {
+@-moz-document domain("gnu.org"), domain("lists.gnu.org"), domain("debbugs.gnu.org") {
     body {
         margin: auto !important;
         max-width: 900px;
