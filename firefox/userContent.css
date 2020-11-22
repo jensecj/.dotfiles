@@ -34,6 +34,13 @@ body {
     }
 }
 
+@-moz-document domain("sr.ht") {
+    body {
+        max-width: 1200px !important;
+        margin: auto !important;
+    }
+}
+
 @-moz-document domain("metager.org") {
     #options .scrollbox {
         max-height: 50px !important;
