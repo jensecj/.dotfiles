@@ -1,7 +1,8 @@
 #!/bin/bash
+BUILD_DIR=$(pwd)/build
 
 (
-BUILD_DIR=$(pwd)/build
-cd src/ || exit 7
-make install prefix="$BUILD_DIR" exec_prefix="$BUILD_DIR"
+    cd src/ || exit 2
+    make all prefix="$BUILD_DIR" exec_prefix="$BUILD_DIR"
+    make install prefix="$BUILD_DIR" exec_prefix="$BUILD_DIR"
 )

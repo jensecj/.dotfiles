@@ -1,16 +1,17 @@
 #!/bin/bash
+BUILD_DIR=$(pwd)/build
 
 (
-    cd src/
+    cd src/ || exit 2
 
     ./configure \
-        --enable-link-time-optimization \
-        --with-modules \
-        --with-cairo \
-        --without-sound \
-        --with-pdumper=yes \
-        --with-x-toolkit=lucid \
-        --with-imagemagick \
-        --with-harfbuzz \
-        --with-json
+	   --prefix="$BUILD_DIR" \
+     --exec-prefix="$BUILD_DIR" \
+     --without-sound \
+     --with-cairo \
+     --with-modules \
+     --with-pdumper=yes \
+     --with-imagemagick \
+     --with-harfbuzz \
+     --with-json
 )

@@ -1,3 +1,4 @@
 #!/bin/bash
+BUILD_DIR=$(pwd)/build
 
-sudo stow --delete --target /usr/local $pwd/build
+sudo stow --delete --target /usr/local "$BUILD_DIR"

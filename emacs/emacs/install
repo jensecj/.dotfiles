@@ -1,7 +1,7 @@
 #!/bin/bash
+BUILD_DIR=$(pwd)/build
 
 # fix for stow not wanting to link into another symlink
-BUILD_DIR=$(pwd)/build
 rm -r "$BUILD_DIR/man" &> /dev/null
 mv "$BUILD_DIR/share/man" "$BUILD_DIR/man"
 

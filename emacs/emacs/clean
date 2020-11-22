@@ -1,6 +1,6 @@
 #!/bin/bash
 
 (
-cd src/ || exit 2
-make clean
+    cd src/ || exit 2
+    make clean distclean
 )
