@@ -8,13 +8,15 @@ do
     esac
 done
 
+volume=$(amixer -D pulse sget Master | grep -i 'Left:' | awk -F'[][]' '{ print $2 }' | tr -d %)
+
 if [[ $VOL == "toggle" ]]; then
     amixer -D pulse set Master 1+ toggle > /dev/null
 elif [ -n $VOL ]; then
-    pactl set-sink-volume 0 $VOL
+    volume=$(bc <<< "$volume + $VOL")
+    amixer -D pulse set Master "$volume%" > /dev/null
 fi
 
-volume=$(amixer -D pulse sget Master | grep -i 'Left:' | awk -F'[][]' '{ print $2 }' | tr -d %)
 muted=$(amixer -D pulse sget Master | grep -qi '\[off\]')
 muted=$?
 

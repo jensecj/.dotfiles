@@ -20,10 +20,10 @@ ctrl + XF86MonBrightnessDown
 
 # ** audio
 XF86AudioRaiseVolume
-    volctl -d pulse -s 0 -v +1%
+    volctl -d pulse -s 0 -v 2
 
 XF86AudioLowerVolume
-    volctl -d pulse -s 0 -v -1%
+    volctl -d pulse -s 0 -v -2
 
 XF86AudioMute
     volctl -d pulse -s Master -v toggle
