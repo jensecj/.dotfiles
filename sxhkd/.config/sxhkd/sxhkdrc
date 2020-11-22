@@ -44,7 +44,7 @@ super + shift + Return
     $TERMINAL
 
 super + ctrl + Return
-    popterm $SHELL
+    popterm tmux
 
 super + m
     $TERMINAL -e tmux -c ranger
