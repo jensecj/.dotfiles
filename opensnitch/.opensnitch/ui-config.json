@@ -1,5 +1,0 @@
-{
-	"default_timeout": 30,
-	"default_action": "deny",
-	"default_duration": "once"
-}
