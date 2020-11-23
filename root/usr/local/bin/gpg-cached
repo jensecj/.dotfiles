@@ -4,6 +4,12 @@ import os
 import re
 import sys
 import subprocess
+import logging
+
+log = logging.getLogger(__name__)
+log.setLevel(logging.INFO)
+handler = logging.StreamHandler()
+log.addHandler(handler)
 
 
 def shell(cmd):
@@ -17,53 +23,51 @@ def shell(cmd):
 
 
 def keygrips(id):
-    cmd = ["gpg", "--fingerprint", "--with-keygrip", id]
+    cmd = ["gpg", "--fingerprint", "--with-keygrip", "--keyid-format=SHORT", id]
     _, o, _ = shell(cmd)
 
     parts = [p for p in re.split("\n\n", o) if p]
     for p in parts:
         keys = [k for k in re.split("sub", p) if k]
         for k in keys:
-            caps = re.search("\[(A|S|E|C)+\]", k).group(0)
-            grip = (
-                re.search("Keygrip = [0-9A-Fa-f]+", k)
-                .group(0)
-                .replace("Keygrip = ", "")
-            )
+            if sid := re.search("[a-z0-9]+/([A-Z0-9]+)", k):
+                sid = sid.group(1)
+                log.debug(f"{sid=}")
 
-            yield caps, grip
+            if not id == sid:
+                continue
+
+            if cap := re.search("\[(A|S|E|C)+\]", k):
+                cap = cap.group(0)
+
+            if grip := re.search("Keygrip = [0-9A-Fa-f]+", k):
+                grip = grip.group(0)
+                grip = grip.replace("Keygrip = ", "")
+
+            if cap and grip:
+                yield cap, grip
 
 
 def is_cached(grip):
     cmd = ["gpg-connect-agent", f"KEYINFO --no-ask {grip} Err Pmt Des", "/bye"]
 
     _, o, _ = shell(cmd)
-    cached = o[57] == "1"
+    cached = len(o) > 57 and o[57] == "1"
     return cached
 
 
 def entry():
-    ids = ["enc", "git", "pass"]
+    ids = ["enc", "git", "pass", "92992011", "CDA494A4", "2C99BECA"]
 
-    picks = []
-
+    cached = []
     for id in ids:
-        out = ""
+        log.debug(f"{id=}")
         for cap, grip in keygrips(id):
+            log.debug(f"{cap=} {grip=} {is_cached(grip)=}")
             if is_cached(grip):
-                out += cap
-        if out:
-            out = f"{id}"
+                cached.append(f"{cap}{id}")
 
-        picks.append(out)
-
-    picks = [p for p in picks if p]
-
-    if not picks:
-        sys.exit(1)
-
-    result = " ".join(picks)
-    print(result)
+    log.info(" ".join(cached))
 
 
 if __name__ == "__main__":
