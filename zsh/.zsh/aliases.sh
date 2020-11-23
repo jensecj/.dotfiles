@@ -146,12 +146,20 @@ whichshell() {
 
 bu() {
     for f in "$@"; do
-        cp "$f" "$f.bak"
+        BAK="$f.bak"
+        while [ -e "$BAK" ]; do
+            BAK="$BAK.bak"
+        done
+        cp "$f" "$BAK"
     done
 }
 mvbu() {
     for f in "$@"; do
-        mv "$f" "$f.bak"
+        BAK="$f.bak"
+        while [ -e "$BAK" ]; do
+            BAK="$BAK.bak"
+        done
+        mv "$f" "$BAK"
     done
 }
 mcd() { mkdir -p "$1"; cd "$1" || exit 1; }
