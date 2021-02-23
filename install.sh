@@ -87,10 +87,8 @@ declare -a packages=(
     bubblewrap-suid # app sandboxing
     dnscrypt-proxy # for running encrypted dnslookups
     ufw # firewall
-    # opensnitch # app firewall
 
     # ** programming tools
-    # termite termite-terminfo # terminal emulator
     alacritty # another terminal
     zsh # preferred shell
     tmux # terminal multiplexer
@@ -101,6 +99,7 @@ declare -a packages=(
     podman buildah skopeo # more containers
     diff-so-fancy # fancy git diff
     entr # watch for file changes using inotify and kqueue
+    zeal # offline dev docs
 
     # ** system
     i3-wm # tiling window manager
@@ -242,6 +241,9 @@ declare -a packages=(
     firefox-developer-edition
 
     # ** programming languages
+    # *** misc
+    shellcheck-bin # bash linter
+
     # *** java
     jdk-openjdk # latest jdk
     jdk11-openjdk jre11-openjdk
@@ -251,13 +253,18 @@ declare -a packages=(
 
     # *** clojure
     clojure leiningen
-    # sci babashka
+    sci babashka
 
     # *** python
     python python-pip python-setuptools
     python-virtualenv # virtual environments
     pyenv # version management
     python-black # code formatter
+    python-pylint # linter
+    python-pydocstyle # linting for docstrings
+    python-pycodestyle # linting for codestyle
+    flake8 # linter
+    bandit # security linter
     python-tox # testing and building
     python-poetry # dependency management
     pypy3 pypy3-pip pypy3-setuptools
@@ -277,20 +284,17 @@ declare -a packages=(
     sbcl roswell
 
     # *** rust
-    rustup rls-git
+    rustup rust-analyzer
 )
 $AURHELPER -S "${packages[@]}"
 
 # * rust components
 declare -a rustup_components=(
     clippy # linting
-    rls # rust language server
+    rustfmt # autoformatter
 )
 for com in $rustup_components
 do
     rustup component add "$com"
 done
 
-declare -a rust_packages=(
-)
-cargo install "${rust_packages[@]}"
