@@ -135,7 +135,7 @@ for_window [class="emacs"] border pixel
 # STARTUP #
 ###########
 
-exec --no-startup-id alacritty --hold -d 75 15 --class "Alacritty,float" -e "syschk"
+exec --no-startup-id popterm "syschk; zsh"
 
 #########
 # THEME #
