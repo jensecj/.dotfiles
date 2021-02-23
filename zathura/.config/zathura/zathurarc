@@ -14,3 +14,29 @@ map = zoom 0.0
 unmap i
 map [normal] i toggle_index
 map [index] i toggle_index
+
+
+# * theme
+set font "Source Code Pro 12"
+
+set default-bg              "#3f3f3f"
+set inputbar-bg             "#3f3f3f"
+set statusbar-bg            "#3f3f3f"
+set notification-error-bg   "#6c3333"
+set notification-warning-bg "#e0cf9f"
+set completion-highlight-bg "#3f3f3f"
+set completion-bg           "#3f3f3f"
+set notification-bg         "#3f3f3f"
+
+set default-fg              "#dcdccc"
+set inputbar-fg             "#dcdccc"
+set statusbar-fg            "#dcdccc"
+set notification-error-fg   "#dcdccc"
+set notification-warning-fg "#dcdccc"
+set completion-highlight-fg "#dcdccc"
+set completion-fg           "#dcdccc"
+set notification-fg         "#dcdccc"
+
+set highlight-color         "#F4BF75"
+set highlight-active-color  "#6A9FB5"
+
