@@ -12,16 +12,16 @@ info() { printf "\n%s %s\n\n" "$DATE" "$*" >&2; }
 trap 'err_exit "[$DATE] Backup interrupted"' INT TERM
 
 dirs=(
-    "$HOME/private/mail"
+    "$HOME/vault"
 )
 
-for d in $dirs; do
+for d in "$dirs"; do
     if [ ! -d "$d" ]; then
         err_exit "$d not found"
     fi
 done
 
-CRYPT_DIR="$HOME/.snapshots/mail"
+CRYPT_DIR="$HOME/.snapshots/vault"
 if [ ! -d "$CRYPT_DIR" ]; then
     err_exit "crypt directory not found"
 fi
@@ -33,8 +33,10 @@ borg create \
      --compression zstd \
      --exclude-caches \
      --show-rc \
-     --filter AME \
-     --list \
+     --exclude '*.pyc' \
+     --exclude '*/__pycache__/*' \
+     --exclude '*/.pytest_cache/*' \
+     --exclude '*/.mypy_cache/*' \
      "$CRYPT_DIR::{hostname}--{user}--{now}" \
      "${dirs[@]}"
 
@@ -46,7 +48,7 @@ borg prune \
      --keep-within 1m \
      --keep-daily   7 \
      --keep-weekly  4 \
-     --keep-monthly 12 \
+     --keep-monthly 24 \
      "$CRYPT_DIR"
 
 prune_exit=$?
@@ -54,12 +56,12 @@ prune_exit=$?
 # use highest exit code as global exit code
 global_exit=$(( backup_exit > prune_exit ? backup_exit : prune_exit ))
 
-if [ ${global_exit} -eq 0 ]; then
+if [ "${global_exit}" -eq 0 ]; then
     info "Backup and Prune finished successfully"
-elif [ ${global_exit} -eq 1 ]; then
+elif [ "${global_exit}" -eq 1 ]; then
     info "Backup and/or Prune finished with warnings"
 else
     info "Backup and/or Prune finished with errors"
 fi
 
-exit ${global_exit}
+exit "${global_exit}"

@@ -1,3 +1,0 @@
-#!/bin/bash
-
-alacritty -d 90 30 --title "popterm" --class "Alacritty,float" -e zsh -c "$*"

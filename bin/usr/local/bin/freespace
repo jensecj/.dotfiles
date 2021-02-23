@@ -1,0 +1,2 @@
+#!/bin/bash
+echo $(df / -h --output=avail | sed -n '2p' | sed -re "s/(K|M|G)/ \1B/g" | xargs)

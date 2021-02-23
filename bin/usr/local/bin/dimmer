@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# https://www.stackabuse.com/handling-unix-signals-in-python/
+
 function fpeek() {
     head -n 1 "$1"
 }
@@ -24,10 +26,13 @@ function fpop() {
 
 DIMMER_FILE=~/.dimmer
 
+SUNRISE=0600
+SUNSET=2100
+
 HOUR=$(date +%H)
 DIM=""
 
-MAX=5000
+MAX=5500
 MIN=1300
 
 # TODO: use a curve based on time of day and date (number of sunlight hours?)
@@ -38,22 +43,22 @@ case $HOUR in
     03) DIM=$MIN;;
     04) DIM=$MIN;;
     05) DIM=$MIN;;
-    06) DIM=2000;;
-    07) DIM=2500;;
-    08) DIM=3500;;
-    09) DIM=4000;;
-    10) DIM=$MAX;;
-    11) DIM=$MAX;;
+    06) DIM=2300;;
+    07) DIM=2800;;
+    08) DIM=4500;;
+    09) DIM=5000;;
+    10) DIM=5000;;
+    11) DIM=5000;;
     12) DIM=$MAX;;
     13) DIM=$MAX;;
     14) DIM=$MAX;;
     15) DIM=$MAX;;
-    16) DIM=4000;;
-    17) DIM=3750;;
-    18) DIM=3300;;
-    19) DIM=2700;;
-    20) DIM=2300;;
-    21) DIM=2000;;
+    16) DIM=$MAX;;
+    17) DIM=4350;;
+    18) DIM=4000;;
+    19) DIM=3700;;
+    20) DIM=3300;;
+    21) DIM=3000;;
     22) DIM=1700;;
     23) DIM=$MIN;;
 esac
@@ -66,7 +71,7 @@ if [ "$1" = "cls" ]; then
     rm $DIMMER_FILE
 elif [ "$1" = "pop" ]; then
     fpop $DIMMER_FILE
-elif [ "$1" = "ls" ]; then
+elif [ "$1" = "ls" ] || [ "$1" = "peek" ]; then
     cat $DIMMER_FILE
     exit 0
 elif [ "$1" = "inc" ]; then

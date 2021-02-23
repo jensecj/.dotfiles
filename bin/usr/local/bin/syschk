@@ -28,7 +28,7 @@ mount-chk() {
     DIA_B=$2
     MSG=$3
 
-    $(cat /proc/mounts | grep -q "$DIR_a $DIR_B")
+    $(cat /proc/mounts | grep -q "$DIR_A $DIR_B")
     if [ $? -eq 0 ]; then
         good "$MSG"
     else
@@ -62,14 +62,14 @@ systemd-chk "clamav-daemon"
 systemd-chk "clamav-freshclam"
 systemd-chk "apparmor"
 systemd-chk "auditd"
-
+systemd-chk "i3autotile" --user
+echo ""
 proc-chk "sxhkd"
 proc-chk "xidlehook"
 proc-chk "polybar"
 proc-chk "dunst"
 proc-chk "tincd"
 proc-chk "unclutter"
-proc-chk "i3autotile"
 proc-chk "autocutsel"
 proc-chk "picom"
 

@@ -1,0 +1,32 @@
+#!/bin/bash
+
+MENU="rofi -dmenu -l 10 -p"
+SECMENU="rofi -dmenu -l 0 -password -p"
+
+# MENU="dmenu -l 10 -p"
+# SECMENU="dmenu -l 0 -P -p" # needs the =dmenu-password= patch
+
+if [ $# -gt 0 ]; then
+    INTERFACE="$1"
+else
+    INTERFACE="wlan0"
+fi
+
+VPNS="$HOME/.vpn"
+
+dosudo() {
+    SUDO_ASKPASS=/usr/local/bin/rofi-askpass sudo -A $@
+}
+
+pick_vpn() {
+    PROFILES=$(find "$VPNS" -type f -iname '*.conf' | xargs basename -s '.conf' | sort)
+
+    options="\ndisconnect\nrandom"
+
+    PICK=$(echo -e "$PROFILES" "$options"| $MENU "Pick a network")
+    [[ "$PICK" == "disconnect" ]] && dosudo vpn down && notify-send "disconnecting $INTERFACE" && exit
+    [[ "$PICK" == "random" ]] && dosudo vpn random && exit
+    [[ -n $PICK ]] && dosudo vpn up $PICK && exit
+}
+
+pick_vpn

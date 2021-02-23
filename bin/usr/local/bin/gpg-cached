@@ -19,7 +19,7 @@ def shell(cmd):
     return_code = p.wait()
     err = p.stderr.read() if p.stderr else None
 
-    return return_code, output.decode(), err
+    return return_code, output.decode(), err.decode()
 
 
 def keygrips(id):
@@ -67,7 +67,7 @@ def entry():
             if is_cached(grip):
                 cached.append(f"{cap}{id}")
 
-    log.info(" ".join(cached))
+    print(cached)
 
 
 if __name__ == "__main__":

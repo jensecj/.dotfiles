@@ -152,6 +152,7 @@ CONTEXT_SETTINGS = dict(help_option_names=['-h', '--help'])
 def entry(url, exts):
     if exts:
         download_exts(url, exts)
+        # TODO: allow -c for checks (if filetype matches ext / checksum / ?)
     else:
         wget(url)
 

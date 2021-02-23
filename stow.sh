@@ -1,6 +1,7 @@
 #!/bin/sh
 
 sudo stow -t / root # system config, /etc, /usr, etc.
+stow bin
 stow alacritty termite zsh tmux # shell things
 stow i3 dunst compton polybar # system look and feel
 stow gnupg systemd # system utils

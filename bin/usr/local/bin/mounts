@@ -10,6 +10,8 @@ check() {
 }
 
 check "$HOME/private" "P "
+check "$HOME/vault" "V "
+check "$HOME/repo" "R "
 check "/run/media/jens/jcj-ehdd-1" "H1 "
 check "/run/media/jens/jcj-ehdd-2" "H2 "
 check "/mnt/ehdd1" "E1 "
