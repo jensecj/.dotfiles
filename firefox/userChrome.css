@@ -2,6 +2,21 @@
 
 #window-controls  { display:none !important; }    /* hide the minimize / maximize / close buttons  */
 
+* {
+    scrollbar-width: thin !important;
+    scrollbar-color: #313131 !important;
+}
+
+:root{
+  --toolbarbutton-inner-padding:2px !important;
+  --tab-min-height: 15px !important;
+}
+.titlebar-button{ padding-block: 2px !important; }
+#urlbar-container, #search-container{ padding-block: 1px !important; }
+
+#titlebar{ -moz-appearance:none !important; }
+:root[sizemode="maximized"] #navigator-toolbox{ margin-top: 4px }
+
 /********/
 /* tabs */
 /********/
@@ -15,18 +30,18 @@
 }
 
 tab {
-    /* color: #f6f6ef !important; */
+    background-color: #252525 !important;
 }
 
 tab[selected="true"] {
-    /* font-weight: bold !important; */
+    border: 1px solid #bebebe;
 }
 .tab-line[selected="true"] {
-    background-color: #616161 !important;
+    background-color: #575757 !important;
 }
 
 .tab-background[selected="true"] {
-    background-color: #616161 !important;
+    background-color: #575757 !important;
     background-image: none !important;
 }
 

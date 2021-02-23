@@ -7,8 +7,14 @@
     animation: none !important;
 }
 
+* {
+    scrollbar-width: thin !important;
+    scrollbar-color: #555555 #eeeeee !important;
+}
+
 body {
     background-image: none !important;
+    font-weight: 500;
 }
 
 @-moz-document url(about:newtab), url(about:home), url(about:blank) {
@@ -41,6 +47,32 @@ body {
     }
 }
 
+@-moz-document domain("adventofcode.com") {
+    body {
+        background: "#313131" !important;
+        max-width: 1000px !important;
+        min-width: 0 !important;
+        margin: auto !important;
+        padding: 15px !important;
+    }
+}
+
+@-moz-document domain("docs.python.org") {
+    body {
+        max-width: 1200px !important;
+        margin: auto !important;
+        padding: 15px !important;
+    }
+}
+
+@-moz-document domain("teddit.net") {
+    body {
+        max-width: 1300px !important;
+        margin: auto !important;
+        padding: 15px !important;
+    }
+}
+
 @-moz-document domain("metager.org") {
     #options .scrollbox {
         max-height: 50px !important;
@@ -66,7 +98,7 @@ body {
     }
 }
 
-@-moz-document domain("invidious.snopyta.org") {
+@-moz-document domain("invidious.snopyta.org"), domain("gir.subscriptions.st") {
     .pure-form, input[type="search"] {
         border-bottom: none;
         margin: 2px;
