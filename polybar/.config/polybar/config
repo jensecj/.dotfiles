@@ -26,12 +26,12 @@ font-1 = "Symbols Nerd Font:size=8;2"
 module-margin = 4
 
 modules-left = i3
-modules-center = alsa vpn filesystem cpu memory battery gpg-cache date wifiicon
+modules-center = alsa filesystem cpu memory battery gpg-cache date wifiicon vpn
 modules-right = mounts
 
 tray-position = right
-tray-detached = true
-tray-padding = 50
+tray-detached = false
+tray-padding = 5
 tray-background = ${colors.background}
 
 [module/i3]
@@ -65,79 +65,79 @@ label-urgent-background = ${colors.alert}
 type = custom/script
 exec = /usr/local/bin/wifiicon
 format = <label>
-label =  %{F#8f}%output%%{F-}
+label =  %{F#878777}%output%%{F-}
 interval = 11
 
 [module/mounts]
 type = custom/script
 exec = /usr/local/bin/mounts
 format = <label>
-label =  %output% %{F#8f} %{F-}
+label =  %output% %{F#878777} %{F-}
 interval = 11
 
 [module/gpg-cache]
 type = custom/script
 exec = /usr/local/bin/gpg-cached
 format = <label>
-label = %{F#8f}%{F-} %output%
+label = %{F#878777}%{F-} %output%
 interval = 61
 
 [module/countdown]
 type = custom/script
 exec = /usr/local/bin/countdown
 format = <label>
-label = %{F#8f}%{F-} %output%
+label = %{F#878777}%{F-} %output%
 interval = 45
 
 [module/vpn]
 type = custom/script
 exec = /usr/local/bin/ipinfo
 format = <label>
-label = %{F#8f}%{F-} %output%
+label = %{F#878777}%{F-} %output%
 interval = 100
 
 [module/notmuch-unread]
 type = custom/script
 exec = /usr/local/bin/notmuch-unread
 format = <label>
-label = %{F#8f}%{F-} %output%
+label = %{F#878777}%{F-} %output%
 interval = 61
 
 [module/filesystem]
 type = custom/script
 exec = /usr/local/bin/freespace
 format = <label>
-label = %{F#8f}%{F-} %output%
+label = %{F#878777}%{F-} %output%
 interval = 61
 
 [module/cpu]
 type = internal/cpu
 interval = 2
-format = %{F#8f}λ%{F-} <label>
+format = %{F#878777}λ%{F-} <label>
 label = %percentage:2%
 
 [module/memory]
 type = internal/memory
 interval = 2
-label = %{F#8f}Σ%{F-} %percentage_used:2%
+label = %{F#878777}Σ%{F-} %percentage_used:2%
 
 [module/date]
 type = custom/script
 exec = /usr/local/bin/nowdate
 format = <label>
 interval = 17
-label = %{F#8f}%{F-} %output%
+label = %{F#878777}%{F-} %output%
 
 [module/alsa]
 type = internal/alsa
-label-volume = %{F#8f}%{F-} %percentage:2%
-label-muted = %{F#8f}%{F-} %percentage:2%
+label-volume = %{F#878777}%{F-} %percentage:2%
+label-muted = %{F#878777}%{F-} %percentage:2%
 handle-events = false
 
 [module/battery]
 type = internal/battery
 battery = BAT0
 adapter = AC
-label-charging = %{F#8f}%{F-} %percentage:2%+
-label-discharging = %{F#8f}%{F-} %percentage:2%-
+label-charging = %{F#878777}%{F-} %percentage:2%+
+label-discharging = %{F#878777}%{F-} %percentage:2%-
 
