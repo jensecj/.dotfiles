@@ -33,5 +33,17 @@
         "src": "~/.private",
         "dest": "/run/media/jens/jcj-ehdd-1/",
         "args": ["--delete"]
+    },
+    {
+        "name": "vault",
+        "src": "~/.vault",
+        "dest": "/run/media/jens/jcj-ehdd-1/",
+        "args": ["--delete"]
+    },
+    {
+        "name": "repo",
+        "src": "~/.repo",
+        "dest": "/run/media/jens/jcj-ehdd-1/",
+        "args": ["--delete"]
     }
 ]

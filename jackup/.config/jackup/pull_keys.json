@@ -1,20 +1,22 @@
 [
     {
         "name": "ssh",
-        "src": "~/.ssh",
-        "dest": "~/private/.keys/",
-        "args": ["--backup"]
+        "src": "~/.ssh/",
+        "dest": "~/repo/ssh/",
+        "args": ["--backup"],
+        "mounts": ["~/repo/"],
+        "git": true
     },
     {
         "name": "gpg",
         "src": "~/.gnupg",
-        "dest": "~/private/.keys/",
+        "dest": "~/vault/backups/keys/",
         "args": ["--backup"]
     },
     {
         "name": "pass",
         "src": "~/.password-store",
-        "dest": "~/private/.keys/",
+        "dest": "~/vault/backups/keys/",
         "args": ["--backup"]
     }
 ]
