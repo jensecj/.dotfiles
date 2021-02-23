@@ -7,8 +7,8 @@ alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
 alias dd="dd status=progress"
-alias mv="mv -i"
-alias cp="cp -i"
+alias cp="rsync -avz --progress"
+alias mv="rsync -avz --progress --remove-source-files"
 
 # * better defaults
 alias ls='ls --color=always --time-style="+%d-%m-%Y" --group-directories-first'
@@ -26,10 +26,7 @@ alias emacsd="emacs --no-site-file --daemon"
 
 
 # ** replacements
-alias cp="xcp "
 alias uniq="runiq"
-alias rm="trash-put"
-alias urm="trash-list | fzf | cut -d' ' -f3"
 alias l="exa --long --group-directories-first --time-style=long-iso"
 alias ll="l --all --group"
 
