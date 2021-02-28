@@ -15,11 +15,11 @@ log.addHandler(handler)
 def shell(cmd):
     p = subprocess.Popen(cmd, stdin=subprocess.PIPE, stdout=subprocess.PIPE)
 
-    output = p.stdout.read()
     return_code = p.wait()
-    err = p.stderr.read() if p.stderr else None
+    output = p.stdout.read().decode() if p.stdout else None
+    err = p.stderr.read().decode() if p.stderr else None
 
-    return return_code, output.decode(), err.decode()
+    return return_code, output, err
 
 
 def keygrips(id):
@@ -67,7 +67,7 @@ def entry():
             if is_cached(grip):
                 cached.append(f"{cap}{id}")
 
-    print(cached)
+    print(*cached)
 
 
 if __name__ == "__main__":
