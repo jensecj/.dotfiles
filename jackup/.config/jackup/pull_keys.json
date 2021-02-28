@@ -4,8 +4,7 @@
         "src": "~/.ssh/",
         "dest": "~/repo/ssh/",
         "args": ["--backup"],
-        "mounts": ["~/repo/"],
-        "git": true
+        "mounts": ["~/repo/"]
     },
     {
         "name": "gpg",

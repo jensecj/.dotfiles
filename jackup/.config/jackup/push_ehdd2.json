@@ -3,43 +3,43 @@
         "name": "books",
         "src": "~/private/books",
         "dest": "/mnt/ehdd2/",
-        "dest_mounted": true
+        "mounts": ["/mnt/ehdd2/"]
     },
     {
         "name": "archives",
         "src": "~/private/archives",
         "dest": "/mnt/ehdd2/",
-        "dest_mounted": true
+        "mounts": ["/mnt/ehdd2"]
     },
     {
         "name": "screenshots",
         "src": "~/private/screenshots",
         "dest": "/mnt/ehdd2/",
-        "dest_mounted": true
+        "mounts": ["/mnt/ehdd2"]
     },
     {
         "name": "literature",
         "src": "~/private/literature",
         "dest": "/mnt/ehdd2/",
-        "dest_mounted": true
+        "mounts": ["/mnt/ehdd2"]
     },
     {
         "name": "pictures",
         "src": "~/pictures",
         "dest": "/mnt/ehdd2/",
-        "dest_mounted": true
+        "mounts": ["/mnt/ehdd2"]
     },
     {
         "name": "publications",
         "src": "~/publications",
         "dest": "/mnt/ehdd2/",
-        "dest_mounted": true
+        "mounts": ["/mnt/ehdd2"]
     },
     {
         "name": "software",
         "src": "~/software",
         "dest": "/mnt/ehdd2/",
-        "dest_mounted": true,
+        "mounts": ["/mnt/ehdd2"],
         "exclude": ["*/__pycache__/"]
     }
 ]

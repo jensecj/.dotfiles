@@ -2,48 +2,56 @@
     {
         "name": ".backup",
         "src": "~/.backup",
-        "dest": "/run/media/jens/jcj-ehdd-1/backups/"
+        "dest": "/run/media/jens/jcj-ehdd-1/backups/",
+        "mounts": ["/run/media/jens/jcj-ehdd-1/"]
     },
     {
         "name": "dotfiles",
         "src": "~/.dotfiles",
         "dest": "/run/media/jens/jcj-ehdd-1/backups/",
+        "mounts": ["/run/media/jens/jcj-ehdd-1/"],
         "args": ["--delete"]
     },
     {
         "name": ".emacs.d",
         "src": "~/.emacs.d",
         "dest": "/run/media/jens/jcj-ehdd-1/backups/",
+        "mounts": ["/run/media/jens/jcj-ehdd-1/"],
         "args": ["--delete"]
     },
     {
         "name": "emacs",
         "src": "~/emacs",
         "dest": "/run/media/jens/jcj-ehdd-1/backups/",
+        "mounts": ["/run/media/jens/jcj-ehdd-1/"],
         "args": ["--delete"]
     },
     {
         "name": "snapshots",
         "src": "~/.snapshots",
         "dest": "/run/media/jens/jcj-ehdd-1/",
+        "mounts": ["/run/media/jens/jcj-ehdd-1/"],
         "args": ["--delete"]
     },
     {
         "name": "private",
         "src": "~/.private",
         "dest": "/run/media/jens/jcj-ehdd-1/",
+        "mounts": ["/run/media/jens/jcj-ehdd-1/"],
         "args": ["--delete"]
     },
     {
         "name": "vault",
         "src": "~/.vault",
         "dest": "/run/media/jens/jcj-ehdd-1/",
+        "mounts": ["/run/media/jens/jcj-ehdd-1/"],
         "args": ["--delete"]
     },
     {
         "name": "repo",
         "src": "~/.repo",
         "dest": "/run/media/jens/jcj-ehdd-1/",
+        "mounts": ["/run/media/jens/jcj-ehdd-1/"],
         "args": ["--delete"]
     }
 ]
