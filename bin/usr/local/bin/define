@@ -1,4 +1,14 @@
 #!/bin/sh
 # save each word, so they can be used for statistics/practice/etc.
-echo $(date +'%Y-%m-%dT%H:%M:%S%z') " | " $1 >> ~/.dict-lookups
-popterm "dict '$1' | less"
+echo $(date +'%Y-%m-%dT%H:%M:%S%z') "\t" "$1" >> ~/.dict-lookups
+
+# check if the dict knows that this is a misspelling
+SPELLING=$(dict "$1" | grep -oP "misspelling of \K([a-z])+")
+
+# if input is misspelled, print the definition of the correction too
+if [ $SPELLING ]; then
+    SEP="\n-----------------------------\n"
+    popterm "cat <(dict '$1') <(echo '$SEP') <(dict '$SPELLING') | less";
+else
+    popterm "cat <(dict '$1') | less";
+fi
