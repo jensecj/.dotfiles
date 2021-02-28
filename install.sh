@@ -58,6 +58,7 @@ declare -a packages=(
     noto-fonts-cjk # chinese-japanses-korean
     noto-fonts-emoji # emoji icons
     ttf-nerd-fonts-symbols # icon font amalgamation
+    ttf-ubraille # proper braille characters
 
     # ** early
     sudo # do things as root
