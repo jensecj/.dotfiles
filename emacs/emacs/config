@@ -2,14 +2,15 @@
 BUILD_DIR=$(pwd)/build
 
 (
-    cd src/ || exit 2
+    cd emacs/ || exit 2
 
     ./configure \
-	   --prefix="$BUILD_DIR" \
+     --prefix="$BUILD_DIR" \
      --exec-prefix="$BUILD_DIR" \
      --without-sound \
      --with-cairo \
      --with-modules \
+     --with-native-compilation \
      --with-pdumper=yes \
      --with-imagemagick \
      --with-harfbuzz \

@@ -2,7 +2,7 @@
 BUILD_DIR=$(pwd)/build
 
 (
-    cd src/ || exit 2
+    cd emacs/ || exit 2
     make -j4 all prefix="$BUILD_DIR" exec_prefix="$BUILD_DIR"
     make -j4 install prefix="$BUILD_DIR" exec_prefix="$BUILD_DIR"
 )
