@@ -2,7 +2,7 @@
 background     = #3f3f3f
 background-alt = #313131
 foreground     = #f0dfaf
-foreground-alt = #dcdccc
+foreground-alt = #878777
 primary        = #f0dfaf
 secondary      = #313131
 alert          = #bd2c40
@@ -26,7 +26,7 @@ font-1 = "Symbols Nerd Font:size=8;2"
 module-margin = 4
 
 modules-left = i3
-modules-center = alsa filesystem cpu memory battery gpg-cache date wifiicon vpn
+modules-center = alsa filesystem cpu memory battery date wifi gpg-cache
 modules-right = mounts
 
 tray-position = right
@@ -61,7 +61,7 @@ label-unfocused = %name%
 label-urgent = %name%
 label-urgent-background = ${colors.alert}
 
-[module/wifiicon]
+[module/wifi]
 type = custom/script
 exec = /usr/local/bin/wifiicon
 format = <label>
@@ -72,7 +72,7 @@ interval = 11
 type = custom/script
 exec = /usr/local/bin/mounts
 format = <label>
-label =  %output% %{F#878777} %{F-}
+label =  %output% %{F#878777} %{F-}
 interval = 11
 
 [module/gpg-cache]
