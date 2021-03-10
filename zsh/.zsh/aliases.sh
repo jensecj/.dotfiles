@@ -6,6 +6,7 @@ alias _='\sudo -E '
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
+alias .....='cd ../../../..'
 alias dd="dd status=progress"
 alias cp="rsync -avz --progress"
 alias mv="rsync -avz --progress --remove-source-files"
@@ -30,9 +31,9 @@ alias uniq="runiq"
 alias l="exa --long --group-directories-first --time-style=long-iso"
 alias ll="l --all --group"
 
-# * pacman
-alias pac='yay'
-alias pacu='pac -Syu --combinedupgrade' # update all packages
+# * package manager
+alias pac='yay'                          # aur helper
+alias pacu='pac -Syu --combinedupgrade'  # update all packages
 alias pacrm='pac -Rns'                   # remove a package
 alias pacss='pac -Ss'                    # search for a package
 alias pacs='pac -S'                      # install a package
@@ -73,7 +74,7 @@ function myt() {
 }
 # * applications
 
-alias feh="devour feh"
+alias feh="devour feh --conversion-timeout 1"
 
 # easy file / directory search using `fd`
 alias ff="\fd --type f"
