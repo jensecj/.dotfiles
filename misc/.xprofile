@@ -5,9 +5,7 @@ dunst -conf "$HOME/.config/dunst/dunstrc" & # the notification daemon
 unclutter & # hide cursor after 5sec of idle
 autorandr --change & # load saved multihead settings
 udiskie & # automatic usb-device mounting
-# msmtp & # smtp server # TODO: is this even needed?
 picom -b # composition manager
-# opensnitch-ui &
 
 # create the xob pipes if they dont exist
 [ -w "/tmp/xobpipe-volume" ] || mkfifo "/tmp/xobpipe-volume"
