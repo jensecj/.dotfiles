@@ -55,8 +55,9 @@ day_in_secs=$(bc <<< "60 * 60 * 24")
 week_in_secs=$(bc <<< "$day_in_secs * 7")
 month_in_secs=$(bc <<< "$week_in_secs * 4")
 
-systemd-chk "earlyoom"
+systemd-chk "dhcpcd"
 systemd-chk "dnscrypt-proxy"
+systemd-chk "earlyoom"
 systemd-chk "ufw"
 systemd-chk "clamav-daemon"
 systemd-chk "clamav-freshclam"
@@ -66,12 +67,15 @@ systemd-chk "i3autotile" --user
 echo ""
 proc-chk "sxhkd"
 proc-chk "xidlehook"
+proc-chk "xob"
+proc-chk "psi-notify"
 proc-chk "polybar"
 proc-chk "dunst"
 proc-chk "tincd"
 proc-chk "unclutter"
 proc-chk "autocutsel"
 proc-chk "picom"
+proc-chk "dunst"
 
 printf "\n\n"
 
