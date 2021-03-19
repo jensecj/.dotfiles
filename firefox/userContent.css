@@ -5,6 +5,8 @@
     transition-property: none !important;
     transform: none !important;
     animation: none !important;
+    user-select: auto !important;
+    user-drag: auto !important;
 }
 
 * {
