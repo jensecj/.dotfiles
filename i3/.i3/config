@@ -116,20 +116,24 @@ for_window [title="em-bookmarks"] move position center
 
 for_window [title="popterm"] border pixel 2
 
-for_window [instance="mpv-float"] floating enable
-for_window [instance="mpv-float"] move position center
-
-for_window [class="float"] floating enable
-for_window [class="float"] resize grow up 200px
-for_window [class="float"] resize grow down 200px
-for_window [class="float"] move position center
+for_window [instance="float"] floating enable
+for_window [instance="float"] resize grow up 150px
+for_window [instance="float"] resize grow down 150px
+for_window [instance="float"] move position center
 
 for_window [title="cl-opengl"]  floating enable
 for_window [class="anki"]       floating enable
 for_window [class="matplotlib"] floating enable
 for_window [class="Matplotlib"] floating enable
 for_window [class="Alacritty"] border pixel
+
 for_window [class="emacs"] border pixel
+for_window [title="emacs-float"] floating enable
+for_window [title="emacs-float"] resize grow up 150px
+for_window [title="emacs-float"] resize grow down 150px
+for_window [title="emacs-float"] resize grow left 150px
+for_window [title="emacs-float"] resize grow right 150px
+for_window [title="emacs-float"] move position center
 
 ###########
 # STARTUP #
