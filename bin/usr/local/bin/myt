@@ -1,0 +1,13 @@
+#!/bin/bash
+
+url=$1
+url=${url//"invidious.snopyta.org"/"youtube.com"}
+url=${url//"subscriptions.gir.st"/"youtube.com"}
+
+MPV_ARGS=" --ytdl"
+MPV_ARGS+=" --ytdl-raw-options=format=\"bestvideo[height<=?1440]+bestaudio/best[height<=1440]\""
+if [ "$2" == "-" ]; then
+    MPV_ARGS+=" -x11-name=float"
+fi
+
+mpv $MPV_ARGS "$url"

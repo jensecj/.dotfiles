@@ -65,7 +65,10 @@ super + shift + d
     define "$(xsel -o)"
 
 super + y
-    mpv --autofit="70%x60%" --loop --x11-name="mpv-float" --ytdl-raw-options=format="bestvideo[height<=?1440]+bestaudio/best[height<=1440]" $(echo `xsel -o` | sed 's/invidios.snopyta.org/youtube.com/' | sed 's/subscriptions.gir.st/youtube.com/')
+    myt $(xsel -o) -
+
+ctrl + super + y
+    myt $(xsel -o)
 
 super + shift + b
     emacsclient -c -F '((title . "em-bookmarks"))' '~/vault/org/bookmarks.org'
