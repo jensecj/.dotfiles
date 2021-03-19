@@ -43,8 +43,8 @@ case $HOUR in
     03) DIM=$MIN;;
     04) DIM=$MIN;;
     05) DIM=$MIN;;
-    06) DIM=2300;;
-    07) DIM=2800;;
+    06) DIM=2800;;
+    07) DIM=3900;;
     08) DIM=4500;;
     09) DIM=5000;;
     10) DIM=5000;;
