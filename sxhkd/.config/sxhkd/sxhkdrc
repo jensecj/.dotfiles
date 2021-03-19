@@ -58,6 +58,12 @@ super + BackSpace
 super + Delete
     $EDITOR
 
+super + shift + b
+    emacsclient -n -c -F '((title . "emacs-float"))' '~/vault/org/bookmarks.org'
+
+super + Home
+    emacsclient -n -c -F '((title . "emacs-float"))' "~/vault/inbox/today.org"
+
 super + d
     rofi -show run
 
@@ -70,8 +76,6 @@ super + y
 ctrl + super + y
     myt $(xsel -o)
 
-super + shift + b
-    emacsclient -c -F '((title . "em-bookmarks"))' '~/vault/org/bookmarks.org'
 
 # * misc
 super + shift + g
