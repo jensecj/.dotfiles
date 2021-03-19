@@ -3,5 +3,5 @@
 alacritty -o window.dimensions.lines=30 \
           -o window.dimensions.columns=90 \
           --title "popterm" \
-          --class "Alacritty,float" \
+          --class "float" \
           -e zsh -c "$*"
