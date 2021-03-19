@@ -4,16 +4,16 @@
 AURHELPER=yay # or trizen, bauerbill, etc.
 pacman -S $AURHELPER
 
-# * system
+# * system packages
 declare -a packages=(
-    # ** setup
+    # ** boot
     efibootmgr
     grub
     linux linux-headers
     linux-lts linux-lts-headers
     linux-hardened linux-hardened-headers
 
-    # ** core
+    # ** base
     base-devel
     coreutils
     diffutils
@@ -25,17 +25,32 @@ declare -a packages=(
     iwd # wifi
     dhcpcd # DHCP client for ip leasing
 
-    # ** display server, window manager, etc
-    xorg-server
-    xorg-xev
-    xorg-xbacklight
-    xorg-xgamma
-    xorg-setxkbmap
-    xorg-xrandr
+    # ** video drivers
+    xf86-video-intel
+    mesa
 
-    # NOTE: not yet wayland, maybe someday
-    # wayland # display server
-    # wlroots
+    # ** display server, window manager, etc.
+    # *** X
+    xorg-server
+    i3-wm # tiling window manager
+    picom # screen compositor for X
+    dunst # notification manager
+    sxhkd # hotkey daemon for x
+    xob # simple X screen bar, multiple uses, volume, brightness, etc.
+    polybar # info bar / fringe for things
+    xorg-xev # check keyboard inputs
+    xorg-xbacklight # display backlight
+    xorg-xgamma # display gamma correction
+    xorg-setxkbmap # keyboard config
+    xorg-xrandr # monitor config
+    xdo # do things to X windows
+    xsel # work with X clipboard
+    unclutter # hide the X curser when idle
+    slock # screen lock
+    xidlehook # perform actions on idle (used with slock)
+    autocutsel # for synching clipboards
+    # *** wayland
+    # wlroots wayland
     # xorg-server-xwayland # X for wayland
     # sway # window manager, i3 drop-in replacement
     # swaylock # screen locker
@@ -43,10 +58,6 @@ declare -a packages=(
     # swaybg # wallpaper manager
     # waybar # status bar
     # mako # notification daemon
-
-    # ** video drivers
-    xf86-video-intel
-    mesa
 
     # ** audio
     pulseaudio
@@ -60,24 +71,24 @@ declare -a packages=(
     ttf-nerd-fonts-symbols # icon font amalgamation
     ttf-ubraille # proper braille characters
 
-    # ** early
+    # ** core libraries
+    dkms # dynamic kernel module support
+    earlyoom # out-of-memory daemon
+    psi-notify # notify on high system-resource use
+
+    # ** core tools
     sudo # do things as root
     cpupower # helper for powersaving, frequency scaling, etc.
     acpi # battery info
     gptfdisk # partition disks
     inotify-tools # notify-send, etc.
-    harfbuzz # textshaping engine
-    imagemagick # image tools
-    stow # symlink manager
-    xdo # do things to X windows
-    lsof # list open files for file-descriptor
-    xsel # work with clipboard
-    pass # password manager
-    bc # scientific cli calculator
-    poppler # pdf rendering
-    snapraid # software raid
     ntfs-3g # ntfs support through fuse
+    bc # scientific cli calculator
+    lsof # list open files for file-descriptor
+
+    # ** file system
     mergerfs # fuse union filesystem
+    snapraid # software raid
     sshfs # fuse fs for mounting remote directories locally
 
     # ** security
@@ -103,39 +114,40 @@ declare -a packages=(
     zeal # offline dev docs
 
     # ** system
-    i3-wm # tiling window manager
-    dunst # notification manager
-    sxhkd # hotkey daemon for x
-    xob # simple X screen bar, multiple uses, volume, brightness, etc.
-    picom # screen compositor for X
-    polybar # info bar / fringe for things
-    unclutter # hide the curser when idle
-    xidlehook # perform actions on idle (used with slock)
-    autocutsel # for synching clipboards
-    earlyoom # out-of-memory daemon
-    psi-notify # notify on high system-resource use
-    dkms # dynamic kernel module support
     expac # package info
     pacman-contrib # pactree, etc. # listing pacman package dependencies
     arch-audit # check installed packages against security.archlinux.org
 
-    # ** sys tools
+    # ** system libraries
+    harfbuzz # textshaping engine
+    imagemagick # image tools
+    poppler # pdf rendering
+    perf # performance analysis tools
+    wireguard-tools
+
+    # ** system tools
+    gnupg
+    stow # symlink manager
+    pass # password manager
     ripgrep # fast grep alternative
+    rsync # synching things
     exa # ls alternative
     bat # cat alternative with syntax highlighting, etc.
     fd # find alternative
     jq # work with json in the terminal
     tokei # count lines of code
     xsv # work with csv in the terminal
-    rmlint # find duplicate files in directories
+    fdupes # find duplicate files in directories
     dua-cli # ncdu alternative
-    fselect # find files using SQL syntax
-    xcp # extended cp
     sd # simple find-and-replace
     just # modern make
     runiq # fast filter for duplicate lines
     zoxide # z.sh alternative
     tree # list files in tree-view
+    openssh
+    # openvpn
+    # knockd # port-knocker
+    # mosh # ssh-replacement, with persistent connections
 
     # ** utilities
     libvterm # vterms for everyone
@@ -145,18 +157,9 @@ declare -a packages=(
     task-spooler # queue tasks to be completed sequentially
     wikiman # docs from man-pages, arch-wiki, etc.
     tldr # quick shell examples for most commands
-    slock # screen lock
-    perf # performance analysis tools
-    openssh openvpn
-    wireguard-tools
-    links # cli browser
-    # mosh # ssh-replacement, with persistent connections
-    # knockd # port-knocker
-    gnupg
     progress # cmd monitor (progress/throughput/eta/etc.) for processes (e.g. gzip, cp, mv)
     borg # incremental, encrypted backups
     gocryptfs # encrypted mount points
-    rsync # synching things
     rtorrent # torrenting
     texlive-bin # latex
     texlive-core
@@ -175,9 +178,7 @@ declare -a packages=(
     ddrescue # disk recovery
     udiskie # automounting removable disks
     # httpie # simple http client for the terminal
-    # insect # scientific calculator, with many features (kg -> grams, etc.)
     fzf # fuzzy file finder
-    # detox # clean up filenames
     # rawdog # raw rss feeds in the terminal
     ditaa # create disgrams from ascii
     plantuml # create UML diagrams from ascii
@@ -188,10 +189,6 @@ declare -a packages=(
     qrencode # turn strings into qr codes
     secure-delete # securely delete files
     hashdeep # hash all files in a directory recursively
-    hunspell # spellchecking
-    ispell # spellchecking
-    aspell # spellchecking
-    aspell-en # english dictionary for apell
     xmeasure # screen ruler
     xcolor # color picker
 
@@ -204,7 +201,6 @@ declare -a packages=(
 
     # ** misc
     youtube-dl # for downloading video/sound from the internet
-    axel # download accelerator
     ranger-git # ncurses file explorer
     ueberzug # show images in the terminal
     redshift # screen dimmer / blue light reducer
@@ -220,10 +216,16 @@ declare -a packages=(
     zathura-djvu zathura-ps # djvu and postscript backends for zathura
     feh # image viewer
     sxiv # image / gif viewer
-    chafa # cat images/gifs in terminal
+    # chafa # cat images/gifs in terminal
     slop # select region on screen and output to stdout
     maim # take screen shots/grabs
+    gimp # image editing
 
+    # ** spelling dictionaries
+    hunspell # spellchecking
+    ispell # spellchecking
+    aspell # spellchecking
+    aspell-en # english dictionary for apell
     dictd # offline dictionary and daemon
     dict-wn # wordnet
     dict-gcide # gnu english dictionary
@@ -238,8 +240,8 @@ declare -a packages=(
     # s-nail
 
     # ** browsers
-    firefox
-    firefox-developer-edition
+    links # cli browser
+    firefox firefox-developer-edition
 
     # ** programming languages
     # *** misc
@@ -280,12 +282,12 @@ declare -a packages=(
     valgrind # performance tuning/debugging
     cmake # build tool
 
+    # *** rust
+    rustup rust-analyzer
+
     # *** lisps
     chicken
     sbcl roswell
-
-    # *** rust
-    rustup rust-analyzer
 )
 $AURHELPER -S "${packages[@]}"
 
