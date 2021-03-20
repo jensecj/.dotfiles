@@ -9,7 +9,7 @@ set $mod Mod4
 default_border pixel 1
 default_floating_border pixel 1
 
-# hide borders near edges of screen
+# don't hide borders near edges of screen
 hide_edge_borders none
 
 # font for window titles / i3bar / etc.
@@ -53,7 +53,7 @@ bindsym $mod+space focus mode_toggle
 # toggle sticky
 bindsym $mod+Shift+s sticky toggle
 
-# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+# restart i3 inplace
 bindsym $mod+Shift+r fullscreen disable; restart; exec notify-send 'Restarted i3'
 
 #########
@@ -84,19 +84,19 @@ set $ws2 2
 set $ws3 3
 set $ws4 4
 
-# switch to workspace
+# switch workspace
 bindsym $mod+1 workspace $ws1
 bindsym $mod+2 workspace $ws2
 bindsym $mod+3 workspace $ws3
 bindsym $mod+4 workspace $ws4
 
-# move focused container to workspace
+# move container to workspace
 bindsym $mod+Ctrl+1 move container to workspace $ws1
 bindsym $mod+Ctrl+2 move container to workspace $ws2
 bindsym $mod+Ctrl+3 move container to workspace $ws3
 bindsym $mod+Ctrl+4 move container to workspace $ws4
 
-# move to workspace with focused container
+# move container to workspace, and switch workspace
 bindsym $mod+Shift+1 move container to workspace $ws1; workspace $ws1
 bindsym $mod+Shift+2 move container to workspace $ws2; workspace $ws2
 bindsym $mod+Shift+3 move container to workspace $ws3; workspace $ws3
@@ -106,34 +106,26 @@ bindsym $mod+Shift+4 move container to workspace $ws4; workspace $ws4
 # APPLICATION SPECIFIC #
 ########################
 
-# open specific applications in floating mode
-for_window [class="feh"] floating enable #border pixel 1
-for_window [class="alsamixer"] floating enable #border pixel 1
-for_window [class="Lxappearance"] floating enable sticky enable
-
-for_window [title="em-bookmarks"] floating enable
-for_window [title="em-bookmarks"] move position center
+for_window [instance="float"] floating enable move position center
 
 for_window [title="popterm"] border pixel 2
 
-for_window [instance="float"] floating enable
-for_window [instance="float"] resize grow up 150px
-for_window [instance="float"] resize grow down 150px
-for_window [instance="float"] move position center
+for_window [class="emacs"] border pixel
+for_window [title="emacs-float"] floating enable
+for_window [title="emacs-float"] resize grow down 300px
+for_window [title="emacs-float"] resize grow left 150px
+for_window [title="emacs-float"] move position center
+
+for_window [class="Alacritty"] border pixel
+
+for_window [class="feh"] floating enable #border pixel 1
+for_window [class="alsamixer"] floating enable #border pixel 1
+for_window [class="Lxappearance"] floating enable sticky enable
 
 for_window [title="cl-opengl"]  floating enable
 for_window [class="anki"]       floating enable
 for_window [class="matplotlib"] floating enable
 for_window [class="Matplotlib"] floating enable
-for_window [class="Alacritty"] border pixel
-
-for_window [class="emacs"] border pixel
-for_window [title="emacs-float"] floating enable
-for_window [title="emacs-float"] resize grow up 150px
-for_window [title="emacs-float"] resize grow down 150px
-for_window [title="emacs-float"] resize grow left 150px
-for_window [title="emacs-float"] resize grow right 150px
-for_window [title="emacs-float"] move position center
 
 ###########
 # STARTUP #
