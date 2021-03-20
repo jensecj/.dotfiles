@@ -65,13 +65,7 @@ alias ytdlnr='ytdl -o"%(autonumber)s -- %(uploader)s -- %(upload_date)s -- %(tit
 alias ytmp3='youtube-dl -f "bestaudio" -x --audio-format mp3 -o"%(uploader)s -- %(title)s.%(ext)s"'
 
 alias mpv="devour mpv"
-function myt() {
-    url=$1
-    url=$(echo $url | sed 's/invidious.snopyta.org/youtube.com/')
-    url=$(echo $url | sed 's/subscriptions.gir.st/youtube.com/')
 
-    mpv --ytdl --ytdl-raw-options=format="bestvideo[height<=?1080]+bestaudio/best[height<=1080]" "$url"
-}
 # * applications
 
 alias feh="devour feh --conversion-timeout 1"
