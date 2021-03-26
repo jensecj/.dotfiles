@@ -1,10 +1,10 @@
 # * system
 # ** brightness
 XF86MonBrightnessUp
-    backlightctl intel_backlight +5%
+    backlightctl intel_backlight 5%+
 
 shift + XF86MonBrightnessUp
-    backlightctl intel_backlight +1%
+    backlightctl intel_backlight 1%+
 
 XF86MonBrightnessDown
     backlightctl intel_backlight 5%-
@@ -20,10 +20,10 @@ ctrl + XF86MonBrightnessDown
 
 # ** audio
 XF86AudioRaiseVolume
-    volctl -d pulse -s 0 -v 2
+    volctl -d pulse -s Master -v 2
 
 XF86AudioLowerVolume
-    volctl -d pulse -s 0 -v -2
+    volctl -d pulse -s Master -v -2
 
 XF86AudioMute
     volctl -d pulse -s Master -v toggle
@@ -59,10 +59,10 @@ super + Delete
     $EDITOR
 
 super + shift + b
-    emacsclient -n -c -F '((title . "emacs-float"))' '~/vault/org/bookmarks.org'
+    em '~/vault/org/bookmarks.org' -
 
 super + Home
-    emacsclient -n -c -F '((title . "emacs-float"))' "~/vault/inbox/today.org"
+    em "~/vault/inbox/today.org" -
 
 super + d
     rofi -show run
