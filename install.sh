@@ -102,7 +102,9 @@ declare -a packages=(
 
     # ** programming tools
     alacritty # another terminal
-    zsh # preferred shell
+    zsh # preferred interactive shell
+    dash # preferred shell
+    dashbinsh # make sure dash is symlinked to /bin/sh
     tmux # terminal multiplexer
     hyperfine # command-line benchmarking
     git # git and the github wrapper
@@ -111,6 +113,7 @@ declare -a packages=(
     podman buildah skopeo # more containers
     diff-so-fancy # fancy git diff
     entr # watch for file changes using inotify and kqueue
+    tree-sitter # incremental language parser
     zeal # offline dev docs
 
     # ** system
@@ -246,6 +249,7 @@ declare -a packages=(
     # ** programming languages
     # *** misc
     shellcheck-bin # bash linter
+    checkbashisms
 
     # *** java
     jdk-openjdk # latest jdk
