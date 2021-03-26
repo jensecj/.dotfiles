@@ -10,6 +10,7 @@
         "src": "~/.dotfiles",
         "dest": "/run/media/jens/jcj-ehdd-2/backups/",
         "mounts": ["/run/media/jens/jcj-ehdd-2/"],
+	      "exclude": ["mpv/watch_later/*"],
         "args": ["--delete"]
     },
     {
