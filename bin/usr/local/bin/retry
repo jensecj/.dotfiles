@@ -1,0 +1,29 @@
+#!/bin/sh
+
+err() { printf "%s\n" "$*" >&2; }
+err_exit() { err "$@"; exit 1; }
+
+retry() {
+    n=0
+    max_retries=5
+    delay=3
+
+	  until "$@"; do
+	      exit=$?
+	      n=$(($n + 1))
+
+        if [ $n -lt $max_retries ]; then
+	          echo "Retry $n/$max_retries exited $exit, retrying..."
+	          sleep $delay
+	      else
+	          err_exit "Command failed after $max_retries retries"
+	      fi
+	  done
+	  return 0
+}
+
+if [ $# -lt 1 ]; then
+    err_exit "Usage: retry COMMAND"
+fi
+
+retry $@
