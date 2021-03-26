@@ -50,13 +50,20 @@ paci() {
 # * youtube-dl
 
 ytdl() {
+    declare -a URLS
+    for url in $@; do
+        url=${url//"invidious.snopyta.org"/"youtube.com"}
+        url=${url//"subscriptions.gir.st"/"youtube.com"}
+        URLS+=("$url")
+    done
+
     youtube-dl -i \
-               -f "bestvideo[height<=?1080]+bestaudio/best" \
+               -f "bestvideo[height<=?1440]+bestaudio/best" \
                -o"%(uploader)s -- %(upload_date)s -- %(title)s.%(ext)s" \
                --no-playlist \
                --prefer-ffmpeg \
                --postprocessor-args="-threads 2" \
-               "$@"
+               ${URLS[*]}
 }
 
 alias ytdlp='ytdl --yes-playlist'
