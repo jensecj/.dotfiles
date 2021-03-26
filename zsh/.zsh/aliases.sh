@@ -64,10 +64,10 @@ alias ytarc="ytdl --write-description --all-subs --embed-subs --add-metadata" # 
 alias ytdlnr='ytdl -o"%(autonumber)s -- %(uploader)s -- %(upload_date)s -- %(title)s.%(ext)s"'
 alias ytmp3='youtube-dl -f "bestaudio" -x --audio-format mp3 -o"%(uploader)s -- %(title)s.%(ext)s"'
 
-alias mpv="devour mpv"
 
 # * applications
 
+alias mpv="devour mpv"
 alias feh="devour feh --conversion-timeout 1"
 
 # easy file / directory search using `fd`
