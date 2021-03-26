@@ -1,12 +1,12 @@
-#!/bin/bash
+#!/bin/sh
 
 # https://www.stackabuse.com/handling-unix-signals-in-python/
 
-function fpeek() {
+fpeek() {
     head -n 1 "$1"
 }
 
-function fpush() {
+fpush() {
     local fil="$1"
     shift
 
@@ -17,7 +17,7 @@ function fpush() {
     fi
 }
 
-function fpop() {
+fpop() {
     local fil="$1"
     local val=$(fpeek "$fil")
     sed -i '1d' "$1"
@@ -54,10 +54,10 @@ case $HOUR in
     14) DIM=$MAX;;
     15) DIM=$MAX;;
     16) DIM=$MAX;;
-    17) DIM=4350;;
-    18) DIM=4000;;
-    19) DIM=3700;;
-    20) DIM=3300;;
+    17) DIM=4800;;
+    18) DIM=4500;;
+    19) DIM=3900;;
+    20) DIM=3500;;
     21) DIM=3000;;
     22) DIM=1700;;
     23) DIM=$MIN;;

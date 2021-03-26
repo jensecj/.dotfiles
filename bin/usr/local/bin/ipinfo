@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 data=$(curl --connect-timeout 2 -s "https://ipinfo.io")
 error=$(echo "$data" | jq '.error' | xargs)

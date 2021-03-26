@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 SENSOR_READOUT=$(sensors -j)
 CORE1=$(echo "$SENSOR_READOUT" | jq '.["coretemp-isa-0000"] | .["Core 0"] | .temp2_input')

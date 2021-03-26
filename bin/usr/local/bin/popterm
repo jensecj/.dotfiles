@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 alacritty -o window.dimensions.lines=30 \
           -o window.dimensions.columns=90 \

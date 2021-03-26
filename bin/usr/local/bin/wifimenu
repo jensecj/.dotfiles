@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 MENU="rofi -dmenu -l 10 -p"
 SECMENU="rofi -dmenu -l 0 -password -p"
@@ -28,14 +28,14 @@ scan() {
 get_ssid() {
     options="\ndisconnect\nscan"
     PICK=$(echo -e "$NETWORKS" "$options"| $MENU "network")
-    SSID=$(printf "$PICK" | awk -F" {2,}" '{print $2}' | sed 's/>//' | awk '{$1=$1;print}')
+    SSID=$(printf "%s" "$PICK" | awk -F" {2,}" '{print $2}' | sed 's/>//' | awk '{$1=$1;print}')
 
-    [[ "$(printf "$PICK" | awk -F" {2,}" '{print $3}')" == "psk" ]] && PSK=1 || PSK=0
-    [[ "$(printf "$PICK" | awk -F" {2,}" '{print $3}')" == "open" ]] && OPEN=1 || OPEN=0
+    [ "$(printf "%s" "$PICK" | awk -F" {2,}" '{print $3}')" = "psk" ] && PSK=1 || PSK=0
+    [ "$(printf "%s" "$PICK" | awk -F" {2,}" '{print $3}')" = "open" ] && OPEN=1 || OPEN=0
 
-    [[ "$PICK" == "disconnect" ]] && iwctl station "$INTERFACE" disconnect && notify-send "disconnecting $INTERFACE"
-    [[ "$PICK" == "scan" ]] && scan && get_ssid
-    [[ "$PICK" == "exit" ]] && exit 1
+    [ "$PICK" = "disconnect" ] && iwctl station "$INTERFACE" disconnect && notify-send "disconnecting $INTERFACE"
+    [ "$PICK" = "scan" ] && scan && get_ssid
+    [ "$PICK" = "exit" ] && exit 1
 }
 
 get_psk() {
@@ -53,8 +53,8 @@ connect_psk() {
 
 connect_to_network() {
     scan && get_ssid
-    [[ "$PSK" == "1" ]] && connect_psk && notify-send "connected to $SSID"
-    [[ "$OPEN" == "1" ]] && connect_open && notify-send "connected to $SSID"
+    [ "$PSK" = "1" ] && connect_psk && notify-send "connected to $SSID"
+    [ "$OPEN" = "1" ] && connect_open && notify-send "connected to $SSID"
 }
 
 

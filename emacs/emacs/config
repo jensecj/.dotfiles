@@ -9,10 +9,10 @@ BUILD_DIR=$(pwd)/build
      --exec-prefix="$BUILD_DIR" \
      --without-sound \
      --with-cairo \
+     --with-harfbuzz \
      --with-modules \
      --with-native-compilation \
      --with-pdumper=yes \
      --with-imagemagick \
-     --with-harfbuzz \
      --with-json
 )

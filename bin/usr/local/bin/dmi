@@ -1,12 +1,9 @@
-#!/bin/bash
+#!/bin/sh
 
-if [ $# -eq 0 ]
-then
+if [ $# -eq 0 ]; then
     echo "usage: dmi <zipcode>"
     exit 0;
 fi
 
 ZIP=$1
-TMPFILE=$(mktemp)
-curl "https://servlet.dmi.dk/byvejr/servlet/byvejr_dag1?by=$ZIP&mode=long&eps=true" -o $TMPFILE
-feh $TMPFILE
+curl --silent "https://servlet.dmi.dk/byvejr/servlet/byvejr_dag1?by=$ZIP&mode=long&eps=true" | feh -

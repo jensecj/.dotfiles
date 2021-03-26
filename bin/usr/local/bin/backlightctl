@@ -8,9 +8,7 @@ if [ ! $(which brightnessctl) ]; then
     exit 1
 fi
 
-brightnessctl -d "$DEVICE"
-
-if [ $? -ne 0 ]; then
+if [ ! brightnessctl -d "$DEVICE" ]; then
     notify-send -u critical -t 3000 'backlight' "brightctl: $DEVICE not found"
     exit 1
 fi

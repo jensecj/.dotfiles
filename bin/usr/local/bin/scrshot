@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 while getopts "sd:" arg; do
     case ${arg} in

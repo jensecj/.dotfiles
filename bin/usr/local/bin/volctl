@@ -1,34 +1,34 @@
-#!/bin/bash
+#!/bin/sh
 
 while getopts d:s:v: option
 do
     case "${option}"
     in
+        d) DEVICE=${OPTARG};;
+        s) SINK=${OPTARG};;
         v) VOL=${OPTARG};;
+        *) ;;
     esac
 done
 
-volume=$(amixer -D pulse sget Master | grep -i 'Left:' | awk -F'[][]' '{ print $2 }' | tr -d %)
+volume=$(amixer -D "$DEVICE" sget "$SINK" | grep -i 'Left:' | awk -F'[][]' '{ print $2 }' | tr -d %)
 
-if [[ $VOL == "toggle" ]]; then
-    amixer -D pulse set Master 1+ toggle > /dev/null
-elif [ -n $VOL ]; then
-    volume=$(bc <<< "$volume + $VOL")
-    amixer -D pulse set Master "$volume%" > /dev/null
+if [ "$VOL" = "toggle" ]; then
+    amixer -D "$DEVICE" set "$SINK" 1+ toggle > /dev/null
+elif [ -n "$VOL" ]; then
+    volume=$(echo "$volume + $VOL" | bc)
+    amixer -D "$DEVICE" set "$SINK" "$volume%" > /dev/null
 fi
 
-muted=$(amixer -D pulse sget Master | grep -qi '\[off\]')
-muted=$?
+if amixer -D "$DEVICE" sget "$SINK" | grep -qi '\[off\]'; then
+    muted="!"
+else
+    muted=""
+fi
 
 PIPE="/tmp/xob-volume"
 if [ ! -w $PIPE ]; then
     mkfifo $PIPE
-fi
-
-if [[ muted -eq 0 ]]; then
-    muted="!"
-else
-    muted=""
 fi
 
 echo "$volume$muted" > $PIPE

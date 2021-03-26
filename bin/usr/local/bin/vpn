@@ -1,15 +1,12 @@
-#!/bin/bash
+#!/bin/sh
 
 VPNS="$HOME/.vpn"
-
-usage="vpn up <config> | down"
 
 ACTION=$1
 case "$ACTION"
 in
     down)
-        DOWN=1
-        ;;
+        DOWN=1 ;;
     up)
         UP=1
         PROFILE=$2
@@ -17,6 +14,7 @@ in
     rand|random)
         RAND=1
         ;;
+    *) ;;
 esac
 
 get_active_vpn() {
@@ -25,19 +23,19 @@ get_active_vpn() {
 
 down() {
     get_active_vpn
-    [[ -n $ACTIVEVPN ]] && wg-quick down "$VPNS/$ACTIVEVPN.conf"
+    [ -n "$ACTIVEVPN" ] && wg-quick down "$VPNS/$ACTIVEVPN.conf"
 }
 
 connect_to_vpn() {
     vpn=$1
 
     # tear down currently active vpn before setting up a new one
-    down &> /dev/null
-    wg-quick up $vpn
+    down > /dev/null 2>&1
+    wg-quick up "$vpn"
 }
 
 up() {
-    if [[ -z $PROFILE ]]; then
+    if [ -z "$PROFILE" ]; then
         PROFILE=$(find "$VPNS" -type f -iname '*.conf' | xargs basename -s '.conf' | sort | fzf) || exit 1
     fi
 
@@ -49,6 +47,6 @@ random() {
     connect_to_vpn "$PROFILE"
 }
 
-[[ $DOWN ]] && down && echo "vpn disconnected"
-[[ $UP ]] && up
-[[ $RAND ]] && random
+[ $DOWN ] && down && echo "vpn disconnected"
+[ $UP ] && up
+[ $RAND ] && random

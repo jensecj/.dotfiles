@@ -1,6 +1,7 @@
-#!/bin/bash
+#!/bin/sh
+
 CVE=$1
 
-[[ -z "$CVE" ]] && echo "usage: cve CVE-0000-000000" && exit 1
+[ "$CVE" == "" ] && echo "usage: cve CVE-0000-000000" && exit 1
 
 curl -s "https://cve.circl.lu/api/cve/$CVE" | jq '.summary,.vulnerable_product'

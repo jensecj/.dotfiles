@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 MENU="rofi -dmenu -l 10 -p"
 SECMENU="rofi -dmenu -l 0 -password -p"
@@ -24,9 +24,9 @@ pick_vpn() {
     options="\ndisconnect\nrandom"
 
     PICK=$(echo -e "$PROFILES" "$options"| $MENU "Pick a network")
-    [[ "$PICK" == "disconnect" ]] && dosudo vpn down && notify-send "disconnecting $INTERFACE" && exit
-    [[ "$PICK" == "random" ]] && dosudo vpn random && exit
-    [[ -n $PICK ]] && dosudo vpn up $PICK && exit
+    [ "$PICK" = "disconnect" ] && dosudo vpn down && notify-send "disconnecting $INTERFACE" && exit
+    [ "$PICK" = "random" ] && dosudo vpn random && exit
+    [ -n "$PICK" ] && dosudo vpn up "$PICK" && exit
 }
 
 pick_vpn

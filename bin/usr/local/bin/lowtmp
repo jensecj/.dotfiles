@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 USED_PCENT=$(df /tmp --output=pcent | column | cut -f2 | cut -d '%' -f1 | bc)
 

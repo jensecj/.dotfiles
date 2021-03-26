@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 good() {
     printf "\e[1;32m[+]\e[m %s\n" "$*"
@@ -12,37 +12,36 @@ chk() {
     test $? -eq 0 && good "$*" || bad "$*"
 }
 
-systemd-chk() {
+systemd_chk() {
     unit=$1
     shift
     args=$@
-    systemctl is-active "$unit" $args &> /dev/null; chk "$unit"
+    systemctl is-active "$unit" $args > /dev/null 2>&1; chk "$unit"
 }
 
-proc-chk() {
-    pgrep "$1" &> /dev/null; chk "$1"
+proc_chk() {
+    pgrep "$1" > /dev/null 2>&1; chk "$1"
 }
 
-mount-chk() {
+mount_chk() {
     DIR_A=$1
-    DIA_B=$2
+    DIR_B=$2
     MSG=$3
 
-    $(cat /proc/mounts | grep -q "$DIR_A $DIR_B")
-    if [ $? -eq 0 ]; then
+    if cat "/proc/mounts" | grep -q "$DIR_A $DIR_B"; then
         good "$MSG"
     else
         bad "$MSG"
     fi
 }
 
-file-age-chk() {
+file_age_chk() {
     file=$1
     limit=$2
 
     last_mod=$(stat -c "%Y" "$file")
     now_epoch=$(date +%s)
-    epoch_diff=$(bc <<< "$now_epoch - $last_mod")
+    epoch_diff=$(echo "$now_epoch - $last_mod" | bc)
     if [ $epoch_diff -gt $limit ]; then
         age=$(stat -c "%y" $file)
         bad "$file last modified $age"
@@ -51,31 +50,31 @@ file-age-chk() {
     fi
 }
 
-day_in_secs=$(bc <<< "60 * 60 * 24")
-week_in_secs=$(bc <<< "$day_in_secs * 7")
-month_in_secs=$(bc <<< "$week_in_secs * 4")
+day_in_secs=$(echo "60 * 60 * 24" | bc)
+week_in_secs=$(echo "$day_in_secs * 7" | bc)
+month_in_secs=$(echo "$week_in_secs * 4" | bc)
 
-systemd-chk "dhcpcd"
-systemd-chk "dnscrypt-proxy"
-systemd-chk "earlyoom"
-systemd-chk "ufw"
-systemd-chk "clamav-daemon"
-systemd-chk "clamav-freshclam"
-systemd-chk "apparmor"
-systemd-chk "auditd"
-systemd-chk "i3autotile" --user
-echo ""
-proc-chk "sxhkd"
-proc-chk "xidlehook"
-proc-chk "xob"
-proc-chk "psi-notify"
-proc-chk "polybar"
-proc-chk "dunst"
-proc-chk "tincd"
-proc-chk "unclutter"
-proc-chk "autocutsel"
-proc-chk "picom"
-proc-chk "dunst"
+systemd_chk "dhcpcd"
+systemd_chk "dnscrypt-proxy"
+systemd_chk "earlyoom"
+systemd_chk "ufw"
+systemd_chk "clamav-daemon"
+systemd_chk "clamav-freshclam"
+systemd_chk "apparmor"
+systemd_chk "auditd"
+systemd_chk "i3autotile" --user
+printf "\n"
+proc_chk "sxhkd"
+proc_chk "xidlehook"
+proc_chk "xob"
+proc_chk "psi-notify"
+proc_chk "polybar"
+proc_chk "dunst"
+proc_chk "tincd"
+proc_chk "unclutter"
+proc_chk "autocutsel"
+proc_chk "picom"
+proc_chk "dunst"
 
 printf "\n\n"
 
@@ -83,8 +82,8 @@ local_dns=$(cat "/etc/resolv.conf" | grep ^nameserver | cut -d' ' -f2 | xargs)
 echo "dns: $local_dns"
 
 if [ -f "/etc/dnscrypt-proxy/dnscrypt-proxy.toml" ]; then
-    dnscrypt_servers=$(cat "/etc/dnscrypt-proxy/dnscrypt-proxy.toml" | grep ^server_names)
-    echo "dnscrypt servers: ${dnscrypt_servers:15}"
+    dnscrypt_servers=$(cat "/etc/dnscrypt-proxy/dnscrypt-proxy.toml" | rg '^server_names = \[(.*)\]' -or '$1')
+    echo "dnscrypt servers: $dnscrypt_servers"
 else
     bad "dnscrypt config not found"
 fi
@@ -101,14 +100,14 @@ fi
 
 printf "\n\n"
 
-if [ $(ps -o user $(pgrep Xorg) | grep "root") ]; then
+if ps -o user $(pgrep Xorg) | grep "root"; then
     bad "Xorg is running as root"
 else
     good "Xorg is running rootless"
 fi
 
-mount-chk "$HOME/.private" "$HOME/private" "mounted ~/private"
-mount-chk "$HOME/.vault"   "$HOME/vault"   "mounted ~/vault"
-mount-chk "$HOME/.repo"    "$HOME/repo"    "mounted ~/repo"
+mount_chk "$HOME/.private" "$HOME/private" "mounted ~/private"
+mount_chk "$HOME/.vault"   "$HOME/vault"   "mounted ~/vault"
+mount_chk "$HOME/.repo"    "$HOME/repo"    "mounted ~/repo"
 
-file-age-chk "/etc/hosts" $month_in_secs
+file_age_chk "/etc/hosts" $month_in_secs

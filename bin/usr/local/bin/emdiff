@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 if [ $# -lt 2 ]
 then
@@ -6,7 +6,7 @@ then
     exit 0;
 fi
 
-OLD_FILE=$(realpath $1)
-NEW_FILE=$(realpath $2)
+OLD_FILE=$(realpath "$1")
+NEW_FILE=$(realpath "$2")
 
 emacsclient -c --eval "(diff-fullscreen \"$OLD_FILE\" \"$NEW_FILE\")"

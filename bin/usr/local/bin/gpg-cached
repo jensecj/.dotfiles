@@ -67,6 +67,9 @@ def entry():
             if is_cached(grip):
                 cached.append(f"{cap}{id}")
 
+    if not cached:
+        sys.exit(1)
+
     print(*cached)
 
 

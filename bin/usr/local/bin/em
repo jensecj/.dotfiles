@@ -1,8 +1,15 @@
-#!/bin/sh
+#!/bin/bash
 
 if [ ! -e /run/user/1000/emacs/server ]; then
     notify-send -t 30000 -u critical "Emacs daemon is not running"
     exit 1
 fi
 
-emacsclient --frame-parameters "((internal-border-width . 0))" -c $*
+ARGS='-c -n '
+# if last arg is '-'
+if [ "${@:$#}" == "-" ]; then
+    # then start as floating, and remove last arg
+    emacsclient -F '((title . "emacs-float"))' $ARGS ${*%${!#}}
+else
+    emacsclient $ARGS $*
+fi
