@@ -26,12 +26,12 @@ scan() {
 }
 
 get_ssid() {
-    options="\ndisconnect\nscan"
-    PICK=$(echo -e "$NETWORKS" "$options"| $MENU "network")
+    PICK=$(printf "%s\n%s\n%s" "$NETWORKS" "disconnect" "scan" | $MENU "network")
     SSID=$(printf "%s" "$PICK" | awk -F" {2,}" '{print $2}' | sed 's/>//' | awk '{$1=$1;print}')
 
-    [ "$(printf "%s" "$PICK" | awk -F" {2,}" '{print $3}')" = "psk" ] && PSK=1 || PSK=0
-    [ "$(printf "%s" "$PICK" | awk -F" {2,}" '{print $3}')" = "open" ] && OPEN=1 || OPEN=0
+    SEC=$(printf "%s" "$PICK" | awk -F" {2,}" '{print $3}')
+    [ "$SEC" = "psk" ] && PSK=1 || PSK=0
+    [ "$SEC" = "open" ] && OPEN=1 || OPEN=0
 
     [ "$PICK" = "disconnect" ] && iwctl station "$INTERFACE" disconnect && notify-send "disconnecting $INTERFACE"
     [ "$PICK" = "scan" ] && scan && get_ssid
@@ -39,7 +39,7 @@ get_ssid() {
 }
 
 get_psk() {
-    PSK=$($SECMENU "Enter WPA/WPA2 Secret Passphrase" | awk '{print}')
+    PSK=$($SECMENU "passphrase" | awk '{print}')
 }
 
 connect_open() {
