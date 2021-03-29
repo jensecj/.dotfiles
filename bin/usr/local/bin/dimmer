@@ -32,7 +32,7 @@ SUNSET=2100
 HOUR=$(date +%H)
 DIM=""
 
-MAX=5500
+MAX=4800
 MIN=1300
 
 # TODO: use a curve based on time of day and date (number of sunlight hours?)
@@ -43,23 +43,23 @@ case $HOUR in
     03) DIM=$MIN;;
     04) DIM=$MIN;;
     05) DIM=$MIN;;
-    06) DIM=2800;;
-    07) DIM=3900;;
-    08) DIM=4500;;
-    09) DIM=5000;;
-    10) DIM=5000;;
-    11) DIM=5000;;
+    06) DIM=$((MIN+500));;
+    07) DIM=$((MIN+900));;
+    08) DIM=$((MIN+1100));;
+    09) DIM=$((MIN+1600));;
+    10) DIM=$((MIN+1800));;
+    11) DIM=$((MIN+2000));;
     12) DIM=$MAX;;
     13) DIM=$MAX;;
     14) DIM=$MAX;;
     15) DIM=$MAX;;
     16) DIM=$MAX;;
-    17) DIM=4800;;
-    18) DIM=4500;;
-    19) DIM=3900;;
-    20) DIM=3500;;
-    21) DIM=3000;;
-    22) DIM=1700;;
+    17) DIM=$((MAX-600));;
+    18) DIM=$((MAX-1000));;
+    19) DIM=$((MAX-1700));;
+    20) DIM=$((MAX-2000));;
+    21) DIM=$((MAX-2500));;
+    22) DIM=$((MAX-3000));;
     23) DIM=$MIN;;
 esac
 
