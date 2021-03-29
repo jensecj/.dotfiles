@@ -3,8 +3,8 @@ export DOTFILESHOME=$HOME/.dotfiles
 export ZSHHOME=$HOME/.zsh
 export ZSHPLUGINS=$ZSHHOME/plugins
 
-export EDITOR=em # emacsclient
-export ALTERNATE_EDITOR=emacs
+export EDITOR=em
+export VISUAL=em
 export BROWSER=firefox-developer-edition
 export TERMINAL=alacritty
 export DIFFPROG=emdiff
