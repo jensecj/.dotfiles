@@ -5,7 +5,7 @@ if [ ! -e /run/user/1000/emacs/server ]; then
     exit 1
 fi
 
-ARGS='-c -n '
+ARGS='-c '
 # if last arg is '-'
 if [ "${@:$#}" == "-" ]; then
     # then start as floating, and remove last arg
