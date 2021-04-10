@@ -77,7 +77,7 @@ interval = 11
 
 [module/gpg-cache]
 type = custom/script
-exec = /usr/local/bin/gpg-cached
+exec = /usr/local/bin/gpg-cached "C97218EC"
 format = <label>
 label = %{F#878777}%{F-} %output%
 interval = 61
