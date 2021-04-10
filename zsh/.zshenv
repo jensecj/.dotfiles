@@ -15,6 +15,7 @@ export LANG="en_DK.UTF-8"
 export GPG_TTY=$(tty)
 
 export PROMPT_EOL_MARK=''
+unsetopt PROMPT_SP
 
 # ggtags config
 export GTAGSLABEL="ctags"
