@@ -26,7 +26,6 @@ autoload -Uz select-word-style && {
 source $ZSHHOME/stdlib.sh
 
 # load plugins
-source $ZSHPLUGINS/spectrum.sh
 source $ZSHPLUGINS/colored-man-pages.sh
 source $ZSHPLUGINS/setup-zsh-completions.sh # FIXME: does this work?
 source $ZSHPLUGINS/setup-zsh-syntax-highlighting.sh
