@@ -147,6 +147,21 @@ body {
     }
 }
 
+@-moz-document domain("lore.kernel.org") {
+	  * { background:#fefefe!important; }
+    body {
+        margin: auto;
+        max-width: 1000px;
+    }
+
+	  *.q { color:#457E45 !important } /* quotes in mail bodies */
+
+	  *.add { color:#4f6f4f !important; background-color: #f5ffee !important; } /* diff added lines */
+	  *.del { color:#8c5353 !important; background-color: #fff4f4 !important; } /* diff deleted lines */
+	  *.head { color:#494949 !important; background-color: #efefef !important } /* diff header */
+	  *.hunk { color:#494949 !important; background-color: #efefef !important } /* diff hunk-header */
+}
+
 @-moz-document domain("wikipedia.org") {
     body {
         margin: auto;
