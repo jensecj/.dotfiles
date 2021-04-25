@@ -1,12 +1,11 @@
 #!/bin/env python
 
-import os
 import re
-import sys
 import subprocess
 import logging
 
 import click
+
 
 log = logging.getLogger(__name__)
 log.setLevel(logging.INFO)
@@ -21,30 +20,37 @@ def shell(cmd):
     output = p.stdout.read().decode() if p.stdout else None
     err = p.stderr.read().decode() if p.stderr else None
 
-    return return_code, output, err
+    if return_code != 0:
+        log.warning(f"{rc}")
+
+    if err:
+        log.error(f"{err}")
+        return None
+
+    return output
 
 
-def keygrips(id):
-    cmd = ["gpg", "--fingerprint", "--with-keygrip", "--keyid-format=SHORT", id]
-    _, o, _ = shell(cmd)
+def keygrips(key_id):
+    cmd = ["gpg", "--fingerprint", "--with-keygrip", "--keyid-format=SHORT", key_id]
+    if not (output := shell(cmd)):
+        return None
 
-    parts = [p for p in re.split("\n\n", o) if p]
+    parts = [p for p in re.split(r"\n\n", output) if p]
     for p in parts:
-        keys = [k for k in re.split("sub", p) if k]
+        keys = [k for k in re.split(r"sub", p) if k]
         for k in keys:
-            if sid := re.search("[a-z0-9]+/([A-Z0-9]+)", k):
+            if sid := re.search(r"[a-z0-9]+/([A-Z0-9]+)", k):
                 sid = sid.group(1)
-                log.debug(f"{sid=}")
 
-            if not id == sid:
+            if not key_id == sid:
                 continue
 
-            if cap := re.search("\[(A|S|E|C)+\]", k):
+            if cap := re.search(r"\[(A|S|E|C)+\]", k):
                 cap = cap.group(0)
 
-            if grip := re.search("Keygrip = [0-9A-Fa-f]+", k):
+            if grip := re.search(r"Keygrip = [0-9A-Fa-f]+", k):
                 grip = grip.group(0)
-                grip = grip.replace("Keygrip = ", "")
+                grip = grip.replace(r"Keygrip = ", "")
 
             if cap and grip:
                 yield cap, grip
@@ -52,35 +58,47 @@ def keygrips(id):
 
 def subkeys(keyid):
     cmd = ["gpg", "--list-keys", "--keyid-format=SHORT", keyid]
-    _, o, _ = shell(cmd)
-    sks = re.findall(r"sub +.*/(.*?) ", o)
+    if not (output := shell(cmd)):
+        return None
 
+    sks = re.findall(r"sub +.*/(.*?) ", output)
     return sks
 
 
 def is_cached(grip):
     cmd = ["gpg-connect-agent", f"KEYINFO --no-ask {grip} Err Pmt Des", "/bye"]
+    if not (output := shell(cmd)):
+        return None
 
-    _, o, _ = shell(cmd)
-    cached = len(o) > 57 and o[57] == "1"
+    cached = len(output) > 57 and output[57] == "1"
+    return cached
+
+
+def cached_parts(key):
+    cached = []
+
+    log.debug(f"key: {key}")
+    for sk in subkeys(key):
+        log.debug(f" subkey: {sk}")
+        for cap, grip in keygrips(sk):
+            log.debug(f"  {cap=} {grip=:10} {is_cached(grip)=}")
+            if is_cached(grip):
+                cached.append(f"{cap}{sk}")
+
     return cached
 
 
 CONTEXT_SETTINGS = dict(help_option_names=["-h", "--help"])
 @click.command(context_settings=CONTEXT_SETTINGS)
 @click.argument("key", type=str)
-def entry(key):
+@click.option("-v", "--verbose", is_flag=True)
+def entry(key, verbose):
     cached = []
 
-    log.debug(f"key: {key}")
-    for sk in subkeys(key):
-        log.debug(f"subkey: {sk}")
-        for cap, grip in keygrips(sk):
-            log.debug(f"{cap=} {grip=} {is_cached(grip)=}")
-            if is_cached(grip):
-                cached.append(f"{cap}{sk}")
+    if verbose:
+        log.setLevel(logging.DEBUG)
 
-    if cached:
+    if cached := cached_parts(key):
         print(*cached)
 
 
