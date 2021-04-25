@@ -21,6 +21,13 @@
 /* tabs */
 /********/
 
+ #tabbrowser-tabs tab.tabbrowser-tab { padding-inline: unset !important; }
+
+ #tabbrowser-tabs .tab-background {
+    margin-block: unset !important;
+    border-radius: unset !important;
+}
+
 /* hide buttons on tabs */
 #tabbrowser-tabs .tabbrowser-tab .tab-close-button,
 .tabs-newtab-button,
