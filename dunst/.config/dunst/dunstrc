@@ -41,8 +41,8 @@ startup_notification = false
 force_xinerama = false # if we need legacy xinerama support
 
 [shortcuts]
-close = mod4+F11 # close notifications
-history = mod4+F12 # show notifications, starting with the latest
+close = mod4+F12   # close notifications
+history = mod4+F11 # show notifications, starting with the latest
 
 [urgency_low]
 background = "#313131"
