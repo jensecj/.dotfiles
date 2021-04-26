@@ -1,7 +1,11 @@
 [Unit]
 Description=Red shift display based on time of day
-Wants=dimmer.timer
 
 [Service]
 Environment=DISPLAY=:0.0
-ExecStart=/usr/local/bin/dimmer
+Restart=always
+RestartSec=3
+ExecStart=/usr/local/bin/dimmer daemon
+
+[Install]
+WantedBy=multi-user.target

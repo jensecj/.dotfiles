@@ -24,6 +24,16 @@ fpop() {
     echo "$val"
 }
 
+dim() {
+    redshift -P -O "$1" >> /dev/null
+    rc=$?
+    if [ $rc -eq 0 ]; then
+        echo "dimmer: setting screen temp to $DIM"
+    else
+        echo "dimmer: failed to set screen temp"
+    fi
+}
+
 DIMMER_FILE=~/.dimmer
 
 SUNRISE=0600
@@ -67,6 +77,16 @@ if [ ! -e $DIMMER_FILE ]; then
     touch $DIMMER_FILE
 fi
 
+# run as daemon if told to
+if [ "$1" = "daemon" ]; then
+    while true; do
+        sleep 300;
+        dim "$DIM"
+    done
+    exit
+fi
+
+# parse args and update $DIMMER_FILE
 if [ "$1" = "cls" ]; then
     rm $DIMMER_FILE
 elif [ "$1" = "pop" ]; then
@@ -105,19 +125,13 @@ elif [ -n "$1" ]; then
     fpush $DIMMER_FILE "$1"
 fi
 
+# grab dimming value from $DIMMER_FILE
 if [ -s $DIMMER_FILE ]; then
     DIM=$(fpeek $DIMMER_FILE)
 fi
 
 if [ -n "$DIM" ]
 then
-    redshift -P -O "$DIM" >> /dev/null
-    rc=$?
-    if [ $rc -eq 0 ]; then
-        echo "dimmer: setting screen temp to $DIM"
-    else
-        echo "dimmer: failed to set screen temp"
-    fi
-
+    dim "$DIM"
     exit $rc
 fi
