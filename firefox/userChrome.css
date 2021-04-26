@@ -36,8 +36,15 @@
     background-color: #575757 !important;
 }
 
-/* remove padding around tab toolbar buttons (new-tab, tab list, etc) */
-#TabsToolbar{ --toolbarbutton-inner-padding: 0px !important; }
+/*
+remove padding around tab toolbar buttons (new-tab, tab list, etc),
+if tab height is changes, the padding makes the entire tabbar jump
+every time a new tab is opened, instead add padding in-between buttons.
+*/
+#TabsToolbar{
+    --toolbarbutton-inner-padding: 0px !important;
+    --toolbarbutton-outer-padding: 3px !important;
+}
 
 /* hide close/new buttons on tabs */
 #tabbrowser-tabs .tabbrowser-tab .tab-close-button,
