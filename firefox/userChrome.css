@@ -56,6 +56,8 @@ every time a new tab is opened, instead add padding in-between buttons.
 
 tab {
     background-color: #252525 !important;
+    color: #fefefe !important;
+    font-weight: 550 !important;
 }
 tab[selected="true"], .tab-line[selected="true"] {
     background-color: #727272 !important;
