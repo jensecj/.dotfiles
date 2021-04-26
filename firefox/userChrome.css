@@ -7,10 +7,6 @@
     scrollbar-color: #313131 !important;
 }
 
-:root{
-  --toolbarbutton-inner-padding:2px !important;
-  --tab-min-height: 15px !important;
-}
 .titlebar-button{ padding-block: 2px !important; }
 #urlbar-container, #search-container{ padding-block: 1px !important; }
 
@@ -21,14 +17,29 @@
 /* tabs */
 /********/
 
- #tabbrowser-tabs tab.tabbrowser-tab { padding-inline: unset !important; }
-
- #tabbrowser-tabs .tab-background {
-    margin-block: unset !important;
-    border-radius: unset !important;
+#tabbrowser-tabs {
+    --tab-min-height: 24px !important;
 }
 
-/* hide buttons on tabs */
+/* remove padding around tabs */
+#tabbrowser-tabs tab.tabbrowser-tab {
+    padding-inline: unset !important;
+}
+
+#tabbrowser-tabs .tab-background {
+    margin-block: unset !important;
+    border-radius: unset !important;
+    background-image: none !important;
+}
+
+#tabbrowser-tabs .tab-background[selected="true"] {
+    background-color: #575757 !important;
+}
+
+/* remove padding around tab toolbar buttons (new-tab, tab list, etc) */
+#TabsToolbar{ --toolbarbutton-inner-padding: 0px !important; }
+
+/* hide close/new buttons on tabs */
 #tabbrowser-tabs .tabbrowser-tab .tab-close-button,
 .tabs-newtab-button,
 #tabs-newtab-button {
@@ -39,18 +50,22 @@
 tab {
     background-color: #252525 !important;
 }
-
-tab[selected="true"] {
-    border: 1px solid #bebebe;
-}
-.tab-line[selected="true"] {
-    background-color: #575757 !important;
+tab[selected="true"], .tab-line[selected="true"] {
+    background-color: #727272 !important;
 }
 
-.tab-background[selected="true"] {
-    background-color: #575757 !important;
-    background-image: none !important;
+/*
+Show tab audio icons next to the tab icon,
+and by default removes the tab secondary line
+*/
+.tab-icon-stack:is([muted],[soundplaying],[activemedia-blocked]){
+	  grid-template-areas: "a s";
 }
+.tab-icon-overlay:is([muted],[soundplaying],[activemedia-blocked]){ grid-area: s; }
+.tab-icon-overlay,.tab-icon-image{ opacity: 1 !important; }
+
+/* hide secondary audio label */
+.tab-secondary-label { display: none }
 
 /*****************/
 /* context menus */

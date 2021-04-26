@@ -3,6 +3,7 @@ user_pref("general.warnOnAboutConfig", false); // XUL/XHTML version
 user_pref("security.dialog_enable_delay", 0);   // dont delay the download-file dialog
 user_pref("privacy.userContext.ui.enabled", true);
 user_pref("privacy.userContext.enabled", true);
+user_pref("pdfjs.enableScripting", false); // dont allow javascript in pdfs
 user_pref("browser.aboutConfig.showWarning", false); // HTML version [FF71+]
 user_pref("toolkit.cosmeticAnimations.enabled", false);
 user_pref("browser.tabs.insertAfterCurrent", true);
