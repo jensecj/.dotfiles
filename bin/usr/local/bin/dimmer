@@ -35,43 +35,46 @@ dim() {
 }
 
 DIMMER_FILE=~/.dimmer
-
+TIMEOUT=300
 SUNRISE=0600
 SUNSET=2100
-
-HOUR=$(date +%H)
-DIM=""
 
 MAX=4800
 MIN=1300
 
 # TODO: use a curve based on time of day and date (number of sunlight hours?)
-case $HOUR in
-    00) DIM=$MIN;;
-    01) DIM=$MIN;;
-    02) DIM=$MIN;;
-    03) DIM=$MIN;;
-    04) DIM=$MIN;;
-    05) DIM=$MIN;;
-    06) DIM=$((MIN+1000));;
-    07) DIM=$((MIN+1500));;
-    08) DIM=$((MIN+2500));;
-    09) DIM=$((MIN+2700));;
-    10) DIM=$((MIN+3000));;
-    11) DIM=$((MIN+3300));;
-    12) DIM=$MAX;;
-    13) DIM=$MAX;;
-    14) DIM=$MAX;;
-    15) DIM=$MAX;;
-    16) DIM=$MAX;;
-    17) DIM=$((MAX-500));;
-    18) DIM=$((MAX-1000));;
-    19) DIM=$((MAX-1700));;
-    20) DIM=$((MAX-2300));;
-    21) DIM=$((MAX-2700));;
-    22) DIM=$((MAX-3000));;
-    23) DIM=$MIN;;
-esac
+calculate_dim_value() {
+    HOUR=$(date +%H)
+
+    case $HOUR in
+        00) DIM=$MIN;;
+        01) DIM=$MIN;;
+        02) DIM=$MIN;;
+        03) DIM=$MIN;;
+        04) DIM=$MIN;;
+        05) DIM=$MIN;;
+        06) DIM=$((MIN+1000));;
+        07) DIM=$((MIN+1500));;
+        08) DIM=$((MIN+2500));;
+        09) DIM=$((MIN+2700));;
+        10) DIM=$((MIN+3000));;
+        11) DIM=$((MIN+3300));;
+        12) DIM=$MAX;;
+        13) DIM=$MAX;;
+        14) DIM=$MAX;;
+        15) DIM=$MAX;;
+        16) DIM=$MAX;;
+        17) DIM=$((MAX-500));;
+        18) DIM=$((MAX-1000));;
+        19) DIM=$((MAX-1700));;
+        20) DIM=$((MAX-2300));;
+        21) DIM=$((MAX-2700));;
+        22) DIM=$((MAX-3000));;
+        23) DIM=$MIN;;
+    esac
+}
+
+calculate_dim_value
 
 if [ ! -e $DIMMER_FILE ]; then
     touch $DIMMER_FILE
@@ -80,8 +83,14 @@ fi
 # run as daemon if told to
 if [ "$1" = "daemon" ]; then
     while true; do
-        sleep 300;
+        DIM=$(fpeek $DIMMER_FILE)
+
+        if [ -z $DIM ]; then
+            calculate_dim_value
+        fi
+
         dim "$DIM"
+        sleep $TIMEOUT;
     done
     exit
 fi
@@ -130,8 +139,7 @@ if [ -s $DIMMER_FILE ]; then
     DIM=$(fpeek $DIMMER_FILE)
 fi
 
-if [ -n "$DIM" ]
-then
+if [ -n "$DIM" ]; then
     dim "$DIM"
     exit $rc
 fi
