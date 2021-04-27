@@ -1,6 +1,7 @@
 @namespace url(http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul);
 
-#window-controls  { display:none !important; }    /* hide the minimize / maximize / close buttons  */
+/* hide the minimize / maximize / close buttons  */
+#window-controls  { display:none !important; }
 
 * {
     scrollbar-width: thin !important;
@@ -18,49 +19,60 @@
 /********/
 
 #tabbrowser-tabs {
-    --tab-min-height: 24px !important;
+    --tab-min-height: 27px !important;
+    --tab-line-color: unset !important; /* hide blue accent line */
 }
 
-/* remove padding around tabs */
-#tabbrowser-tabs tab.tabbrowser-tab {
+#tabbrowser-tabs .tabbrowser-tab {
+    color: #fefefe !important;
+    font-weight: 550 !important;
+
+    /* remove padding around tabs */
     padding-inline: unset !important;
+
+    /* bring back the tab separator */
+    border-inline-end: 1px solid #313131 !important;
 }
 
+/* remove round Proton look */
 #tabbrowser-tabs .tab-background {
-    margin-block: unset !important;
     border-radius: unset !important;
+    margin-block: unset !important;
     background-image: none !important;
+    background-color: #313131 !important;
 }
 
+#tabbrowser-tabs .tab-background[selected="true"],
+#tabbrowser-tabs .tab-background[multiselected="true"] {
+    background-color: #525252 !important;
+    /* remove dimming on multiselected tabs, that are not the main tab */
+    opacity: 1 !important;
+}
+
+/* colored top-border on selected tab */
 #tabbrowser-tabs .tab-background[selected="true"] {
-    background-color: #575757 !important;
+    border-top: 2px solid #afafaf !important;
+
+    /* add back bottom-border that distinguishes main tab from other selected tabs */
+    border-bottom: 1px solid #313131 !important;
+}
+
+/* hide close/new buttons on tabs */
+#tabs-newtab-button,
+#tabbrowser-tabs .tabbrowser-tab .tab-close-button
+{
+    display: none !important;
+    visibility: hidden !important;
 }
 
 /*
-remove padding around tab toolbar buttons (new-tab, tab list, etc),
-if tab height is changes, the padding makes the entire tabbar jump
+remove padding around right-most tab-toolbar buttons (new-tab, tab list, etc),
+if tab height is changed, the padding makes the entire tabbar jump
 every time a new tab is opened, instead add padding in-between buttons.
 */
 #TabsToolbar{
     --toolbarbutton-inner-padding: 0px !important;
     --toolbarbutton-outer-padding: 3px !important;
-}
-
-/* hide close/new buttons on tabs */
-#tabbrowser-tabs .tabbrowser-tab .tab-close-button,
-.tabs-newtab-button,
-#tabs-newtab-button {
-    display: none !important;
-    visibility: hidden !important;
-}
-
-tab {
-    background-color: #252525 !important;
-    color: #fefefe !important;
-    font-weight: 550 !important;
-}
-tab[selected="true"], .tab-line[selected="true"] {
-    background-color: #727272 !important;
 }
 
 /*
@@ -159,16 +171,13 @@ and by default removes the tab secondary line
 }
 
 /* roundness */
-#urlbar.megabar:not([open]) #urlbar-background,
-#urlbar,#urlbar-input-container,
-#searchbar, .searchbar-textbox {
-    border-radius: 0px !important;
-}
-
+#urlbar,
 #urlbar #urlbar-background,
-#urlbar, #urlbar-input-container,
-#searchbar, .searchbar-textbox {
-    border-radius: 0px !important;
+#urlbar.megabar #urlbar-background,
+#urlbar-input-container,
+#searchbar,
+.searchbar-textbox {
+    border-radius: 2px !important;
 }
 
 #urlbar[focused="true"]:not([usertyping="true"]) .urlbarView,
