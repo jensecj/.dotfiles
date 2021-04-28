@@ -15,7 +15,7 @@ dirs=(
     "$HOME/vault"
 )
 
-for d in "$dirs"; do
+for d in "${dirs[@]}"; do
     if [ ! -d "$d" ]; then
         err_exit "$d not found"
     fi
