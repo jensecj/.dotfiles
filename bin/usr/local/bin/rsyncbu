@@ -1,0 +1,43 @@
+#!/bin/bash
+
+set -o errexit
+set -o nounset
+set -o pipefail
+
+err() { echo -e "$*" >&2; }
+err_exit() { err "$@"; exit 1; }
+trap 'err_exit "interrupted"' INT TERM
+
+if [ $# -lt 2 ]; then
+    err_exit "usage: rsbu <src> <dest>"
+fi
+
+SRC=$(realpath "$1")
+DEST=$(realpath "$2")
+
+echo "$SRC -> $DEST"
+mkdir -p "$DEST"
+
+LATEST="$DEST/latest"
+echo "$LATEST"
+
+if [[ ! -L "$LATEST" ]]; then
+    read -p "There is no latest link, really copy entire source? [yN]" -n 1 -r
+    if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+        exit 1
+    fi
+fi
+
+DATE=$(date +"%Y-%m-%d--%T")
+CURRENT="$DEST/$DATE"
+echo "$CURRENT"
+
+rsync -avz --partial --progress \
+      --link-dest=$LATEST \
+      $SRC $CURRENT
+
+# remove the last symlink, or it'll appear recursively in the new link
+rm -f "$LATEST"
+
+# link the current backup to the latest dir
+ln -s "$CURRENT" "$LATEST"
