@@ -10,6 +10,7 @@ protocol.encryption.set = allow_incoming,try_outgoing,enable_retry
 
 # force encryption
 # protocol.encryption.set = require,require_RC4,allow_incoming,try_outgoing
+protocol.encryption.set = allow_incoming,try_outgoing
 
 dht.mode.set = auto
 dht.port.set = 6881

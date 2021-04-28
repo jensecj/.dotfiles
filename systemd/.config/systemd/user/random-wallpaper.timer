@@ -4,6 +4,7 @@ Requires=random-wallpaper.service
 
 [Timer]
 Unit=random-wallpaper.service
+OnBootSec=1m
 OnUnitInactiveSec=30m
 
 [Install]
