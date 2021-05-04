@@ -2,35 +2,13 @@
 
 # https://www.stackabuse.com/handling-unix-signals-in-python/
 
-fpeek() {
-    head -n 1 "$1"
-}
-
-fpush() {
-    local fil="$1"
-    shift
-
-    if [ -s "$fil" ]; then
-        sed -i "1i$*" "$fil"
-    else
-        echo "$*" > "$fil"
-    fi
-}
-
-fpop() {
-    local fil="$1"
-    local val=$(fpeek "$fil")
-    sed -i '1d' "$1"
-    echo "$val"
-}
-
 dim() {
     redshift -P -O "$1" >> /dev/null
     rc=$?
     if [ $rc -eq 0 ]; then
-        echo "dimmer: setting screen temp to $DIM"
+        echo "setting screen temp to $DIM"
     else
-        echo "dimmer: failed to set screen temp"
+        echo "failed to set screen temp"
     fi
 }
 
@@ -74,8 +52,6 @@ calculate_dim_value() {
     esac
 }
 
-calculate_dim_value
-
 if [ ! -e $DIMMER_FILE ]; then
     touch $DIMMER_FILE
 fi
@@ -83,12 +59,7 @@ fi
 # run as daemon if told to
 if [ "$1" = "daemon" ]; then
     while true; do
-        DIM=$(fpeek $DIMMER_FILE)
-
-        if [ -z $DIM ]; then
-            calculate_dim_value
-        fi
-
+        calculate_dim_value
         dim "$DIM"
         sleep $TIMEOUT;
     done
@@ -98,45 +69,21 @@ fi
 # parse args and update $DIMMER_FILE
 if [ "$1" = "cls" ]; then
     rm $DIMMER_FILE
-elif [ "$1" = "pop" ]; then
-    fpop $DIMMER_FILE
 elif [ "$1" = "ls" ] || [ "$1" = "peek" ]; then
     cat $DIMMER_FILE
     exit 0
-elif [ "$1" = "inc" ]; then
-    if [ -z "$2" ]; then
-        echo "usage: dimmer inc <int>"
-        exit 4
-    fi
-    inc=$2
-    val=$(fpeek $DIMMER_FILE)
-    if [ -z $val ]; then
-        val=$DIM
-    fi
-
-    res=$(echo "$val + $inc" | bc)
-    fpush $DIMMER_FILE "$res"
-elif [ "$1" = "dec" ]; then
-    if [ -z "$2" ]; then
-        echo "usage: dimmer dec <int>"
-        exit 4
-    fi
-    dec=$2
-    val=$(fpeek $DIMMER_FILE)
-    if [ -z $val ]; then
-        val=$DIM
-    fi
-
-    res=$(echo "$val - $dec" | bc)
-    fpush $DIMMER_FILE "$res"
 elif [ -n "$1" ]; then
-    fpop $DIMMER_FILE
-    fpush $DIMMER_FILE "$1"
+    echo "$1" > $DIMMER_FILE
 fi
 
 # grab dimming value from $DIMMER_FILE
 if [ -s $DIMMER_FILE ]; then
-    DIM=$(fpeek $DIMMER_FILE)
+    DIM=$(cat $DIMMER_FILE)
+fi
+
+# if $DIMMER_FILE is unused, calculate dimming value
+if [ -z $DIM ]; then
+    calculate_dim_value
 fi
 
 if [ -n "$DIM" ]; then
