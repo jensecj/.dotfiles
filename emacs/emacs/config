@@ -10,9 +10,11 @@ BUILD_DIR=$(pwd)/build
      --without-sound \
      --with-cairo \
      --with-harfbuzz \
-     --with-modules \
      --with-native-compilation \
+     --with-modules \
      --with-pdumper=yes \
      --with-imagemagick \
-     --with-json
+     --with-json \
+     --without-pop \
+     --without-mailutils
 )
