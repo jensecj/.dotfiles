@@ -58,9 +58,26 @@ fi
 
 # run as daemon if told to
 if [ "$1" = "daemon" ]; then
+    LAST_DIM=0
     while true; do
-        calculate_dim_value
-        dim "$DIM"
+        DIM=0
+
+        # grab value from file if it is saved
+        if [ -s $DIMMER_FILE ]; then
+            DIM=$(cat $DIMMER_FILE)
+        fi
+
+        # otherwise, calculate new screen temperature
+        if [ $DIM -eq 0 ]; then
+            calculate_dim_value
+        fi
+
+        # only dim if it changes the screen temperature
+        if [ ! $DIM -eq $LAST_DIM ]; then
+            dim "$DIM"
+            LAST_DIM=$DIM
+        fi
+
         sleep $TIMEOUT;
     done
     exit
@@ -69,7 +86,7 @@ fi
 # parse args and update $DIMMER_FILE
 if [ "$1" = "cls" ]; then
     rm $DIMMER_FILE
-elif [ "$1" = "ls" ] || [ "$1" = "peek" ]; then
+elif [ "$1" = "ls" ]; then
     cat $DIMMER_FILE
     exit 0
 elif [ -n "$1" ]; then
