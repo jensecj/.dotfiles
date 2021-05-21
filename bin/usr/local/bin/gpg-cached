@@ -17,16 +17,15 @@ def shell(cmd):
     p = subprocess.Popen(cmd, stdin=subprocess.PIPE, stdout=subprocess.PIPE)
 
     return_code = p.wait()
-    output = p.stdout.read().decode() if p.stdout else None
-    err = p.stderr.read().decode() if p.stderr else None
-
     if return_code != 0:
         log.warning(f"{rc}")
 
+    err = p.stderr.read().decode() if p.stderr else None
     if err:
         log.error(f"{err}")
         return None
 
+    output = p.stdout.read().decode() if p.stdout else None
     return output
 
 
@@ -58,20 +57,14 @@ def keygrips(key_id):
 
 def subkeys(keyid):
     cmd = ["gpg", "--list-keys", "--keyid-format=SHORT", keyid]
-    if not (output := shell(cmd)):
-        return None
-
-    sks = re.findall(r"sub +.*/(.*?) ", output)
-    return sks
+    if output := shell(cmd):
+        return re.findall(r"sub +.*/(.*?) ", output)
 
 
 def is_cached(grip):
     cmd = ["gpg-connect-agent", f"KEYINFO --no-ask {grip} Err Pmt Des", "/bye"]
-    if not (output := shell(cmd)):
-        return None
-
-    cached = len(output) > 57 and output[57] == "1"
-    return cached
+    if output := shell(cmd):
+        return len(output) > 57 and output[57] == "1"
 
 
 def cached_parts(key):
