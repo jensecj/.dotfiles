@@ -21,15 +21,16 @@ autocutsel -selection PRIMARY -fork &
 
 xidlehook \
     --timer 180 \
-    'dimmer dec 300' 'dimmer pop' \
+    '' '' \
     --timer 10 \
-    'dimmer pop; slock' ''\
+    'slock' ''\
     --not-when-audio &
 
 # custom apps
 # i3autotile >> ~/.i3log 2>&1 &
 dimmer &                          # dim screen to fit time-of-day
 polybar-setup &                   # setup polybar for multihead
+xob-setup &                       # setup xob bars
 
 # load customs from xinitrc.d
 if [ -d /etc/X11/xinit/xinitrc.d ]; then
