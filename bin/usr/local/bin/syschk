@@ -60,9 +60,11 @@ systemd_chk "earlyoom"
 systemd_chk "ufw"
 systemd_chk "clamav-daemon"
 systemd_chk "clamav-freshclam"
+systemd_chk "clamav-unofficial-sigs"
 systemd_chk "apparmor"
 systemd_chk "auditd"
 systemd_chk "i3autotile" --user
+systemd_chk "dimmer" --user
 printf "\n"
 proc_chk "sxhkd"
 proc_chk "xidlehook"
