@@ -135,7 +135,7 @@ body {
 @-moz-document domain("gnu.org"), domain("lists.gnu.org"), domain("debbugs.gnu.org") {
     body {
         margin: auto !important;
-        max-width: 900px;
+        max-width: 900px !important;
     }
 
     body > ul > li {
@@ -166,5 +166,17 @@ body {
     body {
         margin: auto;
         max-width: 1500px;
+    }
+}
+
+@-moz-document domain("qwant.com") {
+    body {
+        margin: auto;
+        max-width: 1000px;
+    }
+
+    .pagination .page {
+        border-radius: 10% !important;
+        width: 50px !important;
     }
 }
