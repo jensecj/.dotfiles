@@ -80,6 +80,7 @@ declare -a packages=(
     sudo # do things as root
     cpupower # helper for powersaving, frequency scaling, etc.
     acpi # battery info
+    smartmontools # hdd stats and control
     gptfdisk # partition disks
     inotify-tools # notify-send, etc.
     ntfs-3g # ntfs support through fuse
@@ -93,8 +94,10 @@ declare -a packages=(
 
     # ** security
     clamav # anti-virus
+    clamav-unofficial-sigs # more threat signatures for clamav
     apparmor # MAC system as a linux sec. module
     audit # kernel logging - for building apparmor profiles
+    usbguard # control which usb devices are allowed
     firejail # app sandboxing
     bubblewrap-suid # app sandboxing
     dnscrypt-proxy # for running encrypted dnslookups
@@ -110,9 +113,9 @@ declare -a packages=(
     git # git and the github wrapper
     jupyter # interactive science notebooks
     docker # containerization
-    podman buildah skopeo # more containers
+    podman podman-compose buildah skopeo # more containers
     diff-so-fancy # fancy git diff
-    entr # watch for file changes using inotify and kqueue
+    watchexec # run commands when files change
     tree-sitter # incremental language parser
     zeal # offline dev docs
 
@@ -217,6 +220,7 @@ declare -a packages=(
     zathura # pdf viewer
     zathura-pdf-mupdf # mupdf backend for zathura
     zathura-djvu zathura-ps # djvu and postscript backends for zathura
+    pdftk # toolkit for manipulating pdfs, merging, splitting, etc.
     feh # image viewer
     sxiv # image / gif viewer
     # chafa # cat images/gifs in terminal
