@@ -8,6 +8,11 @@
     scrollbar-color: #313131 !important;
 }
 
+button {
+    min-width: 5px !important;
+    min-height: 5px !important;
+}
+
 .titlebar-button{ padding-block: 2px !important; }
 #urlbar-container, #search-container{ padding-block: 1px !important; }
 
@@ -39,12 +44,12 @@
     border-radius: unset !important;
     margin-block: unset !important;
     background-image: none !important;
-    background-color: #313131 !important;
+    background-color: #2a2a2e !important;
 }
 
 #tabbrowser-tabs .tab-background[selected="true"],
 #tabbrowser-tabs .tab-background[multiselected="true"] {
-    background-color: #525252 !important;
+    background-color: #404552 !important;
     /* remove dimming on multiselected tabs, that are not the main tab */
     opacity: 1 !important;
 }
@@ -54,7 +59,7 @@
     border-top: 2px solid #afafaf !important;
 
     /* add back bottom-border that distinguishes main tab from other selected tabs */
-    border-bottom: 1px solid #313131 !important;
+    border-bottom: 1px solid #2a2a2e !important;
 }
 
 /* hide close/new buttons on tabs */
@@ -103,6 +108,17 @@ and by default removes the tab secondary line
 /* hide context-menu items */
 #context-sendvideo,
 #context-sendaudio,
+#context-sendimage,
+#context-savepage,
+#context-savelink,
+#context-video-saveimage,
+#context-media-hidecontrols,
+#context-video-pictureinpicture,
+#context-viewsource,
+#context-bookmarklink,
+#context-copyimage-contents,
+#context-viewimageinfo,
+#context-print-selection,
 #context-forward .menu-iconic-icon,
 #context-reload .menu-iconic-icon,
 #context-stop .menu-iconic-icon,
@@ -127,6 +143,9 @@ and by default removes the tab secondary line
 #context-viewbgimage,
 #context-selectall,
 #context-pocket,
+#context_closeTabOptions,
+#context_moveTabOptions,
+#context_closeTab,
 #context_sendTabToDevice,
 #context_sendTabToDevice + menuseparator {
     display: none !important;
