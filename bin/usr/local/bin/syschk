@@ -12,11 +12,18 @@ chk() {
     test $? -eq 0 && good "$*" || bad "$*"
 }
 
-systemd_chk() {
+systemd_is_active() {
     unit=$1
     shift
     args=$@
     systemctl is-active "$unit" $args > /dev/null 2>&1; chk "$unit"
+}
+
+systemd_is_enabled() {
+    unit=$1
+    shift
+    args=$@
+    systemctl is-enabled "$unit" $args > /dev/null 2>&1; chk "$unit"
 }
 
 proc_chk() {
@@ -54,17 +61,17 @@ day_in_secs=$(echo "60 * 60 * 24" | bc)
 week_in_secs=$(echo "$day_in_secs * 7" | bc)
 month_in_secs=$(echo "$week_in_secs * 4" | bc)
 
-systemd_chk "dhcpcd"
-systemd_chk "dnscrypt-proxy"
-systemd_chk "earlyoom"
-systemd_chk "ufw"
-systemd_chk "clamav-daemon"
-systemd_chk "clamav-freshclam"
-systemd_chk "clamav-unofficial-sigs"
-systemd_chk "apparmor"
-systemd_chk "auditd"
-systemd_chk "i3autotile" --user
-systemd_chk "dimmer" --user
+systemd_is_active "dhcpcd"
+systemd_is_active "dnscrypt-proxy"
+systemd_is_active "earlyoom"
+systemd_is_active "ufw" # FIXME: does not work when ufw is inactive
+systemd_is_active "clamav-daemon"
+systemd_is_active "clamav-freshclam"
+systemd_is_enabled "clamav-unofficial-sigs"
+systemd_is_active "apparmor"
+systemd_is_active "auditd"
+systemd_is_active "i3autotile" --user
+systemd_is_active "dimmer" --user
 printf "\n"
 proc_chk "sxhkd"
 proc_chk "xidlehook"
