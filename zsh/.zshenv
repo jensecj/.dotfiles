@@ -21,6 +21,8 @@ unsetopt PROMPT_SP
 export GTAGSLABEL="ctags"
 export GTAGSCONF="$HOME/.globalrc"
 
+export GRAVEYARD="$HOME/.local/share/Trash"
+
 # tldr config
 export TLDR_COLOR_NAME="white bold"
 export TLDR_COLOR_DESCRIPTION="white bold"
@@ -37,6 +39,10 @@ export HIGHLIGHT_THEME="zenburn"
 export EXA_COLORS="da=38;5;7:*.org=38;5;184:uu=0:gu=0"
 export RANGER_LOAD_DEFAULT_RC="FALSE"
 export PIP_REQUIRE_VIRTUALENV="true"
+
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init --path)"
 
 export WINIT_X11_SCALE_FACTOR=1
 
