@@ -31,6 +31,14 @@ user_pref("intl.locale.matchOS", false);
 user_pref("javascript.use_us_english_locale", true);
 user_pref("clipboard.autocopy", false);
 user_pref("apz.gtk.kinetic_scroll.enabled", false); // dont imitate physics while scrolling
+// dont autoplay video or audio
+user_pref("media.autoplay.allow-muted", false);
+user_pref("media.autoplay.block-event.enabled", true);
+user_pref("media.autoplay.default", 5); //  [0:allow; 1:blockAudible; 5:blockAll]
+user_pref("media.autoplay.blocking_policy", 2)
+user_pref("media.autoplay.enabled.user-gestures-needed", false);
+user_pref("media.autoplay.enabled", false);
+user_pref("media.autoplay.allow-extension-background-pages", false)
 
 // privacy and telemetry
 user_pref("privacy.firstparty.isolate", true);
