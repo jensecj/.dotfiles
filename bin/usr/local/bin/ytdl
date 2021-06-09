@@ -12,5 +12,7 @@ youtube-dl -i \
            -o"%(uploader)s -- %(upload_date)s -- %(title)s.%(ext)s" \
            --no-playlist \
            --prefer-ffmpeg \
+           --add-metadata \
+           --merge-output-format mkv \
            --postprocessor-args="-threads 2" \
            ${URLS[*]}
