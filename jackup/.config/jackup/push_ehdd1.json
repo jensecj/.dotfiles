@@ -36,6 +36,12 @@
         "mounts": ["/mnt/ehdd1"]
     },
     {
+        "name": "downloads",
+        "src": "~/downloads",
+        "dest": "/mnt/ehdd1/",
+        "mounts": ["/mnt/ehdd1"]
+    },
+    {
         "name": "software",
         "src": "~/software",
         "dest": "/mnt/ehdd1/",
