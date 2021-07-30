@@ -6,7 +6,7 @@ ln $(realpath root/etc/xdg/reflector/reflector.conf) /etc/xdg/reflector/reflecto
 ln $(realpath dict/etc/dict/dictd.conf) /etc/dict/dictd.conf
 
 sudo stow -t / root # system config, /etc, /usr, etc.
-stow bin
+stow bin -t /
 stow alacritty termite zsh tmux # shell things
 stow i3 dunst compton polybar # system look and feel
 stow gnupg systemd # system utils
