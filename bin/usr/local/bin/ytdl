@@ -4,6 +4,7 @@ declare -a URLS
 for url in $@; do
     url=${url//"invidious.snopyta.org"/"youtube.com"}
     url=${url//"subscriptions.gir.st"/"youtube.com"}
+    url=${url//"yewtu.be"/"youtube.com"}
     URLS+=("$url")
 done
 
