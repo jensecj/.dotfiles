@@ -37,8 +37,6 @@ borg create \
      --compression zstd \
      --exclude-caches \
      --show-rc \
-     --filter AME \
-     --list \
      --exclude '/home/*/.config/chromium/*' \
      --exclude '/home/*/.config/Electron/*' \
      --exclude '/home/*/.config/mpv/watch_later/*' \
