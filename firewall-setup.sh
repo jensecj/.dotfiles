@@ -27,7 +27,7 @@ sed -i 's/-A ufw-before-input -p icmp --icmp-type parameter-problem -j ACCEPT/-A
 sed -i 's/-A ufw-before-input -p icmp --icmp-type echo-request -j ACCEPT/-A ufw-before-input -p icmp --icmp-type echo-request -j DROP/' /etc/ufw/before.rules
 
 # allow time synchronization
-ufw allow ntp
+ufw allow in ntp comment ntp
 
 # dont allow incoming ssh connections to this machine
 ufw allow out ssh comment ssh
