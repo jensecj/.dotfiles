@@ -1,7 +1,7 @@
-#!/bin/sh
+#!/bin/bash
 
 killall -qe "polybar"
-while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done # wait for polybars to shutdown
+while pgrep -u "$(id -ru)" -x polybar >/dev/null; do sleep 1; done # wait for polybars to shutdown
 
 MONITOR=eDP1 polybar topbar & disown
 
