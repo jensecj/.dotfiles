@@ -9,7 +9,7 @@ alias ....='cd ../../..'
 alias .....='cd ../../../..'
 alias dd="dd status=progress"
 alias cp="rsync -avz --progress"
-alias mv="rsync -avz --progress --remove-source-files"
+alias rm="echo 'use rip'"
 
 # * better defaults
 alias ls='ls --color=always --time-style="+%d-%m-%Y" --group-directories-first'
@@ -27,7 +27,7 @@ alias emacsd="emacs --no-site-file --daemon"
 
 
 # ** replacements
-alias uniq="runiq"
+alias srm=" srm -fllr"
 alias l="exa --long --group-directories-first --time-style=long-iso"
 alias ll="l --all --group"
 
@@ -71,8 +71,6 @@ alias rtor=" \rtorrent"
 
 alias py="python"
 alias qr="qrcode-terminal"
-
-alias srm=" srm -fllr"
 
 alias pdf='devour zathura'
 alias cloc="tokei"
