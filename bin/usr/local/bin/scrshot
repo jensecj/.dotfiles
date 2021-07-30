@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 while getopts "sd:" arg; do
     case ${arg} in
@@ -18,6 +18,8 @@ done
 if [ $SELECT ]; then
     read -r X Y W H G < <(slop -f "%x %y %w %h %g")
     maim "$DIR$(date +'%Y-%m-%d_%H:%M:%S')_${W}x${H}.png" -f png -u -g "$G"
+    notify-send "Screen grabbed"
 else
     maim "$DIR$(date +'%Y-%m-%d_%H:%M:%S.png')" -f png -u
+    notify-send "Screen shot"
 fi
