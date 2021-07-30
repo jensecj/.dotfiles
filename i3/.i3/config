@@ -138,7 +138,7 @@ exec --no-startup-id popterm "syschk; zsh"
 #########
 
 # class                 border  backgr. text    indic.  child_border
-client.focused          #aaaaaa #3f3f3f #F0DFAF #3f3f3f #aaaaaa
+client.focused          #dedede #3f3f3f #F0DFAF #3f3f3f #dedede
 client.focused_inactive #2f2f2f #3f3f3f #F0DFAF #3f3f3f #2f2f2f
 client.unfocused        #2f2f2f #3f3f3f #F0DFAF #3f3f3f #2f2f2f
 client.urgent           #2f2f2f #3f3f3f #F0DFAF #3f3f3f #2f2f2f
