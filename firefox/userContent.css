@@ -33,6 +33,7 @@ body {
         max-width: 900px;
         margin-left: auto;
         margin-right: auto;
+        padding: auto 10px:
     }
     #hnmain {
         width: 100% !important;
@@ -145,6 +146,10 @@ body {
     body > pre {
         font-size: 12pt;
     }
+
+    blockquote {
+        color: #457E45 !important;
+    }
 }
 
 @-moz-document domain("lore.kernel.org") {
@@ -154,7 +159,7 @@ body {
         max-width: 1000px;
     }
 
-	  *.q { color:#457E45 !important } /* quotes in mail bodies */
+	  *.q { color: #457E45 !important } /* quotes in mail bodies */
 
 	  *.add { color:#4f6f4f !important; background-color: #f5ffee !important; } /* diff added lines */
 	  *.del { color:#8c5353 !important; background-color: #fff4f4 !important; } /* diff deleted lines */
