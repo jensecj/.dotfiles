@@ -11,15 +11,13 @@ export DIFFPROG=emdiff
 
 export LANG="en_DK.UTF-8"
 
-# make gpg happy, needed for git signing from terminal
+# use gpg for git signing from terminal, ssh, etc
 export GPG_TTY=$(tty)
+export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
+gpg-connect-agent updatestartuptty /bye >/dev/null
 
 export PROMPT_EOL_MARK=''
 unsetopt PROMPT_SP
-
-# ggtags config
-export GTAGSLABEL="ctags"
-export GTAGSCONF="$HOME/.globalrc"
 
 export GRAVEYARD="$HOME/.local/share/Trash"
 
@@ -35,6 +33,8 @@ export FZF_DEFAULT_COMMAND="fd --type f --hidden --follow --exclude .git"
 export FZF_DEFAULT_OPTS="--prompt='>> '"
 # export FZF_DEFAULT_OPTS="--prompt='>> ' --bind=ctrl-bspace:backward-kill-word" # not supported yet
 
+export LEIN_JVM_OPTS="${LEIN_JVM_OPTS-"-XX:+TieredCompilation -XX:TieredStopAtLevel=1"}"
+
 export HIGHLIGHT_THEME="zenburn"
 export EXA_COLORS="da=38;5;7:*.org=38;5;184:uu=0:gu=0"
 export RANGER_LOAD_DEFAULT_RC="FALSE"
@@ -43,6 +43,8 @@ export PIP_REQUIRE_VIRTUALENV="true"
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init --path)"
+
+export DOCKER_HOST=unix://$XDG_RUNTIME_DIR/docker.sock
 
 export WINIT_X11_SCALE_FACTOR=1
 
