@@ -8,6 +8,7 @@ set $mod Mod4
 # configure border style <normal|1pixel|pixel xx|none|pixel>
 default_border pixel 1
 default_floating_border pixel 1
+floating_minimum_size 50 x 50
 
 # don't hide borders near edges of screen
 hide_edge_borders none
@@ -131,7 +132,7 @@ for_window [class="Matplotlib"] floating enable
 # STARTUP #
 ###########
 
-exec --no-startup-id popterm "syschk; zsh"
+exec --no-startup-id alacritty -e zsh -c "syschk; zsh"
 
 #########
 # THEME #
