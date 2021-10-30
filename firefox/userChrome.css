@@ -105,7 +105,21 @@ and by default removes the tab secondary line
     display: none !important;
 }
 
+#context-navigation, #context-sep-navigation {
+    display: none !important
+}
+
+#context-navigation {
+    display: none !important
+}
+
 /* hide context-menu items */
+#context-navigation,
+#context-reload,
+#context-stop,
+#context-back,
+#context-forward,
+#context-bookmarkpage,
 #context-sendvideo,
 #context-sendaudio,
 #context-sendimage,
@@ -119,11 +133,11 @@ and by default removes the tab secondary line
 #context-copyimage-contents,
 #context-viewimageinfo,
 #context-print-selection,
-#context-forward .menu-iconic-icon,
-#context-reload .menu-iconic-icon,
-#context-stop .menu-iconic-icon,
-#context-back .menu-iconic-icon,
-#context-bookmarkpage .menu-iconic-icon,
+#context-forward,
+#context-reload,
+#context-stop,
+#context-back,
+#context-bookmarkpage,
 #context-viewpartialsource-selection,
 #context-inspect-a11y,
 #PanelUI-fxa-menu-remotetabs-button,

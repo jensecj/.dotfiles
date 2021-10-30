@@ -39,6 +39,7 @@ user_pref("media.autoplay.blocking_policy", 2)
 user_pref("media.autoplay.enabled.user-gestures-needed", false);
 user_pref("media.autoplay.enabled", false);
 user_pref("media.autoplay.allow-extension-background-pages", false)
+user_pref("browser.link.open_newwindow.restriction", 0) // open popups in a new tab instead
 
 // privacy and telemetry
 user_pref("privacy.firstparty.isolate", true);
