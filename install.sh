@@ -26,25 +26,26 @@ declare -a packages=(
     dhcpcd # DHCP client for ip leasing
 
     # ** video drivers
-    xf86-video-intel
+    xf86-video-amdgpu
     mesa
 
     # ** display server, window manager, etc.
     # *** X
     xorg-server
+    xorg-xev # check keyboard inputs
+    xorg-xbacklight # display backlight
+    xorg-xgamma # display gamma correction
+    xorg-setxkbmap # keyboard config
+    xorg-xrandr # monitor config
     i3-wm # tiling window manager
     picom # screen compositor for X
     dunst # notification manager
     sxhkd # hotkey daemon for x
     xob # simple X screen bar, multiple uses, volume, brightness, etc.
     polybar # info bar / fringe for things
-    xorg-xev # check keyboard inputs
-    xorg-xbacklight # display backlight
-    xorg-xgamma # display gamma correction
-    xorg-setxkbmap # keyboard config
-    xorg-xrandr # monitor config
     xdo # do things to X windows
     xsel # work with X clipboard
+    xclip # clipboard
     unclutter # hide the X curser when idle
     slock # screen lock
     xidlehook # perform actions on idle (used with slock)
@@ -60,8 +61,8 @@ declare -a packages=(
     # mako # notification daemon
 
     # ** audio
-    pulseaudio
-    pavucontrol
+    pipewire
+    wireplumber
 
     # ** fonts
     adobe-source-code-pro-fonts # for programming
@@ -80,10 +81,9 @@ declare -a packages=(
     sudo # do things as root
     cpupower # helper for powersaving, frequency scaling, etc.
     acpi # battery info
-    smartmontools # hdd stats and control
+    #smartmontools # hdd stats and control
     gptfdisk # partition disks
-    inotify-tools # notify-send, etc.
-    ntfs-3g # ntfs support through fuse
+    libnotify inotify-tools # notify-send, etc.
     bc # scientific cli calculator
     lsof # list open files for file-descriptor
 
@@ -114,6 +114,7 @@ declare -a packages=(
     jupyter # interactive science notebooks
     docker # containerization
     podman podman-compose buildah skopeo # more containers
+    criu # snapshot processes
     diff-so-fancy # fancy git diff
     watchexec # run commands when files change
     tree-sitter # incremental language parser
@@ -142,16 +143,12 @@ declare -a packages=(
     fd # find alternative
     jq # work with json in the terminal
     tokei # count lines of code
-    xsv # work with csv in the terminal
     fdupes # find duplicate files in directories
     dua-cli # ncdu alternative
-    sd # simple find-and-replace
     just # modern make
-    runiq # fast filter for duplicate lines
     zoxide # z.sh alternative
     tree # list files in tree-view
     openssh
-    # openvpn
     # knockd # port-knocker
     # mosh # ssh-replacement, with persistent connections
 
@@ -160,12 +157,9 @@ declare -a packages=(
     ffmpeg # working with video/audio
     ffmpegthumbnailer # create video thumbnails
     brightnessctl # easy brightness controls
-    task-spooler # queue tasks to be completed sequentially
-    wikiman # docs from man-pages, arch-wiki, etc.
     tldr # quick shell examples for most commands
-    progress # cmd monitor (progress/throughput/eta/etc.) for processes (e.g. gzip, cp, mv)
     borg # incremental, encrypted backups
-    gocryptfs # encrypted mount points
+    gocryptfs # encrypted storage
     rtorrent # torrenting
     texlive-bin # latex
     texlive-core
@@ -190,29 +184,25 @@ declare -a packages=(
     plantuml # create UML diagrams from ascii
     rsstail # tail for rss-feeds
     # hexyl # cat, but spits out hex
-    lynis # hardening
     autorandr # automatic xrandr
-    qrencode # turn strings into qr codes
-    secure-delete # securely delete files
-    hashdeep # hash all files in a directory recursively
     xmeasure # screen ruler
     xcolor # color picker
 
     # ** system information
-    lshw # print hardware information (like other ls* tools)
+    #lshw # print hardware information (like other ls* tools)
     htop # process manager
     iotop # I/O monitor
     bandwhich # network monitor
     iftop # network monitor
+    powertop # power consumption
 
     # ** misc
-    youtube-dl # for downloading video/sound from the internet
+    yt-dlp # for downloading video/sound from the internet
     ranger-git # ncurses file explorer
     ueberzug # show images in the terminal
     redshift # screen dimmer / blue light reducer
     rofi # app menu / dmenu clone
     # anki # flashcards
-    peerflix # streaming torrents
     # calibre # ebook manager
     mpv # video player
     moc wavpack libmpcdec taglib faad2 # music player, and codex etc.
@@ -222,7 +212,6 @@ declare -a packages=(
     zathura-djvu zathura-ps # djvu and postscript backends for zathura
     pdftk # toolkit for manipulating pdfs, merging, splitting, etc.
     feh # image viewer
-    sxiv # image / gif viewer
     # chafa # cat images/gifs in terminal
     slop # select region on screen and output to stdout
     maim # take screen shots/grabs
@@ -244,7 +233,6 @@ declare -a packages=(
     msmtp # smtp client/server
     msmtp-mta # setup sendmail to use msmtp
     notmuch # cli mail client
-    # s-nail
 
     # ** browsers
     links # cli browser
