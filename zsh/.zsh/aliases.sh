@@ -177,13 +177,12 @@ myip() {
     fi
 
     if [[ $show_local -gt 0 ]]; then
-        local local_ip=$(ifconfig wlp3s0 | grep inet | sed -n 1p | awk '{print $2}');
+        local local_ip=$(ip a show wlan0 | grep inet | sed -n 1p | awk '{print $2}');
         echo "local: $local_ip";
     fi
 
     if [[ $show_public -gt 0 ]]; then
-        # local public_ip=$(curl ipinfo.io &> /dev/null | sed -n 2p | sed 's/\"//g' | sed 's/\,//g' | awk '{print $2}');
-        local public_ip=$(dig +short myip.opendns.com @resolver1.opendns.com)
+        local public_ip=$(dog +short myip.opendns.com @resolver1.opendns.com | tail -n 1 | cut -d' ' -f 14)
         echo "public: $public_ip";
     fi
 }
