@@ -1,41 +1,42 @@
-# * system
-# ** brightness
+# BRIGHTNESS
 XF86MonBrightnessUp
-    backlightctl intel_backlight 5%+
+    backlightctl amdgpu_bl0 5%+
 
 shift + XF86MonBrightnessUp
-    backlightctl intel_backlight 1%+
+    backlightctl amdgpu_bl0 1%+
 
 XF86MonBrightnessDown
-    backlightctl intel_backlight 5%-
+    backlightctl amdgpu_bl0 5%-
 
 shift + XF86MonBrightnessDown
-    backlightctl intel_backlight 1%-
+    backlightctl amdgpu_bl0 1%-
 
 ctrl + XF86MonBrightnessUp
-    backlightctl ddcci5 +5%
+    backlightctl ddcci5 5%+
 
 ctrl + XF86MonBrightnessDown
     backlightctl ddcci5 5%-
 
-# ** audio
+# AUDIO
 XF86AudioRaiseVolume
-    volctl -d pulse -s Master -v 2
+    volumectl +2%
 
 XF86AudioLowerVolume
-    volctl -d pulse -s Master -v -2
+    volumectl -2%
 
 XF86AudioMute
-    volctl -d pulse -s Master -v toggle
+    volumectl toggle
 
-# ** screenshotting
+# SHORTCUTS
+
+super + l
+    slock
+
 @super + Print
     scrshot -d "~/private/screenshots/"
 
 @super + shift + Print
     scrshot -s -d "~/private/screenshots/"
-
-# * shortcuts
 
 super + Return
     $TERMINAL -e tmux
@@ -76,17 +77,10 @@ super + y
 ctrl + super + y
     myt $(xsel -o)
 
-
-# * misc
 super + shift + g
     autorandr -c && sleep .2 && dimmer
 
-super + l
-    slock
-
-# * polybar
-# ** restart polybar
 super + shift + p
-    polybar-setup; notify-send 'Restarted polybar'
+    polybar-setup; xob-setup; notify-send 'Restarted polybar/xob'
 
 
