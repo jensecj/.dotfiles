@@ -4,17 +4,21 @@ BUILD_DIR=$(pwd)/build
 (
     cd emacs/ || exit 2
 
-    ./configure \
-     --prefix="$BUILD_DIR" \
-     --exec-prefix="$BUILD_DIR" \
-     --without-sound \
-     --with-cairo \
-     --with-harfbuzz \
-     --with-native-compilation \
-     --with-modules \
-     --with-pdumper=yes \
-     --with-imagemagick \
-     --with-json \
-     --without-pop \
-     --without-mailutils
+    time ./configure \
+         --prefix="$BUILD_DIR" \
+         --exec-prefix="$BUILD_DIR" \
+         --without-sound \
+         --with-cairo \
+         --with-harfbuzz \
+         --with-native-compilation \
+         --with-modules \
+         --with-pdumper=yes \
+         --with-imagemagick \
+         --with-json \
+         --without-pop \
+         --without-mailutils
+
+    printf "======================"
+    printf "\n%s\n" "configuration complete"
+    printf "======================"
 )
