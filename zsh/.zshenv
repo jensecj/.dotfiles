@@ -59,11 +59,7 @@ export TIMEFMT=''$'\n%J'$'\n%U user | %S system | %P cpu | %*Es total'$'\n'\
 'major page faults (disk):   %F'$'\n'\
 'minor page faults:          %R'
 
-# add things to PATH
-paths=("$DOTFILESHOME/bin"
-       "$HOME/.cargo/bin"
-       "$HOME/.roswell/bin")
-
+paths=("$HOME/.local/bin")
 for p in $paths; do
     export PATH=${PATH}:${p}
 done
