@@ -161,22 +161,6 @@ lnk() {
     fi
 }
 
-freejob() {
-    jobid=$(jobs -l | fzf | cut -d' ' -f1 | tr -d '[]')
-
-    if [ $jobid -gt 0 ]; then
-        bg "%$jobid"
-        disown "%$jobid"
-    fi
-}
-
-rot90() {
-    [ $# -gt 0 ] || return 1
-    for img in $@; do
-        convert $img -rotate 90 $img
-    done
-}
-
 myip() {
     local arg=$1
 
@@ -203,9 +187,6 @@ myip() {
         echo "public: $public_ip";
     fi
 }
-
-# run everything in docker?
-# https://github.com/jessfraz/dotfiles/blob/master/.dockerfunc
 
 video2webm () {
     local bitrate=$1;
@@ -239,15 +220,4 @@ ffmpegnorm() {
         ffmpeg -i "$FILE" -ac 1 "$MONO_FILE"
         ffmpeg-normalize "$MONO_FILE" -o "$NORM_FILE" -c:a aac
     done
-}
-
-tarencrypt() {
-    local archive=$1
-    shift
-    tar czvpf - $@ | gpg --symmetric --cipher-algo aes256 -o $archive.tar.gz.gpg
-}
-
-tardecrypt() {
-    local archive=$1
-    gpg -d $archive | tar xzvf -
 }
