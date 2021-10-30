@@ -5,6 +5,8 @@ pieces.hash.on_completion.set = yes
 network.port_range.set = 62807-62807
 network.port_random.set = no
 
+throttle.global_up.max_rate.set_kb = 5
+
 # use encryption when available
 protocol.encryption.set = allow_incoming,try_outgoing,enable_retry
 
