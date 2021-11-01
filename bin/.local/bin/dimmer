@@ -31,12 +31,12 @@ calculate_dim_value() {
         03) DIM=$MIN;;
         04) DIM=$MIN;;
         05) DIM=$MIN;;
-        06) DIM=$((MIN+2000));;
-        07) DIM=$((MIN+2800));;
-        08) DIM=$((MIN+2800));;
-        09) DIM=$((MIN+3000));;
-        10) DIM=$((MIN+3500));;
-        11) DIM=$((MIN+3700));;
+        06) DIM=$((MIN+1600));;
+        07) DIM=$((MIN+1900));;
+        08) DIM=$((MIN+2200));;
+        09) DIM=$((MIN+2700));;
+        10) DIM=$((MIN+3000));;
+        11) DIM=$((MIN+3500));;
         12) DIM=$MAX;;
         13) DIM=$MAX;;
         14) DIM=$MAX;;
@@ -44,10 +44,10 @@ calculate_dim_value() {
         16) DIM=$MAX;;
         17) DIM=$((MAX-500));;
         18) DIM=$((MAX-1000));;
-        19) DIM=$((MAX-1400));;
-        20) DIM=$((MAX-1700));;
-        21) DIM=$((MAX-2000));;
-        22) DIM=$((MAX-2900));;
+        19) DIM=$((MAX-1800));;
+        20) DIM=$((MAX-2300));;
+        21) DIM=$((MAX-2700));;
+        22) DIM=$((MAX-3200));;
         23) DIM=$MIN;;
     esac
 }
