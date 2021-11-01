@@ -1,6 +1,0 @@
-[Unit]
-Description=Notify on low space in /tmp
-Wants=lowtmp.timer
-
-[Service]
-ExecStart=/usr/local/bin/lowtmp
