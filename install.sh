@@ -256,17 +256,15 @@ declare -a packages=(
 
     # *** python
     python python-pip python-setuptools
-    python-virtualenv # virtual environments
     pyenv # version management
+    python-virtualenv # virtual environments
+    python-numpy python-sympy python-scipy python-networkx python-pandas python-matplotlib
     python-black # code formatter
     python-pylint # linter
     python-pydocstyle # linting for docstrings
     python-pycodestyle # linting for codestyle
     flake8 # linter
     bandit # security linter
-    python-tox # testing and building
-    python-poetry # dependency management
-    pypy3 pypy3-pip pypy3-setuptools
     mypy # type checking
 
     # *** c++
