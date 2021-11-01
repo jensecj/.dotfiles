@@ -44,8 +44,7 @@ declare -a packages=(
     xob # simple X screen bar, multiple uses, volume, brightness, etc.
     polybar # info bar / fringe for things
     xdo # do things to X windows
-    xsel # work with X clipboard
-    xclip # clipboard
+    xclip xsel # work with X clipboard
     unclutter # hide the X curser when idle
     slock # screen lock
     xidlehook # perform actions on idle (used with slock)
@@ -62,6 +61,7 @@ declare -a packages=(
 
     # ** audio
     pipewire
+    pipewire-pulse
     wireplumber
 
     # ** fonts
@@ -148,7 +148,7 @@ declare -a packages=(
     just # modern make
     zoxide # z.sh alternative
     tree # list files in tree-view
-    openssh
+    openssh openssh-askpass
     # knockd # port-knocker
     # mosh # ssh-replacement, with persistent connections
 
