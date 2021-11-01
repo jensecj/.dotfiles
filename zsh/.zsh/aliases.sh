@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# ** common shortcuts
+# * common shortcuts
 alias sudo='\sudo -E '
 alias _='\sudo -E '
 alias ..='cd ..'
@@ -11,10 +11,11 @@ alias dd="dd status=progress"
 alias cp="rsync -avz --progress"
 alias rm="echo 'use rip'"
 
+
 # * better defaults
 alias ls='ls --color=always --time-style="+%d-%m-%Y" --group-directories-first'
-#alias l="ls -gholXN"
-#alias ll="ls -agholXN"
+alias l="ls -gholXN"
+alias ll="ls -agholXN"
 
 alias free="free -h" # show sizes in a human readable format
 alias grep='grep --color=always' # use colors in grep
@@ -25,15 +26,17 @@ alias bc="bc -ql" # be quiet, and load floating-point math and stdlib
 alias ssh-add="ssh-add -t 1h" # 1-hour default timeout for cached ssh keys
 alias emacsd="emacs --no-site-file --daemon"
 
+# alias escape="tr -cd '[:print:]'" # TODO: fix this, does not work
 
-# ** replacements
-alias srm=" srm -fllr"
+# * replacements
 alias l="exa --long --group-directories-first --time-style=long-iso"
 alias ll="l --all --group"
+
 
 # * package manager
 alias pac='yay'                          # aur helper
 alias pacu='pac -Syu --combinedupgrade'  # update all packages
+# alias pacu='pac -Syu --upgrademenu'  # update all packages
 alias pacrm='pac -Rns'                   # remove a package
 alias pacss='pac -Ss'                    # search for a package
 alias pacs='pac -S'                      # install a package
@@ -47,16 +50,15 @@ paci() {
     print -z $pkg
 }
 
-# * youtube-dl
 
+# * youtube-dl
 alias ytdlp='ytdl --yes-playlist'
-alias ytarc="ytdl --write-description --all-subs --embed-subs --add-metadata" # --embed-thumbnail does not work with .mkv yet
+alias ytarc="ytdl --write-description --all-subs --embed-subs --add-metadata --embed-thumbnail"
 alias ytdlnr='ytdl -o"%(autonumber)s -- %(uploader)s -- %(upload_date)s -- %(title)s.%(ext)s"'
 alias ytmp3='youtube-dl -f "bestaudio" -x --audio-format mp3 -o"%(uploader)s -- %(title)s.%(ext)s"'
 
 
 # * applications
-
 alias mpv="devour mpv"
 alias feh="devour feh --conversion-timeout 1"
 
@@ -66,7 +68,6 @@ alias fd="\fd --type d"
 
 alias pf=" devour peerflix --start --mpv"
 
-alias rtorrent=" rtorrent"
 alias rtor=" \rtorrent"
 
 alias py="python"
@@ -75,11 +76,11 @@ alias qr="qrcode-terminal"
 alias pdf='devour zathura'
 alias cloc="tokei"
 
-# ** misc
-
+# * misc
 alias drop_cache="sudo sync; sudo sysctl -w vm.drop_caches=3"
 alias mount_ramdisk="_ mount -t tmpfs -o size=1024m tmpfs /mnt/ramdisk"
 alias umount_ramdisk="_ umount /mnt/ramdisk"
+
 
 # * fzf functions
 fzf-cd() {
@@ -112,15 +113,16 @@ fzf-urls() {
         | xsel -i
 }
 
-# * extra functions
 
-# figure out which terminal emulator we're inside of
-# echo $TERM does not always work, because sometimes term lies
+# * extra functions
 whichterm() {
+    # figure out which terminal emulator we're inside of
+    # echo $TERM does not always work, because sometimes term lies
     ps -p $PPID | awk '{print $4}' | sed -n '2p'
 }
-# same goes for a shell
+
 whichshell() {
+    # figure out which shell we're running
     ps -p "$$" | awk '{print $4}' | sed -n '2p'
 }
 
@@ -133,6 +135,7 @@ bu() {
         cp "$f" "$BAK"
     done
 }
+
 mvbu() {
     for f in "$@"; do
         BAK="$f.bak"
@@ -142,10 +145,8 @@ mvbu() {
         mv "$f" "$BAK"
     done
 }
+
 mcd() { mkdir -p "$1"; cd "$1" || exit 1; }
-del() {
-    mv '$@' ~/.local/share/Trash/files/
-}
 
 lnk() {
     [ $# -gt 1 ] || return 1
@@ -159,64 +160,4 @@ lnk() {
     else
         ln -s "$src" "$dst"
     fi
-}
-
-myip() {
-    local arg=$1
-
-    local show_local=0
-    local show_public=0
-
-    if [[ $arg == "local" ]]; then
-        show_local=1
-    elif [[ $arg == "public" ]]; then
-        show_public=1
-    else
-        show_local=1
-        show_public=1
-    fi
-
-    if [[ $show_local -gt 0 ]]; then
-        local local_ip=$(ip a show wlan0 | grep inet | sed -n 1p | awk '{print $2}');
-        echo "local: $local_ip";
-    fi
-
-    if [[ $show_public -gt 0 ]]; then
-        local public_ip=$(dog +short myip.opendns.com @resolver1.opendns.com | tail -n 1 | cut -d' ' -f 14)
-        echo "public: $public_ip";
-    fi
-}
-
-video2webm () {
-    local bitrate=$1;
-    shift;
-    for file in "$@"; do
-        local out="${file%.*}.webm";
-
-        ffmpeg -y -i "$file" -c:v libvpx-vp9 -b:v "$bitrate" -pass 1 -speed 4 \
-               -c:a libopus -f webm /dev/null -async 1 -vsync passthrough
-        ffmpeg -i "$file" -c:v libvpx-vp9 -b:v "$bitrate" -pass 2 -speed 1 -c:a \
-               libopus "$out" -async 1 -vsync passthrough;
-    done;
-}
-
-ffmpegnorm() {
-    if [ -z "$1" ]; then
-        echo "usage: ffmpegnorm [FILE(s)]"
-        return 1
-    fi
-
-    for file in "$@"
-    do
-        echo "$file"
-
-        FILE="$file"
-        FILENAME=${FILE%.*}
-        EXT=${FILE##*.}
-
-        MONO_FILE="$FILENAME.mono.$EXT"
-        NORM_FILE="$FILENAME.norm.$EXT"
-        ffmpeg -i "$FILE" -ac 1 "$MONO_FILE"
-        ffmpeg-normalize "$MONO_FILE" -o "$NORM_FILE" -c:a aac
-    done
 }
