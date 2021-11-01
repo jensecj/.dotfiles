@@ -13,7 +13,6 @@ reload() {
         [[ -w "$b" ]] || mkfifo "$b"
         tail -f "$b" | xob -s "$BAR" > /dev/null & disown
     done
-
 }
 
 SETUP=$(autorandr | grep detected | cut -d' ' -f1)
