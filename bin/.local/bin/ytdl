@@ -8,12 +8,13 @@ for url in $@; do
     URLS+=("$url")
 done
 
-youtube-dl -i \
-           -f "bestvideo[height<=?1440]+bestaudio/best" \
+yt-dlp -i \
+           -f "bestvideo[height<=1440]+bestaudio/best[height<=1440]/best" \
            -o"%(uploader)s -- %(upload_date)s -- %(title)s.%(ext)s" \
            --no-playlist \
            --prefer-ffmpeg \
            --add-metadata \
            --merge-output-format mkv \
-           --postprocessor-args="-threads 2" \
+           --postprocessor-args="ffmpeg:-threads 2" \
            ${URLS[*]}
+           # --sponsorblock-remove all \
