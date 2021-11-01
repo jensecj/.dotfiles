@@ -1,0 +1,29 @@
+#!/bin/sh
+
+VOL=$1
+
+if [ ! $VOL ]; then
+    echo "usage: volumectl <command>"
+    exit 1
+fi
+
+if [ "$VOL" = "toggle" ]; then
+    pactl set-sink-mute @DEFAULT_SINK@ toggle
+elif [ -n "$VOL" ]; then
+    pactl set-sink-volume @DEFAULT_SINK@ "$VOL"
+fi
+
+volume=$(pactl get-sink-volume @DEFAULT_SINK@ | grep --color=never -E '[0-9]+%' --only-matching | head -n 1 | tr -d '%')
+
+if pactl get-sink-mute @DEFAULT_SINK@ | grep -qi 'yes'; then
+    muted="!"
+else
+    muted=""
+fi
+
+PIPE="/tmp/xob-volume"
+if [ ! -w $PIPE ]; then
+    mkfifo $PIPE
+fi
+
+echo "$volume$muted" > $PIPE
