@@ -57,21 +57,17 @@ file_age_chk() {
     fi
 }
 
-day_in_secs=$(echo "60 * 60 * 24" | bc)
-week_in_secs=$(echo "$day_in_secs * 7" | bc)
-month_in_secs=$(echo "$week_in_secs * 4" | bc)
-
 systemd_is_active "dhcpcd"
 systemd_is_active "dnscrypt-proxy"
 systemd_is_active "earlyoom"
 systemd_is_active "ufw" # FIXME: does not work when ufw is inactive
+systemd_is_active "tailscaled"
 systemd_is_active "clamav-daemon"
 systemd_is_active "clamav-freshclam"
 systemd_is_enabled "clamav-unofficial-sigs"
 systemd_is_active "apparmor"
 systemd_is_active "auditd"
 systemd_is_active "i3autotile" --user
-systemd_is_active "dimmer" --user
 printf "\n"
 proc_chk "sxhkd"
 proc_chk "xidlehook"
@@ -79,11 +75,12 @@ proc_chk "xob"
 proc_chk "psi-notify"
 proc_chk "polybar"
 proc_chk "dunst"
-proc_chk "tincd"
+# proc_chk "tincd"
 proc_chk "unclutter"
-proc_chk "autocutsel"
+# proc_chk "autocutsel"
 proc_chk "picom"
 proc_chk "dunst"
+proc_chk "dimmer"
 
 printf "\n\n"
 
@@ -97,10 +94,10 @@ else
     bad "dnscrypt config not found"
 fi
 
-local_ip=$(ip -4 -br a | grep wlp3s0 | awk '{print $3}');
+local_ip=$(ip a show wlan0 | grep inet | sed -n 1p | awk '{print $2}');
 echo "local ip: $local_ip"
 
-public_ip=$(dig +timeout=5 +short myip.opendns.com @resolver1.opendns.com 2> /dev/null)
+public_ip=$(dog +short myip.opendns.com @resolver1.opendns.com | tail -n 1 | cut -d' ' -f 14)
 if [ -n "$public_ip" ]; then
     echo "public ip: $public_ip";
 else
@@ -115,8 +112,15 @@ else
     good "Xorg is running rootless"
 fi
 
+echo
+
 mount_chk "$HOME/.private" "$HOME/private" "mounted ~/private"
 mount_chk "$HOME/.vault"   "$HOME/vault"   "mounted ~/vault"
+mount_chk "$HOME/.mail"    "$HOME/mail"    "mounted ~/mail"
 mount_chk "$HOME/.repo"    "$HOME/repo"    "mounted ~/repo"
 
-file_age_chk "/etc/hosts" $month_in_secs
+echo
+
+day_in_secs=$(echo "60 * 60 * 24" | bc)
+file_age_chk "/etc/hosts" $(echo "$day_in_secs * 30" | bc)
+file_age_chk "$HOME/.snapshots/bulk" $(echo "$day_in_secs * 2" | bc)
