@@ -65,6 +65,12 @@ super + shift + b
 super + Home
     em "~/vault/inbox/today.org" -
 
+super + F11
+    dunstctl close
+
+super + F12
+    dunstctl history-pop
+
 super + d
     rofi -show run
 
