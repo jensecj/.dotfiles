@@ -1,5 +1,0 @@
-#!/bin/sh
-sleep .2
-dimmer &
-polybar-setup &
-xob-setup &
