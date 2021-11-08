@@ -21,7 +21,7 @@ fi
 brightnessctl -d "$DEVICE" s "$CHANGE" > /dev/null
 BRIGHTNESS=$(brightnessctl -d "$DEVICE" | grep -oE "[0-9]+%" | tr -d '%')
 
-PIPE="/tmp/xob-backlight"
+PIPE="/tmp/backlight-overlay"
 if [ ! -w $PIPE ]; then
     mkfifo $PIPE
 fi

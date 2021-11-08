@@ -15,15 +15,13 @@ fi
 
 volume=$(pactl get-sink-volume @DEFAULT_SINK@ | grep --color=never -E '[0-9]+%' --only-matching | head -n 1 | tr -d '%')
 
-if pactl get-sink-mute @DEFAULT_SINK@ | grep -qi 'yes'; then
-    muted="!"
-else
-    muted=""
-fi
-
-PIPE="/tmp/xob-volume"
+PIPE="/tmp/volume-overlay"
 if [ ! -w $PIPE ]; then
     mkfifo $PIPE
 fi
 
-echo "$volume$muted" > $PIPE
+if pactl get-sink-mute @DEFAULT_SINK@ | grep -qi 'yes'; then
+    echo "0" > $PIPE
+else
+    echo "$volume" > $PIPE
+fi
