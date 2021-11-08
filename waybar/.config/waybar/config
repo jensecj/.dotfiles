@@ -1,0 +1,93 @@
+// -*- mode: json -*-
+  {
+  "height": 15,
+  "spacing": 25,
+
+  "modules-left": ["sway/workspaces", "sway/mode"],
+  "modules-center": ["pulseaudio", "custom/freespace", "cpu", "memory", "battery", "clock", "custom/wifiicon", "custom/temps"],
+  "modules-right": ["custom/daemons", "custom/mounts"],
+
+  "custom/freespace": {
+    "exec": "freespace",
+    "format": "<span color='#878777'></span> {}",
+    "restart-interval": 61,
+    "tooltip": false
+  },
+
+  "custom/mounts": {
+    "exec": "mounts",
+    "format": "<span color='#878777'></span> {}",
+    "restart-interval": 61,
+    "tooltip": false
+  },
+
+  "custom/daemons": {
+    "exec": "daemons",
+    "format": "<span color='#878777'>δ</span> {}",
+    "restart-interval": 61,
+    "escape": true,
+    "tooltip": false
+  },
+
+  "custom/wifiicon": {
+    "exec": "wifiicon",
+    "format": "<span color='#878777'>{}</span>",
+    "restart-interval": 21,
+    "tooltip": false
+  },
+
+  "custom/temps": {
+    "exec": "temps",
+    "format": "<span color='#878777'>{}</span>",
+    "restart-interval": 1,
+    "tooltip": false
+  },
+
+  "sway/workspaces": {
+    // "height": 15,
+    "tooltip": false
+  },
+
+  "sway/mode": {
+    "format": "{}"
+  },
+
+  "tray": {
+    // "icon-size": 10,
+    "spacing": 10
+  },
+
+  "clock": {
+    "format": "<span color='#878777'></span> {:%Y-%m-%d %H:%M}",
+    "interval": 5,
+    "tooltip": false
+  },
+
+  "cpu": {
+    "format": "<span color='#878777'>λ</span> {usage:2}",
+    "tooltip": false
+  },
+
+  "memory": {
+    "format": "<span color='#878777'>Σ</span> {:2}",
+    "tooltip": false
+  },
+
+  "battery": {
+    "states": {
+      "warning": 30,
+      "critical": 15
+    },
+    "format":          "<span color='#878777'></span> {capacity}-",
+    "format-charging": "<span color='#878777'></span> {capacity}+",
+    "format-plugged":  "<span color='#878777'></span> {capacity}+",
+  },
+
+  "pulseaudio": {
+    "format":       "<span color='#878777'></span> {volume:2}",
+    "format-muted": "<span color='#878777'> </span>",
+    "format-bluetooth":       "<span color='#878777'> </span> {volume:2}",
+    "format-bluetooth-muted": "<span color='#878777'>  </span>",
+    "tooltip": false
+  },
+}
