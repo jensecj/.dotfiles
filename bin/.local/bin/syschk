@@ -59,30 +59,30 @@ file_age_chk() {
 
 systemd_is_active "dhcpcd"
 systemd_is_active "dnscrypt-proxy"
-systemd_is_active "earlyoom"
-systemd_is_active "ufw" # FIXME: does not work when ufw is inactive
 systemd_is_active "tailscaled"
+systemd_is_active "ufw" # FIXME: does not work when ufw is inactive
+systemd_is_active "earlyoom"
 systemd_is_active "clamav-daemon"
 systemd_is_active "clamav-freshclam"
 systemd_is_enabled "clamav-unofficial-sigs"
-systemd_is_active "apparmor"
 systemd_is_active "auditd"
-systemd_is_active "i3autotile" --user
-printf "\n"
-proc_chk "sxhkd"
-proc_chk "xidlehook"
-proc_chk "xob"
-proc_chk "psi-notify"
-proc_chk "polybar"
-proc_chk "dunst"
-# proc_chk "tincd"
-proc_chk "unclutter"
-# proc_chk "autocutsel"
-proc_chk "picom"
-proc_chk "dunst"
-proc_chk "dimmer"
+systemd_is_active "usbguard"
+systemd_is_active "apparmor"
 
-printf "\n\n"
+printf "\n"
+
+proc_chk "sway"
+proc_chk "swayidle"
+proc_chk "persway"
+proc_chk "waybar"
+proc_chk "wob"
+proc_chk "psi-notify"
+# proc_chk "tincd"
+# proc_chk "dunst" # is activated on-demand by dbus, hard to check
+proc_chk "gammastep"
+proc_chk "kanshi"
+
+printf "\n"
 
 local_dns=$(cat "/etc/resolv.conf" | grep ^nameserver | cut -d' ' -f2 | xargs)
 echo "dns: $local_dns"
@@ -104,15 +104,7 @@ else
     echo "public ip not found"
 fi
 
-printf "\n\n"
-
-if ps -o user $(pgrep Xorg) | grep "root"; then
-    bad "Xorg is running as root"
-else
-    good "Xorg is running rootless"
-fi
-
-echo
+printf "\n"
 
 mount_chk "$HOME/.private" "$HOME/private" "mounted ~/private"
 mount_chk "$HOME/.vault"   "$HOME/vault"   "mounted ~/vault"
