@@ -15,11 +15,15 @@ while getopts "sd:" arg; do
     esac
 done
 
+if [ ! -d $DIR ]; then
+    notify-send "$DIR does not exist"
+    exit 1
+fi
+
 if [ $SELECT ]; then
-    read -r X Y W H G < <(slop -f "%x %y %w %h %g")
-    maim "$DIR$(date +'%Y-%m-%d_%H:%M:%S')_${W}x${H}.png" -f png -u -g "$G"
+    grim -g "$(slurp)" "$DIR$(date +'%Y-%m-%d_%H:%M:%S').png"
     notify-send "Screen grabbed"
 else
-    maim "$DIR$(date +'%Y-%m-%d_%H:%M:%S.png')" -f png -u
+    grim "$DIR$(date +'%Y-%m-%d_%H:%M:%S').png"
     notify-send "Screen shot"
 fi
