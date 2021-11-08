@@ -6,12 +6,12 @@ msg.info("v0.1 loaded")
 -- * helpers
 
 local function set_clipboard(text)
-   mp.commandv("run", "/bin/bash", "-c", "printf '"..text.."' | xsel --clipboard");
+   mp.commandv("run", "/bin/bash", "-c", "printf '"..text.."' | wl-copy");
 end
 
 local function get_clipboard()
    -- local args = { 'xclip', '-selection', 'clipboard', '-out' }
-   local args = { 'xsel', "--clipboard", "-o" }
+   local args = { 'wl-paste' }
    return utils.subprocess({ args = args, cancellable = false }).stdout
 end
 
