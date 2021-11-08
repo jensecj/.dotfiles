@@ -47,8 +47,6 @@ window#waybar.hidden {
 #cpu,
 #memory,
 #custom-freespace,
-#custom-daemons,
-/* #custom-mounts */
 #custom-wifiicon,
 #temperature,
 #backlight,
@@ -58,6 +56,11 @@ window#waybar.hidden {
 #mode
 {
     padding: 0 30px;
+}
+
+#custom-daemons,
+#custom-mounts {
+    padding-left: 30px;
 }
 
 #window,
