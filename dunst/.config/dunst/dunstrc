@@ -1,5 +1,6 @@
 [global]
 monitor = 0
+layer = overlay
 
 # width x number of notifications - padding + padding
 geometry = "300x30-2+17"
