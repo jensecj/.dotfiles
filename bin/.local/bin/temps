@@ -1,7 +1,7 @@
 #!/bin/sh
 
-SENSOR_READOUT=$(sensors -j)
-CORE1=$(echo "$SENSOR_READOUT" | jq '.["coretemp-isa-0000"] | .["Core 0"] | .temp2_input')
-CORE2=$(echo "$SENSOR_READOUT" | jq '.["coretemp-isa-0000"] | .["Core 1"] | .temp3_input')
+CPU=$(cat /sys/class/hwmon/hwmon4/temp1_input); CPU=$(echo "$CPU/1000" | bc)
+GPU=$(cat /sys/class/hwmon/hwmon5/temp1_input); GPU=$(echo "$GPU/1000" | bc)
+FAN=$(cat /sys/class/hwmon/hwmon4/fan1_input)
 
-echo "$CORE1° $CORE2°"
+echo "$CPU° $GPU° $FAN"
