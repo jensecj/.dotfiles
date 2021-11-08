@@ -1,11 +1,10 @@
 #!/bin/bash
 
 # first install an AUR helper so we can grab packages from aur
-AURHELPER=yay # or trizen, bauerbill, etc.
-pacman -S $AURHELPER
+AURHELPER=yay
 
 # * system packages
-declare -a packages=(
+packages=(
     # ** boot
     efibootmgr
     grub
@@ -30,34 +29,19 @@ declare -a packages=(
     mesa
 
     # ** display server, window manager, etc.
-    # *** X
-    xorg-server
-    xorg-xev # check keyboard inputs
-    xorg-xbacklight # display backlight
-    xorg-xgamma # display gamma correction
-    xorg-setxkbmap # keyboard config
-    xorg-xrandr # monitor config
-    i3-wm # tiling window manager
-    picom # screen compositor for X
-    dunst # notification manager
-    sxhkd # hotkey daemon for x
-    xob # simple X screen bar, multiple uses, volume, brightness, etc.
-    polybar # info bar / fringe for things
-    xdo # do things to X windows
-    xclip xsel # work with X clipboard
-    unclutter # hide the X curser when idle
-    slock # screen lock
-    xidlehook # perform actions on idle (used with slock)
-    autocutsel # for synching clipboards
-    # *** wayland
-    # wlroots wayland
-    # xorg-server-xwayland # X for wayland
-    # sway # window manager, i3 drop-in replacement
-    # swaylock # screen locker
-    # swayidle # idle trigger
-    # swaybg # wallpaper manager
-    # waybar # status bar
-    # mako # notification daemon
+    wayland xorg-xwayland
+    sway # window manager, i3 drop-in replacement
+    swayidle # idle trigger
+    waylock # screen locker
+    waybar # status bar
+    persway # sway ipc daemon for auto-tiling
+    wallutils # utils for monitors and wallpapers
+    kanshi # autorandr for wayland
+    gammastep # redshift display
+    wl-clipboard # copy/paste in terminals
+    slurp # select region
+    grim # grab image from screen using region
+    imv freeimage libpng libjpeg-turbo librsvg libnsgif # image viewer and backends
 
     # ** audio
     pipewire
@@ -81,11 +65,14 @@ declare -a packages=(
     sudo # do things as root
     cpupower # helper for powersaving, frequency scaling, etc.
     acpi # battery info
+    hdparm # hdd info
     #smartmontools # hdd stats and control
-    gptfdisk # partition disks
-    libnotify inotify-tools # notify-send, etc.
+    libnotify # notify-send, etc.
+    inotify-tools # file watching
     bc # scientific cli calculator
     lsof # list open files for file-descriptor
+    at # dispatch tasks to run sometime in the future
+    dunst # notification manager
 
     # ** file system
     mergerfs # fuse union filesystem
@@ -98,7 +85,6 @@ declare -a packages=(
     apparmor # MAC system as a linux sec. module
     audit # kernel logging - for building apparmor profiles
     usbguard # control which usb devices are allowed
-    firejail # app sandboxing
     bubblewrap-suid # app sandboxing
     dnscrypt-proxy # for running encrypted dnslookups
     ufw # firewall
@@ -112,7 +98,7 @@ declare -a packages=(
     hyperfine # command-line benchmarking
     git # git and the github wrapper
     jupyter # interactive science notebooks
-    docker # containerization
+    docker docker-rootless-extras-bin # containerization
     podman podman-compose buildah skopeo # more containers
     criu # snapshot processes
     diff-so-fancy # fancy git diff
@@ -133,7 +119,7 @@ declare -a packages=(
     wireguard-tools
 
     # ** system tools
-    gnupg
+    gnupg age minisign # crypto
     stow # symlink manager
     pass # password manager
     ripgrep # fast grep alternative
@@ -143,7 +129,7 @@ declare -a packages=(
     fd # find alternative
     jq # work with json in the terminal
     tokei # count lines of code
-    fdupes # find duplicate files in directories
+    fdupes fclones # find duplicate files in directories
     dua-cli # ncdu alternative
     just # modern make
     zoxide # z.sh alternative
@@ -174,22 +160,14 @@ declare -a packages=(
     gnuplot # plotting
     gucharmap # explore font glyphs
     downgrade # for downgrading packages to a version in cache
-    # lsyncd # "real-time" directory synchronization
     ddrescue # disk recovery
     udiskie # automounting removable disks
     # httpie # simple http client for the terminal
     fzf # fuzzy file finder
-    # rawdog # raw rss feeds in the terminal
-    ditaa # create disgrams from ascii
-    plantuml # create UML diagrams from ascii
-    rsstail # tail for rss-feeds
-    # hexyl # cat, but spits out hex
     autorandr # automatic xrandr
-    xmeasure # screen ruler
-    xcolor # color picker
 
     # ** system information
-    #lshw # print hardware information (like other ls* tools)
+    lshw # print hardware information (like other ls* tools)
     htop # process manager
     iotop # I/O monitor
     bandwhich # network monitor
@@ -199,22 +177,15 @@ declare -a packages=(
     # ** misc
     yt-dlp # for downloading video/sound from the internet
     ranger-git # ncurses file explorer
-    ueberzug # show images in the terminal
-    redshift # screen dimmer / blue light reducer
-    rofi # app menu / dmenu clone
     # anki # flashcards
     # calibre # ebook manager
     mpv # video player
     moc wavpack libmpcdec taglib faad2 # music player, and codex etc.
     mupdf # pdf viewer
-    zathura # pdf viewer
-    zathura-pdf-mupdf # mupdf backend for zathura
-    zathura-djvu zathura-ps # djvu and postscript backends for zathura
+    zathura zathura-pdf-mupdf zathura-djvu zathura-ps # document viewer, and backends
     pdftk # toolkit for manipulating pdfs, merging, splitting, etc.
     feh # image viewer
     # chafa # cat images/gifs in terminal
-    slop # select region on screen and output to stdout
-    maim # take screen shots/grabs
     gimp # image editing
 
     # ** spelling dictionaries
@@ -237,6 +208,7 @@ declare -a packages=(
     # ** browsers
     links # cli browser
     firefox firefox-developer-edition
+    profile-sync-daemon
 
     # ** programming languages
     # *** misc
@@ -267,31 +239,17 @@ declare -a packages=(
     bandit # security linter
     mypy # type checking
 
-    # *** c++
+    # *** c/cpp
     clang clang-tools-extra
     llvm llvm-libs lld
-    libc++ openmp
     gcc gcc-libs
-    boost boost-libs
-    valgrind # performance tuning/debugging
-    cmake # build tool
 
     # *** rust
     rustup rust-analyzer
 
     # *** lisps
     chicken
+    guile
     sbcl roswell
 )
 $AURHELPER -S "${packages[@]}"
-
-# * rust components
-declare -a rustup_components=(
-    clippy # linting
-    rustfmt # autoformatter
-)
-for com in $rustup_components
-do
-    rustup component add "$com"
-done
-
