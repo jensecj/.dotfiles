@@ -26,7 +26,8 @@ packages=(
 
     # ** video drivers
     xf86-video-amdgpu
-    mesa
+    mesa opencl-mesa
+    vulkan-icd-loader amdvlk
 
     # ** display server, window manager, etc.
     wayland xorg-xwayland
@@ -35,6 +36,7 @@ packages=(
     waylock # screen locker
     waybar # status bar
     persway # sway ipc daemon for auto-tiling
+    dunst # notification manager
     wallutils # utils for monitors and wallpapers
     kanshi # autorandr for wayland
     gammastep # redshift display
@@ -72,7 +74,6 @@ packages=(
     bc # scientific cli calculator
     lsof # list open files for file-descriptor
     at # dispatch tasks to run sometime in the future
-    dunst # notification manager
 
     # ** file system
     mergerfs # fuse union filesystem
@@ -101,7 +102,7 @@ packages=(
     docker docker-rootless-extras-bin # containerization
     podman podman-compose buildah skopeo # more containers
     criu # snapshot processes
-    diff-so-fancy # fancy git diff
+    diffr # fancy git diff
     watchexec # run commands when files change
     tree-sitter # incremental language parser
     zeal # offline dev docs
@@ -136,7 +137,6 @@ packages=(
     tree # list files in tree-view
     openssh openssh-askpass
     # knockd # port-knocker
-    # mosh # ssh-replacement, with persistent connections
 
     # ** utilities
     libvterm # vterms for everyone
@@ -184,14 +184,13 @@ packages=(
     mupdf # pdf viewer
     zathura zathura-pdf-mupdf zathura-djvu zathura-ps # document viewer, and backends
     pdftk # toolkit for manipulating pdfs, merging, splitting, etc.
-    feh # image viewer
-    # chafa # cat images/gifs in terminal
     gimp # image editing
+    nmap # network scanning
+    dog # dns info
+    whois
 
-    # ** spelling dictionaries
-    hunspell # spellchecking
-    ispell # spellchecking
-    aspell # spellchecking
+    # ** spelling, dictionaries
+    hunspell ispell aspell # spellchecking
     aspell-en # english dictionary for apell
     dictd # offline dictionary and daemon
     dict-wn # wordnet
@@ -217,9 +216,7 @@ packages=(
 
     # *** java
     jdk-openjdk # latest jdk
-    jdk11-openjdk jre11-openjdk
-    jdk8-graalvm-bin jdk11-graalvm-bin # alternative vm
-    native-image-jdk8-bin native-image-jdk11-bin
+    jdk11-graalvm-bin native-image-jdk11-bin
     maven
 
     # *** clojure
