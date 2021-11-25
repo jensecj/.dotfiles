@@ -6,11 +6,11 @@ STRENGTH=$(grep $INTERFACE /proc/net/wireless | awk '{print $4}' | tr -d '.')
 if [ -z "$STRENGTH" ]; then
     echo ""
 elif [ "$STRENGTH" -lt -70 ]; then
-    echo ""
-elif [ "$STRENGTH" -lt -60 ]; then
     echo ""
-elif [ "$STRENGTH" -lt -50 ]; then
+elif [ "$STRENGTH" -lt -60 ]; then
     echo ""
-else
+elif [ "$STRENGTH" -lt -50 ]; then
     echo ""
+else
+    echo ""
 fi
