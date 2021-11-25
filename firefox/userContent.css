@@ -176,10 +176,13 @@ body {
 
 @-moz-document domain("qwant.com") {
     body {
-        margin: auto;
-        max-width: 1000px;
+        margin: auto !important;
+        max-width: 1000px !important;
     }
-
+    .web.result {
+        max-width: 700px !important;
+    }
+    .header-search .search-form { max-width: 800px !important;}
     .pagination .page {
         border-radius: 10% !important;
         width: 50px !important;
