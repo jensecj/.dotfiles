@@ -1,5 +1,5 @@
 #!/bin/sh
 
 while true; do
-    setrandom --mode "$HOME/pictures/wallpapers" && sleep 1800
+    setrandom --mode scale "$HOME/pictures/wallpapers"; sleep 1800
 done

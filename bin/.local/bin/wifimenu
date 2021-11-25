@@ -47,6 +47,7 @@ connect_open() {
 }
 
 connect_psk() {
+    # TODO: only get psk if it's not cached
     get_psk || exit 1
     iwctl station "$INTERFACE" connect "$SSID" -P "$PSK" || (notify-send -u "critical" "failed to connect to $SSID"; exit 1)
 }
