@@ -1,7 +1,23 @@
 #!/bin/sh
 
-CPU=$(cat /sys/class/hwmon/hwmon4/temp1_input); CPU=$(echo "$CPU/1000" | bc)
-GPU=$(cat /sys/class/hwmon/hwmon5/temp1_input); GPU=$(echo "$GPU/1000" | bc)
-FAN=$(cat /sys/class/hwmon/hwmon4/fan1_input)
+hwmons=$(find -H /sys/class/hwmon/* -type f -iname name | sed 's#/name##')
 
-echo "$CPU° $GPU° $FAN"
+for m in $hwmons; do
+    n=$(cat $m/name)
+    if [ "$n" = "thinkpad" ]; then
+        CPU_PATH="$m"
+    elif [ "$n" = "amdgpu" ]; then
+        GPU_PATH="$m"
+    fi
+done
+
+if [ ! $CPU_PATH ] || [ ! $GPU_PATH ]; then
+    echo "unable to find hardware paths"
+    exit 1
+fi
+
+GPU=$(cat "$GPU_PATH/temp1_input"); GPU=$(echo "$GPU/1000" | bc)
+CPU=$(cat "$CPU_PATH/temp1_input"); CPU=$(echo "$CPU/1000" | bc)
+CPUFAN=$(cat "$CPU_PATH/fan1_input")
+
+echo "$CPU° $GPU° $CPUFAN"
