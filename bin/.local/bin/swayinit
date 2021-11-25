@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# setup wob overlays
+BARS=(
+    "/tmp/backlight-overlay"
+    "/tmp/volume-overlay"
+)
+
+killall -qe "wob"
+
+for b in ${BARS[@]}; do
+    [[ -w "$b" ]] || mkfifo "$b"
+    tail -f "$b" | wob -H 30 -W 800 -a 'top' -M 10 -b 1 -p 0 > /dev/null & disown
+done
+

@@ -6,6 +6,9 @@ set $locker waylock
 xwayland enable
 floating_modifier $mod normal
 default_border pixel 1
+smart_borders on
+hide_edge_borders smart
+tiling_drag disable
 
 # * inputs
 
@@ -49,10 +52,9 @@ bindsym XF86AudioRaiseVolume exec volumectl +2%
 bindsym XF86AudioLowerVolume exec volumectl -2%
 bindsym XF86AudioMute exec volumectl toggle
 
-
 # ** shortcuts
 bindsym $mod+l exec $locker
-bindsym $mod+d exec rofi -modi run -show run
+bindsym $mod+d exec rofi -show run
 bindsym $mod+Return exec $term -e tmux
 bindsym $mod+Shift+Return exec $term
 bindsym $mod+Ctrl+Return exec popterm tmux
@@ -64,7 +66,7 @@ bindsym $mod+Shift+b exec em '~/vault/org/bookmarks.org' -
 bindsym $mod+y exec myt $(wl-paste)
 bindsym $mod+Ctrl+y exec myt $(wl-paste) -
 bindsym $mod+m exec kitty ranger
-bindsym $mod+p exec kitty htop
+bindsym $mod+p exec $term -e htop
 bindsym $mod+Delete exec em
 bindsym $mod+BackSpace exec firefox-developer-edition
 
@@ -105,17 +107,21 @@ bindsym $mod+r mode "resize"
 # * start up
 include /etc/sway/config.d/*
 
-exec waybar # status bar
-exec persway --autolayout # automatic tiling
-exec kanshi # dynamic monitor config while hotplugging
-exec gammastep -t 4500:1800 -l 56:11 # screen dimming / redshift
-exec overlay-setup # init volume / brightness change overlays
-exec random-wallpaper-daemon
+exec swayinit
+exec persway --autolayout # dynamic tiling for sway
+exec gammastep -t 4500:1700 -l 56:11 # redshift displays based on time of day
+exec udiskie # automounting usb devices
+
+# weird work-around because `exec_always pkill' fails to start at boot
+exec_always echo 'pkill wallpaperd; wallpaperd & disown' | at now # random wallpaper daemon
+exec_always echo 'pkill waybar; waybar & disown' | at now # status bar
+exec_always echo 'pkill kanshi; kanshi & disown' | at now # dynamic monitor config while hotplugging
 
 exec swayidle -w \
 timeout 300 '$locker' \
 timeout 600 'swaymsg "output * dpms off"' \
 resume 'swaymsg "output * dpms on"' \
+lock '$locker' \
 before-sleep '$locker'
 
 exec alacritty -e zsh -c "syschk; zsh"
