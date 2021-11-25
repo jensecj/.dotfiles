@@ -1,16 +1,26 @@
 #!/bin/sh
 
+OUT=""
+
 check() {
     if mountpoint "$1" > /dev/null 2>&1; then
-        printf "%s" "$2"
+        OUT="$OUT $2"
     fi
 }
 
-check "$HOME/private" "P "
-check "$HOME/vault" "V "
-check "$HOME/repo" "R "
-check "$HOME/mail" "M "
-check "/run/media/jens/jcj-ehdd-1" "H1 "
-check "/run/media/jens/jcj-ehdd-2" "H2 "
-check "/mnt/ehdd1" "E1 "
-check "/mnt/ehdd2" "E2 "
+check "$HOME/private" "P"
+check "$HOME/vault" "V"
+check "$HOME/repo" "R"
+check "$HOME/mail" "M"
+check "/run/media/jens/jcj-ehdd-1" "H1"
+check "/run/media/jens/jcj-ehdd-2" "H2"
+check "/mnt/ehdd1" "E1"
+check "/mnt/ehdd2" "E2"
+
+if test ! -z "$OUT"; then
+    OUT=$(echo "$OUT" | xargs)
+else
+    OUT=" "
+fi
+
+printf "$OUT"

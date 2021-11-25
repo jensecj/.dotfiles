@@ -1,0 +1,27 @@
+#!/bin/sh
+
+OUT=""
+
+if ps -ef | grep emacs | grep -q daemon; then
+    OUT="$OUT e"
+fi
+
+if systemctl is-active ufw > /dev/null; then
+    OUT="$OUT f" # does not check if ufw is active
+fi
+
+if systemctl is-active tailscaled > /dev/null; then
+    OUT="$OUT m"
+fi
+
+if ip a | grep wg | grep -q UP; then
+    OUT="$OUT v"
+fi
+
+if test ! -z "$OUT"; then
+    OUT=$(echo "$OUT" | xargs)
+else
+    OUT=" "
+fi
+
+printf "$OUT"
