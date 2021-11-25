@@ -1,0 +1,42 @@
+#!/bin/bash
+
+repos=(~/.private ~/.vault ~/.mail ~/.repo)
+
+if [ "$1" = "-u" ]; then
+    for r in ${repos[@]}; do
+        cryptdir=$(realpath "$r")
+        mountdir=$(echo "$cryptdir" | tr -d '.')
+
+        if df | grep "$cryptdir" > /dev/null; then
+            if ! fusermount -u "$mountdir"; then
+                echo "failed unmounting $mountdir"
+                exit 1
+            fi
+            echo "unmounted $mountdir"
+        fi
+    done
+    exit 0
+fi
+
+pass=""
+passfile=$(mktemp)
+trap "rm -f $passfile" ERR EXIT INT
+
+for r in ${repos[@]}; do
+    cryptdir=$(realpath "$r")
+    mountdir=$(echo "$cryptdir" | tr -d '.')
+
+    if ! df | grep "$cryptdir" > /dev/null; then
+        if [ -z $pass ]; then
+            read -sp "password: " pass; printf "\n"
+            echo "$pass" > "$passfile"
+        fi
+
+        if ! gocryptfs -q -passfile "$passfile" "$cryptdir" "$mountdir"; then
+            echo "failed mounting $cryptdir"
+            exit 1
+        fi
+        echo "mounted: $cryptdir -> $mountdir"
+    fi
+done
+exit 0
