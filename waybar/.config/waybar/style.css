@@ -48,6 +48,7 @@ window#waybar.hidden {
 #memory,
 #custom-freespace,
 #custom-wifiicon,
+#custom-temps,
 #temperature,
 #backlight,
 #network,
@@ -58,9 +59,10 @@ window#waybar.hidden {
     padding: 0 30px;
 }
 
+#custom-gpgcache,
 #custom-daemons,
 #custom-mounts {
-    padding-left: 30px;
+    padding-left: 45px;
 }
 
 #window,
@@ -68,9 +70,15 @@ window#waybar.hidden {
     margin: 0 4px;
 }
 
+#battery.charging.high, #battery.full {
+    background-color: #4F6F4F;
+    color: #ffffff;
+}
 
-#battery.critical:not(.charging) {
-    background-color: #f53c3c;
+#battery.discharging.critical,
+#cpu.critical,
+#memory.critical{
+    background-color: #9C6363;
     color: #ffffff;
 }
 
@@ -87,9 +95,10 @@ label:focus {
 
 #tray > .needs-attention {
     -gtk-icon-effect: highlight;
-    background-color: #eb4d4b;
+    background-color: #9C6363;
 }
 
+.modules-right { padding-right: 5px; }
 /* remove margins on rightmost and leftmost modules */
-.modules-left > widget:first-child > #workspaces {margin-left: 0; padding-left: 0}
-.modules-right > widget:last-child > #workspaces {margin-right: 0; padding-right: 0}
+.modules-left  > widget:first-child { margin-left: 0;  padding-left: 0 }
+.modules-right > widget:last-child  { margin-right: 0; padding-right: 0 }

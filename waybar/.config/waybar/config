@@ -5,11 +5,18 @@
 
   "modules-left": ["sway/workspaces", "sway/mode"],
   "modules-center": ["pulseaudio", "custom/freespace", "cpu", "memory", "battery", "clock", "custom/wifiicon", "custom/temps"],
-  "modules-right": ["custom/daemons", "custom/mounts"],
+  "modules-right": ["custom/gpgcache", "custom/daemons", "custom/mounts"],
 
   "custom/freespace": {
-    "exec": "freespace",
+   "exec": "freespace",
     "format": "<span color='#878777'></span> {}",
+    "restart-interval": 61,
+    "tooltip": false
+  },
+
+  "custom/gpgcache": {
+    "exec": "gpg-cached B790A263",
+    "format": "<span color='#878777'>{}</span>",
     "restart-interval": 61,
     "tooltip": false
   },
@@ -17,7 +24,7 @@
   "custom/mounts": {
     "exec": "mounts",
     "format": "<span color='#878777'></span> {}",
-    "restart-interval": 61,
+    "restart-interval": 31,
     "tooltip": false
   },
 
@@ -25,7 +32,6 @@
     "exec": "daemons",
     "format": "<span color='#878777'>δ</span> {}",
     "restart-interval": 61,
-    "escape": true,
     "tooltip": false
   },
 
@@ -39,7 +45,7 @@
   "custom/temps": {
     "exec": "temps",
     "format": "<span color='#878777'>{}</span>",
-    "restart-interval": 1,
+    "restart-interval": 2,
     "tooltip": false
   },
 
@@ -58,25 +64,37 @@
   },
 
   "clock": {
-    "format": "<span color='#878777'></span> {:%Y-%m-%d %H:%M}",
-    "interval": 5,
+    "format": "<span color='#878777'></span> {:%a %Y-%m-%d %H:%M}",
+    "interval": 10,
     "tooltip": false
   },
 
   "cpu": {
     "format": "<span color='#878777'>λ</span> {usage:2}",
+    "interval": 5,
+    "states": {
+      "critical": 90,
+      "normal": 89,
+    },
     "tooltip": false
   },
 
   "memory": {
     "format": "<span color='#878777'>Σ</span> {:2}",
+    "states": {
+      "critical": 90,
+      "normal": 89,
+    },
     "tooltip": false
   },
 
   "battery": {
     "states": {
+      "full": 100,
+      "high": 99,
+      "normal": 90,
       "warning": 30,
-      "critical": 15
+      "critical": 20
     },
     "format":          "<span color='#878777'></span> {capacity}-",
     "format-charging": "<span color='#878777'></span> {capacity}+",
