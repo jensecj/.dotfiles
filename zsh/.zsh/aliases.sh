@@ -59,21 +59,19 @@ alias ytmp3='youtube-dl -f "bestaudio" -x --audio-format mp3 -o"%(uploader)s -- 
 
 
 # * applications
-alias mpv="devour mpv"
-alias feh="devour feh --conversion-timeout 1"
+alias mpv="mpv"
+alias feh="feh --conversion-timeout 1"
 
 # easy file / directory search using `fd`
 alias ff="\fd --type f"
 alias fd="\fd --type d"
-
-alias pf=" devour peerflix --start --mpv"
 
 alias rtor=" \rtorrent"
 
 alias py="python"
 alias qr="qrcode-terminal"
 
-alias pdf='devour zathura'
+alias pdf='zathura'
 alias cloc="tokei"
 
 # * misc
