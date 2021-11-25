@@ -8,3 +8,6 @@
 [submodule "zsh/plugins/zsh-completions"]
 	path = zsh/.zsh/plugins/zsh-completions
 	url = https://github.com/zsh-users/zsh-completions.git
+[submodule "ranger/.config/ranger/plugins/ranger-archives"]
+	path = ranger/.config/ranger/plugins/ranger-archives
+	url = https://github.com/maximtrp/ranger-archives.git
