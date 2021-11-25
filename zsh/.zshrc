@@ -1,6 +1,4 @@
-
-# .zshenv -> .zprofile -> .zshrc -> .zlogin -> ... -> .zlogout
-# order:
+# .zshrc: sourced by interactive shells; shell setup, etc
 
 [[ $TERM == "dumb" ]] && unsetopt zle && PS1="\$ " && return
 
@@ -27,9 +25,11 @@ source $ZSHHOME/stdlib.sh
 
 # load plugins
 source $ZSHPLUGINS/colored-man-pages.sh
-source $ZSHPLUGINS/setup-zsh-completions.sh # FIXME: does this work?
-source $ZSHPLUGINS/setup-zsh-syntax-highlighting.sh
-source $ZSHPLUGINS/setup-zsh-autosuggestions.sh
+source $ZSHPLUGINS/zsh-completions/zsh-completions.plugin.zsh
+source $ZSHPLUGINS/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
+source $ZSHPLUGINS/setup-zsh-histdb.zsh
+source $ZSHPLUGINS/setup-zsh-syntax-highlighting.zsh
+
 eval "$(zoxide init zsh)"
 
 # color directories/files
@@ -47,7 +47,6 @@ if [ "$HOME/.zcompdump" -nt "$HOME/.zcompdump.zwc" -o ! -e "$HOME/.zcompdump.zwc
     zcompile "$HOME/.zcompdump"
 fi
 # zrecompile -p $HOME/.zshrc &>/dev/null
-
 
 source /usr/share/fzf/completion.zsh
 
