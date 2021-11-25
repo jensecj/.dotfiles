@@ -1,5 +1,10 @@
 #!/bin/bash
 
+if ! which fio; then
+    echo "requires `fio`"
+    exit 1
+fi
+
 while getopts d:bwr option
 do
     case "${option}"
