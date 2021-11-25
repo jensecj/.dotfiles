@@ -34,9 +34,9 @@ ufw allow out ssh comment ssh
 ufw allow out http comment http
 ufw allow out https comment https
 ufw allow out dns comment dns
-ufw allow out whois comment whois
 ufw allow out imaps comment IMAPS
 ufw allow out 587 comment SMTP
+ufw allow out 43 comment whois
 ufw allow in 6881 comment rtor-dht
 ufw allow out 6881 comment rtor-dht
 ufw allow out gopher comment gopher
