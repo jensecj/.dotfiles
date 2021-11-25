@@ -1,3 +1,5 @@
+# .zshenv: sourced by all shells; for env vars, etc.
+
 # exports, common paths, etc.
 export DOTFILESHOME=$HOME/.dotfiles
 export ZSHHOME=$HOME/.zsh
@@ -15,6 +17,8 @@ export LANG="en_DK.UTF-8"
 export GPG_TTY=$(tty)
 export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
 gpg-connect-agent updatestartuptty /bye >/dev/null
+
+export PASSWORD_STORE_GPG_OPTS='--no-batch'
 
 export PROMPT_EOL_MARK=''
 unsetopt PROMPT_SP
@@ -56,8 +60,17 @@ export TIMEFMT=''$'\n%J'$'\n%U user | %S system | %P cpu | %*Es total'$'\n'\
 'total space usage:          %K KB'$'\n'\
 'max memory usage:           %M KB'$'\n'\
 'swaps:                      %W'$'\n'\
-'major page faults (disk):   %F'$'\n'\
-'minor page faults:          %R'
+'major page faults (disk):   %F'$'\n\
+minor page faults:          %R'
+
+export GNUPGHOME="$HOME/.gnupg"
+export MOZ_ENABLE_WAYLAND=1
+export MOZ_WAYLAND_USE_VAAPI=1
+
+if [ "$XDG_SESSION_DESKTOP" = "sway" ] ; then
+    # https://github.com/swaywm/sway/issues/595
+    export _JAVA_AWT_WM_NONREPARENTING=1
+fi
 
 paths=("$HOME/.local/bin")
 for p in $paths; do
