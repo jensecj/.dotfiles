@@ -10,6 +10,15 @@ killall -qe "wob"
 
 for b in ${BARS[@]}; do
     [[ -w "$b" ]] || mkfifo "$b"
-    tail -f "$b" | wob -H 30 -W 800 -a 'top' -M 10 -b 1 -p 0 > /dev/null & disown
+    tail -f "$b" | wob -H 30 -W 800 \
+                       --bar-color "#dcdcccff" \
+                       --background-color "#313131ff" \
+                       --overflow-background-color "#313131ff" \
+                       --overflow-bar-color "#8C5353ff" \
+                       --output '*' \
+                       --anchor 'top' \
+                       --margin 10 \
+                       --border 0 \
+                       --padding 0 \
+                       > /dev/null & disown
 done
-
