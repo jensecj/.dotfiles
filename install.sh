@@ -102,7 +102,7 @@ packages=(
     docker docker-rootless-extras-bin # containerization
     podman podman-compose buildah skopeo # more containers
     criu # snapshot processes
-    diffr # fancy git diff
+    delta # fancy git diff
     watchexec # run commands when files change
     tree-sitter # incremental language parser
     zeal # offline dev docs
