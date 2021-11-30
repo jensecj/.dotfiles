@@ -8,7 +8,7 @@
   "modules-right": ["custom/gpgcache", "custom/daemons", "custom/mounts"],
 
   "custom/freespace": {
-   "exec": "freespace",
+    "exec": "freespace",
     "format": "<span color='#878777'></span> {}",
     "restart-interval": 61,
     "tooltip": false
@@ -61,7 +61,6 @@
   },
 
   "sway/workspaces": {
-    // "height": 15,
     "tooltip": false
   },
 
@@ -76,13 +75,12 @@
 
   "clock": {
     "format": "<span color='#878777'></span> {:%a %Y-%m-%d %H:%M}",
-    "interval": 10,
+    "interval": 13,
     "tooltip": false
   },
 
   "cpu": {
     "format": "<span color='#878777'>λ</span> {usage:2}",
-    "interval": 5,
     "states": {
       "critical": 90,
       "normal": 89,
