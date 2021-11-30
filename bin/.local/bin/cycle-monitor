@@ -1,0 +1,2 @@
+#!/bin/sh
+swaymsg "move workspace to output down"
