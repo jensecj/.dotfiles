@@ -1,3 +1,0 @@
-#!/bin/sh
-
-curl --silent 'https://servlet.dmi.dk/byvejr/servlet/byvejr?by=1000&tabel=dag3_9' | imv -
