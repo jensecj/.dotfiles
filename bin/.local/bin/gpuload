@@ -1,0 +1,20 @@
+#!/bin/sh
+
+hwmons=$(find -H /sys/class/hwmon/* -type f -iname name | sed 's#/name##')
+
+for m in $hwmons; do
+    n=$(cat "$m/name")
+    if [ "$n" = "amdgpu" ]; then
+        GPU_PATH="$m"
+    fi
+done
+
+if [ ! $GPU_PATH ]; then
+    echo "unable to find GPU path"
+    exit 1
+fi
+
+while true; do
+    cat "$GPU_PATH/device/gpu_busy_percent"
+    sleep 5
+done

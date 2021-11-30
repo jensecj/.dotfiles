@@ -1,0 +1,7 @@
+#!/bin/sh
+
+while true; do
+    LOAD=$(cat /proc/loadavg | cut -d' ' -f 1-3)
+    printf "%s\n" "$LOAD"
+    sleep 10
+done

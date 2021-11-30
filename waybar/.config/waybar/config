@@ -4,7 +4,7 @@
   "spacing": 25,
 
   "modules-left": ["sway/workspaces", "sway/mode"],
-  "modules-center": ["pulseaudio", "custom/freespace", "cpu", "memory", "battery", "clock", "custom/wifiicon", "custom/hwstatus"],
+  "modules-center": ["custom/loadavg", "pulseaudio", "custom/freespace", "cpu", "memory", "custom/gpuload", "battery", "clock", "custom/wifiicon", "custom/hwstatus"],
   "modules-right": ["custom/gpgcache", "custom/daemons", "custom/mounts"],
 
   "custom/freespace": {
@@ -45,6 +45,18 @@
   "custom/hwstatus": {
     "exec": "hwstatus",
     "format": "<span color='#878777'>{}</span>",
+    "tooltip": false
+  },
+
+  "custom/loadavg": {
+    "exec": "loadavg",
+    "format": "<span color='#878777'>{}</span>",
+    "tooltip": false
+  },
+
+  "custom/gpuload": {
+    "exec": "gpuload",
+    "format": "<span color='#878777'>π</span> {:2}",
     "tooltip": false
   },
 

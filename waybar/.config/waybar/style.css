@@ -49,6 +49,8 @@ window#waybar.hidden {
 #custom-freespace,
 #custom-wifiicon,
 #custom-hwstatus,
+#custom-loadavg,
+#custom-gpuload,
 #temperature,
 #backlight,
 #network,
