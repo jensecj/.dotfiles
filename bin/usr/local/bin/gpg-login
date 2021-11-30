@@ -1,9 +1,0 @@
-#!/bin/sh
-
-if [ -z "$1" ]; then
-    gpg --quiet --no-greeting --clearsign --output /dev/null /dev/null
-else
-    for id in "$@"; do
-        gpg --quiet --no-greeting --clearsign --output /dev/null --default-key "$id" /dev/null
-    done
-fi
