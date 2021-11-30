@@ -43,3 +43,4 @@ ufw allow out gopher comment gopher
 ufw allow out 1965 comment gemini
 ufw allow out 51820/udp comment wireguard
 ufw allow out 993 comment mail-delivery
+ufw allow out git comment git
