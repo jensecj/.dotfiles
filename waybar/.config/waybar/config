@@ -8,7 +8,7 @@
   "modules-right": ["custom/gpgcache", "custom/daemons", "custom/mounts"],
 
   "custom/freespace": {
-    "exec": "freespace",
+    "exec": "$HOME/.config/waybar/freespace",
     "format": "<span color='#878777'></span> {}",
     "restart-interval": 61,
     "tooltip": false
@@ -22,40 +22,40 @@
   },
 
   "custom/mounts": {
-    "exec": "mounts",
+    "exec": "$HOME/.config/waybar/mounts",
     "format": "<span color='#878777'></span> {}",
     "restart-interval": 31,
     "tooltip": false
   },
 
   "custom/daemons": {
-    "exec": "daemons",
+    "exec": "$HOME/.config/waybar/daemons",
     "format": "<span color='#878777'>δ</span> {}",
     "restart-interval": 61,
     "tooltip": false
   },
 
   "custom/wifiicon": {
-    "exec": "wifiicon",
+    "exec": "$HOME/.config/waybar/wifiicon",
     "format": "<span color='#878777'>{}</span>",
     "restart-interval": 21,
     "tooltip": false
   },
 
   "custom/hwstatus": {
-    "exec": "hwstatus",
+    "exec": "$HOME/.config/waybar/hwstatus",
     "format": "<span color='#878777'>{}</span>",
     "tooltip": false
   },
 
   "custom/loadavg": {
-    "exec": "loadavg",
+    "exec": "$HOME/.config/waybar/loadavg",
     "format": "<span color='#878777'>{}</span>",
     "tooltip": false
   },
 
   "custom/gpuload": {
-    "exec": "gpuload",
+    "exec": "$HOME/.config/waybar/gpuload",
     "format": "<span color='#878777'>π</span> {:2}",
     "tooltip": false
   },
