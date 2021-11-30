@@ -1,4 +1,5 @@
 #!/bin/bash
+
 BUILD_DIR=$(pwd)/build
 
 (
@@ -17,8 +18,10 @@ BUILD_DIR=$(pwd)/build
          --with-json \
          --without-pop \
          --without-mailutils
-
-    printf "======================"
-    printf "\n%s\n" "configuration complete"
-    printf "======================"
 )
+
+printf "======================"
+printf "\n%s\n" "configuration complete"
+printf "======================"
+printf "\n\n"
+

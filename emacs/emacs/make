@@ -15,3 +15,4 @@ BUILD_DIR=$(pwd)/build
 printf "===================="
 printf "\n%s\n" "compilation complete"
 printf "===================="
+printf "\n\n"
