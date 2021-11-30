@@ -1,0 +1,35 @@
+#!/bin/env python
+
+from datetime import datetime
+from pytz import timezone
+
+import click
+
+
+@click.command()
+@click.argument("zone", required=False)
+def entry(zone=None):
+    local = datetime.now()
+
+    if zone:
+        zone = zone.upper()
+        time = local.astimezone(tz=timezone(zone))
+        print(f"{time:%H:%M:%S}")
+    else:
+        print(f"local: {local:%H:%M:%S}")
+
+        cet = local.astimezone(tz=timezone("CET"))
+        print(f"CET: {cet:%H:%M:%S}")
+
+        gmt = local.astimezone(tz=timezone("UTC"))
+        print(f"UTC: {gmt:%H:%M:%S}")
+
+        gmt = local.astimezone(tz=timezone("GMT"))
+        print(f"GMT: {gmt:%H:%M:%S}")
+
+        est = local.astimezone(tz=timezone("EST"))
+        print(f"EST: {est:%H:%M:%S}")
+
+
+if __name__ == "__main__":
+    entry()
