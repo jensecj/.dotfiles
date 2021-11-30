@@ -1,0 +1,37 @@
+#!/bin/sh
+
+hwmons=$(find -H /sys/class/hwmon/* -type f -iname name | sed 's#/name##')
+
+for m in $hwmons; do
+    n=$(cat $m/name)
+    if [ "$n" = "thinkpad" ]; then
+        CPU_PATH="$m"
+    elif [ "$n" = "amdgpu" ]; then
+        GPU_PATH="$m"
+    fi
+done
+
+if [ ! $CPU_PATH ] || [ ! $GPU_PATH ]; then
+    echo "unable to find hardware paths"
+    exit 1
+fi
+
+NUMCPUS=$(nproc)
+
+while true; do
+    GPU=$(cat "$GPU_PATH/temp1_input"); GPU=$(echo "$GPU/1000" | bc)
+    CPU=$(cat "$CPU_PATH/temp1_input"); CPU=$(echo "$CPU/1000" | bc)
+    CPUFAN=$(cat "$CPU_PATH/fan1_input")
+
+    CPUMHZS=$(cat /proc/cpuinfo | rg --color=never -i "^cpu mhz\s+: ([0-9]+)" -o -r '$1')
+
+    MHZSUM=0
+    for m in $CPUMHZS; do
+        MHZSUM=$(($MHZSUM+$m))
+    done
+    AVGMHZ=$(($MHZSUM/$NUMCPUS))
+
+    printf "%s° %s° %sᵐʰᶻ %s⁻¹\n" "$CPU" "$GPU" "$AVGMHZ" "$CPUFAN"
+
+    sleep 5
+done

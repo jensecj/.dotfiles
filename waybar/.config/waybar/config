@@ -4,7 +4,7 @@
   "spacing": 25,
 
   "modules-left": ["sway/workspaces", "sway/mode"],
-  "modules-center": ["pulseaudio", "custom/freespace", "cpu", "memory", "battery", "clock", "custom/wifiicon", "custom/temps"],
+  "modules-center": ["pulseaudio", "custom/freespace", "cpu", "memory", "battery", "clock", "custom/wifiicon", "custom/hwstatus"],
   "modules-right": ["custom/gpgcache", "custom/daemons", "custom/mounts"],
 
   "custom/freespace": {
@@ -42,10 +42,9 @@
     "tooltip": false
   },
 
-  "custom/temps": {
-    "exec": "temps",
+  "custom/hwstatus": {
+    "exec": "hwstatus",
     "format": "<span color='#878777'>{}</span>",
-    "restart-interval": 2,
     "tooltip": false
   },
 
