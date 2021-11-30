@@ -1,0 +1,106 @@
+#!/bin/bash
+
+set -e
+set -o pipefail
+
+DATE=$(date +%Y-%m-%d--%H:%M:%S)
+
+err() { echo -e "$*" >&2; }
+err_exit() { err "$@"; exit 1; }
+info() { printf "\n%s %s\n\n" "$DATE" "$*" >&2; }
+
+trap 'err_exit "[$DATE] Backup interrupted"' INT TERM
+
+CRYPT_DIR="$HOME/.snapshots/bulk"
+
+MOUNTS=(
+    "$HOME/vault"
+    "$HOME/private"
+    "$HOME/mail"
+    "$HOME/repo"
+)
+
+FILES=(
+    "$HOME/archives"
+    "$HOME/pictures"
+    "$HOME/publications"
+    "$HOME/software"
+    "$HOME/.emacs.d"
+    "$HOME/.dotfiles"
+    "$HOME/.config"
+    "$HOME/.password-store"
+    "$HOME/.gnupg"
+    "$HOME/.ssh"
+    "$HOME/.gitconfig"
+)
+
+EXCLUDES=(
+    '*.elc'
+    '*.pyc'
+    '*/__pycache__'
+    '*/.pytest_cache'
+    '*/.mypy_cache'
+    '*/venv/bin'
+    '*/venv/include'
+    '*/venv/lib'
+    '*/venv/lib64'
+    '*/.config/mpv/watch_later'
+)
+
+if [ ! -d "$CRYPT_DIR" ]; then
+    err_exit "crypt directory not found"
+fi
+
+for m in "${MOUNTS[@]}"; do
+    p=$(realpath "$m")
+    if ! grep -q "$p" /proc/mounts; then
+        err_exit "$m not mounted"
+    fi
+done
+
+for f in "${FILES[@]}"; do
+    if [ ! -e "$f" ]; then
+        err_exit "$f not found"
+    fi
+done
+
+ARGS=(
+    --stats
+    --progress
+    --verbose
+    --compression zstd
+    --exclude-caches
+    --show-rc
+)
+
+for e in ${EXCLUDES[@]}; do
+    ARGS+=(--exclude "$e")
+done
+
+borg create ${ARGS[@]} "$CRYPT_DIR::{hostname}--{user}--{now}" "${MOUNTS[@]}" "${FILES[@]}"
+
+backup_exit=$?
+
+borg prune \
+     --list \
+     --show-rc \
+     --keep-within 1m \
+     --keep-daily   7 \
+     --keep-weekly  4 \
+     --keep-monthly 12 \
+     "$CRYPT_DIR"
+
+prune_exit=$?
+
+# use highest exit code as global exit code
+global_exit=$((backup_exit > prune_exit ? backup_exit : prune_exit))
+
+if [ "${global_exit}" -eq 0 ]; then
+    info "completed successfully"
+elif [ "${global_exit}" -eq 1 ]; then
+    info "completed with warnings"
+else
+    info "completed with errors"
+fi
+
+exit "${global_exit}"
