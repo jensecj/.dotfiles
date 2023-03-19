@@ -1,7 +1,7 @@
 local msg = require 'mp.msg'
 local utils = require 'mp.utils'
 
-msg.info("v0.1 loaded")
+msg.info("v1 loaded")
 
 -- * helpers
 
@@ -12,7 +12,8 @@ end
 local function get_clipboard()
    -- local args = { 'xclip', '-selection', 'clipboard', '-out' }
    local args = { 'wl-paste' }
-   return utils.subprocess({ args = args, cancellable = false }).stdout
+   clipboard = utils.subprocess({ args = args, cancellable = false }).stdout
+   return string.gsub(clipboard, '%s+', '')
 end
 
 -- * commands
@@ -24,17 +25,18 @@ function copyurl()
 end
 mp.add_key_binding("Ctrl+u", "copyurl", copyurl)
 
-function addurl()
+function append_clipboard_to_playlist()
    local url = get_clipboard()
    url = url:gsub("subscriptions.gir.st", "youtube.com")
    url = url:gsub("invidious.snopyta.org", "youtube.com")
+   url = url:gsub("yewtu.be", "youtube.com")
 
    if url then
       mp.commandv("loadfile", url, "append-play")
-      mp.osd_message("added "..url)
+      mp.osd_message("appended "..url)
    end
 end
-mp.add_key_binding("Ctrl+a", "addurl", addurl)
+mp.add_key_binding("Ctrl+a", "append_clipboard_to_playlist", append_clipboard_to_playlist)
 
 -- * misc
 
