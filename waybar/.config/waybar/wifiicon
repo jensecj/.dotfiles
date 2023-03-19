@@ -3,14 +3,23 @@
 INTERFACE="wlan0"
 
 STRENGTH=$(grep $INTERFACE /proc/net/wireless | awk '{print $4}' | tr -d '.')
+ICON=""
 if [ -z "$STRENGTH" ]; then
-    echo ""
+    ICON=""
 elif [ "$STRENGTH" -lt -70 ]; then
-    echo ""
+    ICON=""
 elif [ "$STRENGTH" -lt -60 ]; then
-    echo ""
+    ICON=""
 elif [ "$STRENGTH" -lt -50 ]; then
-    echo ""
+    ICON=""
 else
-    echo ""
+    ICON=""
 fi
+
+if ip a | grep "mullvad" > /dev/null; then
+    printf "[$ICON]" # it's in a box, get it?
+else
+    printf "$ICON"
+fi
+
+echo ""

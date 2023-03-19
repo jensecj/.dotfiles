@@ -31,7 +31,11 @@ while true; do
     done
     AVGMHZ=$(($MHZSUM/$NUMCPUS))
 
-    printf "%s° %s° %sᵐʰᶻ %s⁻¹\n" "$CPU" "$GPU" "$AVGMHZ" "$CPUFAN"
+    if true; then #[ $CPU -gt 41 -o $GPU -gt 41 -o $CPUFAN -gt 0 ]; then
+        printf "%s° %s° %sᵐʰᶻ %s⁻¹\n" "$CPU" "$GPU" "$AVGMHZ" "$CPUFAN"
+    else
+        echo "                   "
+    fi
 
     sleep 5
 done

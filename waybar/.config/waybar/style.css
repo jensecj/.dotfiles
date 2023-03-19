@@ -42,15 +42,15 @@ window#waybar.hidden {
     background-color: #515151;
 }
 
-#clock,
+#cpu {}
+#memory {padding-left: 20px;}
+#custom-gpuload {padding-right: 20px;}
+
 #battery,
-#cpu,
-#memory,
 #custom-freespace,
 #custom-wifiicon,
 #custom-hwstatus,
 #custom-loadavg,
-#custom-gpuload,
 #temperature,
 #backlight,
 #network,
@@ -58,13 +58,14 @@ window#waybar.hidden {
 #tray,
 #mode
 {
-    padding: 0 30px;
+    padding: 0 20px;
 }
 
+#clock,
 #custom-gpgcache,
 #custom-daemons,
 #custom-mounts {
-    padding-left: 45px;
+    padding-left: 20px;
 }
 
 #window,

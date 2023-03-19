@@ -4,12 +4,12 @@
   "spacing": 25,
 
   "modules-left": ["sway/workspaces", "sway/mode"],
-  "modules-center": ["custom/loadavg", "pulseaudio", "custom/freespace", "cpu", "memory", "custom/gpuload", "battery", "clock", "custom/wifiicon", "custom/hwstatus"],
-  "modules-right": ["custom/gpgcache", "custom/daemons", "custom/mounts"],
+  "modules-center": ["custom/loadavg", "pulseaudio", "custom/freespace", "memory", "cpu", "custom/gpuload", "battery", "custom/wifiicon", "custom/hwstatus"],
+  "modules-right": ["custom/gpgcache", "custom/mounts", "clock"],
 
   "custom/freespace": {
     "exec": "$HOME/.config/waybar/freespace",
-    "format": "<span color='#878777'></span> {}",
+    "format": "<span color='#878777'></span> {:3}",
     "restart-interval": 61,
     "tooltip": false
   },
@@ -101,13 +101,13 @@
     "states": {
       "full": 100,
       "high": 99,
-      "normal": 90,
+      "normal": 80,
       "warning": 30,
       "critical": 20
     },
-    "format":          "<span color='#878777'></span> {capacity}-",
-    "format-charging": "<span color='#878777'></span> {capacity}+",
-    "format-plugged":  "<span color='#878777'></span> {capacity}+",
+    "format":          "<span color='#878777'></span> {capacity:2}-",
+    "format-charging": "<span color='#878777'></span> {capacity:2}+",
+    "format-plugged":  "<span color='#878777'></span> {capacity:2}+",
   },
 
   "pulseaudio": {

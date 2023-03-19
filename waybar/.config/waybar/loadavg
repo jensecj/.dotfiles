@@ -2,6 +2,11 @@
 
 while true; do
     LOAD=$(cat /proc/loadavg | cut -d' ' -f 1-3)
-    printf "%s\n" "$LOAD"
+    SUM=$(echo "($LOAD+0.5)/1" | tr ' ' '+' | bc)
+    if [ $SUM -gt 3 ]; then
+        printf "%s\n" "$LOAD"
+    else
+        echo "              "
+    fi
     sleep 10
 done
