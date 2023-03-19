@@ -32,7 +32,6 @@ alias emacsd="emacs --no-site-file --daemon"
 alias l="exa --long --group-directories-first --time-style=long-iso"
 alias ll="l --all --group"
 
-
 # * package manager
 alias pac='yay'                          # aur helper
 alias pacu='pac -Syu --combinedupgrade'  # update all packages
@@ -82,17 +81,15 @@ alias umount_ramdisk="_ umount /mnt/ramdisk"
 
 # * fzf functions
 fzf-cd() {
-    cd $(fd | fzf --no-multi)
+    local dir=$(fd --hidden --type d --type f | fzf --no-multi)
+    [ ! -d "$dir" ] && dir=$(dirname "$dir") # cd does not know how to move to files
+    cd "$dir"
     zle clear-screen
 }
 
 fzf-z() {
-    zi
+    cd $(zoxide query --list | fzf --no-multi)
     zle clear-screen
-}
-
-fzf-locate() {
-    locate | fzf | xargs | xsel -i
 }
 
 fzf-history() {
@@ -103,12 +100,12 @@ fzf-history() {
 fzf-urls() {
     # look at all scrollback contents of tmux buffer, and copy
     # selected url to clipboard
-    local url_regex="(((http|https|ftp|gopher|git)|mailto)[.:@][^ >\"\t]*|www\.[-a-z0-9.]+)[^ .,;\t>\">\):]"
-    tmux capture-pane -pS -100000 \
-        | rg --no-filename --no-line-number "$url_regex" \
+    local url_regex='(http|https|ftp|sftp|ssh|git)?[:/]*?(www\.)?[-_a-zA-Z0-9]+\.[-_a-zA-Z0-9/\.?=&]+'
+    local mail_regex='[-_a-zA-Z0-9+\.]+@[-_a-zA-Z0-9+\.]+\.[a-zA-Z]+'
+    tmux capture-pane -pS -1000 | tac \
+        | rg --only-matching --no-filename --no-line-number "$mail_regex|$url_regex" \
         | fzf --no-sort --no-multi \
-        | xargs \
-        | xsel -i
+        | xargs | wl-copy
 }
 
 

@@ -53,9 +53,6 @@ zle -N fzf-urls
 bindkey -M emacs '^U' fzf-urls
 zle -N fzf-z
 bindkey -M emacs '^B' fzf-z
-zle -N fzf-locate
-bindkey -M emacs '\ei' fzf-locate
-
 
 # <C-w> kills region or whole line
 kill-region-or-line()
