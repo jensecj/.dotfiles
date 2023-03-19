@@ -1,5 +1,11 @@
 #!/bin/bash
 
+export DISPLAY=:0
+export WAYLAND_DISPLAY=wayland-1
+export SWAYSOCK=/run/user/$(id -u)/sway-ipc.$(id -u).$(pgrep -x sway).sock
+export DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/$(id -u)/bus"
+export XDG_RUNTIME_DIR=/run/user/$(id -u)
+
 # setup wob overlays
 BARS=(
     "/tmp/backlight-overlay"
@@ -10,15 +16,6 @@ killall -qe "wob"
 
 for b in ${BARS[@]}; do
     [[ -w "$b" ]] || mkfifo "$b"
-    tail -f "$b" | wob -H 30 -W 800 \
-                       --bar-color "#dcdcccff" \
-                       --background-color "#313131ff" \
-                       --overflow-background-color "#313131ff" \
-                       --overflow-bar-color "#8C5353ff" \
-                       --output '*' \
-                       --anchor 'top' \
-                       --margin 10 \
-                       --border 0 \
-                       --padding 0 \
-                       > /dev/null & disown
+    tail -f "$b" | wob > /dev/null & disown
 done
+
