@@ -1,6 +1,7 @@
 #!/bin/bash
 
 BUILD_DIR=$(pwd)/build
+printf "build dir: %s\n" $BUILD_DIR
 
 (
     cd emacs/ || exit 2
@@ -12,6 +13,7 @@ BUILD_DIR=$(pwd)/build
          --with-cairo \
          --with-harfbuzz \
          --with-native-compilation \
+         --with-pgtk \
          --with-modules \
          --with-pdumper=yes \
          --with-imagemagick \
