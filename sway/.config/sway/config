@@ -1,7 +1,7 @@
 # * globals
 set $mod Mod4
 set $term alacritty
-set $locker waylock
+set $locker waylock -init-color 0x3F3F3F -input-color 0x8CD0D3 -fail-color 0x7C4343
 
 xwayland enable
 floating_modifier $mod normal
@@ -16,6 +16,7 @@ tiling_drag disable
 seat seat0 hide_cursor 5000
 
 input "type:keyboard" {
+repeat_rate 10
 xkb_layout "dk"
 xkb_options ctrl:nocaps
 }
@@ -109,7 +110,7 @@ include /etc/sway/config.d/*
 
 exec swayinit
 exec persway --autolayout # dynamic tiling for sway
-exec gammastep -t 4500:1700 -l 56:11 # redshift displays based on time of day
+exec gammastep -t 4500:1600 -l 56:11 # redshift displays based on time of day
 exec udiskie # automounting usb devices
 
 # weird work-around because `exec_always pkill' fails to start at boot
@@ -119,8 +120,7 @@ exec_always echo 'pkill kanshi; kanshi & disown' | at now # dynamic monitor conf
 
 exec swayidle -w \
 timeout 300 '$locker' \
-timeout 600 'swaymsg "output * dpms off"' \
-resume 'swaymsg "output * dpms on"' \
+timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
 lock '$locker' \
 before-sleep '$locker'
 
@@ -128,6 +128,7 @@ exec alacritty -e zsh -c "syschk; zsh"
 
 # * windows
 for_window [app_id="imv"] floating enable
+for_window [app_id="blueman-manager"] floating enable
 for_window [app_id="float"] floating enable
 for_window [app_id="float"] move position center
 for_window [title="emacs-float"] floating enable
