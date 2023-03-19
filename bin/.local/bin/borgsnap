@@ -45,6 +45,8 @@ EXCLUDES=(
     '*/venv/lib'
     '*/venv/lib64'
     '*/.config/mpv/watch_later'
+    '*/node_modules'
+    '*/cache/diskcache/map_cache.db'
 )
 
 if [ ! -d "$CRYPT_DIR" ]; then
@@ -92,8 +94,16 @@ borg prune \
 
 prune_exit=$?
 
+borg compact \
+     --progress \
+     --verbose \
+     "$CRYPT_DIR"
+
+compact_exit=$?
+
 # use highest exit code as global exit code
 global_exit=$((backup_exit > prune_exit ? backup_exit : prune_exit))
+global_exit=$((compact_exit > global_exit ? compact_exit : global_exit))
 
 if [ "${global_exit}" -eq 0 ]; then
     info "completed successfully"
