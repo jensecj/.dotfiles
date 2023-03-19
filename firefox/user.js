@@ -1,4 +1,5 @@
 user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true); // load userChrome / userContent
+user_pref("layout.css.moz-document.content.enabled", true); // load userChrome / userContent
 user_pref("general.warnOnAboutConfig", false); // XUL/XHTML version
 user_pref("security.dialog_enable_delay", 0);   // dont delay the download-file dialog
 user_pref("privacy.userContext.ui.enabled", true);
@@ -35,15 +36,17 @@ user_pref("apz.gtk.kinetic_scroll.enabled", false); // dont imitate physics whil
 user_pref("media.autoplay.allow-muted", false);
 user_pref("media.autoplay.block-event.enabled", true);
 user_pref("media.autoplay.default", 5); //  [0:allow; 1:blockAudible; 5:blockAll]
-user_pref("media.autoplay.blocking_policy", 2)
+user_pref("media.autoplay.blocking_policy", 2);
 user_pref("media.autoplay.enabled.user-gestures-needed", false);
 user_pref("media.autoplay.enabled", false);
-user_pref("media.autoplay.allow-extension-background-pages", false)
-user_pref("browser.link.open_newwindow.restriction", 0) // open popups in a new tab instead
+user_pref("media.autoplay.allow-extension-background-pages", false);
+user_pref("browser.link.open_newwindow.restriction", 0); // open popups in a new tab instead
 
 // privacy and telemetry
+user_pref("accessibility.force_disabled", true);
 user_pref("privacy.firstparty.isolate", true);
 user_pref("privacy.resistFingerprinting", true);
+// user_pref("privacy.resistFingerprinting.letterboxing", true);
 user_pref("privacy.trackingprotection.fingerprinting.enabled", true);
 user_pref("privacy.trackingprotection.cryptomining.enabled", true);
 user_pref("plugin.state.java", 0);

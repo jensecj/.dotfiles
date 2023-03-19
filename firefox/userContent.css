@@ -1,4 +1,4 @@
-@namespace url(http://www.w3.org/1999/xhtml);
+@namespace url("http://www.w3.org/1999/xhtml");
 
 /* disable animations */
 *, :before, :after {
@@ -10,8 +10,8 @@
 }
 
 * {
-    scrollbar-width: thin !important;
-    scrollbar-color: #555555 #eeeeee !important;
+    /* scrollbar-width: thin !important; */
+    scrollbar-color: black white !important;
 }
 
 body {
@@ -19,9 +19,32 @@ body {
     font-weight: 500;
 }
 
-@-moz-document url(about:newtab), url(about:home), url(about:blank) {
+@-moz-document url("about:newtab"), url("about:home"), url("about:blank") {
     body {
 	      background-color: #2A2A2E !important;
+    }
+}
+
+@-moz-document domain("readm.org") {
+    .chapter img,
+    .chapter a img {
+        width: 900px !important;
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+}
+
+@-moz-document domain("mangakakalot.com"), domain("manganelo.com") {
+    .container-chapter-reader img {
+        width: 900px !important;
+        padding: 0 !important;
+        margin: 0 auto !important;
+    }
+}
+
+@-moz-document domain("geeksforgeeks.org") {
+    .article-page_sidebar {
+        position: relative !important;
     }
 }
 
@@ -33,7 +56,7 @@ body {
         max-width: 900px;
         margin-left: auto;
         margin-right: auto;
-        padding: auto 10px:
+        padding: auto 10px;
     }
     #hnmain {
         width: 100% !important;
@@ -65,6 +88,13 @@ body {
         max-width: 1200px !important;
         margin: auto !important;
         padding: 15px !important;
+    }
+}
+
+@-moz-document domain("imgin.voidnet.tech") {
+    body {
+        max-width: 1200px !important;
+        margin: auto !important;
     }
 }
 
@@ -148,41 +178,44 @@ body {
     }
 
     blockquote {
-        color: #457E45 !important;
+        color: #457e45 !important;
     }
 }
 
 @-moz-document domain("lore.kernel.org") {
-	  * { background:#fefefe!important; }
+	  * { background: #fefefe !important; }
     body {
         margin: auto;
         max-width: 1000px;
     }
 
-	  *.q { color: #457E45 !important } /* quotes in mail bodies */
+	  *.q { color: #457e45 !important; } /* quotes in mail bodies */
 
-	  *.add { color:#4f6f4f !important; background-color: #f5ffee !important; } /* diff added lines */
-	  *.del { color:#8c5353 !important; background-color: #fff4f4 !important; } /* diff deleted lines */
-	  *.head { color:#494949 !important; background-color: #efefef !important } /* diff header */
-	  *.hunk { color:#494949 !important; background-color: #efefef !important } /* diff hunk-header */
+	  *.add { color: #4f6f4f !important; background-color: #f5ffee !important; } /* diff added lines */
+	  *.del { color: #8c5353 !important; background-color: #fff4f4 !important; } /* diff deleted lines */
+	  *.head { color: #494949 !important; background-color: #efefef !important; } /* diff header */
+	  *.hunk { color: #494949 !important; background-color: #efefef !important; } /* diff hunk-header */
 }
 
 @-moz-document domain("wikipedia.org") {
     body {
-        margin: auto;
-        max-width: 1500px;
+        max-width: 1500px !important;
+        margin: auto !important;
     }
 }
 
-@-moz-document domain("qwant.com") {
+@-moz-document
+domain("qwant.com"),
+domain("ecosia.org"),
+domain("duckduckgo.com") {
     body {
+        max-width: 1200px !important;
         margin: auto !important;
-        max-width: 1000px !important;
     }
     .web.result {
         max-width: 700px !important;
     }
-    .header-search .search-form { max-width: 800px !important;}
+    .header-search .search-form { max-width: 800px !important; }
     .pagination .page {
         border-radius: 10% !important;
         width: 50px !important;

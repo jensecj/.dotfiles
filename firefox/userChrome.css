@@ -16,6 +16,8 @@ button {
 .titlebar-button{ padding-block: 2px !important; }
 #urlbar-container, #search-container{ padding-block: 1px !important; }
 
+#private-browsing-indicator-with-label { display: none; }
+
 #titlebar{ -moz-appearance:none !important; }
 :root[sizemode="maximized"] #navigator-toolbox{ margin-top: 4px }
 
@@ -29,6 +31,7 @@ button {
 }
 
 #tabbrowser-tabs .tabbrowser-tab {
+    max-height: 10px;
     color: #fefefe !important;
     font-weight: 550 !important;
 
@@ -161,7 +164,12 @@ and by default removes the tab secondary line
 #context_moveTabOptions,
 #context_closeTab,
 #context_sendTabToDevice,
-#context_sendTabToDevice + menuseparator {
+#context_sendTabToDevice + menuseparator,
+#context-openlinkprivate,
+#context-openlinkinusercontext-menu,
+#context_reopenInContainer,
+#toolbar-context-bookmarkSelectedTab
+{
     display: none !important;
 }
 
