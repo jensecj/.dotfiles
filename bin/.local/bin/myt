@@ -5,8 +5,7 @@ url=${url//"invidious.snopyta.org"/"youtube.com"}
 url=${url//"subscriptions.gir.st"/"youtube.com"}
 url=${url//"yewtu.be"/"youtube.com"}
 
-MPV_ARGS=" --ytdl"
-MPV_ARGS+=" --ytdl-raw-options=format=\"bestvideo[height<=?1440]+bestaudio/best[height<=1440]\""
+MPV_ARGS=""
 if [ "$2" == "-" ]; then
     MPV_ARGS+=" --wayland-app-id=float -x11-name=float"
 fi
