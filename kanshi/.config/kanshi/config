@@ -3,6 +3,16 @@ profile mobile {
 }
 
 profile docked {
-  output eDP-1 enable mode 1920x1080 position 0,1440
-	output HDMI-A-1 enable mode 2560x1440 position 0,0
+	output eDP-1 enable mode 1920x1080 position 320,1440
+	output DP-1 enable mode 2560x1440 position 0,0
+}
+
+profile work-docked {
+	output eDP-1 enable mode 1920x1080 position 0,1080
+  output "Samsung Electric Company S27F350 H4ZNB04434" enable mode 1920x1080 position 0,0
+}
+
+profile work-docked-max {
+	output eDP-1 enable mode 1920x1080 position 320,1440
+  output HDMI-A-1 enable mode 2560x1440 position 0,0
 }
