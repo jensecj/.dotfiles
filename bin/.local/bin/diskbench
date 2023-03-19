@@ -1,7 +1,7 @@
 #!/bin/bash
 
-if ! which fio; then
-    echo "requires `fio`"
+if ! which fio &> /dev/null; then
+    echo "requires fio"
     exit 1
 fi
 
@@ -34,7 +34,7 @@ fi
 trap "rm -f $FILE" INT EXIT # make sure we clean up the temp file
 
 _fio() {
-    fio --name TEST \
+    fio --name diskbenchmark \
         --eta-newline=5s \
         --filename="$FILE" \
         --size=500m \
@@ -42,7 +42,7 @@ _fio() {
         --ioengine=libaio \
         --direct=1 \
         --numjobs=1 \
-        --runtime=60 \
+        --runtime=30 \
         --group_reporting \
         $@  | \grep "READ:\|WRITE:"
 }
@@ -50,14 +50,14 @@ _fio() {
 if [ $BEST ]; then
     echo "best case:"
     # almost optimal cases for read and write; big blocks
-    _fio --rw=read --blocksize=1024k --fsync=10000 --iodepth=32
+    _fio --rw=read  --blocksize=1024k --fsync=10000 --iodepth=32
     _fio --rw=write --blocksize=1024k --fsync=10000 --iodepth=32
 fi
 
 if [ $REAL ]; then
     echo "real-world case:"
     # near real-world cases for read/write, random 4k blocks
-    _fio --rw=randread --blocksize=4k --fsync=1 --iodepth=1
+    _fio --rw=randread  --blocksize=4k --fsync=1 --iodepth=1
     _fio --rw=randwrite --blocksize=4k --fsync=1 --iodepth=1
 fi
 
