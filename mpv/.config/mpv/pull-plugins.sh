@@ -1,30 +1,53 @@
 #!/bin/sh
 
-if [ ! -f scripts/mpv_thumbnail_script_client_osc.lua ]; then
-    echo "downloading plugin: mpv_thumbnail_script"
-    curl -s https://api.github.com/repos/TheAMM/mpv_thumbnail_script/releases/latest | grep browser_download_url | cut -d '"' -f 4 | wget -i -
-    cp mpv_thumbnail_script_server.lua scripts/mpv_thumbnail_script_server-1.lua
-    mv mpv_thumbnail_script_server.lua scripts/mpv_thumbnail_script_server-2.lua
-    mv mpv_thumbnail_script_client_osc.lua scripts/mpv_thumbnail_script_client_osc.lua
+# https://github.com/christoph-heinrich/mpv-quality-menu
+if [ ! -f scripts/quality-menu.lua ]; then
+    echo "downloading quality-menu"
+    curl -# --no-clobber -o'scripts/quality-menu.lua' 'https://raw.githubusercontent.com/christoph-heinrich/mpv-quality-menu/master/quality-menu.lua'
+    curl -# --no-clobber -o'script-opts/quality-menu.conf' 'https://raw.githubusercontent.com/christoph-heinrich/mpv-quality-menu/master/quality-menu.conf'
 fi
 
-if [ ! -f scripts/youtube-quality.lua ]; then
-    echo "downloading plugin: mpv-youtube-quality"
-    curl https://raw.githubusercontent.com/jgreco/mpv-youtube-quality/master/youtube-quality.lua > scripts/youtube-quality.lua
-fi
-
+# https://github.com/4e6/mpv-reload
 if [ ! -f scripts/reload.lua ]; then
-    echo "downloading plugin: reload"
-    curl https://raw.githubusercontent.com/4e6/mpv-reload/master/reload.lua > scripts/reload.lua
+    echo "downloading reload"
+    curl -# --no-clobber -o 'scripts/reload.lua' 'https://raw.githubusercontent.com/4e6/mpv-reload/master/reload.lua'
 fi
 
+# https://github.com/po5/chapterskip
+if [ ! -f scripts/chapterskip.lua ]; then
+    echo "downloading chapterskip"
+    curl -# --no-clobber -o 'scripts/chapterskip.lua' 'https://raw.githubusercontent.com/po5/chapterskip/master/chapterskip.lua'
+fi
+
+# https://github.com/jonniek/mpv-playlistmanager
 if [ ! -f scripts/playlistmanager.lua ]; then
-    echo "downloading plugin: playlistmanager"
-    curl https://github.com/jonniek/mpv-playlistmanager/blob/master/titleresolver.lua > scripts/titleresolver.lua
-    curl https://github.com/jonniek/mpv-playlistmanager/blob/master/playlistmanager.lua > scripts/playlistmanager.lua
+    echo "downloading playlistmanager"
+    curl -# --no-clobber -o'scripts/playlistmanager.lua' 'https://raw.githubusercontent.com/jonniek/mpv-playlistmanager/master/playlistmanager.lua'
+    curl -# --no-clobber -o'script-opts/playlistmanager.conf' 'https://raw.githubusercontent.com/jonniek/mpv-playlistmanager/master/playlistmanager.conf'
 fi
 
-if [ ! -f scripts/navigator.lua ]; then
-    echo "downloading plugin: navigator"
-    curl https://github.com/jonniek/mpv-filenavigator/blob/master/navigator.lua > scripts/navigator.lua
+# https://codeberg.org/jouni/mpv_sponsorblock_minimal
+if [ ! -f scripts/sponsorblock_minimal.lua ]; then
+    echo "downloading sponsorblock_minimal"
+    curl -# --no-clobber -o 'scripts/sponsorblock_minimal.lua' 'https://codeberg.org/jouni/mpv_sponsorblock_minimal/raw/branch/master/sponsorblock_minimal.lua'
+fi
+
+# https://github.com/CogentRedTester/mpv-scripts/blob/master/pause-indicator.lua
+if [ ! -f scripts/pause-indicator.lua ]; then
+    echo "downloading pause-indicator"
+    curl -# --no-clobber -o 'scripts/pause-indicator.lua' 'https://raw.githubusercontent.com/CogentRedTester/mpv-scripts/master/pause-indicator.lua'
+fi
+
+# https://github.com/CogentRedTester/mpv-scripts/blob/master/keep-session.lua
+if [ ! -f scripts/keep-session.lua ]; then
+    echo "downloading keep-session"
+    curl -# --no-clobber -o 'scripts/keep-session.lua' 'https://raw.githubusercontent.com/CogentRedTester/mpv-scripts/master/keep-session.lua'
+fi
+
+# https://github.com/po5/thumbfast
+if [ ! -f scripts/thumbfast.lua ]; then
+    echo "downloading thumbfast"
+    curl -# --no-clobber -o 'scripts/thumbfast.lua' 'https://raw.githubusercontent.com/po5/thumbfast/master/thumbfast.lua'
+    curl -# --no-clobber -o 'script-opts/thumbfast.conf' 'https://raw.githubusercontent.com/po5/thumbfast/master/thumbfast.lua'
+    curl -# --no-clobber -o 'scripts/thumbfast_osc.lua' https://raw.githubusercontent.com/po5/thumbfast/vanilla-osc/player/lua/osc.lua
 fi
