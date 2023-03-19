@@ -27,7 +27,7 @@ packages=(
     # ** video drivers
     xf86-video-amdgpu
     mesa opencl-mesa
-    vulkan-icd-loader amdvlk
+    vulkan-icd-loader amdvlk # vulkan drivers for igpu on amd
 
     # ** display server, window manager, etc.
     wayland xorg-xwayland
@@ -49,6 +49,7 @@ packages=(
     pipewire
     pipewire-pulse
     wireplumber
+    easyeffects
 
     # ** fonts
     adobe-source-code-pro-fonts # for programming
@@ -76,6 +77,7 @@ packages=(
     at # dispatch tasks to run sometime in the future
 
     # ** file system
+    btfs # fuse filesystem for bittorrent
     mergerfs # fuse union filesystem
     snapraid # software raid
     sshfs # fuse fs for mounting remote directories locally
@@ -100,7 +102,7 @@ packages=(
     git # git and the github wrapper
     jupyter # interactive science notebooks
     docker docker-rootless-extras-bin # containerization
-    podman podman-compose buildah skopeo # more containers
+    podman netavark aardvark-dns podman-compose buildah skopeo # more containers
     criu # snapshot processes
     delta # fancy git diff
     watchexec # run commands when files change
@@ -115,7 +117,7 @@ packages=(
     # ** system libraries
     harfbuzz # textshaping engine
     imagemagick # image tools
-    poppler # pdf rendering
+    poppler poppler-glib # pdf rendering
     perf # performance analysis tools
     wireguard-tools
 
