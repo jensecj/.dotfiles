@@ -1,0 +1,11 @@
+#!/bin/sh
+
+data=$(upower -i /org/freedesktop/UPower/devices/battery_BAT0)
+state=$(echo "$data" | grep "state:" | xargs | cut -d' ' -f2)
+rate=$(echo "$data" | grep "energy-rate:" | xargs | cut -d' ' -f2)
+energy=$(echo "$data" | grep "energy:" | xargs | cut -d' ' -f2 | tr ',' '.')
+energyfull=$(echo "$data" | grep "energy-full:" | xargs | cut -d' ' -f2 | tr ',' '.')
+pct=$(echo "${energy}/${energyfull}*100" | bc -l)
+
+# echo "$data"
+printf "${energy}/${energyfull} (%.0f%%) $state @ ${rate}W\n" "$pct"

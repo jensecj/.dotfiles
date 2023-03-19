@@ -1,0 +1,37 @@
+#!/bin/bash
+
+NUMCPUS=$(nproc)
+CPU_FREQS=$(cat /proc/cpuinfo | grep -i "^cpu mhz" | tr '.' ' ' | cut -f3 -d' ' | sort -n)
+CPU_HIGH=$(echo "$CPU_FREQS" | tail -1)
+CPU_LOW=$(echo "$CPU_FREQS" | head -1)
+CPUSUM=$(echo "$CPU_FREQS" | xargs | tr ' ' '+' | bc)
+CPUMINSUM=$(echo "$NUMCPUS*400" | bc)
+CPUMAXSUM=$(echo "$NUMCPUS*4500" | bc)
+
+hwmons=$(find -H /sys/class/hwmon/* -type f -iname name | sed 's#/name##')
+
+for m in $hwmons; do
+    n=$(cat $m/name)
+    if [ "$n" = "thinkpad" ]; then
+        CPU_PATH="$m"
+    elif [ "$n" = "amdgpu" ]; then
+        GPU_PATH="$m"
+    fi
+done
+
+if [ ! $CPU_PATH ] || [ ! $GPU_PATH ]; then
+    echo "unable to find hardware paths"
+    exit 1
+fi
+
+
+GPU=$(cat "$GPU_PATH/temp1_input"); GPU=$(echo "$GPU/1000" | bc)
+CPU=$(cat "$CPU_PATH/temp1_input"); CPU=$(echo "$CPU/1000" | bc)
+CPUFAN=$(cat "$CPU_PATH/fan1_input")
+
+printf "%s\n" \
+       "$(echo "$CPU_FREQS" | sort -rn | tr '\n' ' ')"
+printf "cpu: %s°  %sᵐʰᶻ/%sᵐʰᶻ  (%s / %s)  %s⁻¹\n" \
+       "$CPU" "$CPU_LOW" "$CPU_HIGH" "$CPUSUM" "$CPUMAXSUM" "$CPUFAN"
+printf "gpu: %s°\n" \
+       "$GPU"
