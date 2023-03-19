@@ -1,21 +1,33 @@
 #!/bin/sh
 
-VPNS="$HOME/.vpn"
-
+export DISPLAY=:0
+VPN_DIR="$HOME/.vpn"
 ACTION=$1
+
 case "$ACTION"
 in
     down)
-        DOWN=1 ;;
+        DOWN=1
+        shift
+        ;;
     up)
         UP=1
-        PROFILE=$2
+        shift
         ;;
-    rand|random)
+    random)
         RAND=1
+        shift
         ;;
     *) ;;
 esac
+
+debug() { echo "$*"; }
+info() { debug "$*"; notify-send "$*"; }
+err() { echo -e "$*" >&2; }
+
+get_vpns() {
+    VPNS=$(find "$VPN_DIR" -type f -iname '*.conf' | xargs basename -s '.conf' | sort)
+}
 
 get_active_vpn() {
     ACTIVEVPN=$(ip a | \grep -E 'mullvad-[a-z0-9]+' -o | head -n +1) || ACTIVEVPN=0
@@ -23,30 +35,50 @@ get_active_vpn() {
 
 down() {
     get_active_vpn
-    [ -n "$ACTIVEVPN" ] && wg-quick down "$VPNS/$ACTIVEVPN.conf"
-}
 
-connect_to_vpn() {
-    vpn=$1
-
-    # tear down currently active vpn before setting up a new one
-    down > /dev/null 2>&1
-    wg-quick up "$vpn"
+    if [ ! -n "$ACTIVEVPN" ]; then
+        debug "not connected to vpn"
+    elif wg-quick down "$VPN_DIR/$ACTIVEVPN.conf"; then
+        info "disconnected from $ACTIVEVPN"
+    else
+        err "failed to disconnect from $ACTIVEVPN"
+        exit 2
+    fi
 }
 
 up() {
+    PROFILE="$1"
+
     if [ -z "$PROFILE" ]; then
-        PROFILE=$(find "$VPNS" -type f -iname '*.conf' | xargs basename -s '.conf' | sort | fzf) || exit 1
+        get_vpns
+        PROFILE=$(echo "$VPNS" | fzf) || exit 1
     fi
 
-    connect_to_vpn "$VPNS/$PROFILE.conf"
+    # tear down active vpn before setting up new one
+    down
+
+    if wg-quick up "$VPN_DIR/$PROFILE.conf"; then
+        info "connected to $PROFILE"
+    else
+        err "failed to connect to $PROFILE"
+        exit 2
+    fi
 }
 
 random() {
-    PROFILE=$(find "$VPNS" -type f -iname '*.conf' | shuf -n 1) || exit 1
-    connect_to_vpn "$PROFILE"
+    get_vpns
+    PICK=$(echo "$VPNS" | shuf -n 1)
+
+    if [ $PICK ]; then
+        up "$PICK"
+    else
+        err "failed to pick random vpn"
+        exit 3
+    fi
 }
 
-[ $DOWN ] && down && echo "vpn disconnected"
-[ $UP ] && up
+[ $DOWN ] && down
+[ $UP ] && up "$@"
 [ $RAND ] && random
+
+exit 0

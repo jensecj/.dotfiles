@@ -1,10 +1,9 @@
 #!/bin/sh
 
+export DISPLAY=:0
+VPN_DIR="$HOME/.vpn"
 MENU="rofi -dmenu -l 10 -p"
-SECMENU="rofi -dmenu -l 0 -password -p"
-
-# MENU="dmenu -l 10 -p"
-# SECMENU="dmenu -l 0 -P -p" # needs the =dmenu-password= patch
+ASKPASS=$(which pyaskpass)
 
 if [ $# -gt 0 ]; then
     INTERFACE="$1"
@@ -12,19 +11,21 @@ else
     INTERFACE="wlan0"
 fi
 
-VPNS="$HOME/.vpn"
-
 dosudo() {
-    SUDO_ASKPASS=/usr/local/bin/rofi-askpass sudo -A $@
+    HOME=$HOME SUDO_ASKPASS=$ASKPASS sudo -A $@
+}
+
+get_vpns() {
+    VPNS=$(find "$VPN_DIR" -type f -iname '*.conf' | xargs basename -s '.conf' | sort)
 }
 
 pick_vpn() {
-    PROFILES=$(find "$VPNS" -type f -iname '*.conf' | xargs basename -s '.conf' | sort)
+    get_vpns
 
     options="\ndisconnect\nrandom"
+    PICK=$(echo "$VPNS" "$options"| $MENU "Pick a network")
 
-    PICK=$(echo -e "$PROFILES" "$options"| $MENU "Pick a network")
-    [ "$PICK" = "disconnect" ] && dosudo vpn down && notify-send "disconnecting $INTERFACE" && exit
+    [ "$PICK" = "disconnect" ] && dosudo vpn down && exit
     [ "$PICK" = "random" ] && dosudo vpn random && exit
     [ -n "$PICK" ] && dosudo vpn up "$PICK" && exit
 }
