@@ -8,11 +8,10 @@ fi
 ZIP=$1
 RANGE=$2
 
-if [ $RANGE -eq 9 ]; then
+if [ ! $RANGE ]; then
+    curl --silent "https://servlet.dmi.dk/byvejr/servlet/byvejr_dag1?by=$ZIP&mode=long&eps=true" | imv -
+elif [ $RANGE -eq 9 ]; then
     curl --silent 'https://servlet.dmi.dk/byvejr/servlet/byvejr?by=1000&tabel=dag3_9' | imv -
-
 elif [ $RANGE -eq 15 ]; then
     curl --silent 'https://servlet.dmi.dk/byvejr/servlet/byvejr?region=9&tabel=dag7_15' | imv -
-else
-    curl --silent "https://servlet.dmi.dk/byvejr/servlet/byvejr_dag1?by=$ZIP&mode=long&eps=true" | imv -
 fi
