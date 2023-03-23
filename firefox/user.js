@@ -135,3 +135,7 @@ user_pref("extensions.shield-recipe-client.enabled", false);
 user_pref("app.shield.optoutstudies.enabled", false);
 user_pref("network.negotiate-auth.allow-insecure-ntlm-v1", false);
 user_pref("network.http.referer.spoofSource", true);
+user_pref("network.captive-portal-service.enabled", false); // detectportal.firefox.com - for figuring out if we're behind metered router, needing to login
+user_pref("browser.topsites.contile.enabled", false); // dont use tiles, they're for advertisers to show suggestions
+
+
