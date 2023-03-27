@@ -25,12 +25,11 @@ packages=(
     dhcpcd # DHCP client for ip leasing
 
     # ** video drivers
-    xf86-video-amdgpu
-    mesa opencl-mesa
-    vulkan-icd-loader amdvlk # vulkan drivers for igpu on amd
+    mesa libva-mesa-driver # gpu drivers for wayland
+    vulkan-icd-loader amdvlk # vulkan drivers for amd
 
     # ** display server, window manager, etc.
-    wayland xorg-xwayland
+    wayland
     sway # window manager, i3 drop-in replacement
     swayidle # idle trigger
     waylock # screen locker
@@ -66,7 +65,7 @@ packages=(
 
     # ** core tools
     sudo # do things as root
-    cpupower # helper for powersaving, frequency scaling, etc.
+    cpupower # helper for getting cpu info, and setting states (powersaving, frequency scaling, etc.)
     acpi # battery info
     hdparm # hdd info
     #smartmontools # hdd stats and control
@@ -171,6 +170,7 @@ packages=(
     # ** system information
     lshw # print hardware information (like other ls* tools)
     htop # process manager
+    nvtop # gpu monitor
     iotop # I/O monitor
     bandwhich # network monitor
     iftop # network monitor
@@ -184,7 +184,7 @@ packages=(
     mpv # video player
     moc wavpack libmpcdec taglib faad2 # music player, and codex etc.
     mupdf # pdf viewer
-    zathura zathura-pdf-mupdf zathura-djvu zathura-ps # document viewer, and backends
+    zathura zathura-pdf-mupdf # document viewer, and backends
     pdftk # toolkit for manipulating pdfs, merging, splitting, etc.
     gimp # image editing
     nmap # network scanning
