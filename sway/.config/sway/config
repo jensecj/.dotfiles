@@ -22,11 +22,25 @@ xkb_options ctrl:nocaps
 }
 
 input "type:touchpad" {
+events enabled
 dwt enabled # disable while typing
 tap enabled
 drag enabled
 accel_profile adaptive
-pointer_accel 0.15
+pointer_accel 0.20
+natural_scroll disabled
+middle_emulation enabled
+scroll_method two_finger
+tap_button_map "lmr"
+}
+
+input "1452:613:Apple_Inc._Magic_Trackpad" {
+events enabled
+dwt enabled # disable while typing
+tap enabled
+drag enabled
+accel_profile adaptive
+pointer_accel 0.20
 natural_scroll disabled
 middle_emulation enabled
 scroll_method two_finger
