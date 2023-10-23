@@ -18,6 +18,8 @@ fi
 
 if ip a | grep "mullvad" > /dev/null; then
     printf "[$ICON]" # it's in a box, get it?
+elif ip a | grep "wg" > /dev/null; then
+    printf "[$ICON]"
 else
     printf "$ICON"
 fi
