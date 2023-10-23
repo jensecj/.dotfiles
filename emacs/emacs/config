@@ -1,15 +1,21 @@
 #!/bin/bash
-
 BUILD_DIR=$(pwd)/build
-printf "build dir: %s\n" $BUILD_DIR
+EMACS_DIR=$(pwd)/emacs
+
+mkdir -p "$BUILD_DIR"
+
+set -eEo pipefail
+trap 'printf "\n%s\n" "config failed"' ERR
 
 (
-    cd emacs/ || exit 2
+    printf "config dir: %s\n" $EMACS_DIR
+    printf "build dir: %s\n" $BUILD_DIR
+
+    cd "$EMACS_DIR" || exit 2
 
     time ./configure \
          --prefix="$BUILD_DIR" \
          --exec-prefix="$BUILD_DIR" \
-         --without-sound \
          --with-cairo \
          --with-harfbuzz \
          --with-native-compilation \
@@ -18,12 +24,11 @@ printf "build dir: %s\n" $BUILD_DIR
          --with-pdumper=yes \
          --with-imagemagick \
          --with-json \
-         --without-pop \
-         --without-mailutils
+         --without-sound \
+         --without-pop
 )
 
 printf "======================"
 printf "\n%s\n" "configuration complete"
 printf "======================"
 printf "\n\n"
-

@@ -1,4 +1,10 @@
 #!/bin/bash
 BUILD_DIR=$(pwd)/build
+INSTALL_DIR=$HOME/.local
 
-sudo stow --delete --target /usr/local "$BUILD_DIR"
+set -eEo pipefail
+trap 'printf "\n%s\n" "uninstall failed from $INSTALL_DIR"' ERR
+
+sudo stow --delete --target "$INSTALL_DIR" "$BUILD_DIR"
+
+echo "uninstalled emacs at $BUILD_DIR"

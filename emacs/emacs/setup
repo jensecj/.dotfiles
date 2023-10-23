@@ -1,6 +1,11 @@
 #!/bin/bash
+EMACS_DIR=$(pwd)/emacs
+
+set -eEo pipefail
+trap 'printf "\n%s\n" "setup failed"' ERR
 
 (
-    cd emacs/ || exit 2
-    ./autogen.sh
+    cd "$EMACS_DIR" || exit 2
+    ./autogen.sh all
+    echo "setup completed"
 )

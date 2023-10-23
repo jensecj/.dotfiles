@@ -1,9 +1,15 @@
 #!/bin/bash
+TARGET=build
 BUILD_DIR=$(pwd)/build
+INSTALL_DIR=$HOME/.local
+
+set -eEo pipefail
+trap 'printf "\n%s\n" "install failed for $TARGET to $INSTALL_DIR"' ERR
 
 # fix for stow not wanting to link into another symlink
-rm -r "$BUILD_DIR/man" &> /dev/null
-cp -r "$BUILD_DIR/share/man" "$BUILD_DIR/man"
+# rm -r "$BUILD_DIR/man" &> /dev/null
+# cp -r "$BUILD_DIR/share/man" "$BUILD_DIR/man"
 
-sudo stow --verbose --target ~/.local/ --stow build/
-echo "installation complete!"
+stow --verbose --target "$INSTALL_DIR" --stow "$TARGET"
+
+echo "installed emacs at $INSTALL_DIR"

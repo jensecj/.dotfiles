@@ -3,11 +3,14 @@
 set -eEo pipefail
 trap 'printf "\n%s\n" "compilation failed"' ERR
 
+EMACS_DIR=$(pwd)/emacs
 BUILD_DIR=$(pwd)/build
 
+mkdir -p "$BUILD_DIR"
+
 (
-    cd emacs/ || exit 2
-    time make NATIVE_FULL_AOT=1 -j4 all prefix="$BUILD_DIR" exec_prefix="$BUILD_DIR"
+    cd "$EMACS_DIR" || exit 2
+    time make NATIVE_FULL_AOT=1 -j4 bootstrap prefix="$BUILD_DIR" exec_prefix="$BUILD_DIR"
     make -j8 install prefix="$BUILD_DIR" exec_prefix="$BUILD_DIR"
 )
 

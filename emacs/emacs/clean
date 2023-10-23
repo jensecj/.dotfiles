@@ -1,6 +1,15 @@
 #!/bin/bash
+EMACS_DIR=$(pwd)/emacs
+
+set -eEo pipefail
+trap 'printf "\n%s\n" "cleanup failed"' ERR
+
+mkdir -p build
+mv -f build build.old
+mkdir -p build
 
 (
-    cd emacs/ || exit 2
+    cd "$EMACS_DIR" || exit 2
     make clean distclean
+    echo "clean completed"
 )
