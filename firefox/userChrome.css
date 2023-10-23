@@ -28,10 +28,13 @@ button {
 #tabbrowser-tabs {
     --tab-min-height: 27px !important;
     --tab-line-color: unset !important; /* hide blue accent line */
+    border-inline-start: unset !important;
+    padding-inline-start: unset !important;
+    margin-inline-start: unset !important;
 }
 
 #tabbrowser-tabs .tabbrowser-tab {
-    max-height: 10px;
+    max-height: 30px;
     color: #fefefe !important;
     font-weight: 550 !important;
 
@@ -39,7 +42,7 @@ button {
     padding-inline: unset !important;
 
     /* bring back the tab separator */
-    border-inline-end: 1px solid #313131 !important;
+    border-inline-end: 1px solid gray !important;
 }
 
 /* remove round Proton look */
@@ -50,15 +53,15 @@ button {
     background-color: #2a2a2e !important;
 }
 
-#tabbrowser-tabs .tab-background[selected="true"],
-#tabbrowser-tabs .tab-background[multiselected="true"] {
+#tabbrowser-tabs .tabbrowser-tab[selected="true"] .tab-background,
+#tabbrowser-tabs .tabbrowser-tab[multiselected="true"] .tab-background {
     background-color: #404552 !important;
     /* remove dimming on multiselected tabs, that are not the main tab */
     opacity: 1 !important;
 }
 
 /* colored top-border on selected tab */
-#tabbrowser-tabs .tab-background[selected="true"] {
+#tabbrowser-tabs .tabbrowser-tab[selected="true"] .tab-background {
     border-top: 2px solid #afafaf !important;
 
     /* add back bottom-border that distinguishes main tab from other selected tabs */
@@ -71,6 +74,10 @@ button {
 {
     display: none !important;
     visibility: hidden !important;
+}
+
+.toolbar-items #firefox-view-button {
+    display: none !important;
 }
 
 /*
