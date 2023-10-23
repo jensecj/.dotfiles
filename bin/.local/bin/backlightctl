@@ -5,6 +5,7 @@ CHANGE=$2
 
 if [ ! $DEVICE -a $CHANGE ]; then
     echo "usage: backlightctl <device> <command>"
+    echo "see devices in /sys/class/backlight/"
     exit 1
 fi
 

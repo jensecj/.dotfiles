@@ -44,10 +44,10 @@ bindsym $mod+Shift+space floating toggle
 bindsym $mod+space focus mode_toggle
 
 # ** system
-bindsym XF86MonBrightnessUp exec backlightctl amdgpu_bl0 5%+
-bindsym Shift+XF86MonBrightnessUp exec backlightctl amdgpu_bl0 1%+
-bindsym XF86MonBrightnessDown exec backlightctl amdgpu_bl0 5%-
-bindsym Shift+XF86MonBrightnessDown exec backlightctl amdgpu_bl0 1%-
+bindsym XF86MonBrightnessUp exec backlightctl amdgpu_bl1 5%+
+bindsym Shift+XF86MonBrightnessUp exec backlightctl amdgpu_bl1 1%+
+bindsym XF86MonBrightnessDown exec backlightctl amdgpu_bl1 5%-
+bindsym Shift+XF86MonBrightnessDown exec backlightctl amdgpu_bl1 1%-
 
 bindsym XF86AudioRaiseVolume exec volumectl +2%
 bindsym XF86AudioLowerVolume exec volumectl -2%
