@@ -34,7 +34,6 @@ packages=(
     swayidle # idle trigger
     waylock # screen locker
     waybar # status bar
-    persway # sway ipc daemon for auto-tiling
     mako # notification manager
     wallutils # utils for monitors and wallpapers
     kanshi # autorandr for wayland

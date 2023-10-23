@@ -123,7 +123,7 @@ bindsym $mod+r mode "resize"
 include /etc/sway/config.d/*
 
 exec swayinit
-exec persway --autolayout # dynamic tiling for sway
+exec swayautolayout # dynamic tiling for sway
 exec gammastep -t 4500:1600 -l 56:11 # redshift displays based on time of day
 exec udiskie # automounting usb devices
 exec mako # notification daemon
