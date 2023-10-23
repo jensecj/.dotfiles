@@ -1,0 +1,30 @@
+#!/bin/bash
+
+set -e
+set -o pipefail
+
+err() { echo -e "$*" >&2; }
+err_exit() { err "$@"; exit 1; }
+
+reencrypt() {
+    local id="$1"
+    local file="$2"
+    mv --no-clobber "${file}" "${file}.bak"
+    gpg --quiet --decrypt "${file}.bak" | gpg -quiet --recipient "${id}" --encrypt --output "${file}"
+}
+
+main() {
+    if [ $# -lt 2 ]; then
+        err_exit "Usage: gpg-reencrypt ID FILE"
+    fi
+
+    local id=$1
+    shift
+    local files="$*"
+
+    for file in $files; do
+        reencrypt "${id}" "${file}"
+    done
+}
+
+main "$@"
