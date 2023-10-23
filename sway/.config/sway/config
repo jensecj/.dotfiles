@@ -73,8 +73,8 @@ bindsym $mod+d exec rofi -show run
 bindsym $mod+Return exec $term -e tmux
 bindsym $mod+Shift+Return exec $term
 bindsym $mod+Ctrl+Return exec popterm tmux
-bindsym $mod+F11 exec dunstctl close
-bindsym $mod+F12 exec dunstctl history-pop
+bindsym $mod+F11 exec makoctl dismiss
+bindsym $mod+F12 exec makoctl restore
 bindsym $mod+Print exec scrshot -d "~/private/screenshots/"
 bindsym $mod+Ctrl+Print exec scrshot -s -d "~/private/screenshots/"
 bindsym $mod+Shift+b exec em '~/vault/org/bookmarks.org' -
@@ -126,6 +126,7 @@ exec swayinit
 exec persway --autolayout # dynamic tiling for sway
 exec gammastep -t 4500:1600 -l 56:11 # redshift displays based on time of day
 exec udiskie # automounting usb devices
+exec mako # notification daemon
 
 # weird work-around because `exec_always pkill' fails to start at boot
 exec_always echo 'pkill wallpaperd; wallpaperd & disown' | at now # random wallpaper daemon

@@ -1,0 +1,25 @@
+font=Source Code Pro Semibold 11
+width=300
+height=80
+padding=10
+
+text-color=#EAEAEAFF
+background-color=#313131FF
+
+border-size=1
+
+max-history=20
+text-alignment=center
+default-timeout=10000
+max-visible=10
+
+[urgency=low]
+border-color=#454545FF
+
+[urgency=normal]
+border-color=#454545FF
+
+[urgency=high]
+border-size=2
+border-color=#BF616AFF
+default-timeout=0

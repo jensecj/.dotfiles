@@ -35,7 +35,7 @@ packages=(
     waylock # screen locker
     waybar # status bar
     persway # sway ipc daemon for auto-tiling
-    dunst # notification manager
+    mako # notification manager
     wallutils # utils for monitors and wallpapers
     kanshi # autorandr for wayland
     gammastep # redshift display

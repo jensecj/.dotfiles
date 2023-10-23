@@ -19,3 +19,5 @@ for b in ${BARS[@]}; do
     tail -f "$b" | wob > /dev/null & disown
 done
 
+# restart notification daemon
+makoctl reload
