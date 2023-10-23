@@ -27,7 +27,7 @@ systemd_is_enabled() {
 }
 
 proc_chk() {
-    pgrep "$1" > /dev/null 2>&1; chk "$1"
+    pgrep -f "$1" > /dev/null 2>&1; chk "$1"
 }
 
 mount_chk() {
@@ -73,7 +73,7 @@ printf "\n"
 
 proc_chk "sway"
 proc_chk "swayidle"
-proc_chk "persway"
+proc_chk "swayautolayout"
 proc_chk "waybar"
 proc_chk "wob"
 proc_chk "psi-notify"
@@ -81,6 +81,14 @@ proc_chk "psi-notify"
 # proc_chk "dunst" # is activated on-demand by dbus, hard to check
 proc_chk "gammastep"
 proc_chk "kanshi"
+
+printf "\n"
+
+if ip a | grep -qE ' .*-wg-.*:' ; then
+    good "vpn"
+else
+    bad "vpn"
+fi
 
 printf "\n"
 
@@ -102,12 +110,6 @@ if [ -n "$public_ip" ]; then
     echo "public ip: $public_ip";
 else
     echo "public ip not found"
-fi
-
-if ip a | grep -qE ' .*-wg-.*:' ; then
-    good "vpn"
-else
-    bad "vpn"
 fi
 
 
