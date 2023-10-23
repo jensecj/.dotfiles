@@ -104,7 +104,7 @@ else
     echo "public ip not found"
 fi
 
-if ip a | grep -q mullvad; then
+if ip a | grep -qE ' .*-wg-.*:' ; then
     good "vpn"
 else
     bad "vpn"

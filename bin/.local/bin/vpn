@@ -30,13 +30,19 @@ get_vpns() {
 }
 
 get_active_vpn() {
-    ACTIVEVPN=$(ip a | \grep -E 'mullvad-[a-z0-9]+' -o | head -n +1) || ACTIVEVPN=0
+    ACTIVEVPN=$(ip a | \grep -E ' .*-wg-.*:' -o | sed 's/://g' | sed 's/ //g')
+    if [ -z "$ACTIVEVPN" ]; then
+        ACTIVEVPN=$(ip a | \grep -E 'mullvad-[a-z0-9]+' -o | head -n +1)
+    fi
+    if [ -z "$ACTIVEVPN" ]; then
+        ACTIVEVPN=
+    fi
 }
 
 down() {
     get_active_vpn
 
-    if [ ! -n "$ACTIVEVPN" ]; then
+    if [ -z "$ACTIVEVPN" ]; then
         debug "not connected to vpn"
     elif wg-quick down "$VPN_DIR/$ACTIVEVPN.conf"; then
         info "disconnected from $ACTIVEVPN"
