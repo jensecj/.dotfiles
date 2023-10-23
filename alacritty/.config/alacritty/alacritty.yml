@@ -22,8 +22,6 @@ colors:
    text: '#000000'
    cursor: '#dcdccc'
 
-background_opacity: 1.0
-
 #selection:
   #semantic_escape_chars: ",│`|:\"' ()[]{}<>\t"
 
