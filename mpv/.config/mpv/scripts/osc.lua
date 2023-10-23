@@ -41,7 +41,7 @@ local user_opts = {
    livemarkers = true,         -- update seekbar chapter markers on duration change
    chapters_osd = true,        -- whether to show chapters OSD on next/prev
    playlist_osd = true,        -- whether to show playlist OSD on next/prev
-   chapter_fmt = "Chapter: %s", -- chapter print format for seekbar-hover. "no" to disable
+   chapter_fmt = "%s", -- chapter print format for seekbar-hover. "no" to disable
 }
 
 -- read options from config and command-line
@@ -1107,7 +1107,6 @@ function osc_init()
 
    -- title
    ne = new_element("title", "button")
-
    ne.content = function ()
       local title = state.forced_title or
          mp.command_native({"expand-text", user_opts.title})
@@ -1121,7 +1120,6 @@ function osc_init()
 
    --seekbar
    ne = new_element("seekbar", "slider")
-
    ne.enabled = not (mp.get_property("percent-pos") == nil)
    state.slider_element = ne.enabled and ne or nil  -- used for forced_title
    ne.slider.markerF = function ()
@@ -1196,14 +1194,12 @@ function osc_init()
 
    -- tc_left (current pos)
    ne = new_element("tc_left", "button")
-
    ne.content = function ()
       return (mp.get_property_osd("playback-time"))
    end
 
    -- tc_right (total/remaining time)
    ne = new_element("tc_right", "button")
-
    ne.visible = (mp.get_property_number("duration", 0) > 0)
    ne.content = function ()
       local minus = "-"
@@ -1212,7 +1208,6 @@ function osc_init()
 
    -- cache
    ne = new_element("cache", "button")
-
    ne.content = function ()
       local cache_state = state.cache_state
       if not (cache_state and cache_state["seekable-ranges"] and
@@ -1227,11 +1222,22 @@ function osc_init()
       else
          dmx_cache = state.dmx_cache
       end
+
       local min = math.floor(dmx_cache / 60)
       local sec = math.floor(dmx_cache % 60) -- don't round e.g. 59.9 to 60
-      return "Cache: " .. (min > 0 and
-                           string.format("%sm%02.0fs", min, sec) or
-                           string.format("%3.0fs", sec))
+      local hrs = math.floor(min / 60)
+      if hrs > 0 then
+         min = math.floor(min % 60)
+      end
+
+      local remaining = mp.get_property_native("playtime-remaining")
+      if dmx_cache and remaining and dmx_cache >= remaining then
+         return ""
+      end
+
+      return "cached " .. (hrs > 0 and string.format("%sh %2sm %2ss", hrs, min, sec) or
+                           min > 0 and string.format("%2sm %2ss", min, sec) or
+                           string.format("%2ss", sec))
    end
 
    -- load layout
